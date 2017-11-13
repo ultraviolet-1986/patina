@@ -7,6 +7,9 @@
 # 0.6.x Series: 'Kyrie'
 - **0.6.4 Released XXX, XXX Xth 201X**
   - Shortened the BASH version number displayed in Patina's initial start-up.
+  - Separated colours and formatting to `patina_system_stylesheet.sh` component.
+  - Added a counter on the `p-list` command to show how many components are
+    currently connected.
 - **0.6.3 Released Friday, September 8th 2017**
   - Minor bug-fixes for `patina_system_package_manager.sh` component.
   - Included support for **Solus** package manager `eopkg` within `p-package`.
