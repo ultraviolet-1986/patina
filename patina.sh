@@ -15,7 +15,7 @@
 #############
 
 # Patina / Metadata
-readonly patina_metadata_version='0.6.4'
+readonly patina_metadata_version='0.6.5'
 readonly patina_metadata_codename='Kyrie'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 
