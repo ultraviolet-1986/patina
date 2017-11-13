@@ -4,6 +4,8 @@ A 'patina', 'layer', or 'framework' for BASH under Linux which aims to help user
 # Table of Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
+  - [Step 1](#step-1)
+  - [Step 2](#step-2)
 - [Features](#features)
 - [Recommended Packages](#recommended-packages)
 - [Conventions](#conventions)
@@ -25,25 +27,29 @@ A 'patina', 'layer', or 'framework' for BASH under Linux which aims to help user
 
 # Installation
 
-**Step 1**
+## Step 1
+
+Clone into the `patina` repository using your BASH shell (example below):
 
 ```bash
-# Clone into the `patina` repository using your BASH shell (example below):
 $ git clone http://github.com/ultraviolet-1986/patina ~/Workspace
 ```
 
-**Step 2**
+## Step 2
+
+Once the repository has been cloned, you must *source* it in your BASH profile.
+
+This is named `.bash_profile`, or `.bashrc` depending on your operating system.
+A sample line can be seen below:
 
 ```bash
-# Once the repository has been cloned, you must *source* it in your BASH profile.
-# This is named `.bash_profile`, or `.bashrc` depending on your operating system.
-# A sample line can be seen below:
 source "/$HOME/Workspace/patina/patina.sh"
 ```
 
 # Features
 Patina is a BASH script with transparent and easy-to-read code, which contains the following features:
-- Compatible with **any** Linux distribution and Microsoft Windows 10 using the Windows sub-system for Linux, requiring only BASH to operate at its most basic.
+
+- Compatible with any Linux distribution and Microsoft Windows 10 using the Windows sub-system for Linux, requiring only BASH to operate at its most basic.
 - Provides a means of memorising fewer, shorter commands which will operate in exactly the same way regardless of Operating System.
 - Contains a unified look-and-feel derived from popular Linux distributions.
 - Provides a useful set of basic helper functions for easier script creation.
@@ -55,14 +61,13 @@ Patina is a BASH script with transparent and easy-to-read code, which contains t
 
 # Recommended Packages
 Patina does not require anything except BASH as a rule, but it can make use of the following packages (correct for Ubuntu):
-- `clamav`
-  - For the `p-clamscan` and `p-clamscan-help` commands.
-- `git`
-  - For the `p-update` command.
-- `systemd`
-  - For manipulating system services such as networking.
-- `xdg-utils`
-  - For opening files, locations, and URLs graphically.
+
+| **Package** | **Description**                                      |
+|-------------|------------------------------------------------------|
+| `clamav`    | For the `p-clamscan` and `p-clamscan-help` commands. |
+| `git`       | For the `p-update` command.                          |
+| `systemd`   | For manipulating system services such as networking. |
+| `xdg-utils` | For opening files, locations, and URLs graphically.  |
 
 # Conventions
 One of Patina's more prominent features is its directory structure - Patina connects to these directories and the scripts within automatically, acting as a hub. These scripts are called 'components' - a component requires no execution code and can simply contain functions that can then be called instantly without executing the script. An example 'Patina Component' can be seen below:
@@ -111,117 +116,114 @@ In a similar manner to the component naming convention, Patina includes some bui
 
 ## Patina
 
-```bash
-$ p-update            # Check for and apply Patina updates.
-
-$ p-list              # Display a list of connected Patina components.
-$ p-refresh           # Restart Patina to detect and connect to new components.
-$ p-reset             # Clear command-line history and restart Patina to detect and connect to new components.
-```
+| **Command** | **Description**                                                                        |
+|-------------|----------------------------------------------------------------------------------------|
+| `p-update`  | Check for and apply Patina updates.                                                    |
+| `p-list`    | Display a list of connected Patina components.                                         |
+| `p-refresh` | Restart Patina to detect and connect to new components.                                |
+| `p-reset`   | Clear command-line history and restart Patina to detect and connect to new components. |
 
 ## Themes
 
-```bash
-$ p-theme default     # Apply light/dark magenta theme.
-
-$ p-theme blue        # Apply light/dark blue theme.
-$ p-theme cyan        # Apply light/dark cyan theme.
-$ p-theme green       # Apply light/dark green theme.
-$ p-theme magenta     # Apply light/dark magenta theme.
-$ p-theme red         # Apply light/dark red theme.
-$ p-theme yellow      # Apply light/dark yellow theme.
-
-$ p-theme black       # Apply basic black theme.
-$ p-theme gray        # Apply basic light/dark gray theme (United States spelling).
-$ p-theme grey        # Apply basic light/dark gray theme (United Kingdom spelling).
-$ p-theme white       # Apply basic white theme.
-
-$ p-theme blossom     # Apply light magenta/light red theme.
-$ p-theme classic     # Apply light magenta/light cyan theme.
-$ p-theme cygwin      # Apply light green/light yellow theme.
-$ p-theme gravity     # Apply light magenta/light yellow theme.
-$ p-theme mint        # Apply light green/light blue theme.
-$ p-theme varia       # Apply light red/light yellow theme.
-$ p-theme water       # Apply light blue/cyan theme.
-```
+| **Command**       | **Description**                                              |
+|-------------------|--------------------------------------------------------------|
+| `p-theme default` | Apply light/dark magenta theme.                              |
+| `p-theme blue`    | Apply light/dark blue theme.                                 |
+| `p-theme cyan`    | Apply light/dark cyan theme.                                 |
+| `p-theme green`   | Apply light/dark green theme.                                |
+| `p-theme magenta` | Apply light/dark magenta theme.                              |
+| `p-theme red`     | Apply light/dark red theme.                                  |
+| `p-theme yellow`  | Apply light/dark yellow theme.                               |
+| `p-theme black`   | Apply basic black theme.                                     |
+| `p-theme gray`    | Apply basic light/dark gray theme (United States spelling).  |
+| `p-theme grey`    | Apply basic light/dark gray theme (United Kingdom spelling). |
+| `p-theme white`   | Apply basic white theme.                                     |
+| `p-theme blossom` | Apply light magenta/light red theme.                         |
+| `p-theme classic` | Apply light magenta/light cyan theme.                        |
+| `p-theme cygwin`  | Apply light green/light yellow theme.                        |
+| `p-theme gravity` | Apply light magenta/light yellow theme.                      |
+| `p-theme mint`    | Apply light green/light blue theme.                          |
+| `p-theme varia`   | Apply light red/light yellow theme.                          |
+| `p-theme water`   | Apply light blue/cyan theme.                                 |
 
 ## Prompts
 
-```bash
-$ p-prompt default    # Apply the standard Patina prompt
-
-$ p-prompt debian     # Apply a Debian-like prompt
-$ p-prompt patina     # Apply the standard Patina prompt
-```
+| **Command**        | **Description**                   |
+|--------------------|-----------------------------------|
+| `p-prompt default` | Apply the standard Patina prompt. |
+| `p-prompt debian ` | Apply a Debian-like prompt.       |
+| `p-prompt patina`  | Apply the standard Patina prompt. |
+| `p-prompt solus`   | Apply a Solus-like prompt.        |
 
 ## Places
 
-```bash
-$ files               # Open default File Manager, will open the Home directory if a valid path is not given as an argument.
-
-$ p-root              # Open the Patina root directory in the default File Manager and command-line.
-
-$ p-c                 # Open the Patina 'components' directory in the default File Manager and command-line.
-$ p-c-applications    # Open the Patina 'application components' directory in the default File Manager and command-line.
-$ p-c-places          # Open the Patina 'place components' directory in the default File Manager and command-line.
-$ p-c-system          # Open the Patina 'system components' directory in the default File Manager and command-line.
-$ p-c-user            # Open the Patina 'user components' directory in the default File Manager and command-line.
-
-$ p-source            # Open the 'patina.sh' file in the default Text Editor.
-$ p-config            # Open the 'patina_preferences.sh' file in the default Text Editor.
-
-$ p-url-patina        # Open the Patina GitHub page in the default web browser (https://github.com/ultraviolet-1986/patina).
-```
+| **Command**        | **Description**                                                                                       |
+|--------------------|-------------------------------------------------------------------------------------------------------|
+| `files`            | Open default File Manager, will open the Home directory if a valid path is not given as an argument.  |
+| `p-root`           | Open the Patina root directory in the default File Manager and command-line.                          |
+| `p-c`              | Open the Patina 'components' directory in the default File Manager and command-line.                  |
+| `p-c-applications` | Open the Patina 'application components' directory in the default File Manager and command-line.      |
+| `p-c-places`       | Open the Patina 'place components' directory in the default File Manager and command-line.            |
+| `p-c-system`       | Open the Patina 'system components' directory in the default File Manager and command-line.           |
+| `p-c-user`         | Open the Patina 'user components' directory in the default File Manager and command-line.             |
+| `p-source`         | Open the Patina source code file in the default Text Editor.                                          |
+| `p-config`         | Open the Patina preferences file in the default Text Editor.                                          |
+| `p-url-patina`     | Open the Patina GitHub page in the default web browser: <https://github.com/ultraviolet-1986/patina>. |
 
 ## Application Components
 
-```bash
-$ p-clamscan          # Perform a ClamAV virus scan on a given path and offer to record the results within the user's home directory.
-$ p-clamscan-help     # Display the 'p-clamscan' help notes.
-```
+| **Command**       | **Description**                                                                                               |
+|-------------------|---------------------------------------------------------------------------------------------------------------|
+| `p-clamscan`      | Perform a ClamAV virus scan on a given path and offer to record the results within the user's home directory. |
+| `p-clamscan-help` | Display the 'p-clamscan' help notes.                                                                          |
 
 ## Place Components
 
-```bash
-$ home                # Open the Home directory in the default File Manager and command-line.
-
-$ desktop             # Open the Desktop directory in the default File Manager and command-line.
-$ documents           # Open the Documents directory in the default File Manager and command-line.
-$ downloads           # Open the Downloads directory in the default File Manager and command-line.
-$ music               # Open the Music directory in the default File Manager and command-line.
-$ pictures            # Open the Pictures directory in the default File Manager and command-line.
-$ videos              # Open the Videos directory in the default File Manager and command-line.
-```
+| **Command** | **Description**                                                            |
+|-------------|----------------------------------------------------------------------------|
+| `home`      | Open the Home directory in the default File Manager and command-line.      |
+| `desktop`   | Open the Desktop directory in the default File Manager and command-line.   |
+| `documents` | Open the Documents directory in the default File Manager and command-line. |
+| `downloads` | Open the Downloads directory in the default File Manager and command-line. |
+| `music`     | Open the Music directory in the default File Manager and command-line.     |
+| `pictures`  | Open the Pictures directory in the default File Manager and command-line.  |
+| `videos`    | Open the Videos directory in the default File Manager and command-line.    |
 
 ## System Components
 
-```bash
-$ p-calibrate X Y     # Draw a grid on the Terminal so the window can be properly resized (helpful when there are no 'resize hints').
 
-$ p-os                # Display the details of the Operating System.
+| **Command**           | **Description**                                                                                               |
+|-----------------------|---------------------------------------------------------------------------------------------------------------|
+| `p-calibrate <X> <Y>` | Draw a grid on the Terminal so the window can be properly resized (helpful when there are no 'resize hints'). |
+| `p-os`                | Display the details of the Operating System.                                                                  |
 
-# The following commands require a 'systemd' environment and will prompt the user for a password.
-$ p-network disable   # Disable the networking service.
-$ p-network enable    # Enable the networking service.
-$ p-network restart   # Restart the networking service.
-$ p-network start     # Start the networking service.
-$ p-network status    # Display whether or not an Internet connection is available.
-$ p-network stop      # Stop the networking service.
+*The following commands require a `systemd` environment and will prompt the user for a password, please review source code before use.*
 
-# The following commands have 'sudo' built-in.
-$ p-package install   # Install package(s) using default package manager.
-$ p-package remove    # Remove package(s) using default package manager.
-$ p-package update    # Update package catalogue using default package manager.
-$ p-package upgrade   # Upgrade outdated package(s) using the default package manager.
-```
+| **Command**         | **Description**                                             |
+|---------------------|-------------------------------------------------------------|
+| `p-network disable` | Disable the networking service.                             |
+| `p-network enable`  | Enable the networking service.                              |
+| `p-network restart` | Restart the networking service.                             |
+| `p-network start`   | Start the networking service.                               |
+| `p-network status`  | Display whether or not an Internet connection is available. |
+| `p-network stop`    | Stop the networking service.                                |
+
+*The following commands require `sudo` privileges, please review source code before use.*
+
+| **Command**                           | **Description**                                                |
+|---------------------------------------|----------------------------------------------------------------|
+| `p-package install` / `p-pkg install` | Install package(s) using default package manager.              |
+| `p-package remove` / `p-pkg remove`   | Remove package(s) using default package manager.               |
+| `p-package update` / `p-pkg update`   | Update package catalogue using default package manager.        |
+| `p-package upgrade` / `p-pkg upgrade` | Upgrade outdated package(s) using the default package manager. |
 
 # Helper Functions
 
 The following helper functions can be included in any component or external script as long as Patina is running:
 
-```bash
-$ echo_wrap "<Paragraph typed here>"    # Will echo and word-wrap text to the correct width of the console.
-```
+| **Command**                          | **Description**                                                   |
+|--------------------------------------|-------------------------------------------------------------------|
+| `echo_wrap "<Paragraph typed here>"` | Will echo and word-wrap text to the correct width of the console. |
 
 # Acknowledgements and References
 
