@@ -118,7 +118,7 @@ patina_start() {
     readonly OSTYPE="$OSTYPE"
 
     # Show Patina header / version information
-    echo_wrap "${patina_major_color}Patina v$patina_metadata_version '$patina_metadata_codename' / BASH v$BASH_VERSION${color_reset}"
+    echo_wrap "${patina_major_color}Patina v$patina_metadata_version '$patina_metadata_codename' / BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
     echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
   else
