@@ -5,7 +5,7 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
-- **0.6.4 Released Monday, November 13th 201X**
+- **0.6.4 Released Monday, November 13th 2017**
   - Shortened the BASH version number displayed in Patina's initial start-up.
   - Separated colours and formatting to `patina_system_stylesheet.sh` component.
   - Added a counter on the `p-list` command to show how many components are
