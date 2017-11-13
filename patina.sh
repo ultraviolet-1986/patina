@@ -7,7 +7,7 @@
 # Components and configuration are not stored in a fixed location by design
 # shellcheck source=/dev/null
 
-# Color variables are defined in the `patina_system_stylesheet.sh` component
+# Some variables are defined elsewhere
 # shellcheck disable=SC2154
 
 #############
