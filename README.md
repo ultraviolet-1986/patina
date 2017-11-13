@@ -6,7 +6,6 @@ A 'patina', 'layer', or 'framework' for BASH under Linux which aims to help user
 - [Installation](#installation)
 - [Features](#features)
 - [Recommended Packages](#recommended-packages)
-- [Warning](#warning)
 - [Conventions](#conventions)
 - [Patina Layout](#patina-layout)
 - [Built-in Commands](#built-in-commands)
@@ -64,9 +63,6 @@ Patina does not require anything except BASH as a rule, but it can make use of t
   - For manipulating system services such as networking.
 - `xdg-utils`
   - For opening files, locations, and URLs graphically.
-
-# Warning
-Users of Wayland may experience intermittent issues with opening folders - this appears to be an issue with 'xdg' and should be repaired in due course.
 
 # Conventions
 One of Patina's more prominent features is its directory structure - Patina connects to these directories and the scripts within automatically, acting as a hub. These scripts are called 'components' - a component requires no execution code and can simply contain functions that can then be called instantly without executing the script. An example 'Patina Component' can be seen below:
