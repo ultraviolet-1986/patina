@@ -122,16 +122,6 @@ patina_list_connected_components() {
   fi
 }
 
-# Functions / Networking
-
-patina_detect_internet_connection() {
-  if ( ping -c 1 8.8.8.8 ) &> /dev/null ; then
-    patina_has_internet='true'
-  else
-    patina_has_internet='false'
-  fi
-}
-
 # Functions / Places
 
 patina_open_folder() {
