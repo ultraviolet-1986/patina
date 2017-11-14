@@ -181,4 +181,14 @@ patina_prompt_apply() {
   fi
 }
 
+###########
+# Aliases #
+###########
+
+# Colors
+alias 'p-theme'='patina_theme_apply'
+
+# Prompts
+alias 'p-prompt'='patina_prompt_apply'
+
 # End of File.

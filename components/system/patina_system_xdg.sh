@@ -81,4 +81,26 @@ patina_open_url() {
   fi
 }
 
+###########
+# Aliases #
+###########
+
+# Folders
+alias 'files'='patina_open_folder'
+alias 'p-root'='patina_open_folder $patina_path_root'
+
+# Components
+alias 'p-c'='patina_open_folder $patina_path_components'
+alias 'p-c-applications'='patina_open_folder $patina_path_components_applications'
+alias 'p-c-places'='patina_open_folder $patina_path_components_places'
+alias 'p-c-system'='patina_open_folder $patina_path_components_system'
+alias 'p-c-user'='patina_open_folder $patina_path_components_user'
+
+# Files
+alias 'p-source'='patina_open_file $patina_file_source'
+alias 'p-config'='patina_open_file $patina_file_configuration'
+
+# URLs
+alias 'p-url-patina'='patina_open_url $patina_metadata_url'
+
 # End of File.

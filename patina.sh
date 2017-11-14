@@ -133,34 +133,7 @@ export -f 'echo_wrap'
 # Aliases #
 ###########
 
-# Patina
 alias 'p-list'='patina_list_connected_components'
-alias 'p-refresh'='patina_terminal_refresh'
-alias 'p-reset'='patina_terminal_reset'
-
-# Places / Folders
-alias 'files'='patina_open_folder'
-alias 'p-root'='patina_open_folder $patina_path_root'
-
-# Places / Components
-alias 'p-c'='patina_open_folder $patina_path_components'
-alias 'p-c-applications'='patina_open_folder $patina_path_components_applications'
-alias 'p-c-places'='patina_open_folder $patina_path_components_places'
-alias 'p-c-system'='patina_open_folder $patina_path_components_system'
-alias 'p-c-user'='patina_open_folder $patina_path_components_user'
-
-# Places / Files
-alias 'p-source'='patina_open_file $patina_file_source'
-alias 'p-config'='patina_open_file $patina_file_configuration'
-
-# Places / URLs
-alias 'p-url-patina'='patina_open_url $patina_metadata_url'
-
-# Theme / Colors
-alias 'p-theme'='patina_theme_apply'
-
-# Theme / Prompts
-alias 'p-prompt'='patina_prompt_apply'
 
 #############
 # Kickstart #

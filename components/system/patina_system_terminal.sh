@@ -20,4 +20,11 @@ patina_terminal_reset() {
   exec bash
 }
 
+###########
+# Aliases #
+###########
+
+alias 'p-refresh'='patina_terminal_refresh'
+alias 'p-reset'='patina_terminal_reset'
+
 # End of File.
