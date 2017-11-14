@@ -8,6 +8,12 @@
 # shellcheck disable=SC2154
 
 #############
+# Variables #
+#############
+
+patina_has_internet=''
+
+#############
 # Functions #
 #############
 

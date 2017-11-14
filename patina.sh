@@ -42,9 +42,6 @@ patina_start() {
     # Set initial BASH variables
     debian_chroot="$debian_chroot"
 
-    # Set initial Patina variables
-    patina_has_internet=''
-
     # Create Patina Directory Structure
     mkdir -p "$patina_path_components"/{applications,places,system,user}
 
@@ -122,9 +119,9 @@ patina_list_connected_components() {
   fi
 }
 
-# Functions / Text
-
-echo_wrap() { (echo -e "$1") | fmt -w "$(tput cols)" ; }
+echo_wrap() {
+  (echo -e "$1") | fmt -w "$(tput cols)"
+}
 
 ###########
 # Exports #
