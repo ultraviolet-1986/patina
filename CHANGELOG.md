@@ -5,6 +5,12 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
+- **0.6.5 Released XXX, November XXth 2017**
+  - Some of Patina's logic has been moved to the relevant components to ensure
+    that the source file `patina.sh` is easier to debug and maintain.
+  - A new component named `patina_system_theming.sh` has been added.
+  - The entire project has been corrected and checked using *ShellCheck* at:
+    <https://www.shellcheck.net/>.
 - **0.6.4 Released Monday, November 13th 2017**
   - Shortened the BASH version number displayed in Patina's initial start-up.
   - Separated colours and formatting to `patina_system_stylesheet.sh` component.
