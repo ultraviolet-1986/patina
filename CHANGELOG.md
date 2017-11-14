@@ -5,7 +5,7 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
-- **0.6.5 Released XXX, November XXth 2017**
+- **0.6.5 Released Tuesday, November 14th 2017**
   - Some of Patina's logic has been moved to the relevant components to ensure
     that the source file `patina.sh` is easier to debug and maintain.
   - A new component named `patina_system_theming.sh` has been added.
