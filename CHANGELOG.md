@@ -5,7 +5,7 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
-- **0.6.6 Released XXX, XXX, XXth 2017**
+- **0.6.6 Released Wednesday, November, 15th 2017**
   - Have included a new component for basic management of the 'ufw' firewall
     named `patina_applications_ufw.sh`. Check `README.md` for updated
     instructions.
