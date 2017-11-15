@@ -15,7 +15,7 @@
 #############
 
 # Patina / Metadata
-readonly patina_metadata_version='0.6.6'
+readonly patina_metadata_version='0.6.7'
 readonly patina_metadata_codename='Kyrie'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 
@@ -105,7 +105,7 @@ patina_start() {
 patina_list_connected_components() {
   # Success: At least one component has been connected
   if [[ "${patina_components_list[*]}" ]] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has ${patina_minor_color}${#patina_components_list[@]}${color_reset} connected component(s):\\n"
+    echo_wrap "\\n${patina_major_color}Patina${color_reset} has connected ${patina_minor_color}${#patina_components_list[@]}${color_reset} component(s):\\n"
 
     for component in "${patina_components_list[@]}" ; do
       echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
