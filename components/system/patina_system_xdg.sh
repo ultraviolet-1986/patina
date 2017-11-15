@@ -74,7 +74,7 @@ patina_open_url() {
   elif [ "$patina_has_internet" = 'false' ] ; then
     echo_wrap "\\n${patina_major_color}Patina${color_reset} is ${patina_minor_color}not connected${color_reset} to the Internet.\\n"
 
-  # Success: URL exists
+  # Success: URL is valid and exists
   elif [ "$1" ] && [[ "$1" == "http"* ]] ; then
     echo_wrap "\\nThe URL ${patina_minor_color}$1${color_reset} has been sent to the default web browser.\\n"
     xdg-open "$1" > /dev/null 2>&1
