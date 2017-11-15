@@ -109,6 +109,11 @@ patina_theme_apply() {
         export patina_major_color="${light_green}"
         export patina_minor_color="${light_blue}"
         ;;
+      'solus')
+        export patina_theme="$1"
+        export patina_major_color="${solus_blue}"
+        export patina_minor_color="${solus_purple}"
+        ;;
       'varia')
         export patina_theme="$1"
         export patina_major_color="${light_red}"
@@ -164,7 +169,7 @@ patina_prompt_apply() {
         ;;
       'solus')
         export patina_prompt="$1"
-        export PS1="\\[\\033[38;5;081m\\]\\u\\[\\033[38;5;245m\\]@\\[\\033[38;5;206m\\]\\H \\[\\033[38;5;245m\\]\\w \\[\\033[38;5;081m\\]$ \\[\\e[0m\\]"
+        export PS1="\\[${patina_major_color}\\]\\u\\[${color_reset}\\]@\\[${patina_minor_color}\\]\\H \\[${color_reset}\\]\\w \\[${patina_major_color}\\]P$ \\[${color_reset}\\]"
         ;;
       *)
         echo_wrap "\\n${patina_major_color}'$1'${color_reset} is not a known prompt, default has been applied.\\n"

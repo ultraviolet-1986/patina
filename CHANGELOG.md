@@ -16,6 +16,9 @@
     files for improved proof-reading and updating.
   - The `p-clamscan-help` command has been updated to match the rest of Patina
     and now the correct usage is `p-clamscan help`.
+  - Added Solus' colours to the `patina_system_stylesheet.sh` file.
+  - Have added a new Solus Patina theme which can be activated using the
+    `p-theme solus` command. Best used with the `p-prompt solus` command.
   - The entire project has been corrected and checked using *ShellCheck* at:
     <https://www.shellcheck.net/>.
 - **0.6.5 Released Tuesday, November 14th 2017**
