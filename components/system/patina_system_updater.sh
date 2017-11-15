@@ -47,7 +47,7 @@ patina_update() {
 
     # Failure: Patina is up-to-date
     if [ "$patina_git_local" = "$patina_git_remote" ] ; then
-      echo_wrap "Patina is up-to-date."
+      echo_wrap "Patina is up-to-date.\\n"
 
     # Success: Patina update is available
     elif [ "$patina_git_local" = "$patina_git_base" ] ; then
@@ -70,7 +70,7 @@ patina_update() {
 
     # Failure: Catch any other error condition here
     else
-      echo_wrap "Patina has encountered an unknown error."
+      echo_wrap "Patina has encountered an unknown error.\\n"
     fi
 
     # Rubbish collection
