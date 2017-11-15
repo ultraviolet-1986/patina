@@ -12,7 +12,7 @@
   - The command `p-url patina` will now open the project's GitHub page, this has
     been changed from `p-url-patina`. The `README.md` file reflects this.
   - The presentation of messages and errors have been altered to remove colours
-    and preserve terminal screen estate in the above file.
+    and preserve terminal screen estate in the `patina_system_xdg.sh` file.
 - **0.6.6 Released Wednesday, November 15th 2017**
   - Have included a new component for basic management of the 'ufw' firewall
     named `patina_applications_ufw.sh`. Check `README.md` for updated
