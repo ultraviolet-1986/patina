@@ -11,7 +11,7 @@
 # Variables #
 #############
 
-readonly patina_file_ufw_help="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/patina_applications_ufw_help.txt"
+readonly patina_file_ufw_help="$patina_path_components_applications/patina_applications_ufw_help.txt"
 
 #############
 # Functions #
