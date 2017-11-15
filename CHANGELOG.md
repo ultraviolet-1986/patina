@@ -14,6 +14,8 @@
     colours of the terminal.
   - Patina application component help text has now been moved into plain text
     files for improved proof-reading and updating.
+  - The `p-clamscan-help` command has been updated to match the rest of Patina
+    and now the correct usage is `p-clamscan help`.
 - **0.6.5 Released Tuesday, November 14th 2017**
   - Some of Patina's logic has been moved to the relevant components to ensure
     that the source file `patina.sh` is easier to debug and maintain.

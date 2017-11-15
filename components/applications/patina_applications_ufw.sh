@@ -4,7 +4,7 @@
 # Directives #
 ##############
 
-# Color code variables are defined in 'patina.sh'
+# Some variables are defined elsewhere
 # shellcheck disable=SC2154
 
 #############

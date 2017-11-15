@@ -4,8 +4,14 @@
 # Directives #
 ##############
 
-# Color code variables are defined in 'patina.sh'
+# Some variables are defined elsewhere
 # shellcheck disable=SC2154
+
+#############
+# Variables #
+#############
+
+readonly patina_file_clamav_help="$patina_path_components_applications/patina_applications_clamav_help.txt"
 
 #############
 # Functions #
@@ -18,19 +24,23 @@ patina_clamav_scan() {
 
   # Failure: Package 'clamav' is not installed
   if ( ! hash 'clamscan' ) ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot perform the virus scan because package ${patina_major_color}clamav${color_reset} is not installed.\\n"
+    echo_wrap "Patina cannot perform the virus scan because package 'clamav' is not installed."
+
+  # Success: The 'help' argument was supplied
+  elif [ "$1" = 'help' ] ; then
+    patina_clamav_help
 
   # Failure: A path has not been supplied
   elif [ "$#" -eq 0 ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot perform the scan because a path was not supplied.\\n"
+    echo_wrap "Patina cannot perform the scan because a path was not supplied."
 
   # Failure: Too many arguments have been supplied
   elif [ "$#" -gt 1 ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot perform the scan because too many paths were supplied. Please provide a single path.\\n"
+    echo_wrap "Patina cannot perform the scan because too many paths were supplied. Please provide a single path."
 
   # Failure: A path was supplied, but does not exist
   elif [[ ! -e "$1" ]] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot perform the scan because a valid path was not supplied.\\n"
+    echo_wrap "Patina cannot perform the scan because a valid path was not supplied."
 
   # Success: A single path was supplied and it exists
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
@@ -45,7 +55,7 @@ patina_clamav_scan() {
         patina_create_clamav_logfile='false'
         ;;
       *)
-        echo_wrap "\\nIncorrect response, please try again.\\n"
+        echo_wrap "Incorrect response, please try again."
         ;;
     esac
 
@@ -55,7 +65,7 @@ patina_clamav_scan() {
     # Prepare and perform 'clamav' scan
     reset
     tput civis
-    echo_wrap "Preparing ${patina_major_color}clamav${color_reset} virus scan, please wait...\\n"
+    echo_wrap "Preparing 'clamav' virus scan, please wait...\\n"
     case "$patina_create_clamav_logfile" in
       true)
         clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v
@@ -64,7 +74,7 @@ patina_clamav_scan() {
         clamscan -r "$1" -v
         ;;
       *)
-        echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unexpected error.\\n"
+        echo_wrap "Patina has encountered an unexpected error."
         ;;
     esac
     tput cnorm
@@ -72,21 +82,14 @@ patina_clamav_scan() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unexpected error.\\n"
+    echo_wrap "Patina has encountered an unexpected error."
   fi
 }
 
 patina_clamav_help() {
   clear
-  echo_wrap "${patina_major_color}Patina / ClamAV Instructions${color_reset}:\\n"
-  echo_wrap "In order to perform a virus scan, you must provide a single, valid path when using the ${patina_minor_color}p-clamscan${color_reset} command, for example:\\n"
-  echo_wrap "\\t${patina_major_color}\$ ${patina_minor_color}p-clamscan${color_reset} ~/Documents\\n"
-  echo_wrap "For a path which contains empty space characters, you must wrap your path in single or double quotation marks, for example:\\n"
-  echo_wrap "\\t${patina_major_color}\$ ${patina_minor_color}p-clamscan${color_reset} ~/\"My Documents\"\\n"
-  echo_wrap "You can also perform a virus scan on the current working directory by using the following command:\\n"
-  echo_wrap "\\t${patina_major_color}\$${patina_minor_color} p-clamscan${color_reset} .\\n"
-  echo_wrap "When a valid path has been supplied, you will have the option to record a log file within your home directory before the scan begins.\\n"
-  echo_wrap "This ${patina_major_color}Patina${color_reset} component uses ${patina_major_color}ClamAV${color_reset}, which can be found at: ${patina_major_color}https://www.clamav.net/${color_reset}.\\n"
+  echo_wrap "${underline}${patina_major_color}Patina / ClamAV Instructions${color_reset}\\n"
+  echo_wrap "$(cat "${patina_file_clamav_help}")\\n"
 }
 
 ###########
@@ -94,6 +97,5 @@ patina_clamav_help() {
 ###########
 
 alias 'p-clamscan'='patina_clamav_scan'
-alias 'p-clamscan-help'='patina_clamav_help'
 
 # End of File.

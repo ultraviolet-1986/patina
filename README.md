@@ -1,5 +1,5 @@
 # Patina
-A 'patina', 'layer', or 'framework' for BASH under Linux which aims to help users perform tasks quicker by the command line.
+A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users perform tasks quicker by the command line.
 
 # Table of Contents
 - [Introduction](#introduction)
@@ -62,9 +62,10 @@ Patina does not require anything except BASH as a rule, but it can make use of t
 
 | **Package** | **Description**                                      |
 |-------------|------------------------------------------------------|
-| `clamav`    | For the `p-clamscan` and `p-clamscan-help` commands. |
+| `clamav`    | For the `p-clamscan <x>` commands. |
 | `git`       | For the `p-update` command.                          |
 | `systemd`   | For manipulating system services such as networking. |
+| `ufw`       | For the `p-ufw <x>` commands.                        |
 | `xdg-utils` | For opening files, locations, and URLs graphically.  |
 
 # Conventions
@@ -170,10 +171,23 @@ In a similar manner to the component naming convention, Patina includes some bui
 
 ## Application Components
 
+### ClamAV
+
 | **Command**       | **Description**                                                                                               |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
 | `p-clamscan`      | Perform a ClamAV virus scan on a given path and offer to record the results within the user's home directory. |
-| `p-clamscan-help` | Display the 'p-clamscan' help notes.                                                                          |
+| `p-clamscan help` | Display instructions for the `p-clamscan` commands.                                                           |
+
+### Uncomplicated Firewall (ufw)
+
+| **Command**       | **Description**                                                                                               |
+|-------------------|---------------------------------------------------------------------------------------------------------------|
+| `p-ufw disable`   | Disable the `ufw` firewall (not recommended).                                                                 |
+| `p-ufw enable`    | Enable the `ufw` firewall (recommended).                                                                      |
+| `p-ufw help`      | Display instructions for `p-ufw` commands.                                                                    |
+| `p-ufw reset`     | Enable the `ufw` firewall and remove the basic rules added by the `p-ufw setup` command.                      |
+| `p-ufw setup`     | Enable the `ufw` firewall with some basic defaults (please refer to source code before usage).                |
+| `p-ufw status`    | Display the status of the `ufw` firewall in a table.                                                          |
 
 ## Place Components
 

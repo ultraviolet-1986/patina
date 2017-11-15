@@ -25,3 +25,5 @@ Enable the 'ufw' firewall with basic rules (please review source code before use
 Display the status of the 'ufw' firewall in a table:
 
 	$ p-ufw status (*)
+
+This Patina component uses ufw, which can be found at: https://launchpad.net/ufw.
