@@ -5,6 +5,15 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
+- **0.6.6 Released XXX, XXX, XXth 2017**
+  - Have included a new component for basic management of the 'ufw' firewall
+    named `patina_applications_ufw.sh`. Check `README.md` for updated
+    instructions.
+  - Began the process of simplifying text output for better readability. This
+    means that most text prompts will be displayed on one line in the default
+    colours of the terminal.
+  - Patina application component help text has now been moved into plain text
+    files for improved proof-reading and updating.
 - **0.6.5 Released Tuesday, November 14th 2017**
   - Some of Patina's logic has been moved to the relevant components to ensure
     that the source file `patina.sh` is easier to debug and maintain.
