@@ -95,7 +95,7 @@ patina_start() {
     echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
   else
-    echo_wrap "\\nPatina does not currently support your operating system. For more information, or to make a feature request, please visit '$patina_metadata_url'.\\n"
+    echo_wrap "Patina does not currently support your operating system. For more information, or to make a feature request, please visit '$patina_metadata_url'."
   fi
 
   # Rubbish collection
@@ -105,7 +105,7 @@ patina_start() {
 patina_list_connected_components() {
   # Success: At least one component has been connected
   if [[ "${patina_components_list[*]}" ]] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has connected ${patina_minor_color}${#patina_components_list[@]}${color_reset} component(s):\\n"
+    echo_wrap "\\nPatina has connected ${#patina_components_list[@]} component(s)${color_reset}\\n"
 
     for component in "${patina_components_list[@]}" ; do
       echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
@@ -115,7 +115,7 @@ patina_list_connected_components() {
 
   # Failure: No components have been connected
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has not connected any components.\\n"
+    echo_wrap "Patina has not connected any components."
   fi
 }
 
