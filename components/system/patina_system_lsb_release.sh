@@ -33,9 +33,9 @@ patina_source_lsb_release() {
 patina_identify_operating_system() {
   # Success: '$DISTRIB_DESCRIPTION' is a valid variable
   if [ "$DISTRIB_DESCRIPTION" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} is running on: ${patina_minor_color}$DISTRIB_DESCRIPTION${color_reset}.\\n"
+    echo_wrap "Patina is running on: $DISTRIB_DESCRIPTION."
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot detect your operating system.\\n"
+    echo_wrap "Patina cannot detect your operating system."
   fi
 }
 

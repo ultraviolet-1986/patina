@@ -48,10 +48,10 @@ patina_clamav_scan() {
     printf "Do you wish to record a log file in your home directory [Y/N]? "
     read -n1 -r answer
     case "$answer" in
-      'Y' | 'y')
+      'Y'|'y')
         patina_create_clamav_logfile='true'
         ;;
-      'N' | 'n')
+      'N'|'n')
         patina_create_clamav_logfile='false'
         ;;
       *)

@@ -14,7 +14,7 @@
 patina_detect_system_package_manager() {
   # Failure: Default package manager already defined
   if [ "$patina_package_manager" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has already detected the default package manager.\\n"
+    echo_wrap "Patina has already detected the default package manager."
 
   # Success: Distribution is Ubuntu or compatible
   elif ( hash 'apt' > /dev/null 2>&1 ) ; then
@@ -58,27 +58,27 @@ patina_detect_system_package_manager() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\nIt appears that ${patina_major_color}Patina${color_reset} does not currently support package management on your Linux distribution. For more information or to make a request, please visit: ${patina_major_color}$patina_metadata_url${color_reset}\\n"
+    echo_wrap "It appears that Patina does not currently support package management on your Linux distribution. For more information or to make a request, please visit: $patina_metadata_url."
   fi
 }
 
 # Warning: sudo command(s)
 patina_package_manager() {
   if [ "$#" -eq "0" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has not been given an argument. Please use ${patina_minor_color}install${color_reset}, ${patina_minor_color}remove${color_reset}, ${patina_minor_color}update${color_reset}, or ${patina_minor_color}upgrade${color_reset}.\\n"
+    echo_wrap "Patina has not been given an argument. Please use 'install', 'remove', 'update', or 'upgrade'."
 
   else
     case "$1" in
       'install')
         if [ ! "$2" ] ; then
-          echo_wrap "\\n${patina_major_color}Patina${color_reset} has not been given package name(s) to install.\\n"
+          echo_wrap "Patina has not been given package name(s) to install."
         else
           sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
         fi
         ;;
       'remove')
         if [ ! "$2" ] ; then
-          echo_wrap "\\n${patina_major_color}Patina${color_reset} has not been given package name(s) to remove.\\n"
+          echo_wrap "Patina has not been given package name(s) to remove."
         else
           sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
         fi
@@ -90,7 +90,7 @@ patina_package_manager() {
         sudo "$patina_package_manager" "$patina_package_upgrade"
         ;;
       *)
-        echo_wrap "\\n${patina_major_color}Patina${color_reset} has not been given a supported argument. Please use ${patina_minor_color}install${color_reset}, ${patina_minor_color}remove${color_reset}, ${patina_minor_color}update${color_reset}, or ${patina_minor_color}upgrade${color_reset}.\\n"
+        echo_wrap "Patina has not been given a supported argument. Please use 'install', 'remove', 'update', or 'upgrade'."
         ;;
     esac
   fi

@@ -20,11 +20,11 @@ patina_theme_apply() {
 
   # Failure: Patina has not been given an argument
   elif [ "$#" -eq "0" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has not been given the name of a theme, please try again.\\n"
+    echo_wrap "Patina has not been given the name of a theme, please try again."
 
   # Failure: Patina has been given multiple arguments
   elif [ "$#" -gt "1" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} must be given the name of only one theme, please try again.\\n"
+    echo_wrap "Patina must be given the name of only one theme, please try again."
 
   # Success: Patina has been given a single argument
   elif [ "$1" ] ; then
@@ -125,7 +125,7 @@ patina_theme_apply() {
         export patina_minor_color="${cyan}"
         ;;
       *)
-        echo_wrap "\\n${patina_major_color}'$1'${color_reset} is not a known theme, default has been applied.\\n"
+        echo_wrap "'$1' is not a known theme, default has been applied."
         patina_theme_apply 'default'
         ;;
     esac
@@ -138,18 +138,18 @@ patina_theme_apply() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unknown error.\\n"
+    echo_wrap "Patina has encountered an unknown error."
   fi
 }
 
 patina_prompt_apply() {
   # Failure: Patina has not been given an argument
   if [ "$#" -eq "0" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has not been given the name of a prompt, please try again.\\n"
+    echo_wrap "Patina has not been given the name of a prompt, please try again."
 
   # Failure: Patina has been given multiple arguments
   elif [ "$#" -gt "1" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} must be given the name of only one prompt, please try again.\\n"
+    echo_wrap "Patina must be given the name of only one prompt, please try again."
 
   # Success: Patina has been given a single argument
   elif [ "$1" ] ; then
@@ -182,7 +182,7 @@ patina_prompt_apply() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unknown error.\\n"
+    echo_wrap "Patina has encountered an unknown error."
   fi
 }
 

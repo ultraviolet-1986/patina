@@ -29,31 +29,31 @@ patina_show_network_status() {
   patina_detect_internet_connection
 
   if [ "$patina_has_internet" = 'true' ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} is ${patina_minor_color}connected${color_reset} to the Internet.\\n"
+    echo_wrap "Patina is connected to the Internet."
 
   elif [ "$patina_has_internet" = 'false' ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} is ${patina_minor_color}not connected${color_reset} to the Internet.\\n"
+    echo_wrap "Patina is not connected to the Internet."
 
   elif [ ! "$patina_has_internet" ] ; then
     patina_show_network_status
 
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unknown error.\\n"
+    echo_wrap "Patina has encountered an unknown error."
   fi
 }
 
 patina_systemd_network_manager() {
   # Failure: Patina is not running in a 'systemd' environment
   if [ "$patina_has_systemd" = 'false' ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has not detected ${patina_minor_color}systemd${color_reset} and therefore cannot execute your command.\\n"
+    echo_wrap "Patina has not detected systemd and therefore cannot execute your command."
 
   # Failure: Patina has not been given an argument
   elif [ "$#" -eq "0" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has not been given a valid argument, please try again.\\n"
+    echo_wrap "Patina has not been given a valid argument, please try again."
 
   # Failure: Patina has been given too many arguments
   elif [ "$#" -gt 1 ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} must be given only one argument, please try again.\\n"
+    echo_wrap "Patina must be given only one argument, please try again."
 
   # Success: Patina is running in a 'systemd' environment and has been given a single argument
   elif [ "$patina_has_systemd" = 'true' ] && [ "$1" ] ; then
@@ -65,7 +65,7 @@ patina_systemd_network_manager() {
       'status') patina_show_network_status ; return ;;
       'stop') ;;
       *)
-        echo_wrap "\\n${patina_major_color}$1${color_reset} is not a valid argument, please try again.\\n"
+        echo_wrap "'$1' is not a valid argument, please try again."
         return
         ;;
     esac

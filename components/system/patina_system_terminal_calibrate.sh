@@ -36,15 +36,15 @@ patina_calibrate_terminal_window() {
 
   # Failure: One or both of the required arguments are null or not numbers
   if ! [[ $width =~ $number ]] || ! [[ $height =~ $number ]] ; then
-    echo_wrap "\\nThe ${patina_major_color}p-calibrate${color_reset} command requires two numerical arguments, e.g.: ${patina_major_color}p-calibrate ${patina_minor_color}80 24${color_reset}\\n"
+    echo_wrap "The 'p-calibrate' command requires two numerical arguments, e.g.: 'p-calibrate 80 24'."
 
   # Failure: One or both of the arguments are '0'
   elif [[ $width = "0" ]] || [[ $height = "0" ]] ; then
-    echo_wrap "\\nThe ${patina_major_color}p-calibrate${color_reset} command requires two numerical arguments which are greater than zero, e.g.: ${patina_major_color}p-calibrate ${patina_minor_color}80 24${color_reset}\\n"
+    echo_wrap "The 'p-calibrate' command requires two numerical arguments which are greater than zero, e.g.: 'p-calibrate 80 24'."
 
   # Failure: Arguments are out-of-range
   elif [[ $width -lt 80 || $width -gt 300 ]] || [[ $height -lt 24 || $height -gt 300 ]] ; then
-    echo_wrap "\\nThe ${patina_major_color}p-calibrate${color_reset} command supports a minimum size of 80x24 characters and a maximum of 300x300 characters.\\n"
+    echo_wrap "The 'p-calibrate' command supports a minimum size of 80x24 characters and a maximum of 300x300 characters."
 
   # Success: Both arguments exist and are numeric
   elif [[ $width =~ $number && $width -gt 0 ]] && [[ $height =~ $number && $height -gt 0 ]] ; then
@@ -53,7 +53,7 @@ patina_calibrate_terminal_window() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unknown error.\\n"
+    echo_wrap "Patina has encountered an unknown error."
   fi
 
   # Cleanup local variables after use

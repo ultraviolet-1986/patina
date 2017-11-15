@@ -16,15 +16,15 @@ patina_update() {
 
   # Failure: Package 'git' is not installed
   if ( ! hash 'git' ) ; then
-  echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot check for updates because package ${patina_major_color}git${color_reset} is not installed.\\n"
+  echo_wrap "Patina cannot check for updates because package 'git' is not installed."
 
   # Failure: Patina root is not a 'git' repository
   elif ( ! git -C "$patina_path_root" rev-parse ) ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot check for updates because it has not been installed or 'cloned into' using ${patina_major_color}git${color_reset} source control.\\n"
+    echo_wrap "Patina cannot check for updates because it has not been installed or 'cloned into' using 'git' source control."
 
   # Failure: Patina is not connected to the Internet
   elif [ "$patina_has_internet" = 'false' ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} requires an Internet Connection to check for updates.\\n"
+    echo_wrap "Patina requires an Internet Connection to check for updates."
 
   # Success: Package 'git' is installed, Patina root is a 'git' repository, and Patina is connected to the Internet
   elif ( hash 'git' ) && ( git -C "$patina_path_root" rev-parse ) && [ "$patina_has_internet" = true ] ; then
@@ -47,11 +47,11 @@ patina_update() {
 
     # Failure: Patina is up-to-date
     if [ "$patina_git_local" = "$patina_git_remote" ] ; then
-      echo_wrap "\\n${patina_major_color}Patina${color_reset} is up-to-date.\\n"
+      echo_wrap "Patina is up-to-date."
 
     # Success: Patina update is available
     elif [ "$patina_git_local" = "$patina_git_base" ] ; then
-      printf "\\nAn update for %bPatina%b is available, download and restart [Y/N]?" "${patina_major_color}" "${color_reset}"
+      printf "An update for Patina is available, download and restart [Y/N]?"
       read -n1 -r answer
       case "$answer" in
         'Y'|'y')
@@ -60,7 +60,7 @@ patina_update() {
           patina_terminal_refresh
           ;;
         'N'|'n')
-          echo_wrap "\\n\\n${patina_major_color}Patina${color_reset} update cancelled.\\n"
+          echo_wrap "\\n\\nPatina update cancelled.\\n"
           ;;
         *)
           echo_wrap "\\n\\nIncorrect answer, please try again.\\n"
@@ -70,7 +70,7 @@ patina_update() {
 
     # Failure: Catch any other error condition here
     else
-      echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unknown error.\\n"
+      echo_wrap "Patina has encountered an unknown error."
     fi
 
     # Rubbish collection
@@ -81,7 +81,7 @@ patina_update() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has encountered an unknown error.\\n"
+    echo_wrap "Patina has encountered an unknown error."
   fi
 }
 
