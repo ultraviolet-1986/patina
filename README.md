@@ -170,7 +170,8 @@ In a similar manner to the component naming convention, Patina includes some bui
 | `p-c-user`         | Open the Patina 'user components' directory in the default File Manager and command-line.             |
 | `p-source`         | Open the Patina source code file in the default Text Editor.                                          |
 | `p-config`         | Open the Patina preferences file in the default Text Editor.                                          |
-| `p-url-patina`     | Open the Patina GitHub page in the default web browser: <https://github.com/ultraviolet-1986/patina>. |
+| `p-url <X>`        | Open a valid URL in the default web browser.                                                          |
+| `p-url patina`     | Open the Patina GitHub page in the default web browser: <https://github.com/ultraviolet-1986/patina>. |
 
 ## Application Components
 
