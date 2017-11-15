@@ -14,6 +14,8 @@ A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users 
   - [Prompts](#prompts)
   - [Places](#places)
   - [Application Components](#application-components)
+    - [ClamAV](#clamav)
+    - [Uncomplicated Firewall (ufw)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
 - [Helper Functions](#helper-functions)
@@ -62,10 +64,10 @@ Patina does not require anything except BASH as a rule, but it can make use of t
 
 | **Package** | **Description**                                      |
 |-------------|------------------------------------------------------|
-| `clamav`    | For the `p-clamscan <x>` commands. |
+| `clamav`    | For the `p-clamscan <X>` commands. |
 | `git`       | For the `p-update` command.                          |
 | `systemd`   | For manipulating system services such as networking. |
-| `ufw`       | For the `p-ufw <x>` commands.                        |
+| `ufw`       | For the `p-ufw <X>` commands.                        |
 | `xdg-utils` | For opening files, locations, and URLs graphically.  |
 
 # Conventions
@@ -179,6 +181,8 @@ In a similar manner to the component naming convention, Patina includes some bui
 | `p-clamscan help` | Display instructions for the `p-clamscan` commands.                                                           |
 
 ### Uncomplicated Firewall (ufw)
+
+*In most cases, the following commands require `sudo` privileges, please review source code before use.*
 
 | **Command**       | **Description**                                                                                               |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
