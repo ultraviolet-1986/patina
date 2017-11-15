@@ -62,6 +62,10 @@ patina_open_url() {
   if ( ! hash 'xdg-open' ) ; then
     echo_wrap "\\nCannot resolve path because package ${patina_major_color}xdg-utils${color_reset} is not installed.\\n"
 
+  # Success: The 'patina' argument was supplied
+  elif [ "$1" = 'patina' ] ; then
+    patina_open_url "$patina_metadata_url"
+
   # Failure: An argument was not specified
   elif [ "$#" -eq "0" ] ; then
     echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot open the URL because a link was not specified.\\n"
@@ -71,7 +75,7 @@ patina_open_url() {
     echo_wrap "\\n${patina_major_color}Patina${color_reset} is ${patina_minor_color}not connected${color_reset} to the Internet.\\n"
 
   # Success: URL exists
-  elif [ "$1" ] ; then
+  elif [ "$1" ] && [[ "$1" == "http"* ]] ; then
     echo_wrap "\\nThe URL ${patina_minor_color}$1${color_reset} has been sent to the default web browser.\\n"
     xdg-open "$1" > /dev/null 2>&1
 
@@ -101,6 +105,6 @@ alias 'p-source'='patina_open_file $patina_file_source'
 alias 'p-config'='patina_open_file $patina_file_configuration'
 
 # URLs
-alias 'p-url-patina'='patina_open_url $patina_metadata_url'
+alias 'p-url'='patina_open_url'
 
 # End of File.
