@@ -105,7 +105,7 @@ patina_start() {
 patina_list_connected_components() {
   # Success: At least one component has been connected
   if [[ "${patina_components_list[*]}" ]] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} has ${patina_major_color}${#patina_components_list[@]}${color_reset} connected component(s):\\n"
+    echo_wrap "\\n${patina_major_color}Patina${color_reset} has ${patina_minor_color}${#patina_components_list[@]}${color_reset} connected component(s):\\n"
 
     for component in "${patina_components_list[@]}" ; do
       echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
