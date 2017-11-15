@@ -14,7 +14,7 @@
 patina_open_folder() {
   # Failure: Package 'xdg-utils' is not installed
   if ( ! hash 'xdg-open' ) ; then
-    echo_wrap "\\nCannot resolve path because package ${patina_major_color}xdg-utils${color_reset} is not installed.\\n"
+    echo_wrap "Cannot resolve path because package 'xdg-utils' is not installed."
 
   # Failure: A path has not been supplied
   elif [ "$#" -eq "0" ] ; then
@@ -28,18 +28,18 @@ patina_open_folder() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot open the location because the path to directory ${patina_minor_color}$1${color_reset} was invalid or does not exist.\\n"
+    echo_wrap "Patina cannot open the location because the path to directory '$1' was invalid or does not exist."
   fi
 }
 
 patina_open_file() {
   # Failure: Package 'xdg-utils' not installed
   if ( ! hash 'xdg-open' ) ; then
-    echo_wrap "\\nCannot resolve path because package ${patina_major_color}xdg-utils${color_reset} is not installed.\\n"
+    echo_wrap "Cannot resolve path because package 'xdg-utils' is not installed."
 
   # Failure: An argument was not supplied
   elif [ "$#" -eq "0" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot open the file because a path was not specified.\\n"
+    echo_wrap "Patina cannot open the file because a path was not specified."
 
   # Success: File exists
   elif [ -f "$1" ] ; then
@@ -51,7 +51,7 @@ patina_open_file() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot open the location because the path to file ${patina_minor_color}$1${color_reset} was invalid or does not exist.\\n"
+    echo_wrap "Patina cannot open the location because the path to file '$1' was invalid or does not exist."
   fi
 }
 
@@ -60,7 +60,7 @@ patina_open_url() {
 
   # Failure: Package 'xdg-utils' not installed
   if ( ! hash 'xdg-open' ) ; then
-    echo_wrap "\\nCannot resolve path because package ${patina_major_color}xdg-utils${color_reset} is not installed.\\n"
+    echo_wrap "Cannot resolve path because package 'xdg-utils' is not installed."
 
   # Success: The 'patina' argument was supplied
   elif [ "$1" = 'patina' ] ; then
@@ -68,20 +68,20 @@ patina_open_url() {
 
   # Failure: An argument was not specified
   elif [ "$#" -eq "0" ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot open the URL because a link was not specified.\\n"
+    echo_wrap "Patina cannot open the URL because a link was not specified."
 
   # Failure: Patina is not connected to the internet
   elif [ "$patina_has_internet" = 'false' ] ; then
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} is ${patina_minor_color}not connected${color_reset} to the Internet.\\n"
+    echo_wrap "Patina is not connected to the Internet."
 
   # Success: URL is valid and exists
   elif [ "$1" ] && [[ "$1" == "http"* ]] ; then
-    echo_wrap "\\nThe URL ${patina_minor_color}$1${color_reset} has been sent to the default web browser.\\n"
+    echo_wrap "The URL '$1' has been sent to the default web browser."
     xdg-open "$1" > /dev/null 2>&1
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "\\n${patina_major_color}Patina${color_reset} cannot open the location because the URL ${patina_minor_color}$1${color_reset} was invalid or does not exist.\\n"
+    echo_wrap "Patina cannot open the location because the URL '$1' was invalid or does not exist."
   fi
 }
 
