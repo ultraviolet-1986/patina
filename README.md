@@ -144,6 +144,7 @@ In a similar manner to the component naming convention, Patina includes some bui
 | `p-theme cygwin`  | Apply light green/light yellow theme.                        |
 | `p-theme gravity` | Apply light magenta/light yellow theme.                      |
 | `p-theme mint`    | Apply light green/light blue theme.                          |
+| `p-theme solus`   | Apply a Solus-like theme using light blue/light purple.      |
 | `p-theme varia`   | Apply light red/light yellow theme.                          |
 | `p-theme water`   | Apply light blue/cyan theme.                                 |
 
