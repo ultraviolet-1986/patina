@@ -205,6 +205,8 @@ In a similar manner to the component naming convention, Patina includes some bui
 | `downloads` | Open the Downloads directory in the default File Manager and command-line. |
 | `music`     | Open the Music directory in the default File Manager and command-line.     |
 | `pictures`  | Open the Pictures directory in the default File Manager and command-line.  |
+| `public`    | Open the Public directory in the default File Manager and command-line.    |
+| `templates` | Open the Templates directory in the default File Manager and command-line. |
 | `videos`    | Open the Videos directory in the default File Manager and command-line.    |
 
 ## System Components

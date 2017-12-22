@@ -5,6 +5,10 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
+- **0.6.8 Released XXX, XXX XX 20XX**
+  - The folders `Templates` and `Public` in a standard home folder can now be
+    accessed using the `templates` and `public` commands respectively. The
+    `README.md` file has been updated to show this.
 - **0.6.7 Released Wednesday, November 15th 2017**
   - Have updated the `patina_system_xdg.sh` file so that the commands `p-url`
     and `p-url <X>` (where <X> is a valid URL) will open a URL in the default
