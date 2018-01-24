@@ -82,6 +82,7 @@ hello_world() {
 
 alias 'p-hello'='hello_world'
 ```
+
 The above file can be saved within the `components/user` folder as `patina_user_hello.sh` and Patina will automatically connect to it on startup. A file saved within the `components/system` folder would be saved as `patina_system_hello.sh` - this is a convention which can help keep components better organised. This naming convention **must** be followed as far as `patina_<name>.sh` as a minimum, or Patina will ignore the script and not connect to it.
 
 The only required code for a component is a function; in this case: `hello_world`. When starting Patina, you can then simply type 'hello_world' (sans quotes) to activate your function instead of executing the script and calling the function externally.
@@ -94,12 +95,15 @@ With Patina version `0.1.0` and later, semantic version numbering is added and d
 The default directory structure for Patina may not be present when cloning into the repository, but will be generated when Patina starts. The following diagram demonstrates the intended layout:
 
 ```
+home
+    |
+    +-- .patinarc
+
 patina
     |
     +-- CHANGELOG.md
     +-- LICENSE
     +-- patina.sh
-    +-- patina_configuration.conf
     +-- README.md
     +-- components
     |   |

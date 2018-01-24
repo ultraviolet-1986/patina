@@ -30,7 +30,7 @@ readonly patina_path_components_system="$patina_path_components/system"
 readonly patina_path_components_user="$patina_path_components/user"
 
 # Patina / Files
-readonly patina_file_configuration="$patina_path_root/patina_configuration.conf"
+readonly patina_file_configuration="$HOME/.patinarc"
 readonly patina_file_source="$patina_path_root/patina.sh"
 
 #############
