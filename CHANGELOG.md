@@ -5,7 +5,7 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
-- **0.6.8 Released Wednesday , January 24th 2018**
+- **0.6.8 Released Wednesday, January 24th 2018**
   - The folders `Templates` and `Public` in a standard home folder can now be
     accessed using the `templates` and `public` commands respectively. The
     `README.md` file has been updated to show this.
