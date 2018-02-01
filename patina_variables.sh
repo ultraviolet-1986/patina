@@ -1,8 +1,8 @@
 #!/bin/bash
 
-###################
-# Text Decoration #
-###################
+##########
+# Colors #
+##########
 
 # Text / Dark Colors
 readonly blue='\e[34m'
@@ -33,5 +33,18 @@ readonly underline='\e[4m'
 # Text / Color Management
 readonly color_default='\e[39m'
 readonly color_reset='\e[0m'
+
+#########
+# Paths #
+#########
+
+readonly patina_path_home_desktop="$HOME/[Dd][Ee][Ss][Kk][Tt][Oo][Pp]"
+readonly patina_path_home_documents="$HOME/[Dd][Oo][Cc][Uu][Mm][Ee][Nn][Tt][Ss]"
+readonly patina_path_home_downloads="$HOME/[Dd][Oo][Ww][Nn][Ll][Oo][Aa][Dd][Ss]"
+readonly patina_path_home_music="$HOME/[Mm][Uu][Ss][Ii][Cc]"
+readonly patina_path_home_pictures="$HOME/[Pp][Ii][Cc][Tt][Uu][Rr][Ee][Ss]"
+readonly patina_path_home_public="$HOME/[Pp][Uu][Bb][Ll][Ii][Cc]"
+readonly patina_path_home_templates="$HOME/[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee][Ss]"
+readonly patina_path_home_videos="$HOME/[Vv][Ii][Dd][Ee][Oo][Ss]"
 
 # End of File.
