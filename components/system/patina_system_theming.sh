@@ -36,86 +36,70 @@ patina_theme_apply() {
 
       # Standard themes
       'blue')
-        export patina_theme="$1"
         export patina_major_color="${light_blue}"
         export patina_minor_color="${blue}"
         ;;
       'cyan')
-        export patina_theme="$1"
         export patina_major_color="${light_cyan}"
         export patina_minor_color="${cyan}"
         ;;
       'green')
-        export patina_theme="$1"
         export patina_major_color="${light_green}"
         export patina_minor_color="${green}"
         ;;
       'magenta')
-        export patina_theme="$1"
         export patina_major_color="${light_magenta}"
         export patina_minor_color="${magenta}"
         ;;
       'red')
-        export patina_theme="$1"
         export patina_major_color="${light_red}"
         export patina_minor_color="${red}"
         ;;
       'yellow')
-        export patina_theme="$1"
         export patina_major_color="${light_yellow}"
         export patina_minor_color="${yellow}"
         ;;
 
       # Monochrome themes
       'black')
-        export patina_theme="$1"
         export patina_major_color="${black}"
         export patina_minor_color="${black}"
         ;;
       'gray' | 'grey')
-        export patina_theme="$1"
         export patina_major_color="${light_gray}"
         export patina_minor_color="${gray}"
         ;;
       'white')
-        export patina_theme="$1"
         export patina_major_color="${white}"
         export patina_minor_color="${white}"
         ;;
 
       # Additional themes
       'blossom')
-        export patina_theme="$1"
         export patina_major_color="${light_magenta}"
         export patina_minor_color="${light_red}"
         ;;
       'classic')
-        export patina_theme="$1"
         export patina_major_color="${light_magenta}"
         export patina_minor_color="${light_cyan}"
         ;;
       'cygwin')
-        export patina_theme="$1"
         export patina_major_color="${light_green}"
         export patina_minor_color="${light_yellow}"
         ;;
       'gravity')
-        export patina_theme="$1"
         export patina_major_color="${light_magenta}"
         export patina_minor_color="${light_yellow}"
         ;;
       'mint')
-        export patina_theme="$1"
         export patina_major_color="${light_green}"
         export patina_minor_color="${light_blue}"
         ;;
       'varia')
-        export patina_theme="$1"
         export patina_major_color="${light_red}"
         export patina_minor_color="${light_yellow}"
         ;;
       'water')
-        export patina_theme="$1"
         export patina_major_color="${light_blue}"
         export patina_minor_color="${cyan}"
         ;;
@@ -124,6 +108,9 @@ patina_theme_apply() {
         patina_theme_apply 'default'
         ;;
     esac
+
+    # Export the selected theme
+    export patina_theme="$1"
 
     # Update configuration file
     sed -i "s/patina_theme=.*$/patina_theme=${patina_theme}/g" "$patina_file_configuration"
