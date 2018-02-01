@@ -39,9 +39,6 @@ readonly patina_file_source="$patina_path_root/patina.sh"
 
 patina_start() {
   if [ "$OSTYPE" = 'linux-gnu' ] ; then
-    # Set initial BASH variables
-    debian_chroot="$debian_chroot"
-
     # Create Patina Directory Structure
     mkdir -p "$patina_path_components"/{applications,places,system,user}
 

@@ -109,11 +109,6 @@ patina_theme_apply() {
         export patina_major_color="${light_green}"
         export patina_minor_color="${light_blue}"
         ;;
-      'solus')
-        export patina_theme="$1"
-        export patina_major_color="${solus_blue}"
-        export patina_minor_color="${solus_purple}"
-        ;;
       'varia')
         export patina_theme="$1"
         export patina_major_color="${light_red}"
@@ -158,7 +153,6 @@ patina_prompt_apply() {
       'default')
         patina_prompt_apply 'patina'
         ;;
-
       'debian')
         export patina_prompt="$1"
         export PS1="\\[${patina_major_color}\\]\\u@\\h:\\[${patina_minor_color}\\]\\w\\[${color_reset}\\]P\\$ "
@@ -166,10 +160,6 @@ patina_prompt_apply() {
       'patina')
         export patina_prompt="$1"
         export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
-        ;;
-      'solus')
-        export patina_prompt="$1"
-        export PS1="\\[${patina_major_color}\\]\\u\\[${color_reset}\\]@\\[${patina_minor_color}\\]\\H \\[${color_reset}\\]\\w \\[${patina_major_color}\\]P$ \\[${color_reset}\\]"
         ;;
       *)
         echo_wrap "\\n${patina_major_color}'$1'${color_reset} is not a known prompt, default has been applied.\\n"
@@ -192,8 +182,5 @@ patina_prompt_apply() {
 
 # Colors
 alias 'p-theme'='patina_theme_apply'
-
-# Prompts
-alias 'p-prompt'='patina_prompt_apply'
 
 # End of File.
