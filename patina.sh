@@ -58,16 +58,14 @@ patina_start() {
       # Connect configuration file
       source "$patina_file_configuration"
 
-      if [ -z "$patina_theme" ] || [ -z "$patina_prompt" ] ; then
+      if [ -z "$patina_theme" ] ; then
         # Failure: Rewrite preferences file and reset the console
         echo 'patina_theme=default' > "$patina_file_configuration"
-        echo 'patina_prompt=default' >> "$patina_file_configuration"
 
         patina_terminal_refresh
       else
         # Success: Apply settings
         patina_theme_apply "$patina_theme"
-        patina_prompt_apply "$patina_prompt"
       fi
     else
       # Create a new configuration file
@@ -75,7 +73,6 @@ patina_start() {
 
       # Populate the new configuration file with defaults
       echo 'patina_theme=default' > "$patina_file_configuration"
-      echo 'patina_prompt=default' >> "$patina_file_configuration"
 
       patina_terminal_refresh
     fi
