@@ -20,7 +20,7 @@ readonly patina_metadata_codename='Kyrie'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 
 # Patina / Root
-readonly patina_path_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+readonly patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
 readonly patina_path_components="$patina_path_root/components"
 
 # Patina / Components
