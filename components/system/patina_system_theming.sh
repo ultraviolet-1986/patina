@@ -129,46 +129,7 @@ patina_theme_apply() {
     sed -i "s/patina_theme=.*$/patina_theme=${patina_theme}/g" "$patina_file_configuration"
 
     # Refresh the prompt
-    patina_prompt_apply "$patina_prompt"
-
-  # Failure: Catch any other error condition here
-  else
-    echo_wrap "Patina has encountered an unknown error."
-  fi
-}
-
-patina_prompt_apply() {
-  # Failure: Patina has not been given an argument
-  if [ "$#" -eq "0" ] ; then
-    echo_wrap "Patina has not been given the name of a prompt, please try again."
-
-  # Failure: Patina has been given multiple arguments
-  elif [ "$#" -gt "1" ] ; then
-    echo_wrap "Patina must be given the name of only one prompt, please try again."
-
-  # Success: Patina has been given a single argument
-  elif [ "$1" ] ; then
-    case "$1" in
-      # Define default prompt
-      'default')
-        patina_prompt_apply 'patina'
-        ;;
-      'debian')
-        export patina_prompt="$1"
-        export PS1="\\[${patina_major_color}\\]\\u@\\h:\\[${patina_minor_color}\\]\\w\\[${color_reset}\\]P\\$ "
-        ;;
-      'patina')
-        export patina_prompt="$1"
-        export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
-        ;;
-      *)
-        echo_wrap "\\n${patina_major_color}'$1'${color_reset} is not a known prompt, default has been applied.\\n"
-        patina_prompt_apply 'default'
-        ;;
-    esac
-
-    # Update the configuration file
-    sed -i "s/patina_prompt=.*$/patina_prompt=${patina_prompt}/g" "$patina_file_configuration"
+    export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
 
   # Failure: Catch any other error condition here
   else
