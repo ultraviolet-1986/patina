@@ -5,6 +5,9 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
+- **0.6.9 Released XXX, XX XXth 2018**
+  - Have removed custom prompt functionality to begin the process of improving
+    the simplicity of the Patina source code.
 - **0.6.8 Released Wednesday, January 24th 2018**
   - The folders `Templates` and `Public` in a standard home folder can now be
     accessed using the `templates` and `public` commands respectively. The
