@@ -181,7 +181,7 @@ In a similar manner to the component naming convention, Patina includes some bui
 ### ClamAV
 
 | **Command**       | **Description**                                                                                               |
-|-------------------|---------------------------------------------------------------------------------------------------------- ----|
+|-------------------|---------------------------------------------------------------------------------------------------------------|
 | `p-clamscan`      | Perform a ClamAV virus scan on a given path and offer to record the results within the user's home directory. |
 | `p-clamscan help` | Display instructions for the `p-clamscan` commands.                                                           |
 
