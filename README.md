@@ -43,7 +43,7 @@ This is named `.bash_profile`, or `.bashrc` depending on your operating system.
 A sample line can be seen below:
 
 ```bash
-source "/$HOME/Workspace/patina/patina.sh"
+source "$HOME/Workspace/patina/patina.sh"
 ```
 
 # Features
