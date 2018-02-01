@@ -151,15 +151,6 @@ In a similar manner to the component naming convention, Patina includes some bui
 | `p-theme varia`   | Apply light red/light yellow theme.                          |
 | `p-theme water`   | Apply light blue/cyan theme.                                 |
 
-## Prompts
-
-| **Command**        | **Description**                   |
-|--------------------|-----------------------------------|
-| `p-prompt default` | Apply the standard Patina prompt. |
-| `p-prompt debian ` | Apply a Debian-like prompt.       |
-| `p-prompt patina`  | Apply the standard Patina prompt. |
-| `p-prompt solus`   | Apply a Solus-like prompt.        |
-
 ## Places
 
 | **Command**        | **Description**                                                                                       |
