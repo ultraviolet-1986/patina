@@ -39,8 +39,7 @@ $ git clone http://github.com/ultraviolet-1986/patina ~/Workspace
 
 Once the repository has been cloned, you must *source* it in your BASH profile.
 
-This is named `.bash_profile`, or `.bashrc` depending on your operating system.
-A sample line can be seen below:
+This is named `.bashrc` and a sample line can be seen below:
 
 ```bash
 source "$HOME/Workspace/patina/patina.sh"
