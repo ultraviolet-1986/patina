@@ -77,8 +77,6 @@ patina_start() {
       patina_terminal_refresh
     fi
 
-    patina_detect_internet_connection
-
     # Lock variables after Patina is successfully loaded
     readonly -a patina_components_list
     readonly TERM="$TERM"
