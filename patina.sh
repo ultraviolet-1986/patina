@@ -111,9 +111,7 @@ patina_list_connected_components() {
   fi
 }
 
-echo_wrap() {
-  (echo -e "$1") | fmt -w "$(tput cols)"
-}
+echo_wrap() { (echo -e "$1") | fmt -w "$(tput cols)" ; }
 
 ###########
 # Exports #
