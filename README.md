@@ -158,128 +158,132 @@ The basic commands are listed below:
 
 ## Patina
 
-| **Command** | **Description**                                                                        |
-|-------------|----------------------------------------------------------------------------------------|
-| `p-update`  | Check for and apply Patina updates.                                                    |
-| `p-list`    | Display a list of connected Patina components.                                         |
-| `p-refresh` | Restart Patina to detect and connect to new components.                                |
-| `p-reset`   | Clear command-line history and restart Patina to detect and connect to new components. |
+```bash
+  `p-update`   # Check for and apply Patina updates.
+  `p-list`     # Display a list of connected Patina components.
+  `p-refresh`  # Restart Patina to detect and connect to new components.
+  `p-reset`    # Clear command-line history and restart Patina.
+```
 
 ## Themes
 
-| **Command**       | **Description**                                              |
-|-------------------|--------------------------------------------------------------|
-| `p-theme default` | Apply light/dark magenta theme.                              |
-| `p-theme blue`    | Apply light/dark blue theme.                                 |
-| `p-theme cyan`    | Apply light/dark cyan theme.                                 |
-| `p-theme green`   | Apply light/dark green theme.                                |
-| `p-theme magenta` | Apply light/dark magenta theme.                              |
-| `p-theme red`     | Apply light/dark red theme.                                  |
-| `p-theme yellow`  | Apply light/dark yellow theme.                               |
-| `p-theme black`   | Apply basic black theme.                                     |
-| `p-theme gray`    | Apply basic light/dark gray theme (United States spelling).  |
-| `p-theme grey`    | Apply basic light/dark gray theme (United Kingdom spelling). |
-| `p-theme white`   | Apply basic white theme.                                     |
-| `p-theme blossom` | Apply light magenta/light red theme.                         |
-| `p-theme classic` | Apply light magenta/light cyan theme.                        |
-| `p-theme cygwin`  | Apply light green/light yellow theme.                        |
-| `p-theme gravity` | Apply light magenta/light yellow theme.                      |
-| `p-theme mint`    | Apply light green/light blue theme.                          |
-| `p-theme solus`   | Apply a Solus-like theme using light blue/light purple.      |
-| `p-theme varia`   | Apply light red/light yellow theme.                          |
-| `p-theme water`   | Apply light blue/cyan theme.                                 |
+```bash
+  `p-theme default`  # Apply light/dark magenta theme.
+  `p-theme blue`     # Apply light/dark blue theme.
+  `p-theme cyan`     # Apply light/dark cyan theme.
+  `p-theme green`    # Apply light/dark green theme.
+  `p-theme magenta`  # Apply light/dark magenta theme.
+  `p-theme red`      # Apply light/dark red theme.
+  `p-theme yellow`   # Apply light/dark yellow theme.
+  `p-theme black`    # Apply basic black theme.
+  `p-theme gray`     # Apply basic light/dark gray theme.
+  `p-theme grey`     # Apply basic light/dark gray theme.
+  `p-theme white`    # Apply basic white theme.
+  `p-theme blossom`  # Apply light magenta/light red theme.
+  `p-theme classic`  # Apply light magenta/light cyan theme.
+  `p-theme cygwin`   # Apply light green/light yellow theme.
+  `p-theme gravity`  # Apply light magenta/light yellow theme.
+  `p-theme mint`     # Apply light green/light blue theme.
+  `p-theme solus`    # Apply a Solus-like theme using light blue/light purple.
+  `p-theme varia`    # Apply light red/light yellow theme.
+  `p-theme water`    # Apply light blue/cyan theme.
+```
 
 ## Places
 
-| **Command**        | **Description**                                                                                       |
-|--------------------|-------------------------------------------------------------------------------------------------------|
-| `files`            | Open default File Manager, will open the Home directory if a valid path is not given as an argument.  |
-| `p-root`           | Open the Patina root directory in the default File Manager and command-line.                          |
-| `p-c`              | Open the Patina 'components' directory in the default File Manager and command-line.                  |
-| `p-c-applications` | Open the Patina 'application components' directory in the default File Manager and command-line.      |
-| `p-c-places`       | Open the Patina 'place components' directory in the default File Manager and command-line.            |
-| `p-c-system`       | Open the Patina 'system components' directory in the default File Manager and command-line.           |
-| `p-c-user`         | Open the Patina 'user components' directory in the default File Manager and command-line.             |
-| `p-source`         | Open the Patina source code file in the default Text Editor.                                          |
-| `p-config`         | Open the Patina preferences file in the default Text Editor.                                          |
-| `p-url <X>`        | Open a valid URL in the default web browser.                                                          |
-| `p-url patina`     | Open the Patina GitHub page in the default web browser: <https://github.com/ultraviolet-1986/patina>. |
+```bash
+  `files`             # Open default File Manager.
+  `p-root`            # Open the Patina root directory.
+  `p-c`               # Open the Patina 'components' directory.
+  `p-c-applications`  # Open the Patina 'application components' directory.
+  `p-c-places`        # Open the Patina 'place components' directory.
+  `p-c-system`        # Open the Patina 'system components' directory.
+  `p-c-user`          # Open the Patina 'user components' directory.
+  `p-source`          # Open the Patina source code file.
+  `p-config`          # Open the Patina preferences file.
+  `p-url <X>`         # Open a valid URL in the default web browser.
+  `p-url patina`      # Open the Patina GitHub page in the default web browser.
+```
 
 ## Application Components
 
 ### ClamAV
 
-| **Command**       | **Description**                                                                                               |
-|-------------------|---------------------------------------------------------------------------------------------------------------|
-| `p-clamscan`      | Perform a ClamAV virus scan on a given path and offer to record the results within the user's home directory. |
-| `p-clamscan help` | Display instructions for the `p-clamscan` commands.                                                           |
+```bash
+  `p-clamscan`       # Perform a ClamAV virus scan on a given path.
+  `p-clamscan help`  # Display instructions for the `p-clamscan` commands.
+```
 
 ### Uncomplicated Firewall (ufw)
 
-*In most cases, the following commands require `sudo` privileges, please review
-source code before use.*
+In most cases, the following commands require `sudo` privileges, please review
+source code before use.
 
-| **Command**       | **Description**                                                                                               |
-|-------------------|---------------------------------------------------------------------------------------------------------------|
-| `p-ufw disable`   | Disable the `ufw` firewall (not recommended).                                                                 |
-| `p-ufw enable`    | Enable the `ufw` firewall (recommended).                                                                      |
-| `p-ufw help`      | Display instructions for `p-ufw` commands.                                                                    |
-| `p-ufw reset`     | Enable the `ufw` firewall and remove the basic rules added by the `p-ufw setup` command.                      |
-| `p-ufw setup`     | Enable the `ufw` firewall with some basic defaults (please refer to source code before usage).                |
-| `p-ufw status`    | Display the status of the `ufw` firewall in a table.                                                          |
+```bash
+  `p-ufw disable`  # Disable the `ufw` firewall (not recommended).
+  `p-ufw enable`   # Enable the `ufw` firewall (recommended).
+  `p-ufw help`     # Display instructions for `p-ufw` commands.
+  `p-ufw reset`    # Enable the `ufw` firewall and reset default rules.
+  `p-ufw setup`    # Enable the `ufw` firewall with some basic defaults.
+  `p-ufw status`   # Display the status of the `ufw` firewall in a table.
+```
 
 ## Place Components
 
-| **Command** | **Description**                                                            |
-|-------------|----------------------------------------------------------------------------|
-| `home`      | Open the Home directory in the default File Manager and command-line.      |
-| `desktop`   | Open the Desktop directory in the default File Manager and command-line.   |
-| `documents` | Open the Documents directory in the default File Manager and command-line. |
-| `downloads` | Open the Downloads directory in the default File Manager and command-line. |
-| `music`     | Open the Music directory in the default File Manager and command-line.     |
-| `pictures`  | Open the Pictures directory in the default File Manager and command-line.  |
-| `public`    | Open the Public directory in the default File Manager and command-line.    |
-| `templates` | Open the Templates directory in the default File Manager and command-line. |
-| `videos`    | Open the Videos directory in the default File Manager and command-line.    |
+```bash
+  `home`      # Open the Home directory.
+  `desktop`   # Open the Desktop directory.
+  `documents` # Open the Documents directory.
+  `downloads` # Open the Downloads directory.
+  `music`     # Open the Music directory.
+  `pictures`  # Open the Pictures directory.
+  `public`    # Open the Public directory.
+  `templates` # Open the Templates directory.
+  `videos`    # Open the Videos directory.
+```
 
 ## System Components
 
+```bash
+  `p-calibrate <X> <Y>`  # Draw a grid on the Terminal to help resize window.
+  `p-os`                 # Display the details of the Operating System.
+```
 
-| **Command**           | **Description**                                                                                               |
-|-----------------------|---------------------------------------------------------------------------------------------------------------|
-| `p-calibrate <X> <Y>` | Draw a grid on the Terminal so the window can be properly resized (helpful when there are no 'resize hints'). |
-| `p-os`                | Display the details of the Operating System.                                                                  |
+The following commands require a `systemd` environment and will prompt the user
+for a password, please review source code before use.
 
-*The following commands require a `systemd` environment and will prompt the user
-for a password, please review source code before use.*
+```bash
+  `p-network disable`  # Disable the networking service.
+  `p-network enable`   # Enable the networking service.
+  `p-network restart`  # Restart the networking service.
+  `p-network start`    # Start the networking service.
+  `p-network status`   # Display the status of an Internet connection.
+  `p-network stop`     # Stop the networking service.
+```
 
-| **Command**         | **Description**                                             |
-|---------------------|-------------------------------------------------------------|
-| `p-network disable` | Disable the networking service.                             |
-| `p-network enable`  | Enable the networking service.                              |
-| `p-network restart` | Restart the networking service.                             |
-| `p-network start`   | Start the networking service.                               |
-| `p-network status`  | Display whether or not an Internet connection is available. |
-| `p-network stop`    | Stop the networking service.                                |
+The following commands require `sudo` privileges and detect the default package
+manager, please review source code before use.
 
-*The following commands require `sudo` privileges, please review source code
-before use.*
+```bash
+  `p-package install`  # Install package(s).
+  `p-package remove`   # Remove package(s).
+  `p-package update`   # Update package catalogue.
+  `p-package upgrade`  # Upgrade outdated package(s).
 
-| **Command**                           | **Description**                                                |
-|---------------------------------------|----------------------------------------------------------------|
-| `p-package install` / `p-pkg install` | Install package(s) using default package manager.              |
-| `p-package remove` / `p-pkg remove`   | Remove package(s) using default package manager.               |
-| `p-package update` / `p-pkg update`   | Update package catalogue using default package manager.        |
-| `p-package upgrade` / `p-pkg upgrade` | Upgrade outdated package(s) using the default package manager. |
+  `p-pkg install`      # Install package(s).
+  `p-pkg remove`       # Remove package(s).
+  `p-pkg update`       # Update package catalogue.
+  `p-pkg upgrade`      # Upgrade outdated package(s).
+```
 
 # Helper Functions
 
 The following helper functions can be included in any component or external
 script as long as Patina is running:
 
-| **Command**                          | **Description**                                                   |
-|--------------------------------------|-------------------------------------------------------------------|
-| `echo_wrap "<Paragraph typed here>"` | Will echo and word-wrap text to the correct width of the console. |
+```bash
+  `echo_wrap "<Paragraph typed here>"`  # Will echo and word-wrap a paragraph.
+```
 
 # Acknowledgements and References
 
