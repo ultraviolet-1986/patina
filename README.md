@@ -1,4 +1,5 @@
 # Patina
+
 A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users
 perform tasks quicker by the command line.
 
@@ -52,6 +53,7 @@ source "$HOME/Workspace/patina/patina.sh"
 ```
 
 # Features
+
 Patina is a BASH script with transparent and easy-to-read code, which contains
 the following features:
 
@@ -71,6 +73,7 @@ the following features:
   existing functionality.
 
 # Recommended Packages
+
 Patina does not require anything except BASH as a rule, but it can make use of
 the following packages (correct for Ubuntu):
 
@@ -81,6 +84,7 @@ the following packages (correct for Ubuntu):
 - `xdg-utils` for opening files, locations, and URLs graphically.
 
 # Conventions
+
 One of Patina's more prominent features is its directory structure - Patina
 connects to these directories and the scripts within automatically, acting as a
 hub. These scripts are called 'components' - a component requires no execution
@@ -121,6 +125,7 @@ displayed alongside the current version of BASH. This will be in the format of
 `Major.Minor.Patch`.
 
 # Patina Layout
+
 The default directory structure for Patina may not be present when cloning into
 the repository, but will be generated when Patina starts. The following diagram
 demonstrates the intended layout:
