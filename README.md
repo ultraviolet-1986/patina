@@ -1,5 +1,6 @@
 # Patina
-A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users perform tasks quicker by the command line.
+A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users
+perform tasks quicker by the command line.
 
 # Table of Contents
 - [Introduction](#introduction)
@@ -23,7 +24,12 @@ A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users 
 
 # Introduction
 
-*Patina* allows its users to write more efficient scripts and make them instantly available to their command prompt without the need for sourcing individually; instead, a user can simply drop their script into the appropriate folder and execute it immediately. Inspired by the principles behind Kon-Mari, *Patina* also contains some pre-defined components which can help the user keep their system clean, tidy and efficient.
+*Patina* allows its users to write more efficient scripts and make them
+instantly available to their command prompt without the need for sourcing
+individually; instead, a user can simply drop their script into the appropriate
+folder and execute it immediately. Inspired by the principles behind Kon-Mari,
+*Patina* also contains some pre-defined components which can help the user keep
+their system clean, tidy and efficient.
 
 # Installation
 
@@ -46,20 +52,27 @@ source "$HOME/Workspace/patina/patina.sh"
 ```
 
 # Features
-Patina is a BASH script with transparent and easy-to-read code, which contains the following features:
+Patina is a BASH script with transparent and easy-to-read code, which contains
+the following features:
 
-- Compatible with any Linux distribution and Microsoft Windows 10 using the Windows sub-system for Linux, requiring only BASH to operate at its most basic.
-- Provides a means of memorising fewer, shorter commands which will operate in exactly the same way regardless of Operating System.
+- Compatible with any Linux distribution and Microsoft Windows 10 using the
+  Windows sub-system for Linux, requiring only BASH to operate at its most
+  basic.
+- Provides a means of memorising fewer, shorter commands which will operate in
+  exactly the same way regardless of Operating System.
 - Contains a unified look-and-feel derived from popular Linux distributions.
 - Provides a useful set of basic helper functions for easier script creation.
 - Contains a selection of vibrant colour themes to personalise your prompt.
 - Provides a means of instantly accessing your scripts.
-- Can be restarted to detect and connect new scripts without closing the console.
+- Can be restarted to detect and connect new scripts without closing the
+  console.
 - Contains a dynamic update mechanism using `git` source control.
-- Is not intrusive and its own conventions are easy to learn and never replace existing functionality.
+- Is not intrusive and its own conventions are easy to learn and never replace
+  existing functionality.
 
 # Recommended Packages
-Patina does not require anything except BASH as a rule, but it can make use of the following packages (correct for Ubuntu):
+Patina does not require anything except BASH as a rule, but it can make use of
+the following packages (correct for Ubuntu):
 
 | **Package** | **Description**                                      |
 |-------------|------------------------------------------------------|
@@ -70,10 +83,14 @@ Patina does not require anything except BASH as a rule, but it can make use of t
 | `xdg-utils` | For opening files, locations, and URLs graphically.  |
 
 # Conventions
-One of Patina's more prominent features is its directory structure - Patina connects to these directories and the scripts within automatically, acting as a hub. These scripts are called 'components' - a component requires no execution code and can simply contain functions that can then be called instantly without executing the script. An example 'Patina Component' can be seen below:
+One of Patina's more prominent features is its directory structure - Patina
+connects to these directories and the scripts within automatically, acting as a
+hub. These scripts are called 'components' - a component requires no execution
+code and can simply contain functions that can then be called instantly without
+executing the script. An example 'Patina Component' can be seen below:
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 
 hello_world() {
   echo 'Hello, World!'
@@ -82,16 +99,33 @@ hello_world() {
 alias 'p-hello'='hello_world'
 ```
 
-The above file can be saved within the `components/user` folder as `patina_user_hello.sh` and Patina will automatically connect to it on startup. A file saved within the `components/system` folder would be saved as `patina_system_hello.sh` - this is a convention which can help keep components better organised. This naming convention **must** be followed as far as `patina_<name>.sh` as a minimum, or Patina will ignore the script and not connect to it.
+The above file can be saved within the `components/user` folder as
+`patina_user_hello.sh` and Patina will automatically connect to it on startup.
+A file saved within the `components/system` folder would be saved as
+`patina_system_hello.sh` - this is a convention which can help keep components
+better organised. This naming convention **must** be followed as far as
+`patina_<name>.sh` as a minimum, or Patina will ignore the script and not
+connect to it.
 
-The only required code for a component is a function; in this case: `hello_world`. When starting Patina, you can then simply type 'hello_world' (sans quotes) to activate your function instead of executing the script and calling the function externally.
+The only required code for a component is a function; in this case:
+`hello_world`. When starting Patina, you can then simply type 'hello_world'
+(sans quotes) to activate your function instead of executing the script and
+calling the function externally.
 
-Notice the `p-hello` alias toward the end of the file? This is another convention of Patina: the `p-` prefix indicates a Patina function and simply makes for a shorter (yet still memorable) command. This is not a required convention, but it can be useful to keep your functionality separate from the rest of the shell and help to prevent naming conflicts.
+Notice the `p-hello` alias toward the end of the file? This is another
+convention of Patina: the `p-` prefix indicates a Patina function and simply
+makes for a shorter (yet still memorable) command. This is not a required
+convention, but it can be useful to keep your functionality separate from the
+rest of the shell and help to prevent naming conflicts.
 
-With Patina version `0.1.0` and later, semantic version numbering is added and displayed alongside the current version of BASH. This will be in the format of `Major.Minor.Patch`.
+With Patina version `0.1.0` and later, semantic version numbering is added and
+displayed alongside the current version of BASH. This will be in the format of
+`Major.Minor.Patch`.
 
 # Patina Layout
-The default directory structure for Patina may not be present when cloning into the repository, but will be generated when Patina starts. The following diagram demonstrates the intended layout:
+The default directory structure for Patina may not be present when cloning into
+the repository, but will be generated when Patina starts. The following diagram
+demonstrates the intended layout:
 
 ```
 home
@@ -112,11 +146,17 @@ patina
     |   +-- user
 ```
 
-This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which contains `Applications`, `Places`, and `System` menu categories respectively - by mimicking this structure, Patina components can be categorised and better organised for a user. The additional `user` folder is for any components which may not fit in the original three categories, or are for testing purposes.
+This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which
+contains `Applications`, `Places`, and `System` menu categories respectively -
+by mimicking this structure, Patina components can be categorised and better
+organised for a user. The additional `user` folder is for any components which
+may not fit in the original three categories, or are for testing purposes.
 
 # Built-in Commands
 
-In a similar manner to the component naming convention, Patina includes some built-in functions, which follow this convention and can be called at any time. The basic commands are listed below:
+In a similar manner to the component naming convention, Patina includes some
+built-in functions, which follow this convention and can be called at any time.
+The basic commands are listed below:
 
 ## Patina
 
@@ -178,7 +218,8 @@ In a similar manner to the component naming convention, Patina includes some bui
 
 ### Uncomplicated Firewall (ufw)
 
-*In most cases, the following commands require `sudo` privileges, please review source code before use.*
+*In most cases, the following commands require `sudo` privileges, please review
+source code before use.*
 
 | **Command**       | **Description**                                                                                               |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
@@ -211,7 +252,8 @@ In a similar manner to the component naming convention, Patina includes some bui
 | `p-calibrate <X> <Y>` | Draw a grid on the Terminal so the window can be properly resized (helpful when there are no 'resize hints'). |
 | `p-os`                | Display the details of the Operating System.                                                                  |
 
-*The following commands require a `systemd` environment and will prompt the user for a password, please review source code before use.*
+*The following commands require a `systemd` environment and will prompt the user
+for a password, please review source code before use.*
 
 | **Command**         | **Description**                                             |
 |---------------------|-------------------------------------------------------------|
@@ -222,7 +264,8 @@ In a similar manner to the component naming convention, Patina includes some bui
 | `p-network status`  | Display whether or not an Internet connection is available. |
 | `p-network stop`    | Stop the networking service.                                |
 
-*The following commands require `sudo` privileges, please review source code before use.*
+*The following commands require `sudo` privileges, please review source code
+before use.*
 
 | **Command**                           | **Description**                                                |
 |---------------------------------------|----------------------------------------------------------------|
@@ -233,7 +276,8 @@ In a similar manner to the component naming convention, Patina includes some bui
 
 # Helper Functions
 
-The following helper functions can be included in any component or external script as long as Patina is running:
+The following helper functions can be included in any component or external
+script as long as Patina is running:
 
 | **Command**                          | **Description**                                                   |
 |--------------------------------------|-------------------------------------------------------------------|
