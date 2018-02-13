@@ -74,13 +74,11 @@ the following features:
 Patina does not require anything except BASH as a rule, but it can make use of
 the following packages (correct for Ubuntu):
 
-| **Package** | **Description**                                      |
-|-------------|------------------------------------------------------|
-| `clamav`    | For the `p-clamscan <X>` commands.                   |
-| `git`       | For the `p-update` command.                          |
-| `systemd`   | For manipulating system services such as networking. |
-| `ufw`       | For the `p-ufw <X>` commands.                        |
-| `xdg-utils` | For opening files, locations, and URLs graphically.  |
+- `clamav` for the `p-clamscan <X>` commands.
+- `git` for the `p-update` command.
+- `systemd` for manipulating system services such as networking.
+- `ufw` for the `p-ufw <X>` commands.
+- `xdg-utils` for opening files, locations, and URLs graphically.
 
 # Conventions
 One of Patina's more prominent features is its directory structure - Patina
