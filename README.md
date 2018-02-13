@@ -284,9 +284,3 @@ script as long as Patina is running:
 ```bash
   `echo_wrap "<Paragraph typed here>"`  # Will echo and word-wrap a paragraph.
 ```
-
-# Acknowledgements and References
-
-- Thanks to **Kieran Burrell** for optimising script-connection logic.
-- `patina_update`
-  - [Neil Mayhew / Stack Overflow](http://stackoverflow.com/questions/3258243/check-if-pull-needed-in-git)
