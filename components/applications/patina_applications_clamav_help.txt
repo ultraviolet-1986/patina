@@ -1,6 +1,10 @@
-If the user has installed the 'clamav' package from the current distribution's package manager, it will become possible to use Patina to quickly perform a virus scan using the following commands:
+If the user has installed the 'clamav' package from the current distribution's
+package manager, it will become possible to use Patina to quickly perform a
+virus scan using the following commands:
 
-Note: The virus scan issued by these commands is recursive and may take a long time to complete. The user will also be prompted to record a plain text log file within the home directory before the scan begins.
+Note: The virus scan issued by these commands is recursive and may take a long
+time to complete. The user will also be prompted to record a plain text log file
+within the home directory before the scan begins.
 
 Scan a specified path:
 
@@ -18,4 +22,5 @@ Display this help text:
 
 	$ p-clamscan help
 
-This Patina component uses ClamAV, which can be found at: https://www.clamav.net/.
+This Patina component uses ClamAV, which can be found at:
+https://www.clamav.net/.

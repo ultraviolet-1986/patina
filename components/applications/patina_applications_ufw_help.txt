@@ -1,6 +1,10 @@
-If the user has installed the 'ufw' package from the current distribution's package manager, it will become possible to use Patina to quickly setup this firewall using the following commands:
+If the user has installed the 'ufw' package from the current distribution's
+package manager, it will become possible to use Patina to quickly setup this
+firewall using the following commands:
 
-Note: Commands highlighted with an asterisk (*) require 'sudo' privileges and will prompt the user for a password. By using these commands, it is assumed that the user has reviewed the source code and accepts the implementation.
+Note: Commands highlighted with an asterisk (*) require 'sudo' privileges and
+will prompt the user for a password. By using these commands, it is assumed that
+the user has reviewed the source code and accepts the implementation.
 
 Disable the 'ufw' firewall (not recommended):
 
@@ -14,11 +18,13 @@ Display this help text:
 
 	$ p-ufw help
 
-Enable the 'ufw' firewall and remove the basic rules added by the 'p-ufw setup' command:
+Enable the 'ufw' firewall and remove the basic rules added by the 'p-ufw setup'
+command:
 
 	$ p-ufw reset (*)
 
-Enable the 'ufw' firewall with basic rules (please review source code before use):
+Enable the 'ufw' firewall with basic rules (please review source code before
+use):
 
 	$ p-ufw setup (*)
 
@@ -26,4 +32,5 @@ Display the status of the 'ufw' firewall in a table:
 
 	$ p-ufw status (*)
 
-This Patina component uses ufw, which can be found at: https://launchpad.net/ufw.
+This Patina component uses ufw, which can be found at:
+https://launchpad.net/ufw.
