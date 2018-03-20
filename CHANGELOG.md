@@ -5,7 +5,7 @@
 - [0.6.x Series: 'Kyrie'](#06x-series)
 
 # 0.6.x Series: 'Kyrie'
-- **0.6.9 Released XXX, XX XXth 2018**
+- **0.6.9 Released Tuesday, March 20th 2018**
   - Have removed custom prompt functionality to begin the process of improving
     the simplicity of the Patina source code.
   - The script declaration has been changed from `#!/bin/bash` to the more
