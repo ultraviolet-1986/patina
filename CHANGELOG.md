@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-- [0.6.x Series: 'Kyrie'](#06x-series-kyrie)
 - [0.7.x Series: 'Unknown'](#07x-series)
+- [0.6.x Series: 'Kyrie'](#06x-series-kyrie)
 
 ## 0.7.x Series: ''
 
