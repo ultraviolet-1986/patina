@@ -34,7 +34,7 @@ readonly patina_path_components_user="$patina_path_components/user"
 
 # Patina / Files
 readonly patina_file_configuration="$HOME/.patinarc"
-readonly patina_file_source="$BASH_SOURCE"
+readonly patina_file_source="${BASH_SOURCE[0]}"
 
 #############
 # Functions #
