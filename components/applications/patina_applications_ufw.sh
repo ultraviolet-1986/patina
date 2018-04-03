@@ -35,16 +35,14 @@ patina_ufw_configure() {
     case "$1" in
       'disable') sudo ufw disable ;;
       'enable') sudo ufw enable ;;
-      'help') patina_ufw_help ;;
+      'help'|'?') patina_ufw_help ;;
       'reset')
         sudo ufw enable
-        sudo ufw delete allow from 192.168.0.0/24
         sudo ufw delete limit ssh
         ;;
       'setup')
         sudo ufw enable
         sudo ufw default deny
-        sudo ufw allow from 192.168.0.0/24
         sudo ufw limit ssh
         ;;
       'status') sudo ufw status ;;

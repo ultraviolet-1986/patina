@@ -27,7 +27,7 @@ patina_clamav_scan() {
     echo_wrap "Patina cannot perform the virus scan because package 'clamav' is not installed."
 
   # Success: The 'help' argument was supplied
-  elif [ "$1" = 'help' ] ; then
+  elif [ "$1" = 'help' ] || [ "$1" = '?' ] ; then
     patina_clamav_help
 
   # Failure: A path has not been supplied
@@ -96,6 +96,7 @@ patina_clamav_help() {
 # Aliases #
 ###########
 
+alias 'p-clamav'='patina_clamav_scan'
 alias 'p-clamscan'='patina_clamav_scan'
 
 # End of File.
