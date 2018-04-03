@@ -15,7 +15,10 @@
 #############
 
 # Patina / Metadata
-readonly patina_metadata_version='0.6.9'
+readonly patina_metadata_version_major=0
+readonly patina_metadata_version_minor=7
+readonly patina_metadata_version_patch=0
+
 readonly patina_metadata_codename='Kyrie'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 
@@ -83,11 +86,16 @@ patina_start() {
     readonly OSTYPE="$OSTYPE"
 
     # Show Patina header / version information
-    echo_wrap "${patina_major_color}Patina v$patina_metadata_version '$patina_metadata_codename' / BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
+    echo_wrap "${patina_major_color}Patina v"`
+      `"$patina_metadata_version_major.$patina_metadata_version_minor."`
+      `"$patina_metadata_version_patch '$patina_metadata_codename' / "`
+      `"BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
     echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
   else
-    echo_wrap "Patina does not currently support your operating system. For more information, or to make a feature request, please visit '$patina_metadata_url'."
+    echo_wrap "Patina does not currently support your operating system. For "`
+      `"more information, or to make a feature request, please visit "`
+      `"'$patina_metadata_url'."
   fi
 
   # Rubbish collection
@@ -97,7 +105,8 @@ patina_start() {
 patina_list_connected_components() {
   # Success: At least one component has been connected
   if [[ "${patina_components_list[*]}" ]] ; then
-    echo_wrap "\\nPatina has connected ${#patina_components_list[@]} component(s)${color_reset}\\n"
+    echo_wrap "\\nPatina has connected ${#patina_components_list[@]} "`
+      `"component(s)${color_reset}\\n"
 
     for component in "${patina_components_list[@]}" ; do
       echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
