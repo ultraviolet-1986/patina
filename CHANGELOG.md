@@ -1,10 +1,37 @@
 # Changelog
 
-# Table of Contents
+## Table of Contents
 
-- [0.6.x Series: 'Kyrie'](#06x-series)
+- [0.6.x Series: 'Kyrie'](#06x-series-kyrie)
+- [0.7.x Series: 'Unknown'](#07x-series)
 
-# 0.6.x Series: 'Kyrie'
+## 0.7.x Series: ''
+
+- **0.7.0 Released XXX, XX XXth 2018**
+  - Version numbering has been split into three integer variables to introduce
+    the possibility of validating a component against a specific version of
+    Patina.
+  - Removed some of the static-linking logic for now until a better organisation
+    logic has been introduced.
+  - Application components for `p-ufw` and `p-clamscan` can now access their
+    instructions by using `?` as an argument. The commands `p-ufw ?` and
+    `p-clamscan ?` are now the same as `p-ufw help` and `p-clamscan help`.
+  - Another alias for `p-clamscan` has been added, now the user can type
+    `p-clamav` and it (along with its arguments) will operate in exactly the
+    same manner as `p-clamscan`.
+  - The `README.md` file has been updated to include new command instructions.
+  - Both `README.md` and `CHANGELOG.md` have been parsed with a Markdown linter
+    to help better format documentation.
+  - The entire project has been corrected and checked using *ShellCheck* at:
+    <https://www.shellcheck.net/>.
+
+## 0.6.x Series: 'Kyrie'
+
+### Name Inspiration
+
+The name **Kyrie** was taken from the video game **Project Zero (Fatal Frame)**,
+she was the game's main antagonist and heroine combined.
+
 - **0.6.9 Released Tuesday, March 20th 2018**
   - Have removed custom prompt functionality to begin the process of improving
     the simplicity of the Patina source code.

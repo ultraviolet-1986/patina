@@ -3,7 +3,8 @@
 A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users
 perform tasks quicker by the command line.
 
-# Table of Contents
+## Table of Contents
+
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Features](#features)
@@ -23,7 +24,7 @@ perform tasks quicker by the command line.
 - [Helper Functions](#helper-functions)
 - [Acknowledgements and References](#acknowledgements-and-references)
 
-# Introduction
+## Introduction
 
 *Patina* allows its users to write more efficient scripts and make them
 instantly available to their command prompt without the need for sourcing
@@ -32,9 +33,9 @@ folder and execute it immediately. Inspired by the principles behind Kon-Mari,
 *Patina* also contains some pre-defined components which can help the user keep
 their system clean, tidy and efficient.
 
-# Installation
+## Installation
 
-## Step 1
+### Step 1
 
 Clone into the `patina` repository using your BASH shell (example below):
 
@@ -42,7 +43,7 @@ Clone into the `patina` repository using your BASH shell (example below):
 $ git clone http://github.com/ultraviolet-1986/patina ~/Workspace
 ```
 
-## Step 2
+### Step 2
 
 Once the repository has been cloned, you must *source* it in your BASH profile.
 
@@ -52,7 +53,7 @@ This is named `.bashrc` and a sample line can be seen below:
 source "$HOME/Workspace/patina/patina.sh"
 ```
 
-# Features
+## Features
 
 Patina is a BASH script with transparent and easy-to-read code, which contains
 the following features:
@@ -72,7 +73,7 @@ the following features:
 - Is not intrusive and its own conventions are easy to learn and never replace
   existing functionality.
 
-# Recommended Packages
+## Recommended Packages
 
 Patina does not require anything except BASH as a rule, but it can make use of
 the following packages (correct for Ubuntu):
@@ -83,7 +84,7 @@ the following packages (correct for Ubuntu):
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening files, locations, and URLs graphically.
 
-# Conventions
+## Conventions
 
 One of Patina's more prominent features is its directory structure - Patina
 connects to these directories and the scripts within automatically, acting as a
@@ -124,7 +125,7 @@ With Patina version `0.1.0` and later, semantic version numbering is added and
 displayed alongside the current version of BASH. This will be in the format of
 `Major.Minor.Patch`.
 
-# Patina Layout
+## Patina Layout
 
 The default directory structure for Patina may not be present when cloning into
 the repository, but will be generated when Patina starts. The following diagram
@@ -155,13 +156,13 @@ by mimicking this structure, Patina components can be categorised and better
 organised for a user. The additional `user` folder is for any components which
 may not fit in the original three categories, or are for testing purposes.
 
-# Built-in Commands
+## Built-in Commands
 
 In a similar manner to the component naming convention, Patina includes some
 built-in functions, which follow this convention and can be called at any time.
 The basic commands are listed below:
 
-## Patina
+### Patina
 
 ```bash
   `p-update`   # Check for and apply Patina updates.
@@ -170,7 +171,7 @@ The basic commands are listed below:
   `p-reset`    # Clear command-line history and restart Patina.
 ```
 
-## Themes
+### Themes
 
 ```bash
   `p-theme default`  # Apply light/dark magenta theme.
@@ -194,7 +195,7 @@ The basic commands are listed below:
   `p-theme water`    # Apply light blue/cyan theme.
 ```
 
-## Places
+### Places
 
 ```bash
   `files`             # Open default File Manager.
@@ -210,16 +211,23 @@ The basic commands are listed below:
   `p-url patina`      # Open the Patina GitHub page in the default web browser.
 ```
 
-## Application Components
+### Application Components
 
-### ClamAV
+#### ClamAV
+
+Both sets of commands perform the same tasks.
 
 ```bash
   `p-clamscan`       # Perform a ClamAV virus scan on a given path.
   `p-clamscan help`  # Display instructions for the `p-clamscan` commands.
+  `p-clamscan ?`     # Display instructions for the `p-clamscan` commands.
+
+  `p-clamav`         # Perform a ClamAV virus scan on a given path.
+  `p-clamav help`    # Display instructions for the `p-clamav` commands.
+  `p-clamav ?`       # Display instructions for the `p-clamav` commands.
 ```
 
-### Uncomplicated Firewall (ufw)
+#### Uncomplicated Firewall (ufw)
 
 In most cases, the following commands require `sudo` privileges, please review
 source code before use.
@@ -228,12 +236,13 @@ source code before use.
   `p-ufw disable`  # Disable the `ufw` firewall (not recommended).
   `p-ufw enable`   # Enable the `ufw` firewall (recommended).
   `p-ufw help`     # Display instructions for `p-ufw` commands.
+  `p-ufw ?`        # Display instructions for `p-ufw` commands.
   `p-ufw reset`    # Enable the `ufw` firewall and reset default rules.
   `p-ufw setup`    # Enable the `ufw` firewall with some basic defaults.
   `p-ufw status`   # Display the status of the `ufw` firewall in a table.
 ```
 
-## Place Components
+### Place Components
 
 ```bash
   `home`      # Open the Home directory.
@@ -247,7 +256,7 @@ source code before use.
   `videos`    # Open the Videos directory.
 ```
 
-## System Components
+### System Components
 
 ```bash
   `p-calibrate <X> <Y>`  # Draw a grid on the Terminal to help resize window.
@@ -281,7 +290,7 @@ manager, please review source code before use.
   `p-pkg upgrade`      # Upgrade outdated package(s).
 ```
 
-# Helper Functions
+## Helper Functions
 
 The following helper functions can be included in any component or external
 script as long as Patina is running:

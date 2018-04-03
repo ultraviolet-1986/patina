@@ -24,10 +24,6 @@ readonly black='\e[30m'
 readonly gray='\e[90m'
 readonly white='\e[97m'
 
-# Text / Solus Colors
-readonly solus_blue="\\033[38;5;081m"
-readonly solus_purple="\\033[38;5;206m"
-
 # Text / Formatting
 readonly bold='\e[1m'
 readonly underline='\e[4m'
