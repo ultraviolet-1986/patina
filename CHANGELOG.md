@@ -2,12 +2,18 @@
 
 ## Table of Contents
 
-- [0.7.x Series: 'Unknown'](#07x-series)
+- [0.7.x Series: 'Duchess'](#07x-series-duchess)
 - [0.6.x Series: 'Kyrie'](#06x-series-kyrie)
 
-## 0.7.x Series: ''
+## 0.7.x Series: 'Duchess'
 
-- **0.7.0 Released XXX, XX XXth 2018**
+### Name Inspiration
+
+The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
+mother to three mischievous young kittens and guides them on a long journey home
+after an evil butler tries to steal their inheritance.
+
+- **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of
     Patina.
@@ -22,15 +28,15 @@
   - The `README.md` file has been updated to include new command instructions.
   - Both `README.md` and `CHANGELOG.md` have been parsed with a Markdown linter
     to help better format documentation.
-  - The entire project has been corrected and checked using *ShellCheck* at:
-    <https://www.shellcheck.net/>.
+  - The entire project has been parsed, checked and corrected using
+    [ShellCheck](https://www.shellcheck.net/).
 
 ## 0.6.x Series: 'Kyrie'
 
 ### Name Inspiration
 
 The name **Kyrie** was taken from the video game **Project Zero (Fatal Frame)**,
-she was the game's main antagonist and heroine combined.
+during the conclusion of the game, she became the game's ultimate heroine.
 
 - **0.6.9 Released Tuesday, March 20th 2018**
   - Have removed custom prompt functionality to begin the process of improving
@@ -70,20 +76,21 @@ she was the game's main antagonist and heroine combined.
   - Added Solus' colours to the `patina_system_stylesheet.sh` file.
   - Have added a new Patina Solus theme which can be activated using the
     `p-theme solus` command. Best used with the `p-prompt solus` command.
-  - The entire project has been corrected and checked using *ShellCheck* at:
-    <https://www.shellcheck.net/>.
+  - The entire project has been parsed, checked and corrected using
+    [ShellCheck](https://www.shellcheck.net/).
 - **0.6.5 Released Tuesday, November 14th 2017**
   - Some of Patina's logic has been moved to the relevant components to ensure
     that the source file `patina.sh` is easier to debug and maintain.
   - A new component named `patina_system_theming.sh` has been added.
-  - The entire project has been corrected and checked using *ShellCheck* at:
-    <https://www.shellcheck.net/>.
+  - The entire project has been parsed, checked and corrected using
+    [ShellCheck](https://www.shellcheck.net/).
 - **0.6.4 Released Monday, November 13th 2017**
   - Shortened the BASH version number displayed in Patina's initial start-up.
   - Separated colours and formatting to `patina_system_stylesheet.sh` component.
   - Added a counter on the `p-list` command to show how many components are
     currently connected.
-  - Tested system using <https://www.shellcheck.net/> and updated directives.
+  - The entire project has been parsed, checked and corrected using
+    [ShellCheck](https://www.shellcheck.net/).
 - **0.6.3 Released Friday, September 8th 2017**
   - Minor bug-fixes for `patina_system_package_manager.sh` component.
   - Included support for **Solus** package manager `eopkg` within `p-package`.
@@ -100,10 +107,11 @@ she was the game's main antagonist and heroine combined.
   - Created a new branch called 'test' for new changes to be written.
   - Added a new `p-prompt` command to change the default prompt to mimic other
     Linux distribution defaults.
-  - Minor bug-fixes and corrections using <https://www.shellcheck.net/>.
+  - The entire project has been parsed, checked and corrected using
+    [ShellCheck](https://www.shellcheck.net/).
 - **0.6.0 Released Friday, July 21st 2017**
   - Created a new repository called *patina* for this version.
   - Cygwin support has been removed to ensure better integration for Linux and
     Microsoft Windows 10 using the Windows sub-system for Linux.
-  - The entire project has been corrected and checked using *ShellCheck* at:
-    <https://www.shellcheck.net/>.
+  - The entire project has been parsed, checked and corrected using
+    [ShellCheck](https://www.shellcheck.net/).
