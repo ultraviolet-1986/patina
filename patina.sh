@@ -17,7 +17,7 @@
 # Patina / Metadata
 readonly patina_metadata_version_major=0
 readonly patina_metadata_version_minor=7
-readonly patina_metadata_version_patch=0
+readonly patina_metadata_version_patch=1
 
 readonly patina_metadata_codename='Duchess'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
