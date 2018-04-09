@@ -13,7 +13,7 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
-- **0.7.1 Not released**
+- **0.7.1 Now testing**
   - A new folder specifically for documentation has been included in Patina's
     root directory and is named `resources`. At present it contains two sub-
     folders named `exceptions` and `help`, these will assist in the organisation
@@ -24,6 +24,9 @@ after an evil butler tries to steal their inheritance.
     <https://github.com/ultraviolet-1986/patina-user-components>. A user can now
     cherry-pick extra components that add functionality not typically relevant
     to Patina's scope.
+  - Three commands have been included to allow quick-access to Patina's new
+    `resources` locations - they are `p-r`, `p-r-exceptions`, and `p-r-help`.
+    An explanation for these has been added to `README.md`.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of

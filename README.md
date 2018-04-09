@@ -203,12 +203,19 @@ The basic commands are listed below:
 
 ```bash
   `files`             # Open default File Manager.
+
   `p-root`            # Open the Patina root directory.
+
   `p-c`               # Open the Patina 'components' directory.
   `p-c-applications`  # Open the Patina 'application components' directory.
   `p-c-places`        # Open the Patina 'place components' directory.
   `p-c-system`        # Open the Patina 'system components' directory.
   `p-c-user`          # Open the Patina 'user components' directory.
+
+  `p-r`               # Open the Patina 'resources' directory.
+  `p-r-exceptions`    # Open the Patina 'exception resources' directory.
+  `p-r-help`          # Open the Patina 'help resources' directory.
+
   `p-source`          # Open the Patina source code file.
   `p-config`          # Open the Patina preferences file.
   `p-url <X>`         # Open a valid URL in the default web browser.

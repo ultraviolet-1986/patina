@@ -100,6 +100,11 @@ alias 'p-c-places'='patina_open_folder $patina_path_components_places'
 alias 'p-c-system'='patina_open_folder $patina_path_components_system'
 alias 'p-c-user'='patina_open_folder $patina_path_components_user'
 
+# Resources
+alias 'p-r'='patina_open_folder $patina_path_resources'
+alias 'p-r-exceptions'='patina_open_folder $patina_path_resources_exceptions'
+alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
+
 # Files
 alias 'p-source'='patina_open_file $patina_file_source'
 alias 'p-config'='patina_open_file $patina_file_configuration'
