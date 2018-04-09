@@ -148,6 +148,10 @@ patina
     |   +-- places
     |   +-- system
     |   +-- user
+    +-- resources
+    |   |
+    |   +-- exceptions
+    |   +-- help
 ```
 
 This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which

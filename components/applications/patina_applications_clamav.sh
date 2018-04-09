@@ -11,7 +11,7 @@
 # Variables #
 #############
 
-readonly patina_file_clamav_help="$patina_path_components_applications/patina_applications_clamav_help.txt"
+readonly patina_file_clamav_help="$patina_path_resources_help/patina_applications_clamav_help.txt"
 
 #############
 # Functions #

@@ -25,12 +25,17 @@ readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 # Patina / Root
 readonly patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
 readonly patina_path_components="$patina_path_root/components"
+readonly patina_path_resources="$patina_path_root/resources"
 
 # Patina / Components
 readonly patina_path_components_applications="$patina_path_components/applications"
 readonly patina_path_components_places="$patina_path_components/places"
 readonly patina_path_components_system="$patina_path_components/system"
 readonly patina_path_components_user="$patina_path_components/user"
+
+# Patina / Resources
+readonly patina_path_resources_exceptions="$patina_path_resources/exceptions"
+readonly patina_path_resources_help="$patina_path_resources/help"
 
 # Patina / Files
 readonly patina_file_configuration="$HOME/.patinarc"
@@ -44,6 +49,7 @@ patina_start() {
   if [ "$OSTYPE" = 'linux-gnu' ] ; then
     # Create Patina Directory Structure
     mkdir -p "$patina_path_components"/{applications,places,system,user}
+    mkdir -p "$patina_path_resources"/{exceptions,help}
 
     # Connect all detected Patina components
     for component in "$patina_path_components"/{applications,places,system,user}/patina_*.sh ; do
