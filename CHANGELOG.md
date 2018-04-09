@@ -30,6 +30,8 @@ after an evil butler tries to steal their inheritance.
   - Sample exception files have been placed within the appropriate directory,
     and a reference list has been added to the new `EXCEPTIONS.md` file along
     with a demonstration of their use in pseudo-code.
+  - Improved exception-throwing logic, Patina will now attempt to match a
+    specific string. The arguments passed must be in the `PE0000` format.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of

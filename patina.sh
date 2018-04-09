@@ -127,13 +127,23 @@ patina_list_connected_components() {
 }
 
 patina_throw_exception() {
-  # Pass a Patina exception (PE) number, eg. 'PE0000' as an argument.
+  # Failure: An argument has not been supplied.
   if [ "$#" -eq "0" ] ; then
-    echo_wrap "A Patina exception number has not been provided."
+    patina_throw_exception 'PE0001'
+
+  # Failure: Too many arguments have been supplied.
   elif [ "$#" -gt 1 ] ; then
-    echo_wrap "Patina must be provided a single argument."
-  elif [ "$1" ] ; then
+    patina_throw_exception 'PE0002'
+
+  # Failure: File does not exist.
+  elif [ "$1" ] && [ ! -e "$patina_path_resources_exceptions/$1.txt" ] ; then
+    patina_throw_exception 'PE0005'
+
+  # Success: A valid 'PE' number has been supplied.
+  elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
     echo_wrap "$1: $(cat "$patina_path_resources_exceptions"/"$1".txt)"
+
+  # Failure: Catch any other error condition here
   else
     patina_throw_exception 'PE0000'
   fi
