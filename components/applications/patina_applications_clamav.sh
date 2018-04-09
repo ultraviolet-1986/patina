@@ -74,7 +74,7 @@ patina_clamav_scan() {
         clamscan -r "$1" -v
         ;;
       *)
-        echo_wrap "Patina has encountered an unexpected error."
+        patina_throw_exception 'PE0000'
         ;;
     esac
     tput cnorm
@@ -82,7 +82,7 @@ patina_clamav_scan() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "Patina has encountered an unexpected error."
+    patina_throw_exception 'PE0000'
   fi
 }
 

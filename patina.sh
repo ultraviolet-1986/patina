@@ -126,6 +126,19 @@ patina_list_connected_components() {
   fi
 }
 
+patina_throw_exception() {
+  # Pass a Patina exception (PE) number, eg. 'PE0000' as an argument.
+  if [ "$#" -eq "0" ] ; then
+    echo_wrap "A Patina exception number has not been provided."
+  elif [ "$#" -gt 1 ] ; then
+    echo_wrap "Patina must be provided a single argument."
+  elif [ "$1" ] ; then
+    echo_wrap "$1: $(cat "$patina_path_resources_exceptions"/"$1".txt)"
+  else
+    patina_throw_exception 'PE0000'
+  fi
+}
+
 echo_wrap() { (echo -e "$1") | fmt -w "$(tput cols)" ; }
 
 ###########

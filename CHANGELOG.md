@@ -27,6 +27,9 @@ after an evil butler tries to steal their inheritance.
   - Three commands have been included to allow quick-access to Patina's new
     `resources` locations - they are `p-r`, `p-r-exceptions`, and `p-r-help`.
     An explanation for these has been added to `README.md`.
+  - Sample exception files have been placed within the appropriate directory,
+    and a reference list has been added to the new `EXCEPTIONS.md` file along
+    with a demonstration of their use in pseudo-code.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of
