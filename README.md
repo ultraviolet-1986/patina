@@ -226,16 +226,10 @@ The basic commands are listed below:
 
 #### ClamAV
 
-Both sets of commands perform the same tasks.
-
 ```bash
   `p-clamscan`       # Perform a ClamAV virus scan on a given path.
   `p-clamscan help`  # Display instructions for the `p-clamscan` commands.
   `p-clamscan ?`     # Display instructions for the `p-clamscan` commands.
-
-  `p-clamav`         # Perform a ClamAV virus scan on a given path.
-  `p-clamav help`    # Display instructions for the `p-clamav` commands.
-  `p-clamav ?`       # Display instructions for the `p-clamav` commands.
 ```
 
 #### Uncomplicated Firewall (ufw)

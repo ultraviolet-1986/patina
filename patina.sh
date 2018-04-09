@@ -122,28 +122,19 @@ patina_list_connected_components() {
 
   # Failure: No components have been connected
   else
-    echo_wrap "Patina has not connected any components."
+    patina_throw_exception 'PE0007'
   fi
 }
 
 patina_throw_exception() {
-  # Failure: An argument has not been supplied.
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
-
-  # Failure: Too many arguments have been supplied.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-
-  # Failure: File does not exist.
   elif [ "$1" ] && [ ! -e "$patina_path_resources_exceptions/$1.txt" ] ; then
     patina_throw_exception 'PE0005'
-
-  # Success: A valid 'PE' number has been supplied.
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
     echo_wrap "$1: $(cat "$patina_path_resources_exceptions"/"$1".txt)"
-
-  # Failure: Catch any other error condition here
   else
     patina_throw_exception 'PE0000'
   fi

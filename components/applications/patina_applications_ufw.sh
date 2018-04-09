@@ -18,42 +18,23 @@ readonly patina_file_ufw_help="$patina_path_resources_help/patina_applications_u
 #############
 
 patina_ufw_configure() {
-  # Failure: Package 'ufw' is not installed
   if ( ! hash 'ufw' ) ; then
-    echo_wrap "Patina cannot configure the firewall because package 'ufw' is not installed."
-
-  # Failure: Patina has not been given an argument
+    patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
-    echo_wrap "Patina has not been given an argument, please try again."
-
-  # Failure: Patina has been given multiple arguments
+    patina_throw_exception 'PE0001'
   elif [ "$#" -gt "1" ] ; then
-    echo_wrap "Patina must be given only one argument, please try again."
-
-  # Success: Patina has been given a single argument
+    patina_throw_exception 'PE0002'
   elif [ "$1" ] ; then
     case "$1" in
       'disable') sudo ufw disable ;;
       'enable') sudo ufw enable ;;
       'help'|'?') patina_ufw_help ;;
-      'reset')
-        sudo ufw enable
-        sudo ufw delete limit ssh
-        ;;
-      'setup')
-        sudo ufw enable
-        sudo ufw default deny
-        sudo ufw limit ssh
-        ;;
+      'setup') sudo ufw enable ; sudo ufw default deny ; sudo ufw limit ssh ;;
       'status') sudo ufw status ;;
-      *)
-        echo_wrap "Patina requires one of the following arguments: 'enable', 'disable', 'help', 'reset', 'setup', or 'status'."
-        ;;
+      *) patina_throw_exception 'PE0003' ;;
     esac
-
-  # Failure: Catch any other error condition here
   else
-    echo_wrap "Patina has encountered an unexpected error."
+    patina_throw_exception 'PE0000'
   fi
 }
 

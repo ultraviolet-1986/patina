@@ -37,6 +37,14 @@ numbers (Patina Exception) here for reference.
   - This error should be raised when an external application cannot be executed.
     It can usually mean that a required package is not installed.
 
+- **PE0007 `Patina has not connected any components.`**
+  - This error should be raised when Patina cannot (or has not) connected any
+    components.
+
+- **PE0008 `Patina does not have access to the Internet.`**
+  - This error should be raised when Patina cannot detect an active Internet
+    connection.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a

@@ -18,69 +18,41 @@ readonly patina_file_clamav_help="$patina_path_resources_help/patina_application
 #############
 
 patina_clamav_scan() {
-  # Variables
   local patina_create_clamav_logfile=''
   local patina_clamav_logfile=''
 
-  # Failure: Package 'clamav' is not installed
   if ( ! hash 'clamscan' ) ; then
-    echo_wrap "Patina cannot perform the virus scan because package 'clamav' is not installed."
-
-  # Success: The 'help' argument was supplied
+    patina_throw_exception 'PE0006'
   elif [ "$1" = 'help' ] || [ "$1" = '?' ] ; then
     patina_clamav_help
-
-  # Failure: A path has not been supplied
   elif [ "$#" -eq 0 ] ; then
-    echo_wrap "Patina cannot perform the scan because a path was not supplied."
-
-  # Failure: Too many arguments have been supplied
+    patina_throw_exception 'PE0001'
   elif [ "$#" -gt 1 ] ; then
-    echo_wrap "Patina cannot perform the scan because too many paths were supplied. Please provide a single path."
-
-  # Failure: A path was supplied, but does not exist
+    patina_throw_exception 'PE0002'
   elif [[ ! -e "$1" ]] ; then
-    echo_wrap "Patina cannot perform the scan because a valid path was not supplied."
-
-  # Success: A single path was supplied and it exists
+    patina_throw_exception 'PE0004'
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
     echo
     printf "Do you wish to record a log file in your home directory [Y/N]? "
     read -n1 -r answer
     case "$answer" in
-      'Y'|'y')
-        patina_create_clamav_logfile='true'
-        ;;
-      'N'|'n')
-        patina_create_clamav_logfile='false'
-        ;;
-      *)
-        echo_wrap "Incorrect response, please try again."
-        ;;
+      'Y'|'y') patina_create_clamav_logfile='true' ;;
+      'N'|'n') patina_create_clamav_logfile='false' ;;
+      *) patina_throw_exception 'PE0003' ;;
     esac
 
-    # Assign the current date and time
     patina_clamav_logfile="clamscan_log_$(date +%Y%m%d_%H%M%S).txt"
 
-    # Prepare and perform 'clamav' scan
     reset
     tput civis
     echo_wrap "Preparing 'clamav' virus scan, please wait...\\n"
     case "$patina_create_clamav_logfile" in
-      true)
-        clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v
-        ;;
-      false)
-        clamscan -r "$1" -v
-        ;;
-      *)
-        patina_throw_exception 'PE0000'
-        ;;
+      true) clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v ;;
+      false) clamscan -r "$1" -v ;;
+      *) patina_throw_exception 'PE0000' ;;
     esac
     tput cnorm
     echo
-
-  # Failure: Catch any other error condition here
   else
     patina_throw_exception 'PE0000'
   fi
@@ -96,7 +68,6 @@ patina_clamav_help() {
 # Aliases #
 ###########
 
-alias 'p-clamav'='patina_clamav_scan'
 alias 'p-clamscan'='patina_clamav_scan'
 
 # End of File.

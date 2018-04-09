@@ -32,6 +32,8 @@ after an evil butler tries to steal their inheritance.
     with a demonstration of their use in pseudo-code.
   - Improved exception-throwing logic, Patina will now attempt to match a
     specific string. The arguments passed must be in the `PE0000` format.
+  - Removed the `p-clamav` alias and edited the `README.md` file to reflect
+    this.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of
