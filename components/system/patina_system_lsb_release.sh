@@ -10,7 +10,7 @@
 # '$lsb_release_file' value is not a fixed location
 # shellcheck disable=SC1090
 
-# Some variables are defined elsewhere
+# Some items are defined elsewhere
 # shellcheck disable=SC2154
 
 #############

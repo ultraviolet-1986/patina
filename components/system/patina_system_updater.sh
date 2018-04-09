@@ -4,7 +4,7 @@
 # Directives #
 ##############
 
-# Some variables are defined elsewhere
+# Some items are defined elsewhere
 # shellcheck disable=SC2154
 
 #############

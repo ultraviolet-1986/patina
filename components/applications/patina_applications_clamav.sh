@@ -4,7 +4,7 @@
 # Directives #
 ##############
 
-# Some variables are defined elsewhere
+# Some items are defined elsewhere
 # shellcheck disable=SC2154
 
 #############
@@ -41,7 +41,7 @@ patina_clamav_scan() {
       *) patina_throw_exception 'PE0003' ;;
     esac
 
-    patina_clamav_logfile="clamscan_log_$(date +%Y%m%d_%H%M%S).txt"
+    local patina_clamav_logfile="clamscan_log_$(date +%Y%m%d_%H%M%S).txt"
 
     reset
     tput civis
