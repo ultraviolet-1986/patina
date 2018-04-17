@@ -43,10 +43,10 @@ after an evil butler tries to steal their inheritance.
     `patina-user-components` repository and updated the `README.md` file to
     reflect this.
   - Have updated `patina_system_theming.sh` to allow colour in text-only
-    sessions such as a server.
-  - Support for opening files/URLs has been dropped as a response to KDE's
-    security warnings so the commands `p-file` and `p-url` have been removed
-    along with the `files` command.
+    sessions such as a server (where supported).
+  - Support for opening files/URLs has been dropped as a response to KDE Neon's
+    security warnings so the commands `p-file` and `p-url` have been removed,
+    and the `files` command has been obsoleted.
   - Opening locations such as `p-root` or `downloads` will now only change the
     current folder in the terminal. This can be opened graphically also by
     appending `-g` to the end of the command.
