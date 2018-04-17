@@ -140,7 +140,17 @@ patina_throw_exception() {
   fi
 }
 
-echo_wrap() { (echo -e "$1") | fmt -w "$(tput cols)" ; }
+echo_wrap() {
+  if [ "$#" -eq "0" ] ; then
+    patina_throw_exception 'PE0001'
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+  elif [ "$1" ] ; then
+    (echo -e "$1") | fmt -w "$(tput cols)"
+  else
+    patina_throw_exception 'PE0000'
+  fi
+}
 
 ###########
 # Exports #
