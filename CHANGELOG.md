@@ -50,6 +50,7 @@ after an evil butler tries to steal their inheritance.
   - Opening locations such as `p-root` or `downloads` will now only change the
     current folder in the terminal. This can be opened graphically also by
     appending `-g` to the end of the command.
+  - Fixed minor bugs with function termination.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of

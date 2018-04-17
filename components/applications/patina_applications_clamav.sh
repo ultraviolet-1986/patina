@@ -49,7 +49,7 @@ patina_clamav_scan() {
     case "$patina_create_clamav_logfile" in
       true) clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v ;;
       false) clamscan -r "$1" -v ;;
-      *) patina_throw_exception 'PE0000'; return ;;
+      *) patina_throw_exception 'PE0003'; return ;;
     esac
     tput cnorm
     echo
