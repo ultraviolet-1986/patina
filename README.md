@@ -262,11 +262,6 @@ source code before use.
 
 ### System Components
 
-```bash
-`p-calibrate <X> <Y>`  # Draw a grid on the Terminal to help resize window.
-`p-os`                 # Display the details of the Operating System.
-```
-
 The following commands require a `systemd` environment and will prompt the user
 for a password, please review source code before use.
 

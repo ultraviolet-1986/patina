@@ -34,6 +34,11 @@ after an evil butler tries to steal their inheritance.
     specific string. The arguments passed must be in the `PE0000` format.
   - Removed the `p-clamav` alias and edited the `README.md` file to reflect
     this.
+  - Updated Internet connection detection so that Patina will now ping
+    Cloudflare (1.1.1.1) instead of Google.
+  - Drastically simplified `patina_system_updater.sh` code.
+  - Removed `p-os` command as it did not provide much to Patina and updated the
+    `README.md` file to reflect this.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of
