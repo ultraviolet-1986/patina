@@ -98,6 +98,7 @@ patina_theme_apply() {
       *)
         patina_throw_exception 'PE0003'
         patina_theme_apply 'default'
+        return
         ;;
     esac
 
