@@ -12,12 +12,8 @@
 #############
 
 patina_detect_system_package_manager() {
-  # Failure: Default package manager already defined
-  if [ "$patina_package_manager" ] ; then
-    echo_wrap "Patina has already detected the default package manager."
-
   # Success: Distribution is Ubuntu or compatible
-  elif ( hash 'apt' > /dev/null 2>&1 ) ; then
+  if ( hash 'apt' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='apt'
     readonly patina_package_install='install'
     readonly patina_package_remove='remove'
@@ -58,27 +54,30 @@ patina_detect_system_package_manager() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "It appears that Patina does not currently support package management on your Linux distribution. For more information or to make a request, please visit: $patina_metadata_url."
+    patina_throw_exception 'PE0000'
   fi
+
+  # Rubbish collection
+  unset -f "${FUNCNAME[0]}"
 }
 
 # Warning: sudo command(s)
 patina_package_manager() {
   if [ "$#" -eq "0" ] ; then
-    echo_wrap "Patina has not been given an argument. Please use 'install', 'remove', 'update', or 'upgrade'."
+    patina_throw_exception 'PE0001'
 
   else
     case "$1" in
       'install')
         if [ ! "$2" ] ; then
-          echo_wrap "Patina has not been given package name(s) to install."
+          patina_throw_exception 'PE0001'
         else
           sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
         fi
         ;;
       'remove')
         if [ ! "$2" ] ; then
-          echo_wrap "Patina has not been given package name(s) to remove."
+          patina_throw_exception 'PE0001'
         else
           sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
         fi
@@ -90,7 +89,7 @@ patina_package_manager() {
         sudo "$patina_package_manager" "$patina_package_upgrade"
         ;;
       *)
-        echo_wrap "Patina has not been given a supported argument. Please use 'install', 'remove', 'update', or 'upgrade'."
+        patina_throw_exception 'PE0003'
         ;;
     esac
   fi
