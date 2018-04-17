@@ -7,7 +7,7 @@
 # Components and configuration are not stored in a fixed location by design
 # shellcheck source=/dev/null
 
-# Some variables are defined elsewhere
+# Some items are defined elsewhere
 # shellcheck disable=SC2154
 
 #############
