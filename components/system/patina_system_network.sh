@@ -29,34 +29,24 @@ patina_show_network_status() {
   patina_detect_internet_connection
 
   if [ "$patina_has_internet" = 'true' ] ; then
-    echo_wrap "Patina is connected to the Internet."
-
+    echo_wrap "Patina has access to the Internet."
   elif [ "$patina_has_internet" = 'false' ] ; then
-    echo_wrap "Patina is not connected to the Internet."
-
+    patina_throw_exception 'PE0008'
   elif [ ! "$patina_has_internet" ] ; then
     patina_show_network_status
-
   else
-    echo_wrap "Patina has encountered an unknown error."
+    patina_throw_exception 'PE0000'
   fi
 }
 
 patina_systemd_network_manager() {
-  # Failure: Patina is not running in a 'systemd' environment
   if [ "$patina_has_systemd" = 'false' ] ; then
-    echo_wrap "Patina has not detected systemd and therefore cannot execute your command."
-
-  # Failure: Patina has not been given an argument
+    patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
-    echo_wrap "Patina has not been given a valid argument, please try again."
-
-  # Failure: Patina has been given too many arguments
+    patina_throw_exception 'PE0003'
   elif [ "$#" -gt 1 ] ; then
-    echo_wrap "Patina must be given only one argument, please try again."
-
-  # Success: Patina is running in a 'systemd' environment and has been given a single argument
-  elif [ "$patina_has_systemd" = 'true' ] && [ "$1" ] ; then
+    patina_throw_exception 'PE0002'
+  elif [ "$patina_has_systemd" = 'true' ] ; then
     case "$1" in
       'disable') ;;
       'enable') ;;
@@ -64,10 +54,7 @@ patina_systemd_network_manager() {
       'start') ;;
       'status') patina_show_network_status ; return ;;
       'stop') ;;
-      *)
-        echo_wrap "'$1' is not a valid argument, please try again."
-        return
-        ;;
+      *) patina_throw_exception 'PE0003' ; return ;;
     esac
 
     sleep 0.1
