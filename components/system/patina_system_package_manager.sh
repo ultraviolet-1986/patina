@@ -90,6 +90,7 @@ patina_package_manager() {
         ;;
       *)
         patina_throw_exception 'PE0003'
+        return
         ;;
     esac
   fi

@@ -38,7 +38,7 @@ patina_clamav_scan() {
     case "$answer" in
       'Y'|'y') patina_create_clamav_logfile='true' ;;
       'N'|'n') patina_create_clamav_logfile='false' ;;
-      *) patina_throw_exception 'PE0003' ;;
+      *) patina_throw_exception 'PE0003' ; return ;;
     esac
 
     local patina_clamav_logfile="clamscan_log_$(date +%Y%m%d_%H%M%S).txt"
@@ -49,7 +49,7 @@ patina_clamav_scan() {
     case "$patina_create_clamav_logfile" in
       true) clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v ;;
       false) clamscan -r "$1" -v ;;
-      *) patina_throw_exception 'PE0000' ;;
+      *) patina_throw_exception 'PE0000'; return ;;
     esac
     tput cnorm
     echo

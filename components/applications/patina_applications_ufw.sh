@@ -31,7 +31,7 @@ patina_ufw_configure() {
       'help'|'?') patina_ufw_help ;;
       'setup') sudo ufw enable ; sudo ufw default deny ; sudo ufw limit ssh ;;
       'status') sudo ufw status ;;
-      *) patina_throw_exception 'PE0003' ;;
+      *) patina_throw_exception 'PE0003' ; return ;;
     esac
   else
     patina_throw_exception 'PE0000'
