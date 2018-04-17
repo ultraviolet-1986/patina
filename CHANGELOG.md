@@ -42,6 +42,8 @@ after an evil butler tries to steal their inheritance.
   - Removed `p-calibrate` command from main repository, placed it within the
     `patina-user-components` repository and updated the `README.md` file to
     reflect this.
+  - Have updated `patina_system_theming.sh` to allow colour in text-only
+    sessions such as a server.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of
