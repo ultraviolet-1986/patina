@@ -18,7 +18,7 @@ patina_has_internet=''
 #############
 
 patina_detect_internet_connection() {
-  if ( ping -c 1 8.8.8.8 ) &> /dev/null ; then
+  if ( ping -c 1 1.1.1.1 ) &> /dev/null ; then
     patina_has_internet='true'
   else
     patina_has_internet='false'
