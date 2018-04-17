@@ -44,6 +44,12 @@ after an evil butler tries to steal their inheritance.
     reflect this.
   - Have updated `patina_system_theming.sh` to allow colour in text-only
     sessions such as a server.
+  - Support for opening files/URLs has been dropped as a response to KDE's
+    security warnings so the commands `p-file` and `p-url` have been removed
+    along with the `files` command.
+  - Opening locations such as `p-root` or `downloads` will now only change the
+    current folder in the terminal. This can be opened graphically also by
+    appending `-g` to the end of the command.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of

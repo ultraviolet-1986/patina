@@ -68,7 +68,7 @@ the following features:
 - Provides a means of instantly accessing your scripts.
 - Can be restarted to detect and connect new scripts without closing the
   console.
-- Contains a dynamic update mechanism using `git` source control.
+- Contains a simple update mechanism using `git` source control.
 - Is not intrusive and its own conventions are easy to learn and never replace
   existing functionality.
 
@@ -81,7 +81,7 @@ the following packages (correct for Ubuntu):
 - `git` for the `p-update` command.
 - `systemd` for manipulating system services such as networking.
 - `ufw` for the `p-ufw <X>` commands.
-- `xdg-utils` for opening files, locations, and URLs graphically.
+- `xdg-utils` for opening locations graphically.
 
 ## Conventions
 
@@ -122,7 +122,7 @@ rest of the shell and help to prevent naming conflicts.
 
 With Patina version `0.1.0` and later, semantic version numbering is added and
 displayed alongside the current version of BASH. This will be in the format of
-`Major.Minor.Patch`.
+`Major.Minor.Revision`.
 
 ## Patina Layout
 
@@ -156,7 +156,7 @@ patina
 This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which
 contains `Applications`, `Places`, and `System` menu categories respectively -
 by mimicking this structure, Patina components can be categorised and better
-organised for a user. The additional `user` folder is for any components which
+organised for a user. The additional `User` folder is for any components which
 may not fit in the original three categories, or are for testing purposes.
 
 ## Built-in Commands
@@ -200,9 +200,10 @@ The basic commands are listed below:
 
 ### Places
 
-```bash
-`files`             # Open default File Manager.
+These locations can also be opened in the default file manager by appending `-g`
+to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc...
 
+```bash
 `p-root`            # Open the Patina root directory.
 
 `p-c`               # Open the Patina 'components' directory.
@@ -214,11 +215,6 @@ The basic commands are listed below:
 `p-r`               # Open the Patina 'resources' directory.
 `p-r-exceptions`    # Open the Patina 'exception resources' directory.
 `p-r-help`          # Open the Patina 'help resources' directory.
-
-`p-source`          # Open the Patina source code file.
-`p-config`          # Open the Patina preferences file.
-`p-url <X>`         # Open a valid URL in the default web browser.
-`p-url patina`      # Open the Patina GitHub page in the default web browser.
 ```
 
 ### Application Components
@@ -247,6 +243,9 @@ source code before use.
 ```
 
 ### Place Components
+
+These locations can also be opened in the default file manager by appending `-g`
+to the end of the command, for example: `music -g` or `documents -g`, etc...
 
 ```bash
 `home`       # Open the Home directory.

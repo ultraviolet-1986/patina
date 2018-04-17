@@ -36,7 +36,6 @@ patina_open_folder() {
 ###########
 
 # Folders
-alias 'files'='patina_open_folder'
 alias 'p-root'='patina_open_folder $patina_path_root'
 
 # Components
