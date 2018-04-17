@@ -12,27 +12,19 @@
 #############
 
 patina_theme_apply() {
-  # Failure: Patina is running in a low-color mode
-  if [ "$TERM" = 'linux' ] ; then
-    clear
-    echo_wrap "Patina has temporarily disabled theming for this low-color session.\\n"
-    set -- "${color_default}" "${color_default}"
-
   # Failure: Patina has not been given an argument
-  elif [ "$#" -eq "0" ] ; then
-    echo_wrap "Patina has not been given the name of a theme, please try again."
+  if [ "$#" -eq "0" ] ; then
+    patina_throw_exception 'PE0001'
 
   # Failure: Patina has been given multiple arguments
   elif [ "$#" -gt "1" ] ; then
-    echo_wrap "Patina must be given the name of only one theme, please try again."
+    patina_throw_exception 'PE0002'
 
   # Success: Patina has been given a single argument
   elif [ "$1" ] ; then
     case "$1" in
       # Define default theme
-      'default')
-        patina_theme_apply 'magenta'
-        ;;
+      'default') patina_theme_apply 'magenta' ;;
 
       # Standard themes
       'blue')
@@ -104,7 +96,7 @@ patina_theme_apply() {
         export patina_minor_color="${cyan}"
         ;;
       *)
-        echo_wrap "'$1' is not a known theme, default has been applied."
+        patina_throw_exception 'PE0003'
         patina_theme_apply 'default'
         ;;
     esac
@@ -120,7 +112,7 @@ patina_theme_apply() {
 
   # Failure: Catch any other error condition here
   else
-    echo_wrap "Patina has encountered an unknown error."
+    patina_throw_exception 'PE0000'
   fi
 }
 
