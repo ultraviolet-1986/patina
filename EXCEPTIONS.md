@@ -45,6 +45,10 @@ numbers (Patina Exception) here for reference.
   - This error should be raised when Patina cannot detect an active Internet
     connection.
 
+- **PE0009 `Patina cannot detect a valid source control repository.`**
+  - This error should be raised when Patina cannot detect a valid source control
+    repository.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a

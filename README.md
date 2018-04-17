@@ -22,7 +22,6 @@ perform tasks quicker by the command line.
   - [Place Components](#place-components)
   - [System Components](#system-components)
 - [Helper Functions](#helper-functions)
-- [Acknowledgements and References](#acknowledgements-and-references)
 
 ## Introduction
 
@@ -250,15 +249,15 @@ source code before use.
 ### Place Components
 
 ```bash
-`home`      # Open the Home directory.
-`desktop`   # Open the Desktop directory.
-`documents` # Open the Documents directory.
-`downloads` # Open the Downloads directory.
-`music`     # Open the Music directory.
-`pictures`  # Open the Pictures directory.
-`public`    # Open the Public directory.
-`templates` # Open the Templates directory.
-`videos`    # Open the Videos directory.
+`home`       # Open the Home directory.
+`desktop`    # Open the Desktop directory.
+`documents`  # Open the Documents directory.
+`downloads`  # Open the Downloads directory.
+`music`      # Open the Music directory.
+`pictures`   # Open the Pictures directory.
+`public`     # Open the Public directory.
+`templates`  # Open the Templates directory.
+`videos`     # Open the Videos directory.
 ```
 
 ### System Components

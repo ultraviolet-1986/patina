@@ -1,0 +1,1 @@
+Patina cannot detect a valid source control repository.
