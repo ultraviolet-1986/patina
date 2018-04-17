@@ -39,6 +39,9 @@ after an evil butler tries to steal their inheritance.
   - Drastically simplified `patina_system_updater.sh` code.
   - Removed `p-os` command as it did not provide much to Patina and updated the
     `README.md` file to reflect this.
+  - Removed `p-calibrate` command from main repository, placed it within the
+    `patina-user-components` repository and updated the `README.md` file to
+    reflect this.
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of
