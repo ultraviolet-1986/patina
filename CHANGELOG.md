@@ -7,8 +7,6 @@
 
 ## 0.7.x Series: 'Duchess'
 
-### Name Inspiration
-
 The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
@@ -35,7 +33,7 @@ after an evil butler tries to steal their inheritance.
   - Removed the `p-clamav` alias and edited the `README.md` file to reflect
     this.
   - Updated Internet connection detection so that Patina will now ping
-    Cloudflare (1.1.1.1) instead of Google.
+    Cloudflare (1.1.1.1) instead of Google (8.8.8.8).
   - Drastically simplified `patina_system_updater.sh` code.
   - Removed `p-os` command as it did not provide much to Patina and updated the
     `README.md` file to reflect this.
@@ -44,9 +42,10 @@ after an evil butler tries to steal their inheritance.
     reflect this.
   - Have updated `patina_system_theming.sh` to allow colour in text-only
     sessions such as a server (where supported).
-  - Support for opening files/URLs has been dropped as a response to KDE Neon's
-    security warnings so the commands `p-file` and `p-url` have been removed,
-    and the `files` command has been obsoleted.
+  - Support for opening files/URLs has been dropped as a response to
+    [KDE Neon](https://neon.kde.org/) displaying security warnings regarding
+    this so the commands `p-file` and `p-url` have been removed, and the `files`
+    command has been obsoleted.
   - Opening locations such as `p-root` or `downloads` will now only change the
     current folder in the terminal. This can be opened graphically also by
     appending `-g` to the end of the command.
@@ -71,9 +70,7 @@ after an evil butler tries to steal their inheritance.
 
 ## 0.6.x Series: 'Kyrie'
 
-### Name Inspiration
-
-The name **Kyrie** was taken from the video game **Project Zero (Fatal Frame)**,
+The name **Kyrie** was taken from the video game **Project Zero/Fatal Frame**,
 during the conclusion of the game, she became the game's ultimate heroine.
 
 - **0.6.9 Released Tuesday, March 20th 2018**
@@ -92,7 +89,7 @@ during the conclusion of the game, she became the game's ultimate heroine.
     convention of `.bashrc` or other `.rc` files.
 - **0.6.7 Released Wednesday, November 15th 2017**
   - Have updated the `patina_system_xdg.sh` file so that the commands `p-url`
-    and `p-url <X>` (where <X> is a valid URL) will open a URL in the default
+    and `p-url X` (where X is a valid URL) will open a URL in the default
     web browser.
   - The command `p-url patina` will now open the project's GitHub page, this has
     been changed from `p-url-patina`. The `README.md` file reflects this.
