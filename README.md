@@ -3,6 +3,9 @@
 A 'patina', 'layer', or 'toolbox' for BASH under Linux which aims to help users
 perform tasks quicker by the command line.
 
+Additional Patina components can be found here:
+<https://github.com/ultraviolet-1986/patina-user-components>
+
 ## Table of Contents
 
 - [Introduction](#introduction)
