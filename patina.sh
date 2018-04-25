@@ -46,63 +46,64 @@ readonly patina_file_source="${BASH_SOURCE[0]}"
 #############
 
 patina_start() {
-  if [ "$OSTYPE" = 'linux-gnu' ] ; then
-    # Create Patina Directory Structure
-    mkdir -p "$patina_path_components"/{applications,places,system,user}
-    mkdir -p "$patina_path_resources"/{exceptions,help}
-
-    # Connect all detected Patina components
-    for component in "$patina_path_components"/{applications,places,system,user}/patina_*.sh ; do
-      if [ -f "$component" ] ; then
-        chmod a-x "$component"
-        source "$component"
-        patina_components_list+=("${component}")
-      fi
-    done
-
-    # Connect/create and apply Patina configuration
-    if [ -f "$patina_file_configuration" ] ; then
-      chmod a-x "$patina_file_configuration"
-
-      # Connect configuration file
-      source "$patina_file_configuration"
-
-      if [ -z "$patina_theme" ] ; then
-        # Failure: Rewrite preferences file and reset the console
-        echo 'patina_theme=default' > "$patina_file_configuration"
-
-        patina_terminal_refresh
-      else
-        # Success: Apply settings
-        patina_theme_apply "$patina_theme"
-      fi
-    else
-      # Create a new configuration file
-      touch "$patina_file_configuration"
-
-      # Populate the new configuration file with defaults
-      echo 'patina_theme=default' > "$patina_file_configuration"
-
-      patina_terminal_refresh
-    fi
-
-    # Lock variables after Patina is successfully loaded
-    readonly -a patina_components_list
-    readonly TERM="$TERM"
-    readonly OSTYPE="$OSTYPE"
-
-    # Show Patina header / version information
-    echo_wrap "${patina_major_color}Patina v"`
-      `"$patina_metadata_version_major.$patina_metadata_version_minor."`
-      `"$patina_metadata_version_patch '$patina_metadata_codename' / "`
-      `"BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
-    echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
-
-  else
+  # Ensure Patina is operating inside of a GNU/Linux environment
+  if [ "$OSTYPE" != 'linux-gnu' ] ; then
     echo_wrap "Patina does not currently support your operating system. For "`
       `"more information, or to make a feature request, please visit "`
       `"'$patina_metadata_url'."
+    return
   fi
+
+  # Create Patina Directory Structure
+  mkdir -p "$patina_path_components"/{applications,places,system,user}
+  mkdir -p "$patina_path_resources"/{exceptions,help}
+
+  # Connect all detected Patina components
+  for component in "$patina_path_components"/{applications,places,system,user}/patina_*.sh ; do
+    if [ -f "$component" ] ; then
+      chmod a-x "$component"
+      source "$component"
+      patina_components_list+=("${component}")
+    fi
+  done
+
+  # Connect/create and apply Patina configuration
+  if [ -f "$patina_file_configuration" ] ; then
+    chmod a-x "$patina_file_configuration"
+
+    # Connect configuration file
+    source "$patina_file_configuration"
+
+    if [ -z "$patina_theme" ] ; then
+      # Failure: Rewrite preferences file and reset the console
+      echo 'patina_theme=default' > "$patina_file_configuration"
+
+      patina_terminal_refresh
+    else
+      # Success: Apply settings
+      patina_theme_apply "$patina_theme"
+    fi
+  else
+    # Create a new configuration file
+    touch "$patina_file_configuration"
+
+    # Populate the new configuration file with defaults
+    echo 'patina_theme=default' > "$patina_file_configuration"
+
+    patina_terminal_refresh
+  fi
+
+  # Lock variables after Patina is successfully loaded
+  readonly -a patina_components_list
+  readonly TERM="$TERM"
+  readonly OSTYPE="$OSTYPE"
+
+  # Show Patina header / version information
+  echo_wrap "${patina_major_color}Patina v"`
+    `"$patina_metadata_version_major.$patina_metadata_version_minor."`
+    `"$patina_metadata_version_patch '$patina_metadata_codename' / "`
+    `"BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
+  echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
   # Rubbish collection
   unset -f "${FUNCNAME[0]}"
