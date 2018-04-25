@@ -56,6 +56,7 @@ patina_theme_apply() {
   # Default theme
   elif [ "$1" = 'default' ] ; then
     patina_theme_apply 'magenta'
+    return
 
   # Standard themes
   elif [ "$1" = 'blue' ] ; then
