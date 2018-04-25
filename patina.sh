@@ -168,6 +168,6 @@ alias 'p-list'='patina_list_connected_components'
 # Kickstart #
 #############
 
-patina_start
+time patina_start
 
 # End of File.
