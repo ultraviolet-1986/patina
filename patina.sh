@@ -67,30 +67,21 @@ patina_start() {
     fi
   done
 
-  # Connect/create and apply Patina configuration
+  # Success: Connect and apply Patina configuration
   if [ -f "$patina_file_configuration" ] ; then
     chmod a-x "$patina_file_configuration"
-
-    # Connect configuration file
     source "$patina_file_configuration"
 
-    if [ -z "$patina_theme" ] ; then
-      # Failure: Rewrite preferences file and reset the console
-      echo 'patina_theme=default' > "$patina_file_configuration"
-
-      patina_terminal_refresh
+    if [ -v "$patina_theme" ] ; then
+      patina_theme_apply "$patina_theme"
     else
-      # Success: Apply settings
+      export patina_theme=default
       patina_theme_apply "$patina_theme"
     fi
+
+  # Failure: Configuration file does not exist
   else
-    # Create a new configuration file
-    touch "$patina_file_configuration"
-
-    # Populate the new configuration file with defaults
-    echo 'patina_theme=default' > "$patina_file_configuration"
-
-    patina_terminal_refresh
+    patina_create_configuration_file
   fi
 
   # Lock variables after Patina is successfully loaded
@@ -107,6 +98,14 @@ patina_start() {
 
   # Rubbish collection
   unset -f "${FUNCNAME[0]}"
+}
+
+patina_create_configuration_file() {
+  # Default configuration options listed here.
+  echo 'patina_theme=default' > "$patina_file_configuration"
+
+  # Refresh the terminal to load new configuration
+  patina_terminal_refresh
 }
 
 patina_list_connected_components() {
@@ -169,6 +168,6 @@ alias 'p-list'='patina_list_connected_components'
 # Kickstart #
 #############
 
-time patina_start
+patina_start
 
 # End of File.

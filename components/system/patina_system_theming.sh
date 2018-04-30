@@ -135,8 +135,15 @@ patina_theme_apply() {
   # Export the selected theme
   export patina_theme="$1"
 
-  # Update configuration file
-  sed -i "s/patina_theme=.*$/patina_theme=${patina_theme}/g" "$patina_file_configuration"
+  # Success: Update configuration file
+  if grep --quiet 'patina_theme=' "$patina_file_configuration" ; then
+    sed -i "s/patina_theme=.*$/patina_theme=${patina_theme}/g" "$patina_file_configuration"
+
+  # Failure: Rewrite configuration file
+  else
+    patina_create_configuration_file
+    return
+  fi
 
   # Refresh the prompt
   export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "

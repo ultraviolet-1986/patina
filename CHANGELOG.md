@@ -11,6 +11,13 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
+- **0.7.2 Currently in testing**
+  - Drastically simplified `patina_system_theming.sh` code by removing `case`
+    statements and shifting all logic to the outer `if` tree.
+  - Corrected function termination in `patina_system_theming.sh` file so that
+    the chosen theme is not applied twice during initialisation.
+  - Improved the Operating System detection wall during startup so that it is
+    not nesting more code within `if` statements.
 - **0.7.1 Released Tuesday, April 24th 2018**
   - A new folder specifically for documentation has been included in Patina's
     root directory and is named `resources`. At present it contains two sub-
