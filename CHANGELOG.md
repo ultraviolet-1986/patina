@@ -21,6 +21,8 @@ after an evil butler tries to steal their inheritance.
   - Loading themes and error-handling themes is now handled by the
     `patina_system_theming.sh` component. This helps to encapsulate
     functionality in a more efficient fashion.
+  - Have removed the `patina_system_services.sh` component and updated
+    `patina_system_network.sh` to remove its dependency on it.
 - **0.7.1 Released Tuesday, April 24th 2018**
   - A new folder specifically for documentation has been included in Patina's
     root directory and is named `resources`. At present it contains two sub-
