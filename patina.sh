@@ -133,6 +133,26 @@ patina_throw_exception() {
   fi
 }
 
+patina_open_folder() {
+  if ( ! hash 'xdg-open' ) ; then
+    patina_throw_exception 'PE0006'
+  elif [ "$#" -eq "0" ] ; then
+    cd || return
+    xdg-open "$(pwd)" > /dev/null 2>&1
+  elif [ ! -d "$1" ] ; then
+    patina_throw_exception 'PE0004'
+  elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
+    # Change directory in terminal and open graphically
+    cd "$1" || return
+    xdg-open "$(pwd)" > /dev/null 2>&1
+  elif [ -d "$1" ] ; then
+    # Change directory only
+    cd "$1" || return
+  else
+    patina_throw_exception 'PE0000'
+  fi
+}
+
 echo_wrap() {
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
@@ -143,6 +163,22 @@ echo_wrap() {
   else
     patina_throw_exception 'PE0000'
   fi
+}
+
+patina_terminal_refresh() {
+  cd || return
+  clear
+  reset
+  exec bash
+}
+
+patina_terminal_reset() {
+  cd || return
+  clear
+  history -c
+  true > ~/.bash_history
+  reset
+  exec bash
 }
 
 ###########
@@ -156,6 +192,24 @@ export -f 'echo_wrap'
 ###########
 
 alias 'p-list'='patina_list_connected_components'
+
+alias 'p-refresh'='patina_terminal_refresh'
+alias 'p-reset'='patina_terminal_reset'
+
+# Places / Folders
+alias 'p-root'='patina_open_folder $patina_path_root'
+
+# Places / Components
+alias 'p-c'='patina_open_folder $patina_path_components'
+alias 'p-c-applications'='patina_open_folder $patina_path_components_applications'
+alias 'p-c-places'='patina_open_folder $patina_path_components_places'
+alias 'p-c-system'='patina_open_folder $patina_path_components_system'
+alias 'p-c-user'='patina_open_folder $patina_path_components_user'
+
+# Places / Resources
+alias 'p-r'='patina_open_folder $patina_path_resources'
+alias 'p-r-exceptions'='patina_open_folder $patina_path_resources_exceptions'
+alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
 
 #############
 # Kickstart #

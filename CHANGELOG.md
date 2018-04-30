@@ -23,6 +23,8 @@ after an evil butler tries to steal their inheritance.
     functionality in a more efficient fashion.
   - Have removed the `patina_system_services.sh` component and updated
     `patina_system_network.sh` to remove its dependency on it.
+  - Have removed `patina_system_terminal.sh` and `patina_system_xdg.sh` and have
+    moved useful functionality to the main `patina.sh` script.
 - **0.7.1 Released Tuesday, April 24th 2018**
   - A new folder specifically for documentation has been included in Patina's
     root directory and is named `resources`. At present it contains two sub-
