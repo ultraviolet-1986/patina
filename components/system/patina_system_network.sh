@@ -40,13 +40,13 @@ patina_show_network_status() {
 }
 
 patina_systemd_network_manager() {
-  if [ "$patina_has_systemd" = 'false' ] ; then
+  if ( ! hash 'systemctl' ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0003'
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-  elif [ "$patina_has_systemd" = 'true' ] ; then
+  elif ( hash 'systemctl' ) ; then
     case "$1" in
       'disable') ;;
       'enable') ;;
