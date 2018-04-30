@@ -72,13 +72,6 @@ patina_start() {
     chmod a-x "$patina_file_configuration"
     source "$patina_file_configuration"
 
-    if [ -v "$patina_theme" ] ; then
-      patina_theme_apply "$patina_theme"
-    else
-      export patina_theme=default
-      patina_theme_apply "$patina_theme"
-    fi
-
   # Failure: Configuration file does not exist
   else
     patina_create_configuration_file

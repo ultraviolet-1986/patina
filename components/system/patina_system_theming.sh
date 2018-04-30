@@ -149,11 +149,26 @@ patina_theme_apply() {
   export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
 }
 
+patina_initialization_theme_apply() {
+  if [ -v "$patina_theme" ] ; then
+    patina_theme_apply "$patina_theme"
+  else
+    export patina_theme=default
+    patina_theme_apply "$patina_theme"
+  fi
+}
+
 ###########
 # Aliases #
 ###########
 
 # Colors
 alias 'p-theme'='patina_theme_apply'
+
+#############
+# Kickstart #
+#############
+
+patina_initialization_theme_apply
 
 # End of File.

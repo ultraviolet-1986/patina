@@ -18,6 +18,9 @@ after an evil butler tries to steal their inheritance.
     the chosen theme is not applied twice during initialisation.
   - Improved the Operating System detection wall during startup so that it is
     not nesting more code within `if` statements.
+  - Loading themes and error-handling themes is now handled by the
+    `patina_system_theming.sh` component. This helps to encapsulate
+    functionality in a more efficient fashion.
 - **0.7.1 Released Tuesday, April 24th 2018**
   - A new folder specifically for documentation has been included in Patina's
     root directory and is named `resources`. At present it contains two sub-
