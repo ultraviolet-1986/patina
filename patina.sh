@@ -58,15 +58,6 @@ patina_start() {
   mkdir -p "$patina_path_components"/{applications,places,system,user}
   mkdir -p "$patina_path_resources"/{exceptions,help}
 
-  # Connect all detected Patina components
-  for component in "$patina_path_components"/{applications,places,system,user}/patina_*.sh ; do
-    if [ -f "$component" ] ; then
-      chmod a-x "$component"
-      source "$component"
-      patina_components_list+=("${component}")
-    fi
-  done
-
   # Success: Connect and apply Patina configuration
   if [ -f "$patina_file_configuration" ] ; then
     chmod a-x "$patina_file_configuration"
@@ -76,6 +67,15 @@ patina_start() {
   else
     patina_create_configuration_file
   fi
+
+  # Connect all detected Patina components
+  for component in "$patina_path_components"/{applications,places,system,user}/patina_*.sh ; do
+    if [ -f "$component" ] ; then
+      chmod a-x "$component"
+      source "$component"
+      patina_components_list+=("${component}")
+    fi
+  done
 
   # Lock variables after Patina is successfully loaded
   readonly -a patina_components_list

@@ -150,7 +150,7 @@ patina_theme_apply() {
 }
 
 patina_initialization_theme_apply() {
-  if [ -v "$patina_theme" ] ; then
+  if [ "$patina_theme" ] ; then
     patina_theme_apply "$patina_theme"
   else
     export patina_theme=default
