@@ -63,7 +63,13 @@ patina_detect_system_package_manager() {
 
 # Warning: sudo command(s)
 patina_package_manager() {
-  if [ "$#" -eq "0" ] ; then
+  # Check Internet connection before starting
+  patina_detect_internet_connection
+
+  if [ "$patina_has_internet" = 'false' ] ; then
+    patina_throw_exception 'PE0008'
+    return
+  elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
 
   else
@@ -71,6 +77,7 @@ patina_package_manager() {
       'install')
         if [ ! "$2" ] ; then
           patina_throw_exception 'PE0001'
+          return
         else
           sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
         fi
@@ -78,6 +85,7 @@ patina_package_manager() {
       'remove')
         if [ ! "$2" ] ; then
           patina_throw_exception 'PE0001'
+          return
         else
           sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
         fi
