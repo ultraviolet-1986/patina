@@ -137,7 +137,7 @@ patina_open_folder() {
   if ( ! hash 'xdg-open' ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
-    cd || return
+    patina_throw_exception 'PE0001'
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
