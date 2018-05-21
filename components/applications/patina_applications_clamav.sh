@@ -23,14 +23,24 @@ patina_clamav_scan() {
 
   if ( ! hash 'clamscan' ) ; then
     patina_throw_exception 'PE0006'
+    return
+
   elif [ "$1" = 'help' ] || [ "$1" = '?' ] ; then
     patina_clamav_help
+    return
+
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
+    return
+
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
+
   elif [[ ! -e "$1" ]] ; then
     patina_throw_exception 'PE0004'
+    return
+
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
     echo
     printf "Do you wish to record a log file in your home directory [Y/N]? "
@@ -41,9 +51,10 @@ patina_clamav_scan() {
       *) patina_throw_exception 'PE0003' ; return ;;
     esac
 
-    local patina_clamav_logfile="clamscan_log_$(date +%Y%m%d_%H%M%S).txt"
+    patina_clamav_logfile="clamscan_log_$(date +%Y%m%d_%H%M%S).txt"
 
-    reset
+    echo -e "\\n"
+
     tput civis
     echo_wrap "Preparing 'clamav' virus scan, please wait...\\n"
     case "$patina_create_clamav_logfile" in
@@ -53,8 +64,10 @@ patina_clamav_scan() {
     esac
     tput cnorm
     echo
+
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
