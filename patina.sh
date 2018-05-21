@@ -164,12 +164,15 @@ patina_open_folder() {
 echo_wrap() {
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
   elif [ "$1" ] ; then
     (echo -e "$1") | fmt -w "$(tput cols)"
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
