@@ -20,10 +20,16 @@ readonly patina_file_ufw_help="$patina_path_resources_help/patina_applications_u
 patina_ufw_configure() {
   if ( ! hash 'ufw' ) ; then
     patina_throw_exception 'PE0006'
+    return
+
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
+
   elif [ "$#" -gt "1" ] ; then
     patina_throw_exception 'PE0002'
+    return
+
   elif [ "$1" ] ; then
     case "$1" in
       'disable') sudo ufw disable ;;
@@ -33,8 +39,10 @@ patina_ufw_configure() {
       'status') sudo ufw status ;;
       *) patina_throw_exception 'PE0003' ; return ;;
     esac
+
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
