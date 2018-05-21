@@ -152,9 +152,11 @@ patina_theme_apply() {
 patina_initialization_theme_apply() {
   if [ "$patina_theme" ] ; then
     patina_theme_apply "$patina_theme"
+    return
   else
     export patina_theme=default
     patina_theme_apply "$patina_theme"
+    return
   fi
 }
 

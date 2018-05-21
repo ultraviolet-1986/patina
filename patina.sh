@@ -152,9 +152,11 @@ patina_open_folder() {
     # Change directory in terminal and open graphically
     cd "$1" || return
     xdg-open "$(pwd)" > /dev/null 2>&1
+    return
   elif [ -d "$1" ] ; then
     # Change directory only
     cd "$1" || return
+    return
   else
     patina_throw_exception 'PE0000'
     return
