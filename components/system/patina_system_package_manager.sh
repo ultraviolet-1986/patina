@@ -55,6 +55,7 @@ patina_detect_system_package_manager() {
   # Failure: Catch any other error condition here
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 
   # Rubbish collection
@@ -71,6 +72,7 @@ patina_package_manager() {
     return
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
 
   else
     case "$1" in
