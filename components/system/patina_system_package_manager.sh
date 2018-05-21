@@ -82,6 +82,7 @@ patina_package_manager() {
           return
         else
           sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
+          return
         fi
         ;;
       'remove')
@@ -90,13 +91,16 @@ patina_package_manager() {
           return
         else
           sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
+          return
         fi
         ;;
       'update')
         sudo "$patina_package_manager" "$patina_package_update"
+        return
         ;;
       'upgrade')
         sudo "$patina_package_manager" "$patina_package_upgrade"
+        return
         ;;
       *)
         patina_throw_exception 'PE0003'
