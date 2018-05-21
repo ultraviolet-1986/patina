@@ -138,7 +138,6 @@ patina_open_folder() {
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     cd || return
-    xdg-open "$(pwd)" > /dev/null 2>&1
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
