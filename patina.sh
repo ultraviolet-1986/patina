@@ -116,30 +116,38 @@ patina_list_connected_components() {
   # Failure: No components have been connected
   else
     patina_throw_exception 'PE0007'
+    return
   fi
 }
 
 patina_throw_exception() {
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
   elif [ "$1" ] && [ ! -e "$patina_path_resources_exceptions/$1.txt" ] ; then
     patina_throw_exception 'PE0005'
+    return
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
     echo_wrap "$1: $(cat "$patina_path_resources_exceptions"/"$1".txt)"
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
 patina_open_folder() {
   if ( ! hash 'xdg-open' ) ; then
     patina_throw_exception 'PE0006'
+    return
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
+    return
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
     # Change directory in terminal and open graphically
     cd "$1" || return
@@ -149,6 +157,7 @@ patina_open_folder() {
     cd "$1" || return
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
