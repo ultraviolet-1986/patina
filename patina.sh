@@ -41,6 +41,9 @@ readonly patina_path_resources_help="$patina_path_resources/help"
 readonly patina_file_configuration="$HOME/.patinarc"
 readonly patina_file_source="${BASH_SOURCE[0]}"
 
+# System / Files
+readonly system_os_release='/etc/os-release'
+
 #############
 # Functions #
 #############
@@ -52,6 +55,11 @@ patina_start() {
       `"more information, or to make a feature request, please visit "`
       `"'$patina_metadata_url'."
     return
+  fi
+
+  # Import additional system variables
+  if [ -f "$system_os_release" ] ; then
+    source "$system_os_release"
   fi
 
   # Create Patina Directory Structure
