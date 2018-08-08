@@ -1,5 +1,25 @@
 #!/usr/bin/env bash
 
+##########
+# Notice #
+##########
+
+# Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
+# Copyright (C) 2018 William Willis Whinn
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ##############
 # Directives #
 ##############
@@ -15,9 +35,7 @@
 #############
 
 # Patina / Metadata
-readonly patina_metadata_version_major=0
-readonly patina_metadata_version_minor=7
-readonly patina_metadata_version_patch=3
+readonly patina_metadata_version='0.7.3'
 
 readonly patina_metadata_codename='Duchess'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
@@ -95,11 +113,8 @@ patina_start() {
   readonly TERM="$TERM"
   readonly OSTYPE="$OSTYPE"
 
-  # Show Patina header / version information
-  echo_wrap "${patina_major_color}Patina v"`
-    `"$patina_metadata_version_major.$patina_metadata_version_minor."`
-    `"$patina_metadata_version_patch '$patina_metadata_codename' / "`
-    `"BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
+  echo_wrap "${patina_major_color}Patina v${patina_metadata_version} "`
+    `"Copyright (C) 2018 William Whinn${color_reset}"
   echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
   # Rubbish collection
