@@ -35,7 +35,7 @@
 #############
 
 # Patina / Metadata
-readonly patina_metadata_version='0.7.4'
+readonly patina_metadata_version='0.7.3'
 readonly patina_metadata_codename='Duchess'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 
@@ -112,9 +112,9 @@ patina_start() {
   readonly TERM="$TERM"
   readonly OSTYPE="$OSTYPE"
 
-  echo_wrap "${patina_major_color}Patina v${patina_metadata_version} "`
-    `"Copyright (C) 2018 William Whinn${color_reset}"
-  echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
+  echo_wrap "${patina_major_color}Patina v${patina_metadata_version} '${patina_metadata_codename}' / BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
+  echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}"
+  echo_wrap "${patina_minor_color}Copyright (C) 2018 William Whinn${color_reset}\\n"
 
   # Rubbish collection
   unset -f "${FUNCNAME[0]}"
