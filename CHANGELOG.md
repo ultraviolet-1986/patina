@@ -16,6 +16,8 @@ after an evil butler tries to steal their inheritance.
     command-line. This will not require the `-g` command switch and will always
     both change directory on the console and open the location graphically using
     the default file manager.
+  - Updated `README.md` to show new command(s) and have updated it according to
+    Markdown style standards.
 - **0.7.3 Released Wednesday, August 8th 2018**
   - Included the initial check and import of the '/etc/os-release' and
     '/etc/lsb-release' files to allow a better interrogation of the host

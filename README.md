@@ -15,7 +15,7 @@ Additional Patina components can be found here:
 - [Conventions](#conventions)
 - [Patina Layout](#patina-layout)
 - [Built-in Commands](#built-in-commands)
-  - [Patina](#patina)
+  - [Patina Core](#patina)
   - [Themes](#themes)
   - [Prompts](#prompts)
   - [Places](#places)
@@ -133,28 +133,26 @@ The default directory structure for Patina may not be present when cloning into
 the repository, but will be generated when Patina starts. The following diagram
 demonstrates the intended layout:
 
-```
-home
-    |
-    +-- .patinarc
+  home
+      |
+      +-- .patinarc
 
-patina
-    |
-    +-- CHANGELOG.md
-    +-- LICENSE
-    +-- patina.sh
-    +-- README.md
-    +-- components
-    |   |
-    |   +-- applications
-    |   +-- places
-    |   +-- system
-    |   +-- user
-    +-- resources
-    |   |
-    |   +-- exceptions
-    |   +-- help
-```
+  patina
+      |
+      +-- CHANGELOG.md
+      +-- LICENSE
+      +-- patina.sh
+      +-- README.md
+      +-- components
+      |   |
+      |   +-- applications
+      |   +-- places
+      |   +-- system
+      |   +-- user
+      +-- resources
+      |   |
+      |   +-- exceptions
+      |   +-- help
 
 This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which
 contains `Applications`, `Places`, and `System` menu categories respectively -
@@ -168,7 +166,7 @@ In a similar manner to the component naming convention, Patina includes some
 built-in functions, which follow this convention and can be called at any time.
 The basic commands are listed below:
 
-### Patina
+### Patina Core
 
 ```bash
 `p-update`   # Check for and apply Patina updates.
