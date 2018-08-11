@@ -199,7 +199,7 @@ patina_open_folder() {
 
 patina_open_folder_graphically() {
   if [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
+    patina_open_folder "$HOME" -g
     return
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'

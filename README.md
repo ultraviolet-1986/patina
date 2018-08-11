@@ -206,7 +206,8 @@ to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc. (this
 is not required for navigation using the `files` command).
 
 ```bash
-`files`             # Open a directory graphically and change directory.
+`files`             # Open home directory graphically and change directory.
+`files <x>`         # Open directory graphically and change directory.
 `p-root`            # Open the Patina root directory.
 
 `p-c`               # Open the Patina 'components' directory.
