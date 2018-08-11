@@ -18,6 +18,9 @@ after an evil butler tries to steal their inheritance.
     the default file manager.
   - Updated `README.md` to show new command(s) and have updated it according to
     Markdown style standards.
+  - The path-detection logic for `files` and other commands such as `p-root` and
+    `documents` (for example) have been updated to allow only access to
+    directories and not files.
 - **0.7.3 Released Wednesday, August 8th 2018**
   - Included the initial check and import of the '/etc/os-release' and
     '/etc/lsb-release' files to allow a better interrogation of the host
