@@ -175,16 +175,20 @@ patina_open_folder() {
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
     return
+  elif [ "$#" -gt 2 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ "$2" ] && [ "$2" != '-g' ] ; then
+    patina_throw_exception 'PE0003'
+    return
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
     return
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
-    # Change directory in terminal and open graphically
     cd "$1" || return
     xdg-open "$(pwd)" > /dev/null 2>&1
     return
   elif [ -d "$1" ] ; then
-    # Change directory only
     cd "$1" || return
     return
   else
@@ -193,7 +197,21 @@ patina_open_folder() {
   fi
 }
 
-patina_open_folder_graphically(){ patina_open_folder "$1" -g ; }
+patina_open_folder_graphically() {
+  if [ "$#" -eq "0" ] ; then
+    patina_throw_exception 'PE0001'
+    return
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ ! -d "$1" ] ; then
+    patina_throw_exception 'PE0004'
+    return
+  elif [ -d "$1" ] ; then
+    patina_open_folder "$1" -g
+    return
+  fi
+}
 
 echo_wrap() {
   if [ "$#" -eq "0" ] ; then
