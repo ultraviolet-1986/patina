@@ -204,9 +204,11 @@ The basic commands are listed below:
 ### Places
 
 These locations can also be opened in the default file manager by appending `-g`
-to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc...
+to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc. (this
+is not required for navigation using the `files` command).
 
 ```bash
+`files`             # Open a directory graphically and change directory.
 `p-root`            # Open the Patina root directory.
 
 `p-c`               # Open the Patina 'components' directory.

@@ -193,6 +193,8 @@ patina_open_folder() {
   fi
 }
 
+patina_open_folder_graphically(){ patina_open_folder "$1" -g ; }
+
 echo_wrap() {
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
@@ -240,6 +242,7 @@ alias 'p-refresh'='patina_terminal_refresh'
 alias 'p-reset'='patina_terminal_reset'
 
 # Places / Folders
+alias 'files'="patina_open_folder_graphically"
 alias 'p-root'='patina_open_folder $patina_path_root'
 
 # Places / Components
