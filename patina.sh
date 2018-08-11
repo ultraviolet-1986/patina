@@ -181,6 +181,9 @@ patina_open_folder() {
   elif [ "$2" ] && [ "$2" != '-g' ] ; then
     patina_throw_exception 'PE0003'
     return
+  elif [ -f "$1" ] ; then
+    patina_throw_exception 'PE0003'
+    return
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
     return
@@ -203,6 +206,9 @@ patina_open_folder_graphically() {
     return
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
+  elif [ -f "$1" ] ; then
+    patina_throw_exception 'PE0003'
     return
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
