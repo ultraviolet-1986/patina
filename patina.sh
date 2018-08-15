@@ -142,6 +142,7 @@ patina_list_connected_components() {
     done
 
     echo
+    return
 
   # Failure: No components have been connected
   else
