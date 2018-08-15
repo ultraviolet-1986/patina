@@ -112,6 +112,7 @@ patina_start() {
   readonly TERM="$TERM"
   readonly OSTYPE="$OSTYPE"
 
+  # Main Patina author/copyright header
   echo_wrap "${patina_major_color}Patina v${patina_metadata_version} "`
     `"'${patina_metadata_codename}' / BASH "`
     `"v${BASH_VERSION%%[^0-9.]*}${color_reset}"
