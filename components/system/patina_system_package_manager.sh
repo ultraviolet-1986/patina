@@ -46,7 +46,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_install='install'
     readonly patina_package_remove='remove'
     readonly patina_package_update='check-update'
-    readonly patina_package_upgrade='update'
+    readonly patina_package_upgrade='upgrade'
 
   # Success: Distribution is Solus or compatible
   elif ( hash 'eopkg' > /dev/null 2>&1 ) ; then
