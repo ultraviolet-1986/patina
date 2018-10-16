@@ -21,6 +21,9 @@ after an evil butler tries to steal their inheritance.
   - The path-detection logic for `files` and other commands such as `p-root` and
     `documents` (for example) have been updated to allow only access to
     directories and not files.
+  - A new component named `patina_system_compositor.sh` has been added. This
+    allows the user quickly probe the system and determine whether the current
+    desktop is running under `Xorg` or `Wayland`.
 - **0.7.3 Released Wednesday, August 8th 2018**
   - Included the initial check and import of the '/etc/os-release' and
     '/etc/lsb-release' files to allow a better interrogation of the host

@@ -33,10 +33,10 @@
 
 patina_detect_system_compositor() {
   if [ ! "$XDG_SESSION_TYPE" ] ; then
-    patina_throw_exception 'PE0000'
+    patina_throw_exception 'PE0010'
     return
   elif [ "$XDG_SESSION_TYPE" = 'x11' ] ; then
-    echo -e "Patina has detected your desktop is running under ${patina_major_color}Xorg${color_reset}."
+    echo -e "Patina has detected your desktop is running under ${patina_major_color}X11/Xorg${color_reset}."
   elif [ "$XDG_SESSION_TYPE" = 'wayland' ] ; then
     echo -e "Patina has detected your desktop is running under ${patina_major_color}Wayland${color_reset}."
   else
