@@ -292,6 +292,13 @@ manager, please review source code before use.
 `p-pkg upgrade`      # Upgrade outdated package(s).
 ```
 
+The following commands simply probe the system to help the user see at-a-glance
+information on their current working environment.
+
+```bash
+`p-compositor`       # Show whether the current session is X11 or Wayland.
+```
+
 ## Helper Functions
 
 The following helper functions can be included in any component or external
