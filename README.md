@@ -133,6 +133,7 @@ The default directory structure for Patina may not be present when cloning into
 the repository, but will be generated when Patina starts. The following diagram
 demonstrates the intended layout:
 
+```
   home
       |
       +-- .patinarc
@@ -153,6 +154,7 @@ demonstrates the intended layout:
       |   |
       |   +-- exceptions
       |   +-- help
+```
 
 This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which
 contains `Applications`, `Places`, and `System` menu categories respectively -
