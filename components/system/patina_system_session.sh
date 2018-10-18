@@ -47,7 +47,7 @@ patina_system_session() {
         printf "Do you wish to power down your machine [Y/N]? "
         read -n1 -r answer
         case "$answer" in
-          'Y'|'y') systemctl shutdown ;;
+          'Y'|'y') systemctl poweroff ;;
           'N'|'n') echo ; return ;;
           *) patina_throw_exception 'PE0003' ; return ;;
         esac
