@@ -26,6 +26,7 @@ after an evil butler tries to steal their inheritance.
     desktop is running under `Xorg` or `Wayland`.
   - A new Patina Exception has been added, named `PE0010`, it is thrown when
     Patina cannot detect a required variable.
+  - The commands `p-display` and `p-reboot` have been added.
 - **0.7.3 Released Wednesday, August 8th 2018**
   - Included the initial check and import of the '/etc/os-release' and
     '/etc/lsb-release' files to allow a better interrogation of the host
