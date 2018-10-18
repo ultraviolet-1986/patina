@@ -31,14 +31,27 @@
 # Functions #
 #############
 
-patina_system_reboot() {
+patina_system_session() {
   if ( hash 'systemctl' ); then
-    printf "Do you wish to reboot your machine [Y/N]? "
-    read -n1 -r answer
-    case "$answer" in
-      'Y'|'y') systemctl reboot ;;
-      'N'|'n') echo ; return ;;
-      *) patina_throw_exception 'PE0003' ; return ;;
+    case "$1" in
+      'reboot')
+        printf "Do you wish to reboot your machine [Y/N]? "
+        read -n1 -r answer
+        case "$answer" in
+          'Y'|'y') systemctl reboot ;;
+          'N'|'n') echo ; return ;;
+          *) patina_throw_exception 'PE0003' ; return ;;
+        esac
+        ;;
+      'shutdown')
+        printf "Do you wish to power down your machine [Y/N]? "
+        read -n1 -r answer
+        case "$answer" in
+          'Y'|'y') systemctl shutdown ;;
+          'N'|'n') echo ; return ;;
+          *) patina_throw_exception 'PE0003' ; return ;;
+        esac
+        ;;
     esac
   else
     patina_throw_exception 'PE0006'
@@ -50,6 +63,6 @@ patina_system_reboot() {
 # Aliases #
 ###########
 
-alias 'p-reboot'='patina_system_reboot'
+alias 'p-session'='patina_system_session'
 
 # End of File.

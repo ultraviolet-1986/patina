@@ -305,7 +305,8 @@ The following commands help the user manage their session more efficiently. Note
 that the user must be operating within a `systemd` environment.
 
 ```bash
-`p-reboot`  # Prompt the user to reboot their machine.
+`p-session reboot`    # Prompt the user to reboot their machine.
+`p-session shutdown`  # Prompt the user to power down their machine.
 ```
 
 ## Helper Functions

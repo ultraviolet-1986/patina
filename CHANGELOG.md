@@ -29,7 +29,7 @@ after an evil butler tries to steal their inheritance.
   - Another new component named `patina_system_session.sh` has been added and it
     will contain functionality useful to managing session management such as
     logging out, rebooting, shutting down a system, etc.
-  - The commands `p-display` and `p-reboot` have been added.
+  - The commands `p-display` and `p-session` have been added.
 - **0.7.3 Released Wednesday, August 8th 2018**
   - Included the initial check and import of the '/etc/os-release' and
     '/etc/lsb-release' files to allow a better interrogation of the host
