@@ -37,23 +37,20 @@ patina_system_session() {
 
     if [ "$1" = 'reboot' ] || [ "$1" = 'restart' ] ; then
       patina_session_action='reboot'
-    elif [ "$1" = 'shutdown' ]
+    elif [ "$1" = 'shutdown' ] ; then
       patina_session_action='poweroff'
     else
-      patina_throw_exception 'PE0001' ; return
+      patina_throw_exception 'PE0001'
+      return
     fi
 
-    case "$patina_session_action" in
-      'reboot' | 'restart')
-        printf "Your current session will end. Do you wish to continue [Y/N]? "
-        read -n1 -r answer
-        case "$answer" in
-          'Y'|'y') systemctl "$patina_session_action" ;;
-          'N'|'n') echo ; return ;;
-          *) patina_throw_exception 'PE0003' ; return ;;
-        esac
-        ;;
-      *) patina_throw_exception 'PE0001' ; return ;;
+    printf "Your current session will end. Do you wish to continue [Y/N]? "
+    read -n1 -r answer
+    echo
+    case "$answer" in
+      'Y'|'y') systemctl "$patina_session_action" ;;
+      'N'|'n') return ;;
+      *) patina_throw_exception 'PE0003' ; return ;;
     esac
   else
     patina_throw_exception 'PE0006'
