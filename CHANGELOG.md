@@ -21,7 +21,7 @@ after an evil butler tries to steal their inheritance.
   - The path-detection logic for `files` and other commands such as `p-root` and
     `documents` (for example) have been updated to allow only access to
     directories and not files.
-  - A new component named `patina_system_compositor.sh` has been added. This
+  - A new component named `patina_system_display_server.sh` has been added. This
     allows the user quickly probe the system and determine whether the current
     desktop is running under `Xorg` or `Wayland`.
   - A new Patina Exception has been added, named `PE0010`, it is thrown when

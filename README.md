@@ -296,7 +296,7 @@ The following commands simply probe the system to help the user see at-a-glance
 information on their current working environment.
 
 ```bash
-`p-compositor`       # Show whether the current session is X11 or Wayland.
+`p-display`       # Show whether the current session is X11 or Wayland.
 ```
 
 ## Helper Functions

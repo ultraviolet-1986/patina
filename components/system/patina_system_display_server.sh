@@ -31,7 +31,7 @@
 # Functions #
 #############
 
-patina_detect_system_compositor() {
+patina_system_detect_display_server() {
   if [ ! "$XDG_SESSION_TYPE" ] ; then
     patina_throw_exception 'PE0010'
     return
@@ -49,6 +49,6 @@ patina_detect_system_compositor() {
 # Aliases #
 ###########
 
-alias 'p-compositor'='patina_detect_system_compositor'
+alias 'p-display'='patina_system_detect_display_server'
 
 # End of File.
