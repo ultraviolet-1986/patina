@@ -298,14 +298,14 @@ The following commands simply probe the system to help the user see at-a-glance
 information on their current working environment.
 
 ```bash
-`p-display`          # Show whether the current session is X11 or Wayland.
+`p-display`  # Show whether the current session is X11 or Wayland.
 ```
 
 The following commands help the user manage their session more efficiently. Note
 that the user must be operating within a `systemd` environment.
 
 ```bash
-`p-reboot`           # Prompt the user to reboot their machine.
+`p-reboot`  # Prompt the user to reboot their machine.
 ```
 
 ## Helper Functions
