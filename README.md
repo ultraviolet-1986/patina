@@ -306,6 +306,7 @@ that the user must be operating within a `systemd` environment.
 
 ```bash
 `p-session reboot`    # Prompt the user to reboot their machine.
+`p-session restart`   # Prompt the user to reboot their machine.
 `p-session shutdown`  # Prompt the user to power down their machine.
 ```
 

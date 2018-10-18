@@ -34,7 +34,7 @@
 patina_system_session() {
   if ( hash 'systemctl' ); then
     case "$1" in
-      'reboot')
+      'reboot' | 'restart')
         printf "Do you wish to reboot your machine [Y/N]? "
         read -n1 -r answer
         case "$answer" in
@@ -52,6 +52,7 @@ patina_system_session() {
           *) patina_throw_exception 'PE0003' ; return ;;
         esac
         ;;
+      *) patina_throw_exception 'PE0001' ; return ;;
     esac
   else
     patina_throw_exception 'PE0006'
