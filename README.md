@@ -300,7 +300,7 @@ information on their current working environment.
 ```
 
 The following commands help the user manage their session more efficiently. Note
-that the user must be operating on a `systemd` environment.
+that the user must be operating within a `systemd` environment.
 
 ```bash
 `p-reboot`           # Prompt the user to reboot their machine.
