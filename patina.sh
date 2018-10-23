@@ -236,7 +236,7 @@ echo_wrap() {
   fi
 }
 
-echo_to_lower() {
+to_lower() {
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
     return
@@ -251,7 +251,7 @@ echo_to_lower() {
   fi
 }
 
-echo_to_upper() {
+to_upper() {
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
     return
