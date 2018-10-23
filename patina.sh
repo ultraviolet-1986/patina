@@ -236,6 +236,36 @@ echo_wrap() {
   fi
 }
 
+echo_to_lower() {
+  if [ "$#" -eq "0" ] ; then
+    patina_throw_exception 'PE0001'
+    return
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ "$1" ] ; then
+    echo -e "$1" | tr '[:upper:]' '[:lower:]'
+  else
+    patina_throw_exception 'PE0000'
+    return
+  fi
+}
+
+echo_to_upper() {
+  if [ "$#" -eq "0" ] ; then
+    patina_throw_exception 'PE0001'
+    return
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ "$1" ] ; then
+    echo -e "$1" | tr '[:lower:]' '[:upper:]'
+  else
+    patina_throw_exception 'PE0000'
+    return
+  fi
+}
+
 patina_terminal_refresh() {
   cd || return
   clear
