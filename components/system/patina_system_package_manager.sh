@@ -115,7 +115,11 @@ patina_package_manager() {
         fi
         ;;
       'update')
-        sudo "$patina_package_manager" "$patina_package_update"
+        if [ "$patina_package_manager" = 'dnf' ] ; then
+          eval "$patina_package_manager" "$patina_package_update"
+        else
+          sudo "$patina_package_manager" "$patina_package_update"
+        fi
         return
         ;;
       'upgrade')
