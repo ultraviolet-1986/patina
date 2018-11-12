@@ -48,6 +48,14 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='check-update'
     readonly patina_package_upgrade='upgrade'
 
+  # Success: Distribution is Fedora Silverblue or compatible
+  elif ( hash 'rpm-ostree' > /dev/null 2>&1 ) ; then
+    readonly patina_package_manager='rpm-ostree'
+    readonly patina_package_install='install'
+    readonly patina_package_remove='uninstall'
+    readonly patina_package_update='refresh-md'
+    readonly patina_package_upgrade='upgrade'
+
   # Success: Distribution is Solus or compatible
   elif ( hash 'eopkg' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='eopkg'
@@ -115,7 +123,7 @@ patina_package_manager() {
         fi
         ;;
       'update')
-        if [ "$patina_package_manager" = 'dnf' ] ; then
+        if [ "$patina_package_manager" = 'dnf' ] || [ "$patina_package_manager" = 'rpm-ostree' ] ; then
           eval "$patina_package_manager" "$patina_package_update"
         else
           sudo "$patina_package_manager" "$patina_package_update"
