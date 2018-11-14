@@ -48,14 +48,6 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='check-update'
     readonly patina_package_upgrade='upgrade'
 
-  # Success: Distribution is Fedora Silverblue or compatible
-  elif ( hash 'rpm-ostree' > /dev/null 2>&1 ) ; then
-    readonly patina_package_manager='rpm-ostree'
-    readonly patina_package_install='install'
-    readonly patina_package_remove='uninstall'
-    readonly patina_package_update='refresh-md'
-    readonly patina_package_upgrade='upgrade'
-
   # Success: Distribution is Solus or compatible
   elif ( hash 'eopkg' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='eopkg'
@@ -71,6 +63,14 @@ patina_detect_system_package_manager() {
     readonly patina_package_remove='-R'
     readonly patina_package_update='-Syu'
     readonly patina_package_upgrade='-Syu'
+
+  # Success: Distribution is Fedora Silverblue or compatible
+  elif ( hash 'rpm-ostree' > /dev/null 2>&1 ) ; then
+    readonly patina_package_manager='rpm-ostree'
+    readonly patina_package_install='install'
+    readonly patina_package_remove='uninstall'
+    readonly patina_package_update='refresh-md'
+    readonly patina_package_upgrade='upgrade'
 
   # Success: Distribution is openSUSE or compatible
   elif ( hash 'zypper' > /dev/null 2>&1 ) ; then
@@ -109,7 +109,11 @@ patina_package_manager() {
           patina_throw_exception 'PE0001'
           return
         else
-          sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
+          if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
+            eval "$patina_package_manager" "$patina_package_install" "${@:2}"
+          else
+            sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
+          fi
           return
         fi
         ;;
@@ -118,7 +122,11 @@ patina_package_manager() {
           patina_throw_exception 'PE0001'
           return
         else
-          sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
+          if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
+            eval "$patina_package_manager" "$patina_package_remove" "${@:2}"
+          else
+            sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
+          fi
           return
         fi
         ;;
@@ -131,7 +139,11 @@ patina_package_manager() {
         return
         ;;
       'upgrade')
-        sudo "$patina_package_manager" "$patina_package_upgrade"
+        if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
+          eval "$patina_package_manager" "$patina_package_upgrade"
+        else
+          sudo "$patina_package_manager" "$patina_package_upgrade"
+        fi
         return
         ;;
       *)
