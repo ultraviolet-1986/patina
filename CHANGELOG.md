@@ -12,6 +12,8 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.4 Now in testing**
+  - Package management has been updated to allow for non-root operation if the
+    user is using an **rpm-ostree** distribution such as Fedora Silverblue.
   - Have reinstated the `files` command to facilitate navigation using the
     command-line. This will not require the `-g` command switch and will always
     both change directory on the console and open the location graphically using
