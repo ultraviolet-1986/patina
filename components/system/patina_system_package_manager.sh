@@ -109,14 +109,11 @@ patina_package_manager() {
         if [ ! "$2" ] ; then
           patina_throw_exception 'PE0001'
           return
-
         else
           if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
             eval "$patina_package_manager" "$patina_package_install" "${@:2}"
-
           else
             sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
-
           fi
           return
         fi
@@ -128,10 +125,8 @@ patina_package_manager() {
         else
           if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
             eval "$patina_package_manager" "$patina_package_remove" "${@:2}"
-
           else
             sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
-
           fi
           return
         fi
@@ -139,10 +134,8 @@ patina_package_manager() {
       'update')
         if [ "$patina_package_manager" = 'dnf' ] ; then
           eval "$patina_package_manager" "$patina_package_update"
-
         elif [ "$patina_package_manager" = 'rpm-ostree' ] ; then
           eval "$patina_package_manager" "$patina_package_update"
-
         else
           sudo "$patina_package_manager" "$patina_package_update"
         fi
@@ -151,7 +144,6 @@ patina_package_manager() {
       'upgrade')
         if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
           eval "$patina_package_manager" "$patina_package_upgrade"
-
         else
           sudo "$patina_package_manager" "$patina_package_upgrade"
         fi
