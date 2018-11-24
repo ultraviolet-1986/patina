@@ -133,7 +133,7 @@ The default directory structure for Patina may not be present when cloning into
 the repository, but will be generated when Patina starts. The following diagram
 demonstrates the intended layout:
 
-```
+```text
   home
       |
       +-- .patinarc
