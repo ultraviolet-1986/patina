@@ -145,7 +145,7 @@ patina_package_manager() {
         if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
           eval "$patina_package_manager" "$patina_package_upgrade"
         else
-          sudo "$patina_package_manager" "$patina_package_upgrade"
+          sudo "$patina_package_manager" "$patina_package_upgrade" --refresh
         fi
         return
         ;;
