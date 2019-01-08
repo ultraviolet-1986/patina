@@ -287,6 +287,8 @@ patina_terminal_reset() {
 ###########
 
 export -f 'echo_wrap'
+export -f 'to_lower'
+export -f 'to_upper'
 
 ###########
 # Aliases #
