@@ -133,7 +133,7 @@ patina_package_manager() {
         ;;
       'update')
         if [ "$patina_package_manager" = 'dnf' ] ; then
-          eval "$patina_package_manager" "$patina_package_update"
+          eval "$patina_package_manager" "$patina_package_update" --refresh
         elif [ "$patina_package_manager" = 'rpm-ostree' ] ; then
           eval "$patina_package_manager" "$patina_package_upgrade" --check
         else
