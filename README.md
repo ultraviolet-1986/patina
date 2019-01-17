@@ -266,6 +266,14 @@ to the end of the command, for example: `music -g` or `documents -g`, etc...
 
 ### System Components
 
+The following commands make use of symmetric GnuPG encryption. A passphrase is
+required to both encrypt and decrypt a file.
+
+```bash
+`p-decrypt "<Filename>"`  # Decrypt a file.
+`p-encrypt "<Filename>"`  # Encrypt a file.
+```
+
 The following commands require a `systemd` environment and will prompt the user
 for a password, please review source code before use.
 

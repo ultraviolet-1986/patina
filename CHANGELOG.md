@@ -12,6 +12,8 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.4 Now in testing**
+  - Include file `patina_system_gpg.sh` to include new commands `p-decrypt` and
+    `p-encrypt`. These use symmetric GnuPG encryption.
   - Force DNF to refresh when upgrading, this will ensure detected updates will
     be installed, but at the cost of increased waiting times on Fedora and its
     derivatives. This can be accomplished by simply using `p-pkg upgrade`.
