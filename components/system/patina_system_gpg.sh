@@ -47,10 +47,12 @@ patina_gpg_decrypt_file() {
     printf "Do you wish to remove the encrypted file [Y/N]? "
     read -n1 -r answer
     case "$answer" in
-      'Y'|'y') echo ; rm "$1" ;;
-      'N'|'n') echo ; return ;;
+      'Y'|'y') rm "$1" ;;
+      'N'|'n') return ;;
       *) patina_throw_exception 'PE0003' ; return ;;
     esac
+
+    echo
   fi
 }
 
@@ -74,10 +76,12 @@ patina_gpg_encrypt_file() {
     printf "Do you wish to remove the original file [Y/N]? "
     read -n1 -r answer
     case "$answer" in
-      'Y'|'y') echo ; rm "$1" ;;
-      'N'|'n') echo ; return ;;
+      'Y'|'y') rm "$1" ;;
+      'N'|'n') eturn ;;
       *) patina_throw_exception 'PE0003' ; return ;;
     esac
+
+    echo
   fi
 }
 
