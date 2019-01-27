@@ -89,13 +89,8 @@ patina_start() {
   fi
 
   # Import additional system variables
-  if [ -f "$system_os_release" ] ; then
-    source "$system_os_release"
-  fi
-
-  if [ -f "$system_lsb_release" ] ; then
-    source "$system_lsb_release"
-  fi
+  if [ -f "$system_os_release" ] ; then source "$system_os_release" ; fi
+  if [ -f "$system_lsb_release" ] ; then source "$system_lsb_release" ; fi
 
   # Create Patina Directory Structure
   mkdir -p "$patina_path_components"/{applications,places,system,user}
@@ -129,9 +124,9 @@ patina_start() {
   echo_wrap "${patina_major_color}Patina v${patina_metadata_version} "`
     `"'${patina_metadata_codename}' / BASH "`
     `"v${BASH_VERSION%%[^0-9.]*}${color_reset}"
-  echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}"
-  echo_wrap "${patina_minor_color}Copyright (C) 2018 William Whinn"`
-    `"${color_reset}\\n"
+  echo_wrap "${patina_major_color}Copyright (C) 2018 William Whinn"`
+    `"${color_reset}"
+  echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
   # Rubbish collection
   unset -f "${FUNCNAME[0]}"
