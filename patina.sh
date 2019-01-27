@@ -174,6 +174,7 @@ patina_throw_exception() {
     return
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
     echo_wrap "${!1}"
+    return
   else
     patina_throw_exception 'PE0000'
     return
