@@ -12,6 +12,9 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.4 Now in testing**
+  - Altered the `patina_throw_exception` function and assigned error output to
+    variables stored within `patina.sh`. This will help to improve Patina's
+    overall cohesion.
   - Include file `patina_system_gpg.sh` to include new commands `p-decrypt` and
     `p-encrypt`. These use symmetric GnuPG encryption.
   - Force DNF to refresh when upgrading, this will ensure detected updates will

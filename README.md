@@ -152,7 +152,6 @@ demonstrates the intended layout:
       |   +-- user
       +-- resources
       |   |
-      |   +-- exceptions
       |   +-- help
 ```
 
@@ -218,7 +217,6 @@ p-c-system        # Open the Patina 'system components' directory.
 p-c-user          # Open the Patina 'user components' directory.
 
 p-r               # Open the Patina 'resources' directory.
-p-r-exceptions    # Open the Patina 'exception resources' directory.
 p-r-help          # Open the Patina 'help resources' directory.
 ```
 

@@ -297,6 +297,7 @@ patina_terminal_reset() {
 ###########
 
 export -f 'echo_wrap'
+export -f 'patina_throw_exception'
 export -f 'to_lower'
 export -f 'to_upper'
 
@@ -322,7 +323,6 @@ alias 'p-c-user'='patina_open_folder $patina_path_components_user'
 
 # Places / Resources
 alias 'p-r'='patina_open_folder $patina_path_resources'
-alias 'p-r-exceptions'='patina_open_folder $patina_path_resources_exceptions'
 alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
 
 #############
