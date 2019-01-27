@@ -49,6 +49,9 @@ numbers (Patina Exception) here for reference.
   - This error should be raised when Patina cannot detect a valid source control
     repository.
 
+- **PE0010 `Patina cannot access a required variable.`**
+  - This error should be raised when Patina cannot access a required variable.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a

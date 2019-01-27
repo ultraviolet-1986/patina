@@ -15,7 +15,7 @@ Additional Patina components can be found here:
 - [Conventions](#conventions)
 - [Patina Layout](#patina-layout)
 - [Built-in Commands](#built-in-commands)
-  - [Patina](#patina)
+  - [Patina Core](#patina)
   - [Themes](#themes)
   - [Prompts](#prompts)
   - [Places](#places)
@@ -133,27 +133,26 @@ The default directory structure for Patina may not be present when cloning into
 the repository, but will be generated when Patina starts. The following diagram
 demonstrates the intended layout:
 
-```
-home
-    |
-    +-- .patinarc
+```text
+  home
+      |
+      +-- .patinarc
 
-patina
-    |
-    +-- CHANGELOG.md
-    +-- LICENSE
-    +-- patina.sh
-    +-- README.md
-    +-- components
-    |   |
-    |   +-- applications
-    |   +-- places
-    |   +-- system
-    |   +-- user
-    +-- resources
-    |   |
-    |   +-- exceptions
-    |   +-- help
+  patina
+      |
+      +-- CHANGELOG.md
+      +-- LICENSE
+      +-- patina.sh
+      +-- README.md
+      +-- components
+      |   |
+      |   +-- applications
+      |   +-- places
+      |   +-- system
+      |   +-- user
+      +-- resources
+      |   |
+      |   +-- help
 ```
 
 This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which
@@ -168,55 +167,57 @@ In a similar manner to the component naming convention, Patina includes some
 built-in functions, which follow this convention and can be called at any time.
 The basic commands are listed below:
 
-### Patina
+### Patina Core
 
 ```bash
-`p-update`   # Check for and apply Patina updates.
-`p-list`     # Display a list of connected Patina components.
-`p-refresh`  # Restart Patina to detect and connect to new components.
-`p-reset`    # Clear command-line history and restart Patina.
+p-update   # Check for and apply Patina updates.
+p-list     # Display a list of connected Patina components.
+p-refresh  # Restart Patina to detect and connect to new components.
+p-reset    # Clear command-line history and restart Patina.
 ```
 
 ### Themes
 
 ```bash
-`p-theme default`  # Apply light/dark magenta theme.
-`p-theme blue`     # Apply light/dark blue theme.
-`p-theme cyan`     # Apply light/dark cyan theme.
-`p-theme green`    # Apply light/dark green theme.
-`p-theme magenta`  # Apply light/dark magenta theme.
-`p-theme red`      # Apply light/dark red theme.
-`p-theme yellow`   # Apply light/dark yellow theme.
-`p-theme black`    # Apply basic black theme.
-`p-theme gray`     # Apply basic light/dark gray theme.
-`p-theme grey`     # Apply basic light/dark gray theme.
-`p-theme white`    # Apply basic white theme.
-`p-theme blossom`  # Apply light magenta/light red theme.
-`p-theme classic`  # Apply light magenta/light cyan theme.
-`p-theme cygwin`   # Apply light green/light yellow theme.
-`p-theme gravity`  # Apply light magenta/light yellow theme.
-`p-theme mint`     # Apply light green/light blue theme.
-`p-theme varia`    # Apply light red/light yellow theme.
-`p-theme water`    # Apply light blue/cyan theme.
+p-theme default  # Apply light/dark magenta theme.
+p-theme blue     # Apply light/dark blue theme.
+p-theme cyan     # Apply light/dark cyan theme.
+p-theme green    # Apply light/dark green theme.
+p-theme magenta  # Apply light/dark magenta theme.
+p-theme red      # Apply light/dark red theme.
+p-theme yellow   # Apply light/dark yellow theme.
+p-theme black    # Apply basic black theme.
+p-theme gray     # Apply basic light/dark gray theme.
+p-theme grey     # Apply basic light/dark gray theme.
+p-theme white    # Apply basic white theme.
+p-theme blossom  # Apply light magenta/light red theme.
+p-theme classic  # Apply light magenta/light cyan theme.
+p-theme cygwin   # Apply light green/light yellow theme.
+p-theme gravity  # Apply light magenta/light yellow theme.
+p-theme mint     # Apply light green/light blue theme.
+p-theme varia    # Apply light red/light yellow theme.
+p-theme water    # Apply light blue/cyan theme.
 ```
 
 ### Places
 
 These locations can also be opened in the default file manager by appending `-g`
-to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc...
+to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc. (this
+is not required for navigation using the `files` command).
 
 ```bash
-`p-root`            # Open the Patina root directory.
+files             # Open home directory graphically and change directory.
+files <x>         # Open directory graphically and change directory.
+p-root            # Open the Patina root directory.
 
-`p-c`               # Open the Patina 'components' directory.
-`p-c-applications`  # Open the Patina 'application components' directory.
-`p-c-places`        # Open the Patina 'place components' directory.
-`p-c-system`        # Open the Patina 'system components' directory.
-`p-c-user`          # Open the Patina 'user components' directory.
+p-c               # Open the Patina 'components' directory.
+p-c-applications  # Open the Patina 'application components' directory.
+p-c-places        # Open the Patina 'place components' directory.
+p-c-system        # Open the Patina 'system components' directory.
+p-c-user          # Open the Patina 'user components' directory.
 
-`p-r`               # Open the Patina 'resources' directory.
-`p-r-exceptions`    # Open the Patina 'exception resources' directory.
-`p-r-help`          # Open the Patina 'help resources' directory.
+p-r               # Open the Patina 'resources' directory.
+p-r-help          # Open the Patina 'help resources' directory.
 ```
 
 ### Application Components
@@ -224,9 +225,9 @@ to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc...
 #### ClamAV
 
 ```bash
-`p-clamscan`       # Perform a ClamAV virus scan on a given path.
-`p-clamscan help`  # Display instructions for the `p-clamscan` commands.
-`p-clamscan ?`     # Display instructions for the `p-clamscan` commands.
+p-clamscan       # Perform a ClamAV virus scan on a given path.
+p-clamscan help  # Display instructions for the `p-clamscan` commands.
+p-clamscan ?     # Display instructions for the `p-clamscan` commands.
 ```
 
 #### Uncomplicated Firewall (ufw)
@@ -235,13 +236,13 @@ In most cases, the following commands require `sudo` privileges, please review
 source code before use.
 
 ```bash
-`p-ufw disable`  # Disable the `ufw` firewall (not recommended).
-`p-ufw enable`   # Enable the `ufw` firewall (recommended).
-`p-ufw help`     # Display instructions for `p-ufw` commands.
-`p-ufw ?`        # Display instructions for `p-ufw` commands.
-`p-ufw reset`    # Enable the `ufw` firewall and reset default rules.
-`p-ufw setup`    # Enable the `ufw` firewall with some basic defaults.
-`p-ufw status`   # Display the status of the `ufw` firewall in a table.
+p-ufw disable  # Disable the `ufw` firewall (not recommended).
+p-ufw enable   # Enable the `ufw` firewall (recommended).
+p-ufw help     # Display instructions for `p-ufw` commands.
+p-ufw ?        # Display instructions for `p-ufw` commands.
+p-ufw reset    # Enable the `ufw` firewall and reset default rules.
+p-ufw setup    # Enable the `ufw` firewall with some basic defaults.
+p-ufw status   # Display the status of the `ufw` firewall in a table.
 ```
 
 ### Place Components
@@ -250,44 +251,68 @@ These locations can also be opened in the default file manager by appending `-g`
 to the end of the command, for example: `music -g` or `documents -g`, etc...
 
 ```bash
-`home`       # Open the Home directory.
-`desktop`    # Open the Desktop directory.
-`documents`  # Open the Documents directory.
-`downloads`  # Open the Downloads directory.
-`music`      # Open the Music directory.
-`pictures`   # Open the Pictures directory.
-`public`     # Open the Public directory.
-`templates`  # Open the Templates directory.
-`videos`     # Open the Videos directory.
+home       # Open the Home directory.
+desktop    # Open the Desktop directory.
+documents  # Open the Documents directory.
+downloads  # Open the Downloads directory.
+music      # Open the Music directory.
+pictures   # Open the Pictures directory.
+public     # Open the Public directory.
+templates  # Open the Templates directory.
+videos     # Open the Videos directory.
 ```
 
 ### System Components
+
+The following commands make use of symmetric GnuPG encryption. A passphrase is
+required to both encrypt and decrypt a file.
+
+```bash
+p-decrypt "<Filename>"  # Decrypt a file.
+p-encrypt "<Filename>"  # Encrypt a file.
+```
 
 The following commands require a `systemd` environment and will prompt the user
 for a password, please review source code before use.
 
 ```bash
-`p-network disable`  # Disable the networking service.
-`p-network enable`   # Enable the networking service.
-`p-network restart`  # Restart the networking service.
-`p-network start`    # Start the networking service.
-`p-network status`   # Display the status of an Internet connection.
-`p-network stop`     # Stop the networking service.
+p-network disable  # Disable the networking service.
+p-network enable   # Enable the networking service.
+p-network restart  # Restart the networking service.
+p-network start    # Start the networking service.
+p-network status   # Display the status of an Internet connection.
+p-network stop     # Stop the networking service.
 ```
 
 The following commands require `sudo` privileges and detect the default package
 manager, please review source code before use.
 
 ```bash
-`p-package install`  # Install package(s).
-`p-package remove`   # Remove package(s).
-`p-package update`   # Update package catalogue.
-`p-package upgrade`  # Upgrade outdated package(s).
+p-package install  # Install package(s).
+p-package remove   # Remove package(s).
+p-package update   # Update package catalogue.
+p-package upgrade  # Upgrade outdated package(s).
 
-`p-pkg install`      # Install package(s).
-`p-pkg remove`       # Remove package(s).
-`p-pkg update`       # Update package catalogue.
-`p-pkg upgrade`      # Upgrade outdated package(s).
+p-pkg install      # Install package(s).
+p-pkg remove       # Remove package(s).
+p-pkg update       # Update package catalogue.
+p-pkg upgrade      # Upgrade outdated package(s).
+```
+
+The following commands simply probe the system to help the user see at-a-glance
+information on their current working environment.
+
+```bash
+p-display  # Show whether the current session is X11 or Wayland.
+```
+
+The following commands help the user manage their session more efficiently. Note
+that the user must be operating within a `systemd` environment.
+
+```bash
+p-session reboot    # Prompt the user to reboot their machine.
+p-session restart   # Prompt the user to reboot their machine.
+p-session shutdown  # Prompt the user to power down their machine.
 ```
 
 ## Helper Functions
@@ -296,5 +321,5 @@ The following helper functions can be included in any component or external
 script as long as Patina is running:
 
 ```bash
-`echo_wrap "<Paragraph typed here>"`  # Will echo and word-wrap a paragraph.
+echo_wrap "<Paragraph typed here>"  # Will echo and word-wrap a paragraph.
 ```

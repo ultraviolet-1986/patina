@@ -11,6 +11,37 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
+- **0.7.4 Now in testing**
+  - Altered the `patina_throw_exception` function and assigned error output to
+    variables stored within `patina.sh`. This will help to improve Patina's
+    overall cohesion.
+  - Include file `patina_system_gpg.sh` to include new commands `p-decrypt` and
+    `p-encrypt`. These use symmetric GnuPG encryption.
+  - Force DNF to refresh when upgrading, this will ensure detected updates will
+    be installed, but at the cost of increased waiting times on Fedora and its
+    derivatives. This can be accomplished by simply using `p-pkg upgrade`.
+  - Corrected an issue where the theme would be changed to the default if an
+    incorrect theme is requested.
+  - Package management has been updated to allow for non-root operation if the
+    user is using an **rpm-ostree** distribution such as Fedora Silverblue.
+  - Have reinstated the `files` command to facilitate navigation using the
+    command-line. This will not require the `-g` command switch and will always
+    both change directory on the console and open the location graphically using
+    the default file manager.
+  - Updated `README.md` to show new command(s) and have updated it according to
+    Markdown style standards.
+  - The path-detection logic for `files` and other commands such as `p-root` and
+    `documents` (for example) have been updated to allow only access to
+    directories and not files.
+  - A new component named `patina_system_display_server.sh` has been added. This
+    allows the user quickly probe the system and determine whether the current
+    desktop is running under `Xorg` or `Wayland`.
+  - A new Patina Exception has been added, named `PE0010`, it is thrown when
+    Patina cannot detect a required variable.
+  - Another new component named `patina_system_session.sh` has been added and it
+    will contain functionality useful to managing session management such as
+    logging out, rebooting, shutting down a system, etc.
+  - The commands `p-display` and `p-session` have been added.
 - **0.7.3 Released Wednesday, August 8th 2018**
   - Included the initial check and import of the '/etc/os-release' and
     '/etc/lsb-release' files to allow a better interrogation of the host

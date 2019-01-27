@@ -35,7 +35,7 @@
 #############
 
 # Patina / Metadata
-readonly patina_metadata_version='0.7.3'
+readonly patina_metadata_version='0.7.4'
 readonly patina_metadata_codename='Duchess'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 
@@ -61,6 +61,19 @@ readonly patina_file_source="${BASH_SOURCE[0]}"
 # System / Files
 readonly system_os_release='/etc/os-release'
 readonly system_lsb_release='/etc/lsb-release'
+
+# Patina / Exceptions
+export readonly PE0000='Patina has encountered an unknown error.'
+export readonly PE0001='Patina has not been given an expected argument.'
+export readonly PE0002='Patina has been given too many arguments.'
+export readonly PE0003='Patina has not been given a valid argument.'
+export readonly PE0004='Patina cannot find the directory specified.'
+export readonly PE0005='Patina cannot find the file specified.'
+export readonly PE0006='Patina could not detect a required application.'
+export readonly PE0007='Patina has not connected any components.'
+export readonly PE0008='Patina does not have access to the Internet.'
+export readonly PE0009='Patina cannot detect a valid source control repository.'
+export readonly PE0010='Patina cannot access a required variable.'
 
 #############
 # Functions #
@@ -107,6 +120,7 @@ patina_start() {
   readonly TERM="$TERM"
   readonly OSTYPE="$OSTYPE"
 
+  # Main Patina author/copyright header
   echo_wrap "${patina_major_color}Patina v${patina_metadata_version} "`
     `"'${patina_metadata_codename}' / BASH "`
     `"v${BASH_VERSION%%[^0-9.]*}${color_reset}"
@@ -137,6 +151,7 @@ patina_list_connected_components() {
     done
 
     echo
+    return
 
   # Failure: No components have been connected
   else
@@ -152,11 +167,9 @@ patina_throw_exception() {
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
     return
-  elif [ "$1" ] && [ ! -e "$patina_path_resources_exceptions/$1.txt" ] ; then
-    patina_throw_exception 'PE0005'
-    return
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
-    echo_wrap "$1: $(cat "$patina_path_resources_exceptions"/"$1".txt)"
+    echo_wrap "${!1}"
+    return
   else
     patina_throw_exception 'PE0000'
     return
@@ -170,20 +183,46 @@ patina_open_folder() {
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
     return
+  elif [ "$#" -gt 2 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ "$2" ] && [ "$2" != '-g' ] ; then
+    patina_throw_exception 'PE0003'
+    return
+  elif [ -f "$1" ] ; then
+    patina_throw_exception 'PE0003'
+    return
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
     return
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
-    # Change directory in terminal and open graphically
     cd "$1" || return
     xdg-open "$(pwd)" > /dev/null 2>&1
     return
   elif [ -d "$1" ] ; then
-    # Change directory only
     cd "$1" || return
     return
   else
     patina_throw_exception 'PE0000'
+    return
+  fi
+}
+
+patina_open_folder_graphically() {
+  if [ "$#" -eq "0" ] ; then
+    patina_open_folder "$HOME" -g
+    return
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ -f "$1" ] ; then
+    patina_throw_exception 'PE0003'
+    return
+  elif [ ! -d "$1" ] ; then
+    patina_throw_exception 'PE0004'
+    return
+  elif [ -d "$1" ] ; then
+    patina_open_folder "$1" -g
     return
   fi
 }
@@ -197,6 +236,36 @@ echo_wrap() {
     return
   elif [ "$1" ] ; then
     (echo -e "$1") | fmt -w "$(tput cols)"
+  else
+    patina_throw_exception 'PE0000'
+    return
+  fi
+}
+
+to_lower() {
+  if [ "$#" -eq "0" ] ; then
+    patina_throw_exception 'PE0001'
+    return
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ "$1" ] ; then
+    echo -e "$1" | tr '[:upper:]' '[:lower:]'
+  else
+    patina_throw_exception 'PE0000'
+    return
+  fi
+}
+
+to_upper() {
+  if [ "$#" -eq "0" ] ; then
+    patina_throw_exception 'PE0001'
+    return
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+  elif [ "$1" ] ; then
+    echo -e "$1" | tr '[:lower:]' '[:upper:]'
   else
     patina_throw_exception 'PE0000'
     return
@@ -224,6 +293,9 @@ patina_terminal_reset() {
 ###########
 
 export -f 'echo_wrap'
+export -f 'patina_throw_exception'
+export -f 'to_lower'
+export -f 'to_upper'
 
 ###########
 # Aliases #
@@ -235,6 +307,7 @@ alias 'p-refresh'='patina_terminal_refresh'
 alias 'p-reset'='patina_terminal_reset'
 
 # Places / Folders
+alias 'files'='patina_open_folder_graphically'
 alias 'p-root'='patina_open_folder $patina_path_root'
 
 # Places / Components
@@ -246,7 +319,6 @@ alias 'p-c-user'='patina_open_folder $patina_path_components_user'
 
 # Places / Resources
 alias 'p-r'='patina_open_folder $patina_path_resources'
-alias 'p-r-exceptions'='patina_open_folder $patina_path_resources_exceptions'
 alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
 
 #############

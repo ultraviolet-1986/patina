@@ -148,7 +148,6 @@ patina_theme_apply() {
   # Failure: Catch any other error condition here
   else
     patina_throw_exception 'PE0003'
-    patina_theme_apply 'default'
     return
   fi
 
