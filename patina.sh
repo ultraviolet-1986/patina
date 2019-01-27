@@ -62,6 +62,19 @@ readonly patina_file_source="${BASH_SOURCE[0]}"
 readonly system_os_release='/etc/os-release'
 readonly system_lsb_release='/etc/lsb-release'
 
+# Patina / Exceptions
+export readonly PE0000='Patina has encountered an unknown error.'
+export readonly PE0001='Patina has not been given an expected argument.'
+export readonly PE0002='Patina has been given too many arguments.'
+export readonly PE0003='Patina has not been given a valid argument.'
+export readonly PE0004='Patina cannot find the directory specified.'
+export readonly PE0005='Patina cannot find the file specified.'
+export readonly PE0006='Patina could not detect a required application.'
+export readonly PE0007='Patina has not connected any components.'
+export readonly PE0008='Patina does not have access to the Internet.'
+export readonly PE0009='Patina cannot detect a valid source control repository.'
+export readonly PE0010='Patina cannot access a required variable.'
+
 #############
 # Functions #
 #############
@@ -159,11 +172,8 @@ patina_throw_exception() {
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
     return
-  elif [ "$1" ] && [ ! -e "$patina_path_resources_exceptions/$1.txt" ] ; then
-    patina_throw_exception 'PE0005'
-    return
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
-    echo_wrap "$1: $(cat "$patina_path_resources_exceptions"/"$1".txt)"
+    echo_wrap "${!1}"
   else
     patina_throw_exception 'PE0000'
     return
