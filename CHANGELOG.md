@@ -11,7 +11,7 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
-- **0.7.4 Now in testing**
+- **0.7.4 Released Monday, January 28th 2019**
   - Altered the `patina_throw_exception` function and assigned error output to
     variables stored within `patina.sh`. This will help to improve Patina's
     overall cohesion.
