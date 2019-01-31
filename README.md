@@ -150,6 +150,7 @@ demonstrates the intended layout:
       |   +-- places
       |   +-- system
       |   +-- user
+      |
       +-- resources
       |   |
       |   +-- help
