@@ -323,4 +323,6 @@ script as long as Patina is running:
 
 ```bash
 echo_wrap "<Paragraph typed here>"  # Will echo and word-wrap a paragraph.
+to_lower "<Phrase typed here>"      # Will convert text to lower-case and echo.
+to_upper "<Phrase typed here>"      # Will convert text to upper-case and echo.
 ```
