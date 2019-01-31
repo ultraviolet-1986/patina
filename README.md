@@ -42,7 +42,7 @@ their system clean, tidy and efficient.
 Clone into the `patina` repository using your BASH shell (example below):
 
 ```bash
-git clone http://github.com/ultraviolet-1986/patina ~/Workspace
+git clone https://github.com/ultraviolet-1986/patina ~/Workspace
 ```
 
 ### Step 2
