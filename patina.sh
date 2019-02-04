@@ -63,17 +63,17 @@ readonly system_os_release='/etc/os-release'
 readonly system_lsb_release='/etc/lsb-release'
 
 # Patina / Exceptions
-export readonly PE0000='Patina has encountered an unknown error.'
-export readonly PE0001='Patina has not been given an expected argument.'
-export readonly PE0002='Patina has been given too many arguments.'
-export readonly PE0003='Patina has not been given a valid argument.'
-export readonly PE0004='Patina cannot find the directory specified.'
-export readonly PE0005='Patina cannot find the file specified.'
-export readonly PE0006='Patina could not detect a required application.'
-export readonly PE0007='Patina has not connected any components.'
-export readonly PE0008='Patina does not have access to the Internet.'
-export readonly PE0009='Patina cannot detect a valid source control repository.'
-export readonly PE0010='Patina cannot access a required variable.'
+export readonly PE0000='PE0000: Patina has encountered an unknown error.'
+export readonly PE0001='PE0001: Patina has not been given an expected argument.'
+export readonly PE0002='PE0002: Patina has been given too many arguments.'
+export readonly PE0003='PE0003: Patina has not been given a valid argument.'
+export readonly PE0004='PE0004: Patina cannot find the directory specified.'
+export readonly PE0005='PE0005: Patina cannot find the file specified.'
+export readonly PE0006='PE0006: Patina could not detect a required application.'
+export readonly PE0007='PE0007: Patina has not connected any components.'
+export readonly PE0008='PE0008: Patina does not have access to the Internet.'
+export readonly PE0009='PE0009: Patina cannot detect a valid source control repository.'
+export readonly PE0010='PE0010: Patina cannot access a required variable.'
 
 #############
 # Functions #
