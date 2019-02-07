@@ -147,7 +147,7 @@ patina_list_connected_components() {
     return
 
   # Success: At least one component has been connected
-  if [[ "${patina_components_list[*]}" ]] ; then
+  elif [[ "${patina_components_list[*]}" ]] ; then
     echo_wrap "\\nPatina has connected ${#patina_components_list[@]} "`
       `"component(s)${color_reset}\\n"
 
