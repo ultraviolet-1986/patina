@@ -171,6 +171,7 @@ The basic commands are listed below:
 ### Patina Core
 
 ```bash
+p-help     # Display this file within the Terminal.
 p-update   # Check for and apply Patina updates.
 p-list     # Display a list of connected Patina components.
 p-refresh  # Restart Patina to detect and connect to new components.
