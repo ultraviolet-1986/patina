@@ -141,6 +141,11 @@ patina_create_configuration_file() {
 }
 
 patina_list_connected_components() {
+  # Failure: Patina has been given too many arguments
+  if [ "$#" -ge 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return
+
   # Success: At least one component has been connected
   if [[ "${patina_components_list[*]}" ]] ; then
     echo_wrap "\\nPatina has connected ${#patina_components_list[@]} "`
