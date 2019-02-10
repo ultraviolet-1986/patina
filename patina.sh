@@ -306,6 +306,9 @@ export -f 'to_upper'
 # Aliases #
 ###########
 
+# Patina / Core Commands
+alias 'p-help'="less $patina_path_root/README.md"
+
 alias 'p-list'='patina_list_connected_components'
 
 alias 'p-refresh'='patina_terminal_refresh'
@@ -325,9 +328,6 @@ alias 'p-c-user'='patina_open_folder $patina_path_components_user'
 # Places / Resources
 alias 'p-r'='patina_open_folder $patina_path_resources'
 alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
-
-# Patina / Help
-alias 'p-help'="less $patina_path_root/README.md"
 
 #############
 # Kickstart #
