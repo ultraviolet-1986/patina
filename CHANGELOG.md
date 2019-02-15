@@ -15,6 +15,7 @@ after an evil butler tries to steal their inheritance.
   - Updated `README.md` to instruct users to clone the repository using HTTPS.
   - Updated `patina.sh` to correct the listing of components and fail if any
     arguments are passed.
+  - Updated application header to match current year of release.
   - Included `p-help` command to show `README.md` contents within the Terminal.
 - **0.7.4 Released Monday, January 28th 2019**
   - Altered the `patina_throw_exception` function and assigned error output to
