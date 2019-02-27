@@ -122,7 +122,7 @@ patina_start() {
 
   # Main Patina author/copyright header
   echo_wrap "${patina_major_color}Patina v${patina_metadata_version} "`
-    `"'${patina_metadata_codename}' + BASH "`
+    `"'${patina_metadata_codename}' / BASH "`
     `"v${BASH_VERSION%%[^0-9.]*}${color_reset}"
   echo_wrap "${patina_major_color}Copyright (C) 2019 William Whinn"`
     `"${color_reset}"
