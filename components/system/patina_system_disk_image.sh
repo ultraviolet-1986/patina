@@ -37,6 +37,7 @@ patina_create_iso() {
   elif [ -d "$1" ] ; then
     # Success: Use folder name as volume label.
     mkisofs -l -J -V "$1" -r "$1" -o "$1".iso
+    sha512sum "$1".iso | tee "$1".sha512sum
     return
   else
     patina_throw_exception 'PE0000'
