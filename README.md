@@ -317,6 +317,12 @@ p-session restart   # Prompt the user to reboot their machine.
 p-session shutdown  # Prompt the user to power down their machine.
 ```
 
+The following command requires the `genisoimage` package to be installed.
+
+```bash
+p-iso  # Create an ISO disk image from a folder.
+```
+
 ## Helper Functions
 
 The following helper functions can be included in any component or external
