@@ -38,6 +38,7 @@ patina_create_iso() {
     # Success: Create ISO file and a SHA-512 checksum file.
     mkisofs -l -J -V "$1" -r "$1" -o "$1".iso
     sha512sum "$1".iso | tee "$1".sha512sum
+    echo
     return
   else
     patina_throw_exception 'PE0000'
