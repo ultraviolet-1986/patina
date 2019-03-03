@@ -40,6 +40,9 @@ patina_create_iso() {
     sha512sum "$1".iso | tee "$1".sha512sum
     echo
     return
+  elif [ ! -d "$1" ] ; then
+    patina_throw_exception 'PE0004'
+    return
   else
     patina_throw_exception 'PE0000'
     return
