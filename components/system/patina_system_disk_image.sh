@@ -35,7 +35,7 @@ patina_create_iso() {
     patina_throw_exception 'PE0006'
     return
   elif [ -d "$1" ] ; then
-    # Success: Use folder name as volume label.
+    # Success: Create ISO file and a SHA-512 checksum file.
     mkisofs -l -J -V "$1" -r "$1" -o "$1".iso
     sha512sum "$1".iso | tee "$1".sha512sum
     return
