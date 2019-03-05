@@ -39,6 +39,7 @@ patina_create_iso() {
     # Success: Create ISO file and a SHA-512 checksum file. Use blank label.
     mkisofs -volid "" -o "$1".iso -r -J "$1"
     sync
+    echo
     sha512sum "$1".iso | tee "$1".sha512sum
     echo
     return
