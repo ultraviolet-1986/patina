@@ -85,7 +85,7 @@ the following packages (correct for Ubuntu):
 - `systemd` for manipulating system services such as networking.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
-- `xorriso` for the `p-iso` command.
+- `xorriso` and/or `genisoimage` for the `p-iso` command.
 
 ## Conventions
 
