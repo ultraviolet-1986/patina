@@ -32,7 +32,7 @@ patina_create_iso() {
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
     return
-  elif ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
+  elif ( ! hash 'xorriso' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
     return
   elif [ -d "$1" ] ; then
