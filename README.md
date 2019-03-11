@@ -135,26 +135,30 @@ the repository, but will be generated when Patina starts. The following diagram
 demonstrates the intended layout:
 
 ```text
-  home
-      |
-      +-- .patinarc
+home
+    |
+    +-- .config
+        |
+        +-- patina
+            |
+            +-- patina.conf
 
-  patina
-      |
-      +-- CHANGELOG.md
-      +-- LICENSE
-      +-- patina.sh
-      +-- README.md
-      +-- components
-      |   |
-      |   +-- applications
-      |   +-- places
-      |   +-- system
-      |   +-- user
-      |
-      +-- resources
-      |   |
-      |   +-- help
+patina
+    |
+    +-- CHANGELOG.md
+    +-- LICENSE
+    +-- patina.sh
+    +-- README.md
+    +-- components
+    |   |
+    |   +-- applications
+    |   +-- places
+    |   +-- system
+    |   +-- user
+    |
+    +-- resources
+    |   |
+    |   +-- help
 ```
 
 This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which

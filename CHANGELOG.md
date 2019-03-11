@@ -12,6 +12,8 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.5 Currently in Development**
+  - Have changed configuration location to `~/.config/patina/patina.conf` to
+    better comply with Linux home directory standards.
   - Included the new component `patina_system_disk_image.sh` to allow the user
     to create an ISO disk image using the `p-iso` command. The name of the
     target will be written as the disk label.

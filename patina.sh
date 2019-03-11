@@ -51,11 +51,11 @@ readonly patina_path_components_system="$patina_path_components/system"
 readonly patina_path_components_user="$patina_path_components/user"
 
 # Patina / Resources
-readonly patina_path_resources_exceptions="$patina_path_resources/exceptions"
+readonly patina_path_configuration="$HOME/.config/patina"
 readonly patina_path_resources_help="$patina_path_resources/help"
 
 # Patina / Files
-readonly patina_file_configuration="$HOME/.patinarc"
+readonly patina_file_configuration="$patina_path_configuration/patina.conf"
 readonly patina_file_source="${BASH_SOURCE[0]}"
 
 # System / Files
@@ -93,8 +93,9 @@ patina_start() {
   if [ -f "$system_lsb_release" ] ; then source "$system_lsb_release" ; fi
 
   # Create Patina Directory Structure
+  mkdir -p "$patina_path_configuration"
   mkdir -p "$patina_path_components"/{applications,places,system,user}
-  mkdir -p "$patina_path_resources"/{exceptions,help}
+  mkdir -p "$patina_path_resources/help"
 
   # Success: Connect and apply Patina configuration
   if [ -f "$patina_file_configuration" ] ; then
