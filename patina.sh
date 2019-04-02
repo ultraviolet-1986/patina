@@ -188,7 +188,7 @@ patina_open_folder() {
 
 patina_open_folder_graphically() {
   # Success: Open Home folder graphically in the absence of an agrument.
-  if [ "$#" -eq "0" ] ; then ; patina_open_folder "$HOME" -g ; return ;
+  if [ "$#" -eq "0" ] ; then patina_open_folder "$HOME" -g ; return ;
 
   # Failure: Success condition(s) not met.
   elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;

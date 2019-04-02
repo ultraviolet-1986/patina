@@ -20,11 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-##############
-# Directives #
-##############
+#########################
+# ShellCheck Directives #
+#########################
 
-# Some items are defined elsewhere
+# Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
@@ -32,17 +32,15 @@
 #############
 
 patina_system_detect_display_server() {
-  if [ ! "$XDG_SESSION_TYPE" ] ; then
-    patina_throw_exception 'PE0010'
-    return
-  elif [ "$XDG_SESSION_TYPE" = 'x11' ] ; then
-    echo -e "Patina has detected that your session is running under ${patina_major_color}X11/Xorg${color_reset}."
-  elif [ "$XDG_SESSION_TYPE" = 'wayland' ] ; then
-    echo -e "Patina has detected that your session is running under ${patina_major_color}Wayland${color_reset}."
-  else
-    patina_throw_exception 'PE0000'
-    return
-  fi
+  # Failure: Success condition(s) not met.
+  if [ -z "$XDG_SESSION_TYPE" ] ; then patina_throw_exception 'PE0010' ;
+
+  # Success: Display the currently active Display Server.
+  elif [ "$XDG_SESSION_TYPE" = 'x11' ] ; then echo_wrap "Patina has detected that your session is running under ${patina_major_color}X11/Xorg${color_reset}." ;
+  elif [ "$XDG_SESSION_TYPE" = 'wayland' ] ; then echo_wrap "Patina has detected that your session is running under ${patina_major_color}Wayland${color_reset}."
+
+  # Failure: Catch All.
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 ###########

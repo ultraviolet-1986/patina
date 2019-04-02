@@ -26,14 +26,16 @@
 
 # Requires: Package 'xorriso' and/or 'genisoimage'.
 patina_create_iso() {
+  # Failure: Success condition(s) not met.
   if [ "$#" -eq "0" ] ; then patina_throw_exception 'PE0001' ;
   elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;
   elif [ ! -d "$1" ] ; then patina_throw_exception 'PE0004' ;
   elif ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then patina_throw_exception 'PE0006' ;
-  elif [ -d "$1" ] ; then
-    mkisofs -volid '' -o "$1".iso -r -J "$1"
-    sync
-    return
+
+  # Success: Create ISO Disk Image/
+  elif [ -d "$1" ] ; then mkisofs -volid '' -o "$1".iso -r -J "$1" ; sync ; return ;
+
+  # Failure: Catch All.
   else patina_throw_exception 'PE0000' ; fi
 }
 
