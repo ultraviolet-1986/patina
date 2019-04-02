@@ -137,110 +137,105 @@ patina_create_configuration_file() {
 }
 
 patina_list_connected_components() {
-  if [ "$#" -ge 1 ] ; then
-    patina_throw_exception 'PE0002'
+  # Failure: Success condition(s) not met.
+  if [ "$#" -ge 1 ] ; then patina_throw_exception 'PE0002' ;
+
+  # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     echo_wrap "\\nPatina has connected ${#patina_components_list[@]} component(s)${color_reset}\\n"
+
     for component in "${patina_components_list[@]}" ; do
       echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
     done
+
     echo
     return
-  else
-    patina_throw_exception 'PE0007'
-  fi
+
+  # Failure: Patina Component(s) were not detected.
+  else patina_throw_exception 'PE0007' ; fi
 }
 
 patina_throw_exception() {
-  if [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 1 ] ; then
-    patina_throw_exception 'PE0002'
-  elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
-    echo_wrap "${!1}"
-    return
-  else
-    patina_throw_exception 'PE0000'
-  fi
+  # Failure: Success condition(s) not met.
+  if [ "$#" -eq "0" ] ; then patina_throw_exception 'PE0001' ;
+  elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;
+
+  # Success: Display Patina Exception.
+  elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then echo_wrap "${!1}" ; return ;
+
+  # Failure: Catch All.
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 patina_open_folder() {
-  if ( ! hash 'xdg-open' ) ; then
-    patina_throw_exception 'PE0006'
-  elif [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 2 ] ; then
-    patina_throw_exception 'PE0002'
-  elif [ -n "$2" ] && [ "$2" != '-g' ] ; then
-    patina_throw_exception 'PE0003'
-  elif [ -f "$1" ] ; then
-    patina_throw_exception 'PE0003'
-  elif [ ! -d "$1" ] ; then
-    patina_throw_exception 'PE0004'
-  elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
-    cd "$1" || return
-    xdg-open "$(pwd)" > /dev/null 2>&1
-    return
-  elif [ -d "$1" ] ; then
-    cd "$1" || return
-    return
-  else
-    patina_throw_exception 'PE0000'
-  fi
+  # Failure: Success condition(s) not met.
+  if ( ! hash 'xdg-open' ) ; then patina_throw_exception 'PE0006' ;
+  elif [ "$#" -eq "0" ] ; then patina_throw_exception 'PE0001' ;
+  elif [ "$#" -gt 2 ] ; then patina_throw_exception 'PE0002' ;
+  elif [ -n "$2" ] && [ "$2" != '-g' ] ; then patina_throw_exception 'PE0003' ;
+  elif [ -f "$1" ] ; then patina_throw_exception 'PE0003' ;
+  elif [ ! -d "$1" ] ; then patina_throw_exception 'PE0004' ;
+
+  # Success: Change directory and open in File Manager.
+  elif [ -d "$1" ] && [ "$2" = '-g' ] ; then cd "$1" || return ; xdg-open "$(pwd)" > /dev/null 2>&1 ; return ;
+
+  # Success: Change Directory.
+  elif [ -d "$1" ] ; then cd "$1" || return ; return ;
+
+  # Failure: Catch All.
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 patina_open_folder_graphically() {
-  if [ "$#" -eq "0" ] ; then
-    patina_open_folder "$HOME" -g
-    return
-  elif [ "$#" -gt 1 ] ; then
-    patina_throw_exception 'PE0002'
-  elif [ -f "$1" ] ; then
-    patina_throw_exception 'PE0003'
-  elif [ ! -d "$1" ] ; then
-    patina_throw_exception 'PE0004'
-  elif [ -d "$1" ] ; then
-    patina_open_folder "$1" -g
-    return
-  fi
+  # Success: Open Home folder graphically in the absence of an agrument.
+  if [ "$#" -eq "0" ] ; then ; patina_open_folder "$HOME" -g ; return ;
+
+  # Failure: Success condition(s) not met.
+  elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;
+  elif [ -f "$1" ] ; then patina_throw_exception 'PE0003' ;
+  elif [ ! -d "$1" ] ; then patina_throw_exception 'PE0004' ;
+
+  # Success: Open folder graphically.
+  elif [ -d "$1" ] ; then patina_open_folder "$1" -g ; return ;
+
+  # Failure: Catch All.
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 echo_wrap() {
-  if [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 1 ] ; then
-    patina_throw_exception 'PE0002'
-  elif [ -n "$1" ] ; then
-    (echo -e "$1") | fmt -w "$(tput cols)"
-  else
-    patina_throw_exception 'PE0000'
-  fi
+  # Failure: Success condition(s) not met.
+  if [ "$#" -eq "0" ] ; then patina_throw_exception 'PE0001' ;
+  elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;
+
+  # Success: Display wrapped text.
+  elif [ -n "$1" ] ; then (echo -e "$1") | fmt -w "$(tput cols)" ;
+
+  # Failure: Catch All.
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 to_lower() {
-  if [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 1 ] ; then
-    patina_throw_exception 'PE0002'
-  elif [ -n "$1" ] ; then
-    echo -e "$1" | tr '[:upper:]' '[:lower:]'
-    return
-  else
-    patina_throw_exception 'PE0000'
-  fi
+  # Failure: Success condition(s) not met.
+  if [ "$#" -eq "0" ] ; then patina_throw_exception 'PE0001' ;
+  elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;
+
+  # Success: Display text as lower-case.
+  elif [ -n "$1" ] ; then echo -e "$1" | tr '[:upper:]' '[:lower:]' ; return ;
+
+  # Failure: Catch All.
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 to_upper() {
-  if [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 1 ] ; then
-    patina_throw_exception 'PE0002'
-  elif [ -n "$1" ] ; then
-    echo -e "$1" | tr '[:lower:]' '[:upper:]'
-    return
-  else
-    patina_throw_exception 'PE0000'
-  fi
+  # Failure: Success condition(s) not met.
+  if [ "$#" -eq "0" ] ; then patina_throw_exception 'PE0001' ;
+  elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;
+
+  # Success: Display text as upper-case.
+  elif [ -n "$1" ] ; then echo -e "$1" | tr '[:lower:]' '[:upper:]' ; return ;
+
+  # Failure: Catch All.
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 patina_terminal_refresh() {
