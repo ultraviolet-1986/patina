@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-################################################################################
-# Notice #######################################################################
-################################################################################
+##########
+# Notice #
+##########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2019 William Willis Whinn
@@ -20,9 +20,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-################################################################################
-# ShellCheck Directives ########################################################
-################################################################################
+#########################
+# ShellCheck Directives #
+#########################
 
 # Override SC1090: "Can't follow non-constant source".
 # shellcheck source=/dev/null
@@ -30,9 +30,9 @@
 # Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
-################################################################################
-# Global Variables #############################################################
-################################################################################
+#############
+# Variables #
+#############
 
 # Patina / Core / Metadata
 readonly patina_metadata_version='0.7.5'
@@ -75,9 +75,9 @@ readonly patina_path_resources_help="$patina_path_resources/help"
 readonly system_os_release='/etc/os-release'
 readonly system_lsb_release='/etc/lsb-release'
 
-################################################################################
-# Global Functions #############################################################
-################################################################################
+#############
+# Functions #
+#############
 
 patina_start() {
   # Ensure Patina is operating inside of a GNU/Linux environment
@@ -137,21 +137,15 @@ patina_create_configuration_file() {
 }
 
 patina_list_connected_components() {
-  # Failure: Patina has been given too many arguments
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
-
-  # Success: At least one component has been connected
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     echo_wrap "\\nPatina has connected ${#patina_components_list[@]} component(s)${color_reset}\\n"
-
     for component in "${patina_components_list[@]}" ; do
       echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
     done
     echo
     return
-
-  # Failure: No components have been connected
   else
     patina_throw_exception 'PE0007'
   fi
@@ -265,20 +259,20 @@ patina_terminal_reset() {
   exec bash
 }
 
-################################################################################
-# Global Function Exports ######################################################
-################################################################################
+###########
+# Exports #
+###########
 
 export -f 'echo_wrap'
 export -f 'patina_throw_exception'
 export -f 'to_lower'
 export -f 'to_upper'
 
-################################################################################
-# Global Function Aliases ######################################################
-################################################################################
+###########
+# Aliases #
+###########
 
-# Patina / Core Commands
+# Patina / Core
 alias 'p-help'='less $patina_path_root/README.md'
 
 alias 'p-list'='patina_list_connected_components'
@@ -286,24 +280,24 @@ alias 'p-list'='patina_list_connected_components'
 alias 'p-refresh'='patina_terminal_refresh'
 alias 'p-reset'='patina_terminal_reset'
 
-# Places / Folders
+# Patina / Places / Folders
 alias 'files'='patina_open_folder_graphically'
 alias 'p-root'='patina_open_folder $patina_path_root'
 
-# Places / Components
+# Patina / Places / Components
 alias 'p-c'='patina_open_folder $patina_path_components'
 alias 'p-c-applications'='patina_open_folder $patina_path_components_applications'
 alias 'p-c-places'='patina_open_folder $patina_path_components_places'
 alias 'p-c-system'='patina_open_folder $patina_path_components_system'
 alias 'p-c-user'='patina_open_folder $patina_path_components_user'
 
-# Places / Resources
+# Patina / Places / Resources
 alias 'p-r'='patina_open_folder $patina_path_resources'
 alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
 
-################################################################################
-# Patina Kickstart #############################################################
-################################################################################
+#############
+# Kickstart #
+#############
 
 patina_start
 
