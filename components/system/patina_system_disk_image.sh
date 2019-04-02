@@ -26,30 +26,15 @@
 
 # Requires: Package 'xorriso' and/or 'genisoimage'.
 patina_create_iso() {
-  if [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
-    return
-  elif [ "$#" -gt 1 ] ; then
-    patina_throw_exception 'PE0002'
-    return
-  elif ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
-    patina_throw_exception 'PE0006'
-    return
+  if [ "$#" -eq "0" ] ; then patina_throw_exception 'PE0001' ;
+  elif [ "$#" -gt 1 ] ; then patina_throw_exception 'PE0002' ;
+  elif [ ! -d "$1" ] ; then patina_throw_exception 'PE0004' ;
+  elif ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then patina_throw_exception 'PE0006' ;
   elif [ -d "$1" ] ; then
-    # Success: Create ISO file and a SHA-512 checksum file. Use blank label.
     mkisofs -volid '' -o "$1".iso -r -J "$1"
     sync
-    echo
-    sha512sum "$1".iso | tee "$1".sha512sum
-    echo
     return
-  elif [ ! -d "$1" ] ; then
-    patina_throw_exception 'PE0004'
-    return
-  else
-    patina_throw_exception 'PE0000'
-    return
-  fi
+  else patina_throw_exception 'PE0000' ; fi
 }
 
 ###########
