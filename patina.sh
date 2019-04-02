@@ -24,10 +24,10 @@
 # Directives #
 ##############
 
-# Components and configuration are not stored in a fixed location by design
+# Override SC1090: "Can't follow non-constant source".
 # shellcheck source=/dev/null
 
-# Some items are defined elsewhere
+# Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
@@ -148,7 +148,7 @@ patina_list_connected_components() {
     return
 
   # Success: At least one component has been connected
-  elif [[ "${patina_components_list[*]}" ]] ; then
+  elif [[ -n "${patina_components_list[*]}" ]] ; then
     echo_wrap "\\nPatina has connected ${#patina_components_list[@]} "`
       `"component(s)${color_reset}\\n"
 
@@ -192,7 +192,7 @@ patina_open_folder() {
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
     return
-  elif [ "$2" ] && [ "$2" != '-g' ] ; then
+  elif [ -n "$2" ] && [ "$2" != '-g' ] ; then
     patina_throw_exception 'PE0003'
     return
   elif [ -f "$1" ] ; then
@@ -240,7 +240,7 @@ echo_wrap() {
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
     return
-  elif [ "$1" ] ; then
+  elif [ -n "$1" ] ; then
     (echo -e "$1") | fmt -w "$(tput cols)"
   else
     patina_throw_exception 'PE0000'
@@ -255,7 +255,7 @@ to_lower() {
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
     return
-  elif [ "$1" ] ; then
+  elif [ -n "$1" ] ; then
     echo -e "$1" | tr '[:upper:]' '[:lower:]'
   else
     patina_throw_exception 'PE0000'
@@ -270,7 +270,7 @@ to_upper() {
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
     return
-  elif [ "$1" ] ; then
+  elif [ -n "$1" ] ; then
     echo -e "$1" | tr '[:lower:]' '[:upper:]'
   else
     patina_throw_exception 'PE0000'
@@ -308,7 +308,7 @@ export -f 'to_upper'
 ###########
 
 # Patina / Core Commands
-alias 'p-help'="less $patina_path_root/README.md"
+alias 'p-help'='less $patina_path_root/README.md'
 
 alias 'p-list'='patina_list_connected_components'
 
