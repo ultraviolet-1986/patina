@@ -231,6 +231,8 @@ patina_open_folder_graphically() {
   fi
 }
 
+generate_date_stamp() { date +%Y%m%d%H%M%S ; }
+
 echo_wrap() {
   # Failure: Success condition(s) not met.
   if [ "$#" -eq "0" ] ; then
@@ -305,6 +307,7 @@ patina_terminal_reset() {
 ###########
 
 export -f 'echo_wrap'
+export -f 'generate_date_stamp'
 export -f 'patina_throw_exception'
 export -f 'to_lower'
 export -f 'to_upper'
