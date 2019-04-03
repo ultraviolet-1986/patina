@@ -80,32 +80,32 @@ readonly system_lsb_release='/etc/lsb-release'
 #############
 
 patina_start() {
-  # Ensure Patina is operating inside of a GNU/Linux environment
+  # Ensure Patina is operating inside of a GNU/Linux environment.
   if [ "$OSTYPE" != 'linux-gnu' ] ; then
     echo_wrap "Patina does not currently support your operating system. For more information, or to make a feature request, please visit '$patina_metadata_url'."
     return
   fi
 
-  # Import additional system variables
+  # Import additional system variables.
   if [ -f "$system_os_release" ] ; then source "$system_os_release" ; fi
   if [ -f "$system_lsb_release" ] ; then source "$system_lsb_release" ; fi
 
-  # Create Patina Directory Structure
+  # Create Patina Directory Structure.
   mkdir -p "$patina_path_configuration"
   mkdir -p "$patina_path_components"/{applications,places,system,user}
   mkdir -p "$patina_path_resources/help"
 
-  # Success: Connect and apply Patina configuration
+  # Success: Connect and apply Patina configuration.
   if [ -f "$patina_file_configuration" ] ; then
     chmod a-x "$patina_file_configuration"
     source "$patina_file_configuration"
 
-  # Failure: Configuration file does not exist
+  # Failure: Configuration file does not exist.
   else
     patina_create_configuration_file
   fi
 
-  # Connect all detected Patina components
+  # Connect all detected Patina components.
   for component in "$patina_path_components"/{applications,places,system,user}/patina_*.sh ; do
     if [ -f "$component" ] ; then
       chmod a-x "$component"
@@ -114,17 +114,17 @@ patina_start() {
     fi
   done
 
-  # Main Patina author/copyright header
+  # Display main Patina author/copyright header.
   echo_wrap "${patina_major_color}Patina v${patina_metadata_version} '${patina_metadata_codename}' / BASH v${BASH_VERSION%%[^0-9.]*}${color_reset}"
   echo_wrap "${patina_major_color}Copyright (C) 2019 William Whinn${color_reset}"
   echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
-  # Lock variables after Patina is successfully loaded
+  # Lock variables after Patina is successfully loaded.
   readonly -a patina_components_list
   readonly TERM="$TERM"
   readonly OSTYPE="$OSTYPE"
 
-  # Rubbish collection
+  # Rubbish collection.
   unset -f "${FUNCNAME[0]}"
 }
 
@@ -132,7 +132,7 @@ patina_create_configuration_file() {
   # Default configuration options listed here.
   echo 'patina_theme=default' > "$patina_file_configuration"
 
-  # Refresh the terminal to load new configuration
+  # Refresh the terminal to load new configuration.
   patina_terminal_refresh
 }
 
