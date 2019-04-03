@@ -24,7 +24,7 @@
 # Documentation #
 #################
 
-# Function: 'patina_create_iso'
+# Function: 'patina_genisoimage_create_iso'
 
 #   Required Packages:
 #     1. 'genisoimage' for command 'mkisofs'.
@@ -39,7 +39,7 @@
 # Functions #
 #############
 
-patina_create_iso() {
+patina_genisoimage_create_iso() {
   # Failure: Success condition(s) not met.
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
@@ -52,7 +52,7 @@ patina_create_iso() {
 
   # Success: Create ISO Disk Image/
   elif [ -d "$1" ] ; then
-    mkisofs -volid '' -o "$1".iso -r -J "$1"
+    mkisofs -volid "$(generate_date_stamp)" -o "$1".iso -r -J "$1"
     sync
     return
 
@@ -66,6 +66,6 @@ patina_create_iso() {
 # Aliases #
 ###########
 
-alias 'p-iso'='patina_create_iso'
+alias 'p-iso'='patina_genisoimage_create_iso'
 
 # End of File.
