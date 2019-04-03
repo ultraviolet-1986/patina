@@ -25,59 +25,44 @@
 #############
 
 patina_gpg_decrypt_file() {
+  # Failure: Success condition(s) not met.
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0003'
-    return
-
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
-
   elif [ ! -f "$1" ] ; then
     patina_throw_exception 'PE0005'
-    return
 
+  # Success: Decrypt the GnuPG encrypted file.
   elif [ -f "$1" ] ; then
     local decrypted_filename
     decrypted_filename="$(printf '%s\n' "${1//.gpg/}")"
-
     gpg --output "$decrypted_filename" --decrypt "$1"
+    return
 
-    # Ask user to delete encrypted file.
-    printf "Do you wish to remove the encrypted file [Y/N]? "
-    read -n1 -r answer
-    case "$answer" in
-      'Y'|'y') rm "$1" ; echo ;;
-      'N'|'n') echo ; return ;;
-      *) patina_throw_exception 'PE0003' ; return ;;
-    esac
+  # Failure: Catch all.
+  else
+    patina_throw_exception 'PE0000'
   fi
 }
 
 patina_gpg_encrypt_file() {
+  # Failure: Success condition(s) not met.
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0003'
-    return
-
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
-
   elif [ ! -f "$1" ] ; then
     patina_throw_exception 'PE0005'
-    return
 
+  # Success: Encrypt the file using GnuPG symmetric encryption.
   elif [ -f "$1" ] ; then
     gpg --symmetric "$1"
+    return
 
-    # Ask user to delete original file.
-    printf "Do you wish to remove the original file [Y/N]? "
-    read -n1 -r answer
-    case "$answer" in
-      'Y'|'y') rm "$1" ; echo ;;
-      'N'|'n') echo ; return ;;
-      *) patina_throw_exception 'PE0003' ; return ;;
-    esac
+  # Failure: Catch all.
+  else
+    patina_throw_exception 'PE0000'
   fi
 }
 

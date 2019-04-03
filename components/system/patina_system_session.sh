@@ -20,11 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-##############
-# Directives #
-##############
+#########################
+# ShellCheck Directives #
+#########################
 
-# Some items are defined elsewhere
+# Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
@@ -41,20 +41,25 @@ patina_system_session() {
       patina_session_action='poweroff'
     else
       patina_throw_exception 'PE0001'
-      return
     fi
 
     printf "Your current session will end. Do you wish to continue [Y/N]? "
     read -n1 -r answer
     echo
+
     case "$answer" in
-      'Y'|'y') systemctl "$patina_session_action" ;;
-      'N'|'n') return ;;
-      *) patina_throw_exception 'PE0003' ; return ;;
+      'Y' | 'y')
+        systemctl "$patina_session_action"
+        ;;
+      'N' | 'n')
+        return
+        ;;
+      *)
+        patina_throw_exception 'PE0003'
+        ;;
     esac
   else
     patina_throw_exception 'PE0006'
-    return
   fi
 }
 

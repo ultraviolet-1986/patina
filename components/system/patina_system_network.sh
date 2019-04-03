@@ -20,16 +20,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-##############
-# Directives #
-##############
+#########################
+# ShellCheck Directives #
+#########################
 
-# Some items are defined elsewhere
+# Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
-#############
-# Variables #
-#############
+####################
+# Global Variables #
+####################
 
 patina_has_internet=''
 
@@ -46,52 +46,62 @@ patina_detect_internet_connection() {
 }
 
 patina_show_network_status() {
+  # Prerequisite: Detect an Internet connection.
   patina_detect_internet_connection
 
   if [ "$patina_has_internet" = 'true' ] ; then
     echo_wrap "Patina has access to the Internet."
-    return
-
   elif [ "$patina_has_internet" = 'false' ] ; then
     patina_throw_exception 'PE0008'
-    return
-
-  elif [ ! "$patina_has_internet" ] ; then
+  elif [ -z "$patina_has_internet" ] ; then
     patina_show_network_status
-    return
 
+  # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
   fi
 }
 
 patina_systemd_network_manager() {
   if ( ! hash 'systemctl' ) ; then
     patina_throw_exception 'PE0006'
-    return
-
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0003'
-    return
-
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
 
   elif ( hash 'systemctl' ) ; then
     case "$1" in
-      'disable') ;;
-      'enable') ;;
-      'restart') ;;
-      'start') ;;
-      'status') patina_show_network_status ; return ;;
-      'stop') ;;
-      *) patina_throw_exception 'PE0003' ; return ;;
+      'disable')
+        # Pass argument to system and continue.
+        ;;
+      'enable')
+        # Pass argument to system and continue.
+        ;;
+      'restart')
+        # Pass argument to system and continue.
+        ;;
+      'start')
+        # Pass argument to system and continue.
+        ;;
+      'status')
+        patina_show_network_status
+        return
+        ;;
+      'stop')
+        # Pass argument to system and continue.
+        ;;
+      *)
+        patina_throw_exception 'PE0003'
+        ;;
     esac
 
     sleep 0.1
     systemctl "$1" NetworkManager.service
+
+  # Failure: Catch all.
+  else
+    patina_throw_exception 'PE0000'
   fi
 }
 

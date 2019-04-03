@@ -20,11 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-##############
-# Directives #
-##############
+#########################
+# ShellCheck Directives #
+#########################
 
-# Some items are defined elsewhere
+# Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
@@ -32,7 +32,7 @@
 #############
 
 patina_detect_system_package_manager() {
-  # Success: Distribution is Ubuntu or compatible
+  # Success: Distribution is Ubuntu or compatible.
   if ( hash 'apt' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='apt'
     readonly patina_package_install='install'
@@ -40,7 +40,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='update'
     readonly patina_package_upgrade='upgrade'
 
-  # Success: Distribution is Fedora or compatible
+  # Success: Distribution is Fedora or compatible.
   elif ( hash 'dnf' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='dnf'
     readonly patina_package_install='install'
@@ -48,7 +48,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='check-update'
     readonly patina_package_upgrade='upgrade'
 
-  # Success: Distribution is Solus or compatible
+  # Success: Distribution is Solus or compatible.
   elif ( hash 'eopkg' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='eopkg'
     readonly patina_package_install='install'
@@ -56,7 +56,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='update-repo'
     readonly patina_package_upgrade='upgrade'
 
-  # Success: Distribution is Arch or compatible
+  # Success: Distribution is Arch or compatible.
   elif ( hash 'pacman' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='pacman'
     readonly patina_package_install='-S'
@@ -64,7 +64,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='-Syu'
     readonly patina_package_upgrade='-Syu'
 
-  # Success: Distribution is Fedora Silverblue or compatible
+  # Success: Distribution is Fedora Silverblue or compatible.
   elif ( hash 'rpm-ostree' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='rpm-ostree'
     readonly patina_package_install='install'
@@ -72,7 +72,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='refresh-md'
     readonly patina_package_upgrade='upgrade'
 
-  # Success: Distribution is openSUSE or compatible
+  # Success: Distribution is openSUSE or compatible.
   elif ( hash 'zypper' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='zypper'
     readonly patina_package_install='install'
@@ -80,10 +80,9 @@ patina_detect_system_package_manager() {
     readonly patina_package_update='refresh'
     readonly patina_package_upgrade='update'
 
-  # Failure: Catch any other error condition here
+  # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
   fi
 
   # Rubbish collection
@@ -106,7 +105,7 @@ patina_package_manager() {
   else
     case "$1" in
       'install')
-        if [ ! "$2" ] ; then
+        if [ -z "$2" ] ; then
           patina_throw_exception 'PE0001'
           return
         else
@@ -119,9 +118,8 @@ patina_package_manager() {
         fi
         ;;
       'remove')
-        if [ ! "$2" ] ; then
+        if [ -z "$2" ] ; then
           patina_throw_exception 'PE0001'
-          return
         else
           if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
             eval "$patina_package_manager" "$patina_package_remove" "${@:2}"
@@ -149,10 +147,7 @@ patina_package_manager() {
         fi
         return
         ;;
-      *)
-        patina_throw_exception 'PE0003'
-        return
-        ;;
+      *) patina_throw_exception 'PE0003' ;;
     esac
   fi
 }

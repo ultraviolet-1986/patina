@@ -33,14 +33,19 @@
 
 patina_system_detect_display_server() {
   # Failure: Success condition(s) not met.
-  if [ -z "$XDG_SESSION_TYPE" ] ; then patina_throw_exception 'PE0010' ;
+  if [ -z "$XDG_SESSION_TYPE" ] ; then
+    patina_throw_exception 'PE0010'
 
   # Success: Display the currently active Display Server.
-  elif [ "$XDG_SESSION_TYPE" = 'x11' ] ; then echo_wrap "Patina has detected that your session is running under ${patina_major_color}X11/Xorg${color_reset}." ;
-  elif [ "$XDG_SESSION_TYPE" = 'wayland' ] ; then echo_wrap "Patina has detected that your session is running under ${patina_major_color}Wayland${color_reset}."
+  elif [ "$XDG_SESSION_TYPE" = 'x11' ] ; then
+    echo_wrap "Patina has detected that your session is running under ${patina_major_color}X11/Xorg${color_reset}."
+  elif [ "$XDG_SESSION_TYPE" = 'wayland' ] ; then
+    echo_wrap "Patina has detected that your session is running under ${patina_major_color}Wayland${color_reset}."
 
-  # Failure: Catch All.
-  else patina_throw_exception 'PE0000' ; fi
+  # Failure: Catch all.
+  else
+    patina_throw_exception 'PE0000'
+  fi
 }
 
 ###########
