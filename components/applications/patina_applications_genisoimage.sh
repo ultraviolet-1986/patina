@@ -33,7 +33,7 @@
 #     1. Name of directory to be converted to an ISO disk image.
 
 #   Example usage:
-#     $ p-iso "Documents"
+#     $ p-iso ~/Documents
 
 #############
 # Functions #
