@@ -20,11 +20,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-##############
-# Directives #
-##############
+#################
+# Documentation #
+#################
 
-# Some items are defined elsewhere
+# Function: 'patina_ufw_configure'
+
+#   Required Packages:
+#     1. 'ufw' for command 'ufw'.
+
+#   Parameters:
+#     1. Argument to pass to 'ufw' for simple configuration.
+
+#   Example usage:
+#     $ p-ufw setup
+
+#   Notes:
+#     1. Uses 'sudo' privileges. Please review source code before use.
+
+#########################
+# ShellCheck Directives #
+#########################
+
+# Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
@@ -38,31 +56,42 @@ readonly patina_file_ufw_help="$patina_path_resources_help/patina_applications_u
 #############
 
 patina_ufw_configure() {
-  if ( ! hash 'ufw' ) ; then
+  # Failure: Success condition(s) not met.
+  if ( ! hash 'ufw' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
-
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
-    return
-
   elif [ "$#" -gt "1" ] ; then
     patina_throw_exception 'PE0002'
-    return
 
-  elif [ "$1" ] ; then
+  # Success: Process argument and apply it to 'ufw'.
+  elif [ -n "$1" ] ; then
     case "$1" in
-      'disable') sudo ufw disable ;;
-      'enable') sudo ufw enable ;;
-      'help'|'?') patina_ufw_help ;;
-      'setup') sudo ufw enable ; sudo ufw default deny ; sudo ufw limit ssh ;;
-      'status') sudo ufw status ;;
-      *) patina_throw_exception 'PE0003' ; return ;;
+      'disable')
+        sudo ufw disable
+        ;;
+      'enable')
+        sudo ufw enable
+        ;;
+      'help' | '?')
+        patina_ufw_help
+        ;;
+      'setup')
+        sudo ufw enable
+        sudo ufw default deny
+        sudo ufw limit ssh
+        ;;
+      'status')
+        sudo ufw status
+        ;;
+      *)
+        patina_throw_exception 'PE0003'
+        ;;
     esac
 
+  # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
   fi
 }
 
