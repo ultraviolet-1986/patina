@@ -81,11 +81,11 @@ Patina does not require anything except BASH as a rule, but it can make use of
 the following packages (correct for Ubuntu):
 
 - `clamav` for the `p-clamscan <X>` commands.
+- `genisoimage` for the `p-iso` command.
 - `git` for the `p-update` command.
 - `systemd` for manipulating system services such as networking.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
-- `xorriso` and/or `genisoimage` for the `p-iso` command.
 
 ## Conventions
 
@@ -237,6 +237,14 @@ p-clamscan help  # Display instructions for the `p-clamscan` commands.
 p-clamscan ?     # Display instructions for the `p-clamscan` commands.
 ```
 
+#### Disk Image Creation (genisoimage)
+
+The following command requires the `genisoimage` package to be installed.
+
+```bash
+p-iso  # Create an ISO disk image from a folder.
+```
+
 #### Uncomplicated Firewall (ufw)
 
 In most cases, the following commands require `sudo` privileges, please review
@@ -320,12 +328,6 @@ that the user must be operating within a `systemd` environment.
 p-session reboot    # Prompt the user to reboot their machine.
 p-session restart   # Prompt the user to reboot their machine.
 p-session shutdown  # Prompt the user to power down their machine.
-```
-
-The following command requires the `genisoimage` package to be installed.
-
-```bash
-p-iso  # Create an ISO disk image from a folder.
 ```
 
 ## Helper Functions

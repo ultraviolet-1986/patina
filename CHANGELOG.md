@@ -12,11 +12,15 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.5 Currently in Development**
+  - Additional ShellCheck tests performed to ensure only required directives are
+    present, and that any script errors are caught.
+  - Some of the source code has been altered to allow for easier reading and
+    debugging.
   - Have changed configuration location to `~/.config/patina/patina.conf` to
     better comply with Linux home directory standards.
-  - Included the new component `patina_system_disk_image.sh` to allow the user
-    to create an ISO disk image using the `p-iso` command. The name of the
-    target will be written as the disk label.
+  - Included the new component `patina_applications_genisoimage.sh` to allow the
+    user to create an ISO disk image using the `p-iso` command. A date-stamp
+    will be written to the image as a disk label.
   - Updated `README.md` to instruct users to clone the repository using HTTPS.
   - Updated `patina.sh` to correct the listing of components and fail if any
     arguments are passed.
