@@ -50,7 +50,7 @@ patina_genisoimage_create_iso() {
   elif ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
 
-  # Success: Create ISO Disk Image/
+  # Success: Create ISO Disk Image.
   elif [ -d "$1" ] ; then
     mkisofs -volid "$(generate_date_stamp)" -o "$1".iso -r -J "$1"
     sync
