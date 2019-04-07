@@ -51,14 +51,14 @@ patina_genisoimage_create_iso() {
     patina_throw_exception 'PE0002'
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
-  elif [ -f "$HOME/$(basename $1).iso" ] ; then
+  elif [ -f "$HOME/$(basename "$1").iso" ] ; then
     patina_throw_exception 'PE0011'
   elif ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
 
   # Success: Create ISO Disk Image.
   elif [ -d "$1" ] ; then
-    mkisofs -volid "$(generate_date_stamp)" -o "$HOME/$(basename $1).iso" -U -R -D "$1"
+    mkisofs -volid "$(generate_date_stamp)" -o "$HOME/$(basename "$1").iso" -U -R -D "$1"
     sync
     return
 
