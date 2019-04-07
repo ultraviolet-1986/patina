@@ -12,6 +12,8 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.5 Currently in Development**
+  - An additional two Patina exceptions were added: `PE0011` and `PE0012` which
+    help to prevent pre-existing files and folders from being overwritten.
   - Additional ShellCheck tests performed to ensure only required directives are
     present, and that any script errors are caught.
   - Some of the source code has been altered to allow for easier reading and

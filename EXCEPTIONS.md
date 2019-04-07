@@ -52,6 +52,14 @@ numbers (Patina Exception) here for reference.
 - **PE0010 `Patina cannot access a required variable.`**
   - This error should be raised when Patina cannot access a required variable.
 
+- **PE0011 `Patina cannot overwrite a pre-existing file.`**
+  - This error should be raised when Patina attempts to overwrite a file which
+    already exists.
+
+- **PE0012 `Patina cannot overwrite a pre-existing directory.`**
+  - This error should be raised when Patina attempts to overwrite a directory
+    which already exists.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a

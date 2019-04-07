@@ -51,6 +51,8 @@ export readonly PE0007='PE0007: Patina has not connected any components.'
 export readonly PE0008='PE0008: Patina does not have access to the Internet.'
 export readonly PE0009='PE0009: Patina cannot detect a valid source control repository.'
 export readonly PE0010='PE0010: Patina cannot access a required variable.'
+export readonly PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
+export readonly PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
 
 # Patina / Paths / Root
 readonly patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
