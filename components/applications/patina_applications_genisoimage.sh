@@ -27,7 +27,7 @@
 # Function: 'patina_genisoimage_create_iso'
 
 #   Notes:
-#     1. Function will generate an *.iso file which is not ISO-9660 compliant.
+#     1. Restrictions enabled to enforce ISO-9660 compliance.
 #     2. All generated disk images will be stored within user's Home directory.
 
 #   Required Packages:
@@ -58,7 +58,12 @@ patina_genisoimage_create_iso() {
 
   # Success: Create ISO Disk Image.
   elif [ -d "$1" ] ; then
-    mkisofs -volid "$(generate_date_stamp)" -o "$HOME/$(basename "$1").iso" -U -R -D "$1"
+    mkisofs \
+      -volid "$(generate_date_stamp)" \
+      -o "$HOME/$(basename "$1").iso" \
+      -input-charset UTF-8 \
+      -joliet -joliet-long -rock \
+      "$1"
     sync
     return
 
