@@ -46,7 +46,9 @@
 
 patina_genisoimage_create_iso() {
   # Failure: Success condition(s) not met.
-  if [ "$#" -eq "0" ] ; then
+  if ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
+    patina_throw_exception 'PE0006'
+  elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
@@ -56,17 +58,15 @@ patina_genisoimage_create_iso() {
     patina_throw_exception 'PE0004'
   elif [ -f "$(basename "$1").iso" ] ; then
     patina_throw_exception 'PE0011'
-  elif ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
-    patina_throw_exception 'PE0006'
-
-  # Success: Create ISO Disk Image (Non ISO-9660 compliant).
-  elif [ -d "$1" ] && [ "$2" = '-f' ] ; then
-    mkisofs -volid "$(generate_date_stamp)" -o "$(basename "$1").iso" -input-charset UTF-8 -R -D -U "$1"
-    return
 
   # Success: Create ISO Disk Image (ISO-9660 compliant).
   elif [ -d "$1" ] && [ -z "$2" ] ; then
     mkisofs -volid "$(generate_date_stamp)" -o "$(basename "$1").iso" -input-charset UTF-8 -joliet -joliet-long -rock "$1"
+    return
+
+  # Success: Create ISO Disk Image (Non ISO-9660 compliant).
+  elif [ -d "$1" ] && [ "$2" = '-f' ] ; then
+    mkisofs -volid "$(generate_date_stamp)" -o "$(basename "$1").iso" -input-charset UTF-8 -R -D -U "$1"
     return
 
   # Failure: Catch all.
