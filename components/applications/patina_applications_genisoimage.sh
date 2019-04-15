@@ -85,7 +85,7 @@ patina_genisoimage_create_iso() {
 
   # Success: Create ISO Disk Image (Non ISO-9660 compliant).
   elif [ -d "$1" ] && [ "$2" = '-f' ] ; then
-    mkisofs -volid "$(patina_generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -R -D -U "$1"
+    mkisofs -volid "$(patina_generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -rock -disable-deep-relocation -untranslated-filenames "$1"
     return
 
   # Failure: Catch all.
