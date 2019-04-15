@@ -24,6 +24,20 @@
 # Documentation #
 #################
 
+# Function: 'patina_generate_volume_label'
+
+#   Notes:
+#     1. Generates a 9-digit disk label at random in format 'XXXX-XXXX'.
+
+#   Required Packages:
+#     1. 'coreutils' for command 'head'.
+
+#   Parameters:
+#     None.
+
+#   Example Usage:
+#     $ patina_generate_volume_label
+
 # Function: 'patina_genisoimage_create_iso'
 
 #   Notes:
@@ -44,6 +58,11 @@
 # Functions #
 #############
 
+patina_generate_volume_label() {
+  local label_command="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4 | tr '[:lower:]' '[:upper:]'"
+  echo -e "$(eval "$label_command"; printf "-"; eval "$label_command")"
+}
+
 patina_genisoimage_create_iso() {
   # Failure: Success condition(s) not met.
   if ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
@@ -61,12 +80,12 @@ patina_genisoimage_create_iso() {
 
   # Success: Create ISO Disk Image (ISO-9660 compliant).
   elif [ -d "$1" ] && [ -z "$2" ] ; then
-    mkisofs -volid "$(generate_date_stamp)" -o "$(basename "$1").iso" -input-charset UTF-8 -joliet -joliet-long -rock "$1"
+    mkisofs -volid "$(patina_generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -joliet -joliet-long -rock "$1"
     return
 
   # Success: Create ISO Disk Image (Non ISO-9660 compliant).
   elif [ -d "$1" ] && [ "$2" = '-f' ] ; then
-    mkisofs -volid "$(generate_date_stamp)" -o "$(basename "$1").iso" -input-charset UTF-8 -R -D -U "$1"
+    mkisofs -volid "$(patina_generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -R -D -U "$1"
     return
 
   # Failure: Catch all.
