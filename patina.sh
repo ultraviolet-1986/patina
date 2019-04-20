@@ -233,7 +233,7 @@ patina_open_folder_graphically() {
   fi
 }
 
-generate_date_stamp() { date +%Y%m%d%H%M%S ; }
+generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; }
 
 echo_wrap() {
   # Failure: Success condition(s) not met.
