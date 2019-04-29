@@ -21,6 +21,8 @@ Additional Patina components can be found here:
   - [Places](#places)
   - [Application Components](#application-components)
     - [ClamAV](#clamav)
+    - [Disk Image Creation (genisoimage)](#disk-image-creation-(genisoimage))
+    - [Document Conversion (LibreOffice)](#document-conversion-(libreoffice))
     - [Uncomplicated Firewall (ufw)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
