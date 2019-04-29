@@ -12,6 +12,8 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.5 Currently in Development**
+  - Included `repair` functionality to the `p-clamscan` command to overcome a
+    problem encountered under Fedora 29.
   - Included a new component named `patina_applications_libreoffice.sh` to allow
     a user to convert a compatible document into PDF using the `p-pdf` command.
   - An additional two Patina exceptions were added: `PE0011` and `PE0012` which

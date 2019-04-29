@@ -232,10 +232,14 @@ p-r-help          # Open the Patina 'help resources' directory.
 
 #### ClamAV
 
+The `p-clamscan repair` command requires `sudo` privileges, please review source
+code before use.
+
 ```bash
 p-clamscan       # Perform a ClamAV virus scan on a given path.
 p-clamscan help  # Display instructions for the `p-clamscan` commands.
 p-clamscan ?     # Display instructions for the `p-clamscan` commands.
+p-clamscan repair  # Repair ClamAV update mechanism.
 ```
 
 #### Disk Image Creation (genisoimage)

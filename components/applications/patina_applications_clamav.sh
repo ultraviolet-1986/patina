@@ -72,6 +72,15 @@ patina_clamav_scan() {
     patina_clamav_help
     return
 
+  # Success: Repair Freshclam update mechanism.
+  # Warning: Uses 'sudo' to delete system files.
+  elif [ "$1" = 'repair' ] ; then
+    local clamav_path=/var/lib/clamav
+    cd $clamav_path
+    sudo rm bytecode.cvd daily.cld main.cvd mirrors.dat
+    cd ~-
+    return
+
   # Success: Guide user in performing virus scan.
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
     echo
