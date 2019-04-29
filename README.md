@@ -83,6 +83,7 @@ the following packages (correct for Ubuntu):
 - `clamav` for the `p-clamscan <X>` commands.
 - `genisoimage` for the `p-iso` command.
 - `git` for the `p-update` command.
+- `libreoffice` for the `p-pdf` command.
 - `systemd` for manipulating system services such as networking.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
@@ -242,7 +243,15 @@ p-clamscan ?     # Display instructions for the `p-clamscan` commands.
 The following command requires the `genisoimage` package to be installed.
 
 ```bash
-p-iso  # Create an ISO disk image from a folder.
+p-iso "<Directory Name>"  # Create an ISO disk image from a folder.
+```
+
+#### Document Conversion (LibreOffice)
+
+The following command requires the `libreoffice` package to be installed.
+
+```bash
+p-pdf "<Document Name>"  # Convert a compatible document into PDF.
 ```
 
 #### Uncomplicated Firewall (ufw)

@@ -12,6 +12,8 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.5 Currently in Development**
+  - Included a new component named `patina_applications_libreoffice.sh` to allow
+    a user to convert a compatible document into PDF using the `p-pdf` command.
   - An additional two Patina exceptions were added: `PE0011` and `PE0012` which
     help to prevent pre-existing files and folders from being overwritten.
   - Additional ShellCheck tests performed to ensure only required directives are
@@ -21,8 +23,9 @@ after an evil butler tries to steal their inheritance.
   - Have changed configuration location to `~/.config/patina/patina.conf` to
     better comply with Linux home directory standards.
   - Included the new component `patina_applications_genisoimage.sh` to allow the
-    user to create an ISO disk image using the `p-iso` command. A date-stamp
-    will be written to the image as a disk label.
+    user to create an ISO disk image using the `p-iso` command. A random string
+    will be applied as a disk label. Append `-f` to override ISO-9660
+    restrictions.
   - Updated `README.md` to instruct users to clone the repository using HTTPS.
   - Updated `patina.sh` to correct the listing of components and fail if any
     arguments are passed.
