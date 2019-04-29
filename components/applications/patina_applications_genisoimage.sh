@@ -41,13 +41,15 @@
 # Function: 'patina_genisoimage_create_iso'
 
 #   Notes:
-#     1. Creates an ISO disk image using UDF (Non ISO-9660 compliant).
+#     1. Restrictions enabled to enforce ISO-9660 compliance.
+#     2. All generated disk images will be stored within user's Home directory.
 
 #   Required Packages:
 #     1. 'genisoimage' for command 'mkisofs'.
 
 #   Parameters:
 #     1. Name of directory to be converted to an ISO disk image.
+#     2. Flag '-f' to bypass ISO-9660 restrictions while creating ISO disk image (optional).
 
 #   Example usage:
 #     $ p-iso ~/Documents
@@ -67,15 +69,22 @@ patina_genisoimage_create_iso() {
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 1 ] ; then
+  elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
+  elif [ -n "$2" ] && [ "$2" != '-f' ] ; then
+    patina_throw_exception 'PE0001'
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
   elif [ -f "$(basename "$1").iso" ] ; then
     patina_throw_exception 'PE0011'
 
+  # Success: Create ISO Disk Image (ISO-9660 compliant).
+  elif [ -d "$1" ] && [ -z "$2" ] ; then
+    mkisofs -volid "$(patina_generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -joliet -joliet-long -rock "$1"
+    return
+
   # Success: Create ISO Disk Image (Non ISO-9660 compliant).
-  elif [ -d "$1" ] ; then
+  elif [ -d "$1" ] && [ "$2" = '-f' ] ; then
     mkisofs -volid "$(patina_generate_volume_label)" -output "$(basename "$1").iso" -input-charset UTF-8 -udf -allow-limited-size -disable-deep-relocation -untranslated-filenames "$1"
     return
 
