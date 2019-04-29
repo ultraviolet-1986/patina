@@ -15,15 +15,14 @@ Additional Patina components can be found here:
 - [Conventions](#conventions)
 - [Patina Layout](#patina-layout)
 - [Built-in Commands](#built-in-commands)
-  - [Patina Core](#patina)
+  - [Patina Core](#patina-core)
   - [Themes](#themes)
-  - [Prompts](#prompts)
   - [Places](#places)
   - [Application Components](#application-components)
     - [ClamAV](#clamav)
-    - [Disk Image Creation (genisoimage)](#disk-image-creation-(genisoimage))
-    - [Document Conversion (LibreOffice)](#document-conversion-(libreoffice))
-    - [Uncomplicated Firewall (ufw)](#uncomplicated-firewall-ufw)
+    - [Disk Image Creation (genisoimage)](#disk-image-creation-genisoimage)
+    - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
+    - [Uncomplicated Firewall (UFW)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
 - [Helper Functions](#helper-functions)
@@ -238,9 +237,9 @@ The `p-clamscan repair` command requires `sudo` privileges, please review source
 code before use.
 
 ```bash
-p-clamscan       # Perform a ClamAV virus scan on a given path.
-p-clamscan help  # Display instructions for the `p-clamscan` commands.
-p-clamscan ?     # Display instructions for the `p-clamscan` commands.
+p-clamscan         # Perform a ClamAV virus scan on a given path.
+p-clamscan help    # Display instructions for the `p-clamscan` commands.
+p-clamscan ?       # Display instructions for the `p-clamscan` commands.
 p-clamscan repair  # Repair ClamAV update mechanism.
 ```
 
@@ -260,7 +259,7 @@ The following command requires the `libreoffice` package to be installed.
 p-pdf "<Document Name>"  # Convert a compatible document into PDF.
 ```
 
-#### Uncomplicated Firewall (ufw)
+#### Uncomplicated Firewall (UFW)
 
 In most cases, the following commands require `sudo` privileges, please review
 source code before use.
