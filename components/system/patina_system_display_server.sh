@@ -41,6 +41,8 @@ patina_system_detect_display_server() {
     echo_wrap "Patina has detected that your session is running under ${patina_major_color}X11/Xorg${color_reset}."
   elif [ "$XDG_SESSION_TYPE" = 'wayland' ] ; then
     echo_wrap "Patina has detected that your session is running under ${patina_major_color}Wayland${color_reset}."
+  elif [ "$XDG_SESSION_TYPE" = 'tty' ] ; then
+    echo_wrap "Patina has detected that your session is running as a ${patina_major_color}Headless Server${color_reset}."
 
   # Failure: Catch all.
   else
