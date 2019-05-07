@@ -12,6 +12,10 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.6 Currently in development**
+  - Added better detection for whether or not the user's session is running
+    under X11, Wayland, or as a headless server environment.
+  - Using `p-root` or other change-directory commands should not halt when
+    running in a headless server environment.
 - **0.7.5 Released Monday, April 29th 2019**
   - Included `repair` functionality to the `p-clamscan` command to overcome a
     problem encountered under Fedora 29.
