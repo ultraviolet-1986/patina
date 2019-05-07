@@ -193,14 +193,16 @@ patina_open_folder() {
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
 
+  # Success: Change Directory.
+  elif [ -d "$1" ] ; then
+    cd "$1" || return
+    return
+
   # Success: Change directory and open in File Manager.
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
     cd "$1" || return
     xdg-open "$(pwd)" > /dev/null 2>&1
     return
-
-  # Success: Change Directory.
-  elif [ -d "$1" ] ; then cd "$1" || return ; return ;
 
   # Failure: Catch all.
   else
