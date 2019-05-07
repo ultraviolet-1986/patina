@@ -194,7 +194,7 @@ patina_open_folder() {
     patina_throw_exception 'PE0004'
 
   # Success: Change Directory.
-  elif [ -d "$1" ] ; then
+  elif [ -d "$1" ] && [ -z "$2" ] ; then
     cd "$1" || return
     return
 
