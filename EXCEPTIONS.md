@@ -60,6 +60,11 @@ numbers (Patina Exception) here for reference.
   - This error should be raised when Patina attempts to overwrite a directory
     which already exists.
 
+- **PE0013 `Patina cannot execute this command under this environment.`**
+  - This error should be raised when Patina cannot execute a command due to a
+    constraint under the current system environment e.g. a graphical application
+    cannot be executed in a headless environment.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a
