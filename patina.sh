@@ -218,8 +218,10 @@ patina_open_folder_graphically() {
     return
 
   # Failure: Success condition(s) not met.
-  elif [ "$#" -gt 1 ] ;
-    then patina_throw_exception 'PE0002'
+  elif [ "$XDG_SESSION_TYPE" = 'tty' ] ; then
+    patina_throw_exception 'PE0013'
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
   elif [ -f "$1" ] ; then
     patina_throw_exception 'PE0003'
   elif [ ! -d "$1" ] ; then
