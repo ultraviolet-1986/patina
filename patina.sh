@@ -111,7 +111,6 @@ patina_start() {
   # Connect all detected Patina components.
   for component in "$patina_path_components"/{applications,places,system,user}/patina_*.sh ; do
     if [ -f "$component" ] ; then
-      chmod a-x "$component"
       source "$component"
       patina_components_list+=("${component}")
     fi
