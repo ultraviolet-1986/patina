@@ -49,7 +49,8 @@
 
 #   Parameters:
 #     1. Name of directory to be converted to an ISO disk image.
-#     2. Flag '-f' to bypass ISO-9660 restrictions while creating ISO disk image (optional).
+#     2. Flag '-f' to bypass ISO-9660 restrictions while creating ISO disk image
+#        (optional).
 
 #   Example usage:
 #     $ p-iso ~/Documents

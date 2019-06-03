@@ -12,6 +12,9 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.6 Currently in development**
+  - Included a new component named `patina_applications_timeshift.sh` to allow
+    easier management of the creation and restoration of system snapshots. This
+    is accomplised by the `p-timeshift` command.
   - Added better detection for whether or not the user's session is running
     under X11, Wayland, or as a headless server environment.
   - Using `p-root` or other change-directory commands should not halt when

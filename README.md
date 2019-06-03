@@ -86,6 +86,7 @@ the following packages (correct for Ubuntu):
 - `git` for the `p-update` command.
 - `libreoffice` for the `p-pdf` command.
 - `systemd` for manipulating system services such as networking.
+- `timeshift` for the `p-timeshift` command.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
 
@@ -257,6 +258,16 @@ The following command requires the `libreoffice` package to be installed.
 
 ```bash
 p-pdf "<Document Name>"  # Convert a compatible document into PDF.
+```
+
+#### System Snapshot Management (Timeshift)
+
+In both cases, the following commands require `sudo` privileges, please review
+source code before use.
+
+```bash
+p-timeshift create   # Create a system snapshot using 'Timeshift.'
+p-timeshift restore  # Restore a system snapshot using 'Timeshift'.
 ```
 
 #### Uncomplicated Firewall (UFW)
