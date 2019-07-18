@@ -180,9 +180,7 @@ patina_throw_exception() {
 
 patina_open_folder() {
   # Failure: Success condition(s) not met.
-  if ( ! hash 'xdg-open' ) ; then
-    patina_throw_exception 'PE0006'
-  elif [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
@@ -198,10 +196,14 @@ patina_open_folder() {
     cd "$1" || return
     return
 
-  # Success: Change directory and open in File Manager.
+  # Success: Change directory and open in File Manager if possible.
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
     cd "$1" || return
-    xdg-open "$(pwd)" > /dev/null 2>&1
+
+    if ( hash 'xdg-open' ) ; then
+      xdg-open "$(pwd)" > /dev/null 2>&1
+    fi
+
     return
 
   # Failure: Catch all.
