@@ -12,6 +12,9 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.6 Currently in development**
+  - Corrected the ability to change directory in either graphical or text-based
+    environment.
+  - Exported all path variables in `patina.sh` to correct ShellCheck compliance.
   - Included a new component named `patina_applications_timeshift.sh` to allow
     easier management of the creation and restoration of system snapshots. This
     is accomplished by the `p-timeshift` command.
