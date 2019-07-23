@@ -58,8 +58,6 @@ export readonly PE0013='PE0013: Patina cannot execute this command under this en
 # Patina / Paths / Root
 patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
 export readonly patina_path_root
-export readonly patina_path_components="$patina_path_root/components"
-export readonly patina_path_resources="$patina_path_root/resources"
 
 # Patina / Paths / Configuration
 export readonly patina_path_configuration="$HOME/.config/patina"
@@ -67,12 +65,14 @@ export readonly patina_file_configuration="$patina_path_configuration/patina.con
 export readonly patina_file_source="${BASH_SOURCE[0]}"
 
 # Patina / Paths / Components
+export readonly patina_path_components="$patina_path_root/components"
 export readonly patina_path_components_applications="$patina_path_components/applications"
 export readonly patina_path_components_places="$patina_path_components/places"
 export readonly patina_path_components_system="$patina_path_components/system"
 export readonly patina_path_components_user="$patina_path_components/user"
 
 # Patina / Paths / Resources
+export readonly patina_path_resources="$patina_path_root/resources"
 export readonly patina_path_resources_help="$patina_path_resources/help"
 
 # Patina / Paths / System / Files
