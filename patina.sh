@@ -145,14 +145,20 @@ patina_list_connected_components() {
 
   # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
-    echo_wrap "\\nPatina has connected ${#patina_components_list[@]} component(s)${color_reset}\\n"
+    if ( hash 'tree' > /dev/null 2>&1 ) ; then
+      echo_wrap "\\nPatina has connected the following components:\\n"
+      tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$patina_path_components"
+      echo
+    else
+      echo_wrap "\\nPatina has connected ${#patina_components_list[@]} component(s)${color_reset}\\n"
 
-    for component in "${patina_components_list[@]}" ; do
-      echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
-    done
+      for component in "${patina_components_list[@]}" ; do
+        echo_wrap "$(find "$component" -print0 | xargs -0 basename)"
+      done
 
-    echo
-    return
+      echo
+      return
+    fi
 
   # Failure: Patina Component(s) were not detected.
   else
