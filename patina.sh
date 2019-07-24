@@ -304,6 +304,17 @@ to_upper() {
   fi
 }
 
+generate_uuid() {
+  local label_command_6="head /dev/urandom | tr -dc A-Za-z0-9 | head -c6"
+  local label_command_4="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4"
+
+  echo -e "$(eval "$label_command_6"; printf "-"; eval "$label_command_4"; \
+    printf "-"; eval "$label_command_4; printf "-"; eval "$label_command_4; \
+    printf "-"; eval "$label_command_4; printf "-"; eval "$label_command_4; \
+    printf "-"; eval "$label_command_6; \
+    ")"
+}
+
 patina_terminal_refresh() {
   cd || return
   clear
@@ -329,6 +340,7 @@ export -f 'generate_date_stamp'
 export -f 'patina_throw_exception'
 export -f 'to_lower'
 export -f 'to_upper'
+export -f 'generate_uuid'
 
 ###########
 # Aliases #
@@ -356,6 +368,9 @@ alias 'p-c-user'='patina_open_folder $patina_path_components_user'
 # Patina / Places / Resources
 alias 'p-r'='patina_open_folder $patina_path_resources'
 alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
+
+# Patina / Output
+alias 'p-uuid'='generate_uuid'
 
 #############
 # Kickstart #
