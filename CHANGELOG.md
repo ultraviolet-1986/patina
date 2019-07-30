@@ -12,6 +12,13 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.6 Currently in development**
+  - Included a new command named `p-uuid`. This command will generate a UUID
+    string, which may be copied and used for disk labels, programming
+    placeholders, etc.
+  - Updated the `p-list` command to make use of `tree` (if present) to display a
+    clearer picture of connected components. This is also quicker than the
+    previous method. If `tree` is not present, the old component list will be
+    displayed instead.
   - Corrected the ability to change directory in either graphical or text-based
     environment.
   - Exported all path variables in `patina.sh` to correct ShellCheck compliance.

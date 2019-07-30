@@ -26,6 +26,7 @@ Additional Patina components can be found here:
   - [Place Components](#place-components)
   - [System Components](#system-components)
 - [Helper Functions](#helper-functions)
+- [String Generators](#string-generators)
 
 ## Introduction
 
@@ -364,4 +365,18 @@ script as long as Patina is running:
 echo_wrap "<Paragraph typed here>"  # Will echo and word-wrap a paragraph.
 to_lower "<Phrase typed here>"      # Will convert text to lower-case and echo.
 to_upper "<Phrase typed here>"      # Will convert text to upper-case and echo.
+```
+
+## String Generators
+
+The following commands create suitably formatted strings which may be used for a
+multitude of purposes such as passwords, disk labels, programming placeholders,
+etc.
+
+```bash
+p-uuid                        # Create a 32-character UUID string.
+to_upper "$(p-uuid)"          # Create the above in all upper-case characters.
+to_lower "$(p-uuid)"          # Create the above in all upper-case characters.
+
+patina_generate_volume_label  # Create 8-character disk label.
 ```
