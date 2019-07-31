@@ -25,6 +25,11 @@ Additional Patina components can be found here:
     - [Uncomplicated Firewall (UFW)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
+    - [File Encryption](#file-encryption)
+    - [Network Management](#network-management)
+    - [Package Management](#package-management)
+    - [Display Server](#display-server)
+    - [Desktop Session](#desktop-session)
 - [Helper Functions](#helper-functions)
 - [String Generators](#string-generators)
 
@@ -88,6 +93,7 @@ the following packages (correct for Ubuntu):
 - `libreoffice` for the `p-pdf` command.
 - `systemd` for manipulating system services such as networking.
 - `timeshift` for the `p-timeshift` command.
+- `tree` for an enhanced version of the `p-list` command.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
 
@@ -305,6 +311,8 @@ videos     # Open the Videos directory.
 
 ### System Components
 
+#### File Encryption
+
 The following commands make use of symmetric GnuPG encryption. A passphrase is
 required to both encrypt and decrypt a file.
 
@@ -312,6 +320,8 @@ required to both encrypt and decrypt a file.
 p-decrypt "<Filename>"  # Decrypt a file.
 p-encrypt "<Filename>"  # Encrypt a file.
 ```
+
+#### Network Management
 
 The following commands require a `systemd` environment and will prompt the user
 for a password, please review source code before use.
@@ -324,6 +334,8 @@ p-network start    # Start the networking service.
 p-network status   # Display the status of an Internet connection.
 p-network stop     # Stop the networking service.
 ```
+
+#### Package Management
 
 The following commands require `sudo` privileges and detect the default package
 manager, please review source code before use.
@@ -340,12 +352,16 @@ p-pkg update       # Update package catalogue.
 p-pkg upgrade      # Upgrade outdated package(s).
 ```
 
+#### Display Server
+
 The following commands simply probe the system to help the user see at-a-glance
 information on their current working environment.
 
 ```bash
 p-display  # Show whether the current session is X11 or Wayland.
 ```
+
+#### Desktop Session
 
 The following commands help the user manage their session more efficiently. Note
 that the user must be operating within a `systemd` environment.
@@ -376,7 +392,7 @@ etc.
 ```bash
 p-uuid                        # Create a 32-character UUID string.
 to_upper "$(p-uuid)"          # Create the above in all upper-case characters.
-to_lower "$(p-uuid)"          # Create the above in all upper-case characters.
+to_lower "$(p-uuid)"          # Create the above in all lower-case characters.
 
 patina_generate_volume_label  # Create 8-character disk label.
 ```

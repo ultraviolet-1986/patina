@@ -12,6 +12,7 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.6 Currently in development**
+  - Updated and corrected documentation within `README.md`.
   - Included a new command named `p-uuid`. This command will generate a UUID
     string, which may be copied and used for disk labels, programming
     placeholders, etc.
