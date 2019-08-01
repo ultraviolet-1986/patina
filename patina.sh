@@ -146,13 +146,13 @@ patina_list_connected_components() {
 
   # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
-    # Success: 'tree' is installed. Display directory and component structure.
+    # Success: 'tree' is installed. Display enhanced component list.
     if ( hash 'tree' > /dev/null 2>&1 ) ; then
       echo_wrap "\\nPatina has connected the following ${#patina_components_list[@]} component(s):\\n"
       tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$patina_path_components"
       echo
 
-    # Failure: 'tree' is not installed. Display a simple list of components.
+    # Success: 'tree' is not installed. Display standard component list.
     else
       echo_wrap "\\nPatina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
