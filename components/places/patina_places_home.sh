@@ -24,14 +24,14 @@
 # Variables #
 #############
 
-export readonly patina_path_home_desktop="$HOME/[Dd][Ee][Ss][Kk][Tt][Oo][Pp]"
-export readonly patina_path_home_documents="$HOME/[Dd][Oo][Cc][Uu][Mm][Ee][Nn][Tt][Ss]"
-export readonly patina_path_home_downloads="$HOME/[Dd][Oo][Ww][Nn][Ll][Oo][Aa][Dd][Ss]"
-export readonly patina_path_home_music="$HOME/[Mm][Uu][Ss][Ii][Cc]"
-export readonly patina_path_home_pictures="$HOME/[Pp][Ii][Cc][Tt][Uu][Rr][Ee][Ss]"
-export readonly patina_path_home_public="$HOME/[Pp][Uu][Bb][Ll][Ii][Cc]"
-export readonly patina_path_home_templates="$HOME/[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee][Ss]"
-export readonly patina_path_home_videos="$HOME/[Vv][Ii][Dd][Ee][Oo][Ss]"
+export readonly patina_path_home_desktop="$HOME/Desktop"
+export readonly patina_path_home_documents="$HOME/Documents"
+export readonly patina_path_home_downloads="$HOME/Downloads"
+export readonly patina_path_home_music="$HOME/Music"
+export readonly patina_path_home_pictures="$HOME/Pictures"
+export readonly patina_path_home_public="$HOME/Public"
+export readonly patina_path_home_templates="$HOME/Templates"
+export readonly patina_path_home_videos="$HOME/Videos"
 
 ###########
 # Aliases #
@@ -39,13 +39,13 @@ export readonly patina_path_home_videos="$HOME/[Vv][Ii][Dd][Ee][Oo][Ss]"
 
 alias 'home'='patina_open_folder $HOME'
 
-alias 'desktop'='patina_open_folder $patina_path_home_desktop'
-alias 'documents'='patina_open_folder $patina_path_home_documents'
-alias 'downloads'='patina_open_folder $patina_path_home_downloads'
-alias 'music'='patina_open_folder $patina_path_home_music'
-alias 'pictures'='patina_open_folder $patina_path_home_pictures'
-alias 'public'='patina_open_folder $patina_path_home_public'
-alias 'templates'='patina_open_folder $patina_path_home_templates'
-alias 'videos'='patina_open_folder $patina_path_home_videos'
+alias 'desktop'='patina_open_folder "$patina_path_home_desktop"'
+alias 'documents'='patina_open_folder "$patina_path_home_documents"'
+alias 'downloads'='patina_open_folder "$patina_path_home_downloads"'
+alias 'music'='patina_open_folder "$patina_path_home_music"'
+alias 'pictures'='patina_open_folder "$patina_path_home_pictures"'
+alias 'public'='patina_open_folder "$patina_path_home_public"'
+alias 'templates'='patina_open_folder "$patina_path_home_templates"'
+alias 'videos'='patina_open_folder "$patina_path_home_videos"'
 
 # End of File.
