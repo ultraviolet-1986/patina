@@ -96,6 +96,12 @@ patina_genisoimage_create_iso() {
 }
 
 ###########
+# Exports #
+###########
+
+export -f 'patina_generate_volume_label'
+
+###########
 # Aliases #
 ###########
 

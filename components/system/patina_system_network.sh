@@ -106,6 +106,12 @@ patina_systemd_network_manager() {
 }
 
 ###########
+# Exports #
+###########
+
+export -f 'patina_detect_internet_connection'
+
+###########
 # Aliases #
 ###########
 
