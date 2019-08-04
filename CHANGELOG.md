@@ -12,6 +12,9 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.6 Currently in development**
+  - Corrected path variables for the sake of user component
+    `patina_user_minecraft`, and allow future components to work with user
+    directories.
   - Updated and corrected documentation within `README.md`.
   - Included a new command named `p-uuid`. This command will generate a UUID
     string, which may be copied and used for disk labels, programming
