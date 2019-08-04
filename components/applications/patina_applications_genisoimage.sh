@@ -24,7 +24,7 @@
 # Documentation #
 #################
 
-# Function: 'patina_generate_volume_label'
+# Function: 'generate_volume_label'
 
 #   Notes:
 #     1. Generates a 9-digit disk label at random in format 'XXXX-XXXX'.
@@ -36,7 +36,7 @@
 #     None.
 
 #   Example Usage:
-#     $ patina_generate_volume_label
+#     $ generate_volume_label
 
 # Function: 'patina_genisoimage_create_iso'
 
@@ -59,7 +59,7 @@
 # Functions #
 #############
 
-patina_generate_volume_label() {
+generate_volume_label() {
   local label_command="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4 | tr '[:lower:]' '[:upper:]'"
   echo -e "$(eval "$label_command"; printf "-"; eval "$label_command")"
 }
@@ -81,12 +81,12 @@ patina_genisoimage_create_iso() {
 
   # Success: Create ISO Disk Image (ISO-9660 compliant).
   elif [ -d "$1" ] && [ -z "$2" ] ; then
-    mkisofs -volid "$(patina_generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -joliet -joliet-long -rock "$1"
+    mkisofs -volid "$(generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -joliet -joliet-long -rock "$1"
     return
 
   # Success: Create ISO Disk Image (Non ISO-9660 compliant).
   elif [ -d "$1" ] && [ "$2" = '-f' ] ; then
-    mkisofs -volid "$(patina_generate_volume_label)" -output "$(basename "$1").iso" -input-charset UTF-8 -udf -allow-limited-size -disable-deep-relocation -untranslated-filenames "$1"
+    mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" -input-charset UTF-8 -udf -allow-limited-size -disable-deep-relocation -untranslated-filenames "$1"
     return
 
   # Failure: Catch all.
@@ -99,7 +99,7 @@ patina_genisoimage_create_iso() {
 # Exports #
 ###########
 
-export -f 'patina_generate_volume_label'
+export -f 'generate_volume_label'
 
 ###########
 # Aliases #

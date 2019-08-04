@@ -394,5 +394,5 @@ p-uuid                        # Create a 32-character UUID string.
 to_upper "$(p-uuid)"          # Create the above in all upper-case characters.
 to_lower "$(p-uuid)"          # Create the above in all lower-case characters.
 
-patina_generate_volume_label  # Create 8-character disk label.
+generate_volume_label         # Create 8-character disk label.
 ```
