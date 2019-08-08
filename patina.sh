@@ -225,7 +225,7 @@ patina_open_folder() {
 patina_open_folder_graphically() {
   # Success: Open Home folder graphically in the absence of an agrument.
   if [ "$#" -eq "0" ] ; then
-    patina_open_folder "$HOME" -g
+    patina_open_folder "$HOME" -g > /dev/null 2>&1
     return
 
   # Failure: Success condition(s) not met.
@@ -240,7 +240,7 @@ patina_open_folder_graphically() {
 
   # Success: Open folder graphically.
   elif [ -d "$1" ] ; then
-    patina_open_folder "$1" -g
+    patina_open_folder "$1" -g > /dev/null 2>&1
     return
 
   # Failure: Catch all.
