@@ -66,7 +66,7 @@ generate_volume_label() {
 
 patina_genisoimage_create_iso() {
   # Failure: Success condition(s) not met.
-  if ( ! hash 'mkisofs' > /dev/null 2>&1 ) ; then
+  if ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'

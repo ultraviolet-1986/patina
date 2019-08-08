@@ -33,7 +33,7 @@
 
 patina_detect_system_package_manager() {
   # Success: Distribution is Ubuntu or compatible.
-  if ( hash 'apt' > /dev/null 2>&1 ) ; then
+  if ( command -v 'apt' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='apt'
     readonly patina_package_install='install'
     readonly patina_package_remove='remove'
@@ -41,7 +41,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_upgrade='upgrade'
 
   # Success: Distribution is Fedora or compatible.
-  elif ( hash 'dnf' > /dev/null 2>&1 ) ; then
+  elif ( command -v 'dnf' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='dnf'
     readonly patina_package_install='install'
     readonly patina_package_remove='remove'
@@ -49,7 +49,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_upgrade='upgrade'
 
   # Success: Distribution is Solus or compatible.
-  elif ( hash 'eopkg' > /dev/null 2>&1 ) ; then
+  elif ( command -v 'eopkg' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='eopkg'
     readonly patina_package_install='install'
     readonly patina_package_remove='remove'
@@ -57,7 +57,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_upgrade='upgrade'
 
   # Success: Distribution is Arch or compatible.
-  elif ( hash 'pacman' > /dev/null 2>&1 ) ; then
+  elif ( command -v 'pacman' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='pacman'
     readonly patina_package_install='-S'
     readonly patina_package_remove='-R'
@@ -65,7 +65,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_upgrade='-Syu'
 
   # Success: Distribution is Fedora Silverblue or compatible.
-  elif ( hash 'rpm-ostree' > /dev/null 2>&1 ) ; then
+  elif ( command -v 'rpm-ostree' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='rpm-ostree'
     readonly patina_package_install='install'
     readonly patina_package_remove='uninstall'
@@ -73,7 +73,7 @@ patina_detect_system_package_manager() {
     readonly patina_package_upgrade='upgrade'
 
   # Success: Distribution is openSUSE or compatible.
-  elif ( hash 'zypper' > /dev/null 2>&1 ) ; then
+  elif ( command -v 'zypper' > /dev/null 2>&1 ) ; then
     readonly patina_package_manager='zypper'
     readonly patina_package_install='install'
     readonly patina_package_remove='remove'

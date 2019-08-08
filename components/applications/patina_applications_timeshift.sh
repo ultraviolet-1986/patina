@@ -43,7 +43,7 @@
 
 patina_timeshift() {
   # Failure: Success condition(s) not met.
-  if ( ! hash 'timeshift' ) ; then
+  if ( ! command -v 'timeshift' ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'

@@ -32,7 +32,7 @@
 #############
 
 patina_system_session() {
-  if ( hash 'systemctl' ); then
+  if ( command -v 'systemctl' ); then
     local patina_session_action=''
 
     if [ "$1" = 'reboot' ] || [ "$1" = 'restart' ] ; then

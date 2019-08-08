@@ -44,7 +44,7 @@
 
 patina_libreoffice_convert_document() {
   # Failure: Success condition(s) not met.
-  if ( ! hash 'soffice' ) ; then
+  if ( ! command -v 'soffice' ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'

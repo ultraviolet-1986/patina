@@ -147,7 +147,7 @@ patina_list_connected_components() {
   # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     # Success: 'tree' is installed. Display enhanced component list.
-    if ( hash 'tree' > /dev/null 2>&1 ) ; then
+    if ( command -v 'tree' > /dev/null 2>&1 ) ; then
       echo_wrap "\\nPatina has connected the following ${#patina_components_list[@]} component(s):\\n"
       tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$patina_path_components"
       echo
@@ -210,7 +210,7 @@ patina_open_folder() {
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
     cd "$1" || return
 
-    if ( hash 'xdg-open' ) ; then
+    if ( command -v 'xdg-open' ) ; then
       xdg-open "$(pwd)" > /dev/null 2>&1
     fi
 

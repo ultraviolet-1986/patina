@@ -57,7 +57,7 @@ readonly patina_file_ufw_help="$patina_path_resources_help/patina_applications_u
 
 patina_ufw_configure() {
   # Failure: Success condition(s) not met.
-  if ( ! hash 'ufw' > /dev/null 2>&1 ) ; then
+  if ( ! command -v 'ufw' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
