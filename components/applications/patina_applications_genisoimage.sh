@@ -100,6 +100,7 @@ patina_genisoimage_create_iso() {
 ###########
 
 export -f 'generate_volume_label'
+export -f 'patina_genisoimage_create_iso'
 
 ###########
 # Aliases #
