@@ -63,14 +63,14 @@ patina_show_network_status() {
 }
 
 patina_systemd_network_manager() {
-  if ( ! command -v 'systemctl' ) ; then
+  if ( ! command -v 'systemctl' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0003'
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
 
-  elif ( command -v 'systemctl' ) ; then
+  elif ( command -v 'systemctl' > /dev/null 2>&1 ) ; then
     case "$1" in
       'disable')
         # Pass argument to system and continue.

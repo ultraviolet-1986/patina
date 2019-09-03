@@ -58,7 +58,7 @@ patina_clamav_scan() {
   local patina_clamav_logfile=''
 
   # Failure: Success condition(s) not met.
-  if ( ! command -v 'clamscan' ) ; then
+  if ( ! command -v 'clamscan' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'

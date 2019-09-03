@@ -35,7 +35,7 @@ patina_update() {
   patina_detect_internet_connection
 
   # Failure: Package 'git' is not installed
-  if ( ! command -v 'git' ) ; then
+  if ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
     return
 
