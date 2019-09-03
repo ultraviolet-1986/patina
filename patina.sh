@@ -210,7 +210,7 @@ patina_open_folder() {
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
     cd "$1" || return
 
-    if ( command -v 'xdg-open' ) ; then
+    if ( command -v 'xdg-open' > /dev/null 2>&1 ) ; then
       xdg-open "$(pwd)" > /dev/null 2>&1
     fi
 
