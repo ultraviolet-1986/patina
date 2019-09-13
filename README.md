@@ -22,6 +22,7 @@ Additional Patina components can be found here:
     - [ClamAV](#clamav)
     - [Disk Image Creation (genisoimage)](#disk-image-creation-genisoimage)
     - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
+    - [System Snapshots (Timeshift)](#system-snapshots-timeshift)
     - [Uncomplicated Firewall (UFW)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
@@ -267,7 +268,7 @@ The following command requires the `libreoffice` package to be installed.
 p-pdf "<Document Name>"  # Convert a compatible document into PDF.
 ```
 
-#### System Snapshot Management (Timeshift)
+#### System Snapshots (Timeshift)
 
 In both cases, the following commands require `sudo` privileges, please review
 source code before use.
