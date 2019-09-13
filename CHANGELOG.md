@@ -11,7 +11,7 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
-- **0.7.6 Released Friday, Septermber 13th 2019**
+- **0.7.6 Released Friday, September 13th 2019**
   - Corrected path variables for the sake of user component
     `patina_user_minecraft`, and allow future components to work with user
     directories.
