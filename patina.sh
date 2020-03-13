@@ -5,7 +5,7 @@
 ##########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2019 William Willis Whinn
+# Copyright (C) 2020 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -119,8 +119,8 @@ patina_start() {
 
   # Display main Patina author/copyright header.
   echo_wrap "${patina_major_color}Patina ${patina_metadata_version} '${patina_metadata_codename}' / BASH ${BASH_VERSION%%[^0-9.]*}${color_reset}"
-  echo_wrap "${patina_major_color}Copyright (C) 2019 William Whinn${color_reset}"
-  echo_wrap "${patina_major_color}$patina_metadata_url${color_reset}\\n"
+  echo_wrap "${patina_major_color}Copyright (C) 2020 William Whinn${color_reset}"
+  echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
 
   # Lock variables after Patina is successfully loaded.
   readonly -a patina_components_list
