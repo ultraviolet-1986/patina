@@ -24,11 +24,8 @@
 # ShellCheck Directives #
 #########################
 
-# TODO Check for errors.
-
-#############
-# Variables #
-#############
+# Override SC2154: "var is referenced but not assigned".
+# shellcheck disable=SC2154
 
 #############
 # Functions #
