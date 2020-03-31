@@ -29,6 +29,7 @@ Additional Patina components can be found here:
     - [File Encryption](#file-encryption)
     - [Network Management](#network-management)
     - [Package Management](#package-management)
+    - [Patina Status](#patina-status)
     - [Display Server](#display-server)
     - [Desktop Session](#desktop-session)
 - [Helper Functions](#helper-functions)
