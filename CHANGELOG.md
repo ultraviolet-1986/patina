@@ -12,6 +12,11 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.7 Currently in development**
+  - Included new component `patina_system_patina_status.sh` which includes the
+    command `p-status`. This command will display a list of Patina-compatible
+    applications and whether or not they are installed. This will only detect
+    native distribution packages, Flatpak/Snap have not been accounted for at
+    this time.
 - **0.7.6 Released Friday, September 13th 2019**
   - Corrected path variables for the sake of user component
     `patina_user_minecraft`, and allow future components to work with user

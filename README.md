@@ -353,6 +353,18 @@ p-pkg update       # Update package catalogue.
 p-pkg upgrade      # Upgrade outdated package(s).
 ```
 
+#### Patina Status
+
+The following command will display a list of Patina-compatible applications and
+whether or not they are installed on the system.
+
+**NOTE:** This will detect only distribution-native packages.
+Flatpak/Snap/AppImage has not been accounted for at this time.
+
+```bash
+p-status  # Show Patina-compatible applications and their installation status.
+```
+
 #### Display Server
 
 The following commands simply probe the system to help the user see at-a-glance
