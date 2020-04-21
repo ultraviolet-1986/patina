@@ -32,7 +32,7 @@ patina_git() {
     return
 
   # Failure: Patina cannot detect a required application
-  elif ( command -v 'git' > /dev/null 2>&1 ) ; then
+  elif ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
 
   # Success: Parse 'git' arguments
