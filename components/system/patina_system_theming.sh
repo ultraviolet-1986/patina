@@ -24,7 +24,7 @@
 # ShellCheck Directives #
 #########################
 
-# Some items are defined elsewhere
+# Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
