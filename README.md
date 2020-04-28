@@ -22,6 +22,7 @@ Additional Patina components can be found here:
     - [ClamAV](#clamav)
     - [Disk Image Creation (genisoimage)](#disk-image-creation-genisoimage)
     - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
+    - [Source Control (git)](#source-control-git)
     - [System Snapshots (Timeshift)](#system-snapshots-timeshift)
     - [Uncomplicated Firewall (UFW)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
@@ -91,7 +92,7 @@ the following packages (correct for Ubuntu):
 
 - `clamav` for the `p-clamscan <X>` commands.
 - `genisoimage` for the `p-iso` command.
-- `git` for the `p-update` command.
+- `git` for the `p-update` and `p-git` commands.
 - `libreoffice` for the `p-pdf` command.
 - `systemd` for manipulating system services such as networking.
 - `timeshift` for the `p-timeshift` command.
@@ -267,6 +268,14 @@ The following command requires the `libreoffice` package to be installed.
 
 ```bash
 p-pdf "<Document Name>"  # Convert a compatible document into PDF.
+```
+
+#### Source Control (git)
+
+These commands will help to perform multi-argument tasks more quickly.
+
+```bash
+p-git undo  # Discard changes made to a git repository since previous commit.
 ```
 
 #### System Snapshots (Timeshift)
