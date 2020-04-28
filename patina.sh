@@ -157,7 +157,7 @@ patina_list_connected_components() {
       echo_wrap "\\nPatina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
       for component in "${patina_components_list[@]}" ; do
-        echo_wrap "$(basename $component)"
+        echo_wrap "$(basename "$component")"
       done
 
       echo
