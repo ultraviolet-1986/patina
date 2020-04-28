@@ -17,6 +17,11 @@ after an evil butler tries to steal their inheritance.
     applications and whether or not they are installed. This will only detect
     native distribution packages, Flatpak/Snap have not been accounted for at
     this time.
+  - Updated some of the component headers for the sake of consistency.
+  - Included another new component `patina_applications_git.sh` which provides
+    the `p-git` command. At present, the command only works with the argument
+    `undo`. The complete command `p-git undo` will scrap any changes made in a
+    git repository since the previous commit.
 - **0.7.6 Released Friday, September 13th 2019**
   - Corrected path variables for the sake of user component
     `patina_user_minecraft`, and allow future components to work with user
