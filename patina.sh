@@ -181,7 +181,7 @@ patina_throw_exception() {
 
   # Success: Display Patina Exception.
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
-    echo_wrap "${red}Exception ${!1}${color_reset}"
+    echo_wrap "${red}${!1}${color_reset}"
     return
 
   # Failure: Catch all.
