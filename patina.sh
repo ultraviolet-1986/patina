@@ -39,6 +39,7 @@ readonly patina_metadata_version='0.7.8'
 readonly patina_metadata_codename='Duchess'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 readonly patina_metadata_tinyurl='https://tinyurl.com/patina-bash'
+readonly patina_metadata_bitly='https://bit.ly/3ecP6BJ'
 
 # Patina / Core / Exceptions
 export readonly PE0000='PE0000: Patina has encountered an unknown error.'
