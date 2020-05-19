@@ -20,6 +20,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+#############
+# Functions #
+#############
+
 patina_git() {
   # Failure: Patina has not been given an argument
   if [ "$#" -eq "0" ] ; then

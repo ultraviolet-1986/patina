@@ -70,7 +70,7 @@ patina_genisoimage_create_iso() {
     patina_throw_exception 'PE0006'
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 2 ] ; then
+  elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
   elif [ -n "$2" ] && [ "$2" != '-f' ] ; then
     patina_throw_exception 'PE0001'
