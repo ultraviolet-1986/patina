@@ -25,8 +25,12 @@
 #############
 
 patina_git() {
+  # Failure: Patina cannot detect a required application
+  if ( ! command -v 'git' > /dev/null 2>&1 ) ; then
+    patina_throw_exception 'PE0006'
+
   # Failure: Patina has not been given an argument
-  if [ "$#" -eq "0" ] ; then
+  elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
     return
 
@@ -34,10 +38,6 @@ patina_git() {
   elif [ "$#" -gt "1" ] ; then
     patina_throw_exception 'PE0002'
     return
-
-  # Failure: Patina cannot detect a required application
-  elif ( ! command -v 'git' > /dev/null 2>&1 ) ; then
-    patina_throw_exception 'PE0006'
 
   # Success: Parse 'git' arguments
   elif [ "$1" = 'undo' ] ; then

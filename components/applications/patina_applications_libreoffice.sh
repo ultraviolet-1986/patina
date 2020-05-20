@@ -57,7 +57,6 @@ patina_libreoffice_convert_document() {
   elif [ -f "$1" ] ; then
     soffice --convert-to pdf "$1"
 
-
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
