@@ -388,6 +388,7 @@ export -f 'generate_uuid'
 # Patina / Core
 alias 'p-help'='less $patina_path_root/README.md'
 
+# Patina / Reports
 alias 'p-version'='patina_show_version_report'
 alias 'p-list'='patina_show_component_report'
 alias 'p-report'='patina_show_system_report'
