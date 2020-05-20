@@ -185,10 +185,6 @@ patina
     |   +-- places
     |   +-- system
     |   +-- user
-    |
-    +-- resources
-    |   |
-    |   +-- help
 ```
 
 This layout is inspired by the GNOME 2 / MATE desktops' custom menu bar, which
@@ -255,9 +251,6 @@ p-c-applications  # Open the Patina 'application components' directory.
 p-c-places        # Open the Patina 'place components' directory.
 p-c-system        # Open the Patina 'system components' directory.
 p-c-user          # Open the Patina 'user components' directory.
-
-p-r               # Open the Patina 'resources' directory.
-p-r-help          # Open the Patina 'help resources' directory.
 ```
 
 ### Application Components
@@ -279,6 +272,7 @@ The following command requires the `genisoimage` package to be installed.
 
 ```bash
 p-iso "<Directory Name>"  # Create an ISO disk image from a folder.
+p-iso --help              # Display instructions for the `p-iso` command.
 ```
 
 #### Document Conversion (LibreOffice)
@@ -310,7 +304,8 @@ p-timeshift restore  # Restore a system snapshot using 'Timeshift'.
 #### Uncomplicated Firewall (UFW)
 
 In most cases, the following commands require `sudo` privileges, please review
-source code before use.
+source code before use. Note that this is aimed toward Linux distributions which
+provide 'ufw' but do not activate it by default.
 
 ```bash
 p-ufw disable  # Disable the `ufw` firewall (not recommended).

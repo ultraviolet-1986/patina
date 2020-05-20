@@ -22,6 +22,8 @@ after an evil butler tries to steal their inheritance.
   - The main header will now be hidden by default. Information previously shown
     here can now be accessed using the `p-version` command. This will also show
     information regarding the current software license.
+  - The concept of resources has been removed to favour a more native built-in
+    help system.
 - **0.7.7 Released Tuesday, April 28th 2020**
   - Included new component `patina_system_patina_status.sh` which includes the
     command `p-status`. This command will display a list of Patina-compatible

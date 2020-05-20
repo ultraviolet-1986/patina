@@ -71,10 +71,6 @@ export readonly patina_path_components_places="$patina_path_components/places"
 export readonly patina_path_components_system="$patina_path_components/system"
 export readonly patina_path_components_user="$patina_path_components/user"
 
-# Patina / Paths / Resources
-export readonly patina_path_resources="$patina_path_root/resources"
-export readonly patina_path_resources_help="$patina_path_resources/help"
-
 # Patina / Paths / System / Files
 readonly system_os_release='/etc/os-release'
 readonly system_lsb_release='/etc/lsb-release'
@@ -409,10 +405,6 @@ alias 'p-c-applications'='patina_open_folder $patina_path_components_application
 alias 'p-c-places'='patina_open_folder $patina_path_components_places'
 alias 'p-c-system'='patina_open_folder $patina_path_components_system'
 alias 'p-c-user'='patina_open_folder $patina_path_components_user'
-
-# Patina / Places / Resources
-alias 'p-r'='patina_open_folder $patina_path_resources'
-alias 'p-r-help'='patina_open_folder $patina_path_resources_help'
 
 # Patina / Output
 alias 'p-uuid'='generate_uuid'
