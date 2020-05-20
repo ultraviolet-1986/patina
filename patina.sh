@@ -172,6 +172,37 @@ patina_list_connected_components() {
   fi
 }
 
+patina_show_system_report() {
+  echo
+
+  # Display Header
+  echo_wrap "${bold}${patina_major_color}Patina System Report${color_reset}\n"
+
+  # Show System Report
+  echo_wrap "${bold}${patina_minor_color}Operating System:${color_reset}\t\
+    $PRETTY_NAME"
+
+  echo_wrap "${bold}${patina_minor_color}Operating System URL:${color_reset}\t\
+    $HOME_URL"
+
+  echo_wrap "${bold}${patina_minor_color}Current Session:${color_reset}\t\
+    $XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
+
+  echo_wrap "${bold}${patina_minor_color}Linux Kernel Version:${color_reset}\t\
+    $(uname -r)"
+
+  echo_wrap "${bold}${patina_minor_color}Package Manager:${color_reset}\t\
+    $(to_upper "${patina_package_manager}")"
+
+  echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\t\t\
+    ${BASH_VERSION%%[^0-9.]*}"
+
+  echo_wrap "${bold}${patina_minor_color}Patina Version:${color_reset}\t\t\
+    $patina_metadata_version"
+
+  echo
+}
+
 patina_throw_exception() {
   # Failure: Success condition(s) not met.
   if [ "$#" -eq "0" ] ; then
@@ -352,6 +383,7 @@ export -f 'generate_uuid'
 alias 'p-help'='less $patina_path_root/README.md'
 
 alias 'p-list'='patina_list_connected_components'
+alias 'p-report'='patina_show_system_report'
 
 alias 'p-refresh'='patina_terminal_refresh'
 alias 'p-reset'='patina_terminal_reset'
