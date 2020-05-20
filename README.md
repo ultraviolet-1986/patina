@@ -31,7 +31,6 @@ Additional Patina components can be found here:
     - [Network Management](#network-management)
     - [Package Management](#package-management)
     - [Patina Status](#patina-status)
-    - [System Report](#system-report)
     - [Desktop Session](#desktop-session)
 - [Helper Functions](#helper-functions)
 - [String Generators](#string-generators)
@@ -191,9 +190,12 @@ The basic commands are listed below:
 ```bash
 p-help     # Display this file within the Terminal.
 p-update   # Check for and apply Patina updates.
-p-list     # Display a list of connected Patina components.
 p-refresh  # Restart Patina to detect and connect to new components.
 p-reset    # Clear command-line history and restart Patina.
+
+p-list     # Display a list of connected Patina components.
+p-report   # Display information regarding the current system environment.
+p-version  # Display information regarding patina such as version and license.
 ```
 
 ### Themes
@@ -371,15 +373,6 @@ Flatpak/Snap/AppImage has not been accounted for at this time.
 
 ```bash
 p-status  # Show Patina-compatible applications and their installation status.
-```
-
-#### System Report
-
-The following commands simply probe the system to help the user see at-a-glance
-information on their current working environment.
-
-```bash
-p-report  # Display information relating to the operating system.
 ```
 
 #### Desktop Session

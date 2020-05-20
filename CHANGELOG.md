@@ -19,6 +19,9 @@ after an evil butler tries to steal their inheritance.
     now be accessed by using the above `p-report` command.
   - Converted some application component arguments to double-hyphen syntax to
     more closely match standard command-line applications.
+  - The main header will now be hidden by default. Information previously shown
+    here can now be accessed using the `p-version` command. This will also show
+    information regarding the current software license.
 - **0.7.7 Released Tuesday, April 28th 2020**
   - Included new component `patina_system_patina_status.sh` which includes the
     command `p-status`. This command will display a list of Patina-compatible
