@@ -31,7 +31,7 @@ Additional Patina components can be found here:
     - [Network Management](#network-management)
     - [Package Management](#package-management)
     - [Patina Status](#patina-status)
-    - [Display Server](#display-server)
+    - [System Report](#system-report)
     - [Desktop Session](#desktop-session)
 - [Helper Functions](#helper-functions)
 - [String Generators](#string-generators)
@@ -375,13 +375,13 @@ Flatpak/Snap/AppImage has not been accounted for at this time.
 p-status  # Show Patina-compatible applications and their installation status.
 ```
 
-#### Display Server
+#### System Report
 
 The following commands simply probe the system to help the user see at-a-glance
 information on their current working environment.
 
 ```bash
-p-display  # Show whether the current session is X11 or Wayland.
+p-report  # Display information relating to the operating system.
 ```
 
 #### Desktop Session
