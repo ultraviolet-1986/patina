@@ -75,7 +75,6 @@ patina_clamav_scan() {
 
     echo -e "\\n"
 
-    # tput civis
     echo_wrap "Preparing 'clamav' virus scan, please wait...\\n"
 
     case "$patina_create_clamav_logfile" in
@@ -84,7 +83,6 @@ patina_clamav_scan() {
       *) patina_throw_exception 'PE0003'; return ;;
     esac
 
-    # tput cnorm
     echo
 
   # Failure: Catch all.
