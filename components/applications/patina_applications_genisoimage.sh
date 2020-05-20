@@ -20,41 +20,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#################
-# Documentation #
-#################
-
-# Function: 'generate_volume_label'
-
-#   Notes:
-#     1. Generates a 9-digit disk label at random in format 'XXXX-XXXX'.
-
-#   Required Packages:
-#     1. 'coreutils' for command 'head'.
-
-#   Parameters:
-#     None.
-
-#   Example Usage:
-#     $ generate_volume_label
-
-# Function: 'patina_genisoimage_create_iso'
-
-#   Notes:
-#     1. Restrictions enabled to enforce ISO-9660 compliance.
-#     2. All generated disk images will be stored within user's Home directory.
-
-#   Required Packages:
-#     1. 'genisoimage' for command 'mkisofs'.
-
-#   Parameters:
-#     1. Name of directory to be converted to an ISO disk image.
-#     2. Flag '-f' to bypass ISO-9660 restrictions while creating ISO disk image
-#        (optional).
-
-#   Example usage:
-#     $ p-iso ~/Documents
-
 #############
 # Functions #
 #############
@@ -65,28 +30,58 @@ generate_volume_label() {
 }
 
 patina_genisoimage_create_iso() {
-  # Failure: Success condition(s) not met.
+  # Failure: Command 'mkisofs' is not available.
   if ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
+
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-  elif [ -n "$2" ] && [ "$2" != '-f' ] ; then
+
+  # Success: Display help and exit.
+  elif [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-iso [FILE/DIRECTORY] [OPTION]"
+    echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
+    echo_wrap "Create a read-only disk image in .iso format."
+    echo
+    echo_wrap "  --force\tBypass ISO-9660 restrictions (optional)"
+    echo_wrap "  --help\tDisplay this help and exit"
+
+  # Failure: A valid argument was not provided.
+  elif [ -n "$2" ] && [ "$2" != '--force' ] ; then
     patina_throw_exception 'PE0001'
+
+  # Failure: The target directory does not exist.
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
+
+  # Failure: The target disk image already exists.
   elif [ -f "$(basename "$1").iso" ] ; then
     patina_throw_exception 'PE0011'
 
   # Success: Create ISO Disk Image (ISO-9660 compliant).
   elif [ -d "$1" ] && [ -z "$2" ] ; then
-    mkisofs -volid "$(generate_volume_label)" -o "$(basename "$1").iso" -input-charset UTF-8 -joliet -joliet-long -rock "$1"
+    mkisofs -volid "$(generate_volume_label)" -o "$(basename "$1").iso" \
+      -input-charset UTF-8 \
+      -joliet \
+      -joliet-long \
+      -rock \
+      "$1"
     return
 
   # Success: Create ISO Disk Image (Non ISO-9660 compliant).
-  elif [ -d "$1" ] && [ "$2" = '-f' ] ; then
-    mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" -input-charset UTF-8 -udf -allow-limited-size -disable-deep-relocation -untranslated-filenames "$1"
+  elif [ -d "$1" ] && [ "$2" = '--force' ] ; then
+    mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" \
+      -input-charset UTF-8 \
+      -udf \
+      -allow-limited-size \
+      -disable-deep-relocation \
+      -untranslated-filenames \
+      "$1"
     return
 
   # Failure: Catch all.
