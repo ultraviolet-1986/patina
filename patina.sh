@@ -204,7 +204,6 @@ patina_show_system_report() {
     echo_wrap "${bold}${patina_minor_color}Linux Kernel Version:${color_reset}\\t$(uname -r)"
     echo_wrap "${bold}${patina_minor_color}Package Manager:${color_reset}\\t$(to_upper "${patina_package_manager}")"
     echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\\t\\t${BASH_VERSION%%[^0-9.]*}"
-    echo_wrap "${bold}${patina_minor_color}Patina Version:${color_reset}\\t\\t$patina_metadata_version"
 
     echo
   else
