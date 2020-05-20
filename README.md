@@ -64,6 +64,24 @@ This is named `.bashrc` and a sample line can be seen below:
 source "$HOME/Workspace/patina/patina.sh"
 ```
 
+### Step 3
+
+Patina should now be connected. In the header of a new Terminal window, the word
+'Patina' and the current working directory should now be visible. Also, the
+command prompt will change to:
+
+```bash
+user@host ~ P$
+```
+
+This prompt is split into three components:
+
+1. User name and host name.
+2. Current working directory.
+3. Command prompt for Patina BASH ('P$' as opposed to '$').
+
+From this point onward, all Patina commands should now be available.
+
 ## Features
 
 Patina is a BASH script with transparent and easy-to-read code, which contains
