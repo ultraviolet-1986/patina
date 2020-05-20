@@ -185,8 +185,11 @@ patina_show_component_report() {
 }
 
 patina_show_system_report() {
+  # Failure: Patina has been given too many arguments.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
+
+  # Success: Display the Patina System Report.
   elif [ "$#" -eq 0 ] ; then
     echo
 
