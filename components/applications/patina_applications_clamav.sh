@@ -20,36 +20,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#################
-# Documentation #
-#################
-
-# Function: 'patina_clamav_scan'
-
-#   Required Packages:
-#     1. 'clamav' for command 'clamscan'.
-
-#   Parameters:
-#     1. Name of file/directory to be recursively scanned using ClamAV.
-
-#   Example usage:
-#     $ p-clamscan ~/Documents
-#     $ p-clamscan --help
-#     $ p-clamscan --repair
-
-#########################
-# ShellCheck Directives #
-#########################
-
-# Override SC2154: "var is referenced but not assigned".
-# shellcheck disable=SC2154
-
-#############
-# Variables #
-#############
-
-readonly patina_file_clamav_help="$patina_path_resources_help/patina_applications_clamav_help.txt"
-
 #############
 # Functions #
 #############
@@ -68,7 +38,12 @@ patina_clamav_scan() {
 
   # Success: Display contents of help file.
   elif [ "$1" = '--help' ] ; then
-    patina_clamav_help
+    echo_wrap "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
+    echo_wrap "Dependencies: 'clamscan' command from package 'clamav'."
+    echo_wrap "Perform a recursive virus scan of a given location and record results."
+    echo
+    echo_wrap "  --repair\tPurge and replace current virus database"
+    echo_wrap "  --help\tDisplay this help and exit"
     return
 
   # Success: Repair Freshclam update mechanism.
@@ -91,15 +66,9 @@ patina_clamav_scan() {
     read -n1 -r answer
 
     case "$answer" in
-      'Y' | 'y')
-        patina_create_clamav_logfile='true'
-        ;;
-      'N' | 'n')
-        patina_create_clamav_logfile='false'
-        ;;
-      *)
-        patina_throw_exception 'PE0003'
-        ;;
+      'Y'|'y') patina_create_clamav_logfile='true' ;;
+      'N'|'n') patina_create_clamav_logfile='false' ;;
+      *) patina_throw_exception 'PE0003' ;;
     esac
 
     patina_clamav_logfile="clamscan_log_$(generate_date_stamp).txt"
@@ -122,12 +91,6 @@ patina_clamav_scan() {
   else
     patina_throw_exception 'PE0000'
   fi
-}
-
-patina_clamav_help() {
-  clear
-  echo_wrap "${underline}${patina_major_color}Patina / ClamAV Instructions${color_reset}\\n"
-  echo_wrap "$(cat "${patina_file_clamav_help}")\\n"
 }
 
 ###########
