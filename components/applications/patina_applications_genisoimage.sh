@@ -55,6 +55,10 @@ patina_genisoimage_create_iso() {
   elif [ -n "$2" ] && [ "$2" != '--force' ] ; then
     patina_throw_exception 'PE0001'
 
+  # Failure: The target exists, but is a file.
+  elif [ -f "$1" ] ; then
+    patina_throw_exception 'PE0003'
+
   # Failure: The target directory does not exist.
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
