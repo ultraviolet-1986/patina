@@ -141,7 +141,7 @@ patina_show_version_report() {
 
   # Success: Display Patina information.
   elif [ "$#" -eq 0 ] ; then
-    echo_wrap "Patina ${patina_metadata_version}"
+    echo_wrap "Patina ${patina_metadata_version} '${patina_metadata_codename}'"
     echo_wrap "Copyright (C) 2020 William Whinn"
     echo_wrap "${patina_metadata_url}"
     echo_wrap "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>."
