@@ -148,9 +148,9 @@ patina_show_version_report() {
     echo_wrap "This is free software: you are free to change and redistribute it."
     echo_wrap "There is NO WARRANTY, to the extent permitted by law."
 
-  # Failure: Patina Component(s) were not detected.
+  # Failure: Catch all.
   else
-    patina_throw_exception 'PE0007'
+    patina_throw_exception 'PE0000'
   fi
 }
 
@@ -206,6 +206,8 @@ patina_show_system_report() {
     echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\\t\\t${BASH_VERSION%%[^0-9.]*}"
 
     echo
+
+  # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
   fi
