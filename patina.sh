@@ -117,11 +117,6 @@ patina_start() {
     fi
   done
 
-  # Display main Patina author/copyright header.
-  echo_wrap "${patina_major_color}Patina ${patina_metadata_version} '${patina_metadata_codename}' / BASH ${BASH_VERSION%%[^0-9.]*}${color_reset}"
-  echo_wrap "${patina_major_color}Copyright (C) 2020 William Whinn${color_reset}"
-  echo_wrap "${patina_minor_color}$patina_metadata_url${color_reset}\\n"
-
   # Lock variables after Patina is successfully loaded.
   readonly -a patina_components_list
   readonly TERM="$TERM"
@@ -137,6 +132,26 @@ patina_create_configuration_file() {
 
   # Refresh the terminal to load new configuration.
   patina_terminal_refresh
+}
+
+patina_show_version_report() {
+  # Failure: Success condition(s) not met.
+  if [ "$#" -ge 1 ] ; then
+    patina_throw_exception 'PE0002'
+
+  # Success: Display Patina information.
+  elif [ "$#" -eq 0 ] ; then
+    echo_wrap "Patina ${patina_metadata_version}"
+    echo_wrap "Copyright (C) 2020 William Whinn"
+    echo_wrap "${patina_metadata_url}"
+    echo_wrap "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>."
+    echo_wrap "This is free software: you are free to change and redistribute it."
+    echo_wrap "There is NO WARRANTY, to the extent permitted by law."
+
+  # Failure: Patina Component(s) were not detected.
+  else
+    patina_throw_exception 'PE0007'
+  fi
 }
 
 patina_show_component_report() {
@@ -376,6 +391,7 @@ export -f 'generate_uuid'
 # Patina / Core
 alias 'p-help'='less $patina_path_root/README.md'
 
+alias 'p-version'='patina_show_version_report'
 alias 'p-list'='patina_show_component_report'
 alias 'p-report'='patina_show_system_report'
 
