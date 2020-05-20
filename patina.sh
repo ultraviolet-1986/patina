@@ -38,8 +38,6 @@
 readonly patina_metadata_version='0.7.8'
 readonly patina_metadata_codename='Duchess'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
-readonly patina_metadata_tinyurl='https://tinyurl.com/patina-bash'
-readonly patina_metadata_bitly='https://bit.ly/3ecP6BJ'
 
 # Patina / Core / Exceptions
 export readonly PE0000='PE0000: Patina has encountered an unknown error.'
@@ -141,23 +139,26 @@ patina_create_configuration_file() {
   patina_terminal_refresh
 }
 
-patina_list_connected_components() {
+patina_show_component_reports() {
   # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
 
   # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
+
+    # Display Header
+    echo
+    echo_wrap "${bold}${patina_major_color}Patina Component Report${color_reset}\\n"
+    echo_wrap "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
+
     # Success: 'tree' is installed. Display enhanced component list.
     if ( command -v 'tree' > /dev/null 2>&1 ) ; then
-      echo_wrap "\\nPatina has connected the following ${#patina_components_list[@]} component(s):\\n"
       tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$patina_path_components"
       echo
 
     # Success: 'tree' is not installed. Display standard component list.
     else
-      echo_wrap "\\nPatina has connected the following ${#patina_components_list[@]} component(s):\\n"
-
       for component in "${patina_components_list[@]}" ; do
         echo_wrap "$(basename "$component")"
       done
@@ -176,28 +177,28 @@ patina_show_system_report() {
   echo
 
   # Display Header
-  echo_wrap "${bold}${patina_major_color}Patina System Report${color_reset}\n"
+  echo_wrap "${bold}${patina_major_color}Patina System Report${color_reset}\\n"
 
   # Show System Report
-  echo_wrap "${bold}${patina_minor_color}Operating System:${color_reset}\t\
+  echo_wrap "${bold}${patina_minor_color}Operating System:${color_reset}\\t\
     $PRETTY_NAME"
 
-  echo_wrap "${bold}${patina_minor_color}Operating System URL:${color_reset}\t\
+  echo_wrap "${bold}${patina_minor_color}Operating System URL:${color_reset}\\t\
     $HOME_URL"
 
-  echo_wrap "${bold}${patina_minor_color}Current Session:${color_reset}\t\
+  echo_wrap "${bold}${patina_minor_color}Current Session:${color_reset}\\t\
     $XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
 
-  echo_wrap "${bold}${patina_minor_color}Linux Kernel Version:${color_reset}\t\
+  echo_wrap "${bold}${patina_minor_color}Linux Kernel Version:${color_reset}\\t\
     $(uname -r)"
 
-  echo_wrap "${bold}${patina_minor_color}Package Manager:${color_reset}\t\
+  echo_wrap "${bold}${patina_minor_color}Package Manager:${color_reset}\\t\
     $(to_upper "${patina_package_manager}")"
 
-  echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\t\t\
+  echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\\t\\t\
     ${BASH_VERSION%%[^0-9.]*}"
 
-  echo_wrap "${bold}${patina_minor_color}Patina Version:${color_reset}\t\t\
+  echo_wrap "${bold}${patina_minor_color}Patina Version:${color_reset}\\t\\t\
     $patina_metadata_version"
 
   echo
@@ -382,7 +383,7 @@ export -f 'generate_uuid'
 # Patina / Core
 alias 'p-help'='less $patina_path_root/README.md'
 
-alias 'p-list'='patina_list_connected_components'
+alias 'p-list'='patina_show_component_reports'
 alias 'p-report'='patina_show_system_report'
 
 alias 'p-refresh'='patina_terminal_refresh'
