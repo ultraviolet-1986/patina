@@ -34,7 +34,8 @@
 
 #   Example usage:
 #     $ p-clamscan ~/Documents
-#     $ p-clamscan help
+#     $ p-clamscan --help
+#     $ p-clamscan --repair
 
 #########################
 # ShellCheck Directives #
@@ -64,22 +65,24 @@ patina_clamav_scan() {
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-  elif [[ ! -e "$1" ]] ; then
-    patina_throw_exception 'PE0004'
 
   # Success: Display contents of help file.
-  elif [ "$1" = 'help' ] || [ "$1" = '?' ] ; then
+  elif [ "$1" = '--help' ] ; then
     patina_clamav_help
     return
 
   # Success: Repair Freshclam update mechanism.
   # Warning: Uses 'sudo' to delete system files.
-  elif [ "$1" = 'repair' ] ; then
+  elif [ "$1" = '--repair' ] ; then
     local clamav_path='/var/lib/clamav'
     cd "$clamav_path" || exit
     sudo rm bytecode.cvd daily.cld main.cvd mirrors.dat
     cd ~- || exit
     return
+
+  # Failure: Scan target does not exist.
+  elif [[ ! -e "$1" ]] ; then
+    patina_throw_exception 'PE0004'
 
   # Success: Guide user in performing virus scan.
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
@@ -103,7 +106,7 @@ patina_clamav_scan() {
 
     echo -e "\\n"
 
-    tput civis
+    # tput civis
     echo_wrap "Preparing 'clamav' virus scan, please wait...\\n"
 
     case "$patina_create_clamav_logfile" in
@@ -112,7 +115,7 @@ patina_clamav_scan() {
       *) patina_throw_exception 'PE0003'; return ;;
     esac
 
-    tput cnorm
+    # tput cnorm
     echo
 
   # Failure: Catch all.

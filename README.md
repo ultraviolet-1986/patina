@@ -249,9 +249,8 @@ code before use.
 
 ```bash
 p-clamscan         # Perform a ClamAV virus scan on a given path.
-p-clamscan help    # Display instructions for the `p-clamscan` commands.
-p-clamscan ?       # Display instructions for the `p-clamscan` commands.
 p-clamscan repair  # Repair ClamAV update mechanism.
+p-clamscan --help  # Display instructions for the `p-clamscan` commands.
 ```
 
 #### Disk Image Creation (genisoimage)
@@ -296,11 +295,10 @@ source code before use.
 ```bash
 p-ufw disable  # Disable the `ufw` firewall (not recommended).
 p-ufw enable   # Enable the `ufw` firewall (recommended).
-p-ufw help     # Display instructions for `p-ufw` commands.
-p-ufw ?        # Display instructions for `p-ufw` commands.
 p-ufw reset    # Enable the `ufw` firewall and reset default rules.
 p-ufw setup    # Enable the `ufw` firewall with some basic defaults.
 p-ufw status   # Display the status of the `ufw` firewall in a table.
+p-ufw --help   # Display instructions for `p-ufw` commands.
 ```
 
 ### Place Components

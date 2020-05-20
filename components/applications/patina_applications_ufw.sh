@@ -73,7 +73,7 @@ patina_ufw_configure() {
       'enable')
         sudo ufw enable
         ;;
-      'help' | '?')
+      '--help')
         patina_ufw_help
         ;;
       'setup')
