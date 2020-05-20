@@ -174,39 +174,32 @@ patina_show_component_reports() {
 }
 
 patina_show_system_report() {
-  echo
+  if [ "$#" -ge 1 ] ; then
+    patina_throw_exception 'PE0002'
+  elif [ "$#" -eq 0 ] ; then
+    echo
 
-  # Display Header
-  echo_wrap "${bold}${patina_major_color}Patina System Report${color_reset}\\n"
+    # Display Header
+    echo_wrap "${bold}${patina_major_color}Patina System Report${color_reset}\\n"
 
-  # Show System Report
-  echo_wrap "${bold}${patina_minor_color}Operating System:${color_reset}\\t\
-    $PRETTY_NAME"
+    # Show System Report
+    echo_wrap "${bold}${patina_minor_color}Operating System:${color_reset}\\t$PRETTY_NAME"
+    echo_wrap "${bold}${patina_minor_color}Operating System URL:${color_reset}\\t$HOME_URL"
+    echo_wrap "${bold}${patina_minor_color}Current Session:${color_reset}\\t$XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
+    echo_wrap "${bold}${patina_minor_color}Linux Kernel Version:${color_reset}\\t$(uname -r)"
+    echo_wrap "${bold}${patina_minor_color}Package Manager:${color_reset}\\t$(to_upper "${patina_package_manager}")"
+    echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\\t\\t${BASH_VERSION%%[^0-9.]*}"
+    echo_wrap "${bold}${patina_minor_color}Patina Version:${color_reset}\\t\\t$patina_metadata_version"
 
-  echo_wrap "${bold}${patina_minor_color}Operating System URL:${color_reset}\\t\
-    $HOME_URL"
-
-  echo_wrap "${bold}${patina_minor_color}Current Session:${color_reset}\\t\
-    $XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
-
-  echo_wrap "${bold}${patina_minor_color}Linux Kernel Version:${color_reset}\\t\
-    $(uname -r)"
-
-  echo_wrap "${bold}${patina_minor_color}Package Manager:${color_reset}\\t\
-    $(to_upper "${patina_package_manager}")"
-
-  echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\\t\\t\
-    ${BASH_VERSION%%[^0-9.]*}"
-
-  echo_wrap "${bold}${patina_minor_color}Patina Version:${color_reset}\\t\\t\
-    $patina_metadata_version"
-
-  echo
+    echo
+  else
+    patina_throw_exception 'PE0000'
+  fi
 }
 
 patina_throw_exception() {
   # Failure: Success condition(s) not met.
-  if [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
@@ -224,7 +217,7 @@ patina_throw_exception() {
 
 patina_open_folder() {
   # Failure: Success condition(s) not met.
-  if [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
@@ -258,7 +251,7 @@ patina_open_folder() {
 
 patina_open_folder_graphically() {
   # Success: Open Home folder graphically in the absence of an agrument.
-  if [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq 0 ] ; then
     patina_open_folder "$HOME" -g > /dev/null 2>&1
     return
 
@@ -287,7 +280,7 @@ generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; }
 
 echo_wrap() {
   # Failure: Success condition(s) not met.
-  if [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
@@ -304,7 +297,7 @@ echo_wrap() {
 
 to_lower() {
   # Failure: Success condition(s) not met.
-  if [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
@@ -322,7 +315,7 @@ to_lower() {
 
 to_upper() {
   # Failure: Success condition(s) not met.
-  if [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
