@@ -139,7 +139,7 @@ patina_create_configuration_file() {
   patina_terminal_refresh
 }
 
-patina_show_component_reports() {
+patina_show_component_report() {
   # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
@@ -376,7 +376,7 @@ export -f 'generate_uuid'
 # Patina / Core
 alias 'p-help'='less $patina_path_root/README.md'
 
-alias 'p-list'='patina_show_component_reports'
+alias 'p-list'='patina_show_component_report'
 alias 'p-report'='patina_show_system_report'
 
 alias 'p-refresh'='patina_terminal_refresh'
