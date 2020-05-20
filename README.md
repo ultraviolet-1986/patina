@@ -155,7 +155,7 @@ convention, but it can be useful to keep your functionality separate from the
 rest of the shell and help to prevent naming conflicts.
 
 With Patina version `0.1.0` and later, semantic version numbering is added and
-displayed alongside the current version of BASH. This will be in the format of
+can be displayed by using the `p-version` command. This will be in the format of
 `Major.Minor.Revision`.
 
 ## Patina Layout
