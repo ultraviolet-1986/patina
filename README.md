@@ -209,7 +209,7 @@ p-update   # Check for and apply Patina updates.
 p-refresh  # Restart Patina to detect and connect to new components.
 p-reset    # Clear command-line history and restart Patina.
 
-p-version  # Display information regarding patina such as version and license.
+p-version  # Display information regarding Patina such as version and license.
 p-deps     # Display a list of Patina dependencies and their current state.
 p-list     # Display a list of connected Patina components.
 p-system   # Display information regarding the current system environment.
