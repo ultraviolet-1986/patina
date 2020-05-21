@@ -35,7 +35,7 @@ patina_git() {
     patina_throw_exception 'PE0001'
     return
 
-  # Failure: Patina has been given multiple arguments.
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt "1" ] ; then
     patina_throw_exception 'PE0002'
     return
