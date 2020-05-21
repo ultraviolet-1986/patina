@@ -192,6 +192,76 @@ patina_show_component_report() {
   fi
 }
 
+patina_show_dependency_report(){
+  # Display Header.
+  echo
+  echo_wrap "${bold}${patina_major_color}Patina Dependency Report${color_reset}\\n"
+
+  echo_wrap "${bold}NOTE${color_reset} Distribution-Native Packages Detected Only.\\n"
+
+  # Display table header.
+  echo_wrap "${bold}PACKAGE\\t\\tCOMMAND\\t\\tSTATE${color_reset}"
+
+  printf "clamav\\t\\tp-clamscan"
+  if ( command -v 'clamscan' > /dev/null 2>&1 ) ; then
+    echo_wrap "\\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\\t${light_red}Not Installed${color_reset}"
+  fi
+
+  printf "genisoimage\tp-iso"
+  if ( command -v 'mkisofs' > /dev/null 2>&1 ) ; then
+    echo_wrap "\t\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\t\t${light_red}Not Installed${color_reset}"
+  fi
+
+  printf "git\\t\\tp-update"
+  if ( command -v 'git' > /dev/null 2>&1 ) ; then
+    echo_wrap "\\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\\t${light_red}Not Installed${color_reset}"
+  fi
+
+  printf "gnupg2\\t\\tp-gpg"
+  if ( command -v 'gpg' > /dev/null 2>&1 ) ; then
+    echo_wrap "\\t\\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\\t\\t${light_red}Not Installed${color_reset}"
+  fi
+
+  printf "libreoffice\\tp-pdf"
+  if ( command -v 'soffice' > /dev/null 2>&1 ) ; then
+    echo_wrap "\\t\\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\\t\\t${light_red}Not Installed${color_reset}"
+  fi
+
+  printf "timeshift\\tp-timeshift"
+  if ( command -v 'timeshift' > /dev/null 2>&1 ) ; then
+    echo_wrap "\\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\\t${light_red}Not Installed${color_reset}"
+  fi
+
+  printf "tree\\t\\tp-list"
+  if ( command -v 'tree' > /dev/null 2>&1 ) ; then
+    echo_wrap "\\t\\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\\t\\t${light_red}Not Installed${color_reset}"
+  fi
+
+  printf "ufw\\t\\tp-ufw"
+  if ( command -v 'ufw' > /dev/null 2>&1 ) ; then
+    echo_wrap "\\t\\t${light_green}Installed${color_reset}"
+  else
+    echo_wrap "\\t\\t${light_red}Not Installed${color_reset}"
+  fi
+
+  echo
+  return
+}
+
 patina_show_system_report() {
   # Failure: Patina has been given too many arguments.
   if [ "$#" -ge 1 ] ; then
@@ -252,14 +322,8 @@ patina_open_folder() {
     return
 
   # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
+  elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
-    return
-
-  # Failure: A second argument was provided, but was invalid.
-  elif [ -n "$2" ] && [ "$2" != '-g' ] ; then
-    patina_throw_exception 'PE0003'
-    return
 
   # Failure: Target is a file.
   elif [ -f "$1" ] ; then
@@ -277,55 +341,27 @@ patina_open_folder() {
     return
 
   # Success: Change directory and open in graphical File Manager if possible.
-  elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
-    cd "$1" || return
+  elif [ -d "$1" ] && [ "$2" ] ; then
+    case "$2" in
+      "-g")
+        cd "$1" || return
 
-    if ( command -v 'xdg-open' > /dev/null 2>&1 ) ; then
-      xdg-open "$(pwd)" > /dev/null 2>&1
-    fi
+        if ( command -v 'xdg-open' > /dev/null 2>&1 ) ; then
+          xdg-open "$(pwd)" > /dev/null 2>&1
+        fi
 
-    return
-
-  # Failure: Catch all.
-  else
-    patina_throw_exception 'PE0000'
-    return
-  fi
-}
-
-patina_open_folder_graphically() {
-  # Success: Open Home folder graphically in the absence of an agrument.
-  if [ "$#" -eq 0 ] ; then
-    patina_open_folder "$HOME" -g > /dev/null 2>&1
-    return
-
-  # Failure: Success condition(s) not met.
-  elif [ "$XDG_SESSION_TYPE" = 'tty' ] ; then
-    patina_throw_exception 'PE0013'
-
-  # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
-    patina_throw_exception 'PE0002'
-    return
-
-  # Failure: Patina cannot open a file as a directory.
-  elif [ -f "$1" ] ; then
-    patina_throw_exception 'PE0014'
-    return
-
-  # Failure: Patina cannot find the directory specified.
-  elif [ ! -d "$1" ] ; then
-    patina_throw_exception 'PE0004'
-    return
-
-  # Success: Open folder graphically.
-  elif [ -d "$1" ] ; then
-    patina_open_folder "$1" -g > /dev/null 2>&1
-    return
+        return
+        ;;
+      *)
+        patina_throw_exception 'PE0003'
+        return
+        ;;
+    esac
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
@@ -447,14 +483,15 @@ alias 'p-help'='less $patina_path_root/README.md'
 
 # Patina / Reports
 alias 'p-version'='patina_show_version_report'
+alias 'p-deps'='patina_show_dependency_report'
 alias 'p-list'='patina_show_component_report'
-alias 'p-report'='patina_show_system_report'
+alias 'p-system'='patina_show_system_report'
 
 alias 'p-refresh'='patina_terminal_refresh'
 alias 'p-reset'='patina_terminal_reset'
 
 # Patina / Places / Folders
-alias 'files'='patina_open_folder_graphically'
+alias 'files'='patina_open_folder "$HOME" -g'
 alias 'p-root'='patina_open_folder $patina_path_root'
 
 # Patina / Places / Components
