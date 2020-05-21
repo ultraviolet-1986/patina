@@ -29,7 +29,7 @@ generate_volume_label() {
   echo -e "$(eval "$label_command"; printf "-"; eval "$label_command")"
 }
 
-patina_genisoimage_create_iso() {
+patina_genisoimage() {
   # Failure: Command 'mkisofs' is not available.
   if ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
@@ -108,12 +108,12 @@ patina_genisoimage_create_iso() {
 ###########
 
 export -f 'generate_volume_label'
-export -f 'patina_genisoimage_create_iso'
+export -f 'patina_genisoimage'
 
 ###########
 # Aliases #
 ###########
 
-alias 'p-iso'='patina_genisoimage_create_iso'
+alias 'p-iso'='patina_genisoimage'
 
 # End of File.
