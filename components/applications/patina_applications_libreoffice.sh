@@ -40,7 +40,7 @@ patina_libreoffice() {
     return
 
   # Failure: Patina has not been given an argument.
-  elif [ "$#" -eq "0" ] ; then
+  elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
     return
 

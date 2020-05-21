@@ -41,12 +41,12 @@ patina_git() {
     return
 
   # Failure: Patina has not been given an argument.
-  elif [ "$#" -eq "0" ] ; then
+  elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
     return
 
   # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt "1" ] ; then
+  elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
     return
 
