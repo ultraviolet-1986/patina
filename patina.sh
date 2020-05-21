@@ -93,7 +93,6 @@ patina_start() {
   # Create Patina Directory Structure.
   mkdir -p "$patina_path_configuration"
   mkdir -p "$patina_path_components"/{applications,places,system,user}
-  mkdir -p "$patina_path_resources/help"
 
   # Success: Connect and apply Patina configuration.
   if [ -f "$patina_file_configuration" ] ; then
