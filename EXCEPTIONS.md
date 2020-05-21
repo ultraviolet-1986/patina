@@ -45,9 +45,9 @@ numbers (Patina Exception) here for reference.
   - This error should be raised when Patina cannot detect an active Internet
     connection.
 
-- **PE0009 `Patina cannot detect a valid source control repository.`**
-  - This error should be raised when Patina cannot detect a valid source control
-    repository.
+- **PE0009 `Patina cannot detect a valid version control repository.`**
+  - This error should be raised when Patina cannot detect a valid version
+    control repository. At present, Patina only supports 'git'.
 
 - **PE0010 `Patina cannot access a required variable.`**
   - This error should be raised when Patina cannot access a required variable.
