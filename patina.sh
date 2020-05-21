@@ -121,7 +121,7 @@ patina_start() {
   readonly TERM="$TERM"
   readonly OSTYPE="$OSTYPE"
 
-  # Rubbish collection.
+  # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
 }
 
@@ -137,6 +137,7 @@ patina_show_version_report() {
   # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display Patina information.
   elif [ "$#" -eq 0 ] ; then
@@ -146,10 +147,12 @@ patina_show_version_report() {
     echo_wrap "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>."
     echo_wrap "This is free software: you are free to change and redistribute it."
     echo_wrap "There is NO WARRANTY, to the extent permitted by law."
+    return
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
@@ -157,10 +160,10 @@ patina_show_component_report() {
   # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
-
     # Display Header
     echo
     echo_wrap "${bold}${patina_major_color}Patina Component Report${color_reset}\\n"
@@ -170,6 +173,7 @@ patina_show_component_report() {
     if ( command -v 'tree' > /dev/null 2>&1 ) ; then
       tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$patina_path_components"
       echo
+      return
 
     # Success: 'tree' is not installed. Display standard component list.
     else
@@ -184,6 +188,7 @@ patina_show_component_report() {
   # Failure: Patina Component(s) were not detected.
   else
     patina_throw_exception 'PE0007'
+    return
   fi
 }
 
@@ -191,12 +196,12 @@ patina_show_system_report() {
   # Failure: Patina has been given too many arguments.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display the Patina System Report.
   elif [ "$#" -eq 0 ] ; then
-    echo
-
     # Display Header
+    echo
     echo_wrap "${bold}${patina_major_color}Patina System Report${color_reset}\\n"
 
     # Show System Report
@@ -208,19 +213,25 @@ patina_show_system_report() {
     echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\\t\\t${BASH_VERSION%%[^0-9.]*}"
 
     echo
+    return
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
 patina_throw_exception() {
-  # Failure: Success condition(s) not met.
+  # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display Patina Exception.
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
@@ -230,28 +241,42 @@ patina_throw_exception() {
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
 patina_open_folder() {
-  # Failure: Success condition(s) not met.
+  # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-  elif [ "$#" -gt 2 ] ; then
+    return
+
+  # Failure: Patina has been given too many arguments.
+  elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
+
+  # Failure: A second argument was provided, but was invalid.
   elif [ -n "$2" ] && [ "$2" != '-g' ] ; then
     patina_throw_exception 'PE0003'
+    return
+
+  # Failure: Target is a file.
   elif [ -f "$1" ] ; then
     patina_throw_exception 'PE0003'
+    return
+
+  # Failure: Target directory does not exist
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
+    return
 
-  # Success: Change Directory.
+  # Success: Change directory.
   elif [ -d "$1" ] && [ -z "$2" ] ; then
     cd "$1" || return
     return
 
-  # Success: Change directory and open in File Manager if possible.
+  # Success: Change directory and open in graphical File Manager if possible.
   elif [ -d "$1" ] && [ "$2" = '-g' ] ; then
     cd "$1" || return
 
@@ -264,6 +289,7 @@ patina_open_folder() {
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
@@ -276,12 +302,21 @@ patina_open_folder_graphically() {
   # Failure: Success condition(s) not met.
   elif [ "$XDG_SESSION_TYPE" = 'tty' ] ; then
     patina_throw_exception 'PE0013'
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
+
+  # Failure: Patina cannot open a file as a directory.
   elif [ -f "$1" ] ; then
-    patina_throw_exception 'PE0003'
+    patina_throw_exception 'PE0014'
+    return
+
+  # Failure: Patina cannot find the directory specified.
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
+    return
 
   # Success: Open folder graphically.
   elif [ -d "$1" ] ; then
@@ -297,28 +332,38 @@ patina_open_folder_graphically() {
 generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; }
 
 echo_wrap() {
-  # Failure: Success condition(s) not met.
+  # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display wrapped text.
   elif [ -n "$1" ] ; then
     (echo -e "$1") | fmt -w "$(tput cols)"
+    return
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
 to_lower() {
-  # Failure: Success condition(s) not met.
+  # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display text as lower-case.
   elif [ -n "$1" ] ; then
@@ -328,15 +373,20 @@ to_lower() {
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
 to_upper() {
-  # Failure: Success condition(s) not met.
+  # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display text as upper-case.
   elif [ -n "$1" ] ; then
@@ -346,6 +396,7 @@ to_upper() {
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 

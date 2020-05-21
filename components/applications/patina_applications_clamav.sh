@@ -42,7 +42,7 @@ patina_clamav() {
     echo_wrap "  --help\tDisplay this help and exit"
     return
 
-  # Failure: Success condition(s) not met.
+  # Failure: Command 'clamscan' is not available.
   elif ( ! command -v 'clamscan' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
     return
