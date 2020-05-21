@@ -43,15 +43,25 @@
 #############
 
 patina_libreoffice_convert_document() {
-  # Failure: Success condition(s) not met.
+  # Failure: Patina cannot detect a required application.
   if ( ! command -v 'soffice' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
+    return
+
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
+    return
+
+
   elif [ -d "$1" ] ; then
     patina_throw_exception 'PE0006'
+    return
 
   # Success: Convert an existing document to PDF (if supported).
   elif [ -f "$1" ] ; then

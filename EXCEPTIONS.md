@@ -65,6 +65,16 @@ numbers (Patina Exception) here for reference.
     constraint under the current system environment e.g. a graphical application
     cannot be executed in a headless environment.
 
+- **PE0014 `Patina cannot perform current operation on a file.`**
+  - This exception is raised when an attempt has been made to perform an
+    incorrect operation on a file such as a command which performs operations on
+    a directory.
+
+- **PE0015 `Patina cannot perform current operation on a directory.`**
+  - This exception is raised when an attempt has been made to perform an
+    incorrect operation on a directory such as a command which performs
+    operations on a file.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a
