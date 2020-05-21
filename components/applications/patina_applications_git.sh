@@ -25,25 +25,37 @@
 #############
 
 patina_git() {
-  # Failure: Patina cannot detect a required application
+  # Failure: Patina cannot detect a required application.
   if ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
+    return
 
-  # Failure: Patina has not been given an argument
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
     return
 
-  # Failure: Patina has been given multiple arguments
+  # Failure: Patina has been given multiple arguments.
   elif [ "$#" -gt "1" ] ; then
     patina_throw_exception 'PE0002'
     return
 
-  # Success: Parse 'git' arguments
+  # Success: Display help and exit.
+  elif [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-git [OPTION]"
+    echo_wrap "Dependencies: 'git' command from package 'git'."
+    echo_wrap "Perform git operations within the current directory."
+    echo
+    echo_wrap "  undo\t\tDiscard changes to repository since previous commit"
+    echo_wrap "  --help\tDisplay this help and exit"
+    return
+
+  # Success: Parse 'git' arguments.
   elif [ "$1" = 'undo' ] ; then
     git reset --hard HEAD
+    return
 
-  # Failure: Catch any other error condition here
+  # Failure: An invalid argument was provided.
   else
     patina_throw_exception 'PE0003'
     return
