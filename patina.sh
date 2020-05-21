@@ -324,6 +324,7 @@ patina_open_folder() {
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Failure: Target is a file.
   elif [ -f "$1" ] ; then
@@ -443,8 +444,7 @@ generate_uuid() {
   echo -e "$(eval "$label_command_6"; printf '-'; eval "$label_command_4"; \
     printf '-'; eval "$label_command_4"; printf '-'; eval "$label_command_4"; \
     printf '-'; eval "$label_command_4"; printf '-'; eval "$label_command_4"; \
-    printf '-'; eval "$label_command_6"; \
-    )"
+    printf '-'; eval "$label_command_6"; )"
 }
 
 patina_terminal_refresh() {
