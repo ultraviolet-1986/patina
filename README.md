@@ -329,7 +329,7 @@ p-ufw --enable   # Enable the `ufw` firewall (recommended).
 p-ufw --reset    # Enable the `ufw` firewall and reset default rules.
 p-ufw --setup    # Enable the `ufw` firewall with some basic defaults.
 p-ufw --status   # Display the status of the `ufw` firewall in a table.
-p-ufw --help   # Display instructions for `p-ufw` commands.
+p-ufw --help     # Display instructions for `p-ufw` commands.
 ```
 
 ### Place Components
@@ -449,9 +449,9 @@ multitude of purposes such as passwords, disk labels, programming placeholders,
 etc.
 
 ```bash
-p-uuid                        # Create a 32-character UUID string.
 to_upper "$(p-uuid)"          # Create the above in all upper-case characters.
 to_lower "$(p-uuid)"          # Create the above in all lower-case characters.
 
+p-uuid                        # Create a 32-character UUID string.
 generate_volume_label         # Create 8-character disk label.
 ```
