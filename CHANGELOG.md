@@ -24,6 +24,10 @@ after an evil butler tries to steal their inheritance.
     information regarding the current software license.
   - The concept of resources has been removed to favour a more native built-in
     help system.
+  - Included new Patina Exceptions `PE0014`, `PE0015`, `PE0016`, and `PE0017` to
+    provide a more specific error prompt.
+  - More commands now include a `--help` switch to provide information
+    previously provided by the `resources/help` directory.
 - **0.7.7 Released Tuesday, April 28th 2020**
   - Included new component `patina_system_patina_status.sh` which includes the
     command `p-status`. This command will display a list of Patina-compatible
