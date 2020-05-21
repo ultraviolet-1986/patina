@@ -20,45 +20,51 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#################
-# Documentation #
-#################
-
-# Function: 'patina_timeshift'
-
-#   Required Packages:
-#     1. 'timeshift' for command 'timeshift'.
-
-#   Parameters:
-#     1. Argument of 'create' or 'restore' to create a timeshift snapshot or
-#        restore system as required.
-
-#   Example usage:
-#     $ p-timeshift create
-#     $ p-timeshift restore
-
 #############
 # Functions #
 #############
 
 patina_timeshift() {
-  # Failure: Success condition(s) not met.
+  # Failure: Patina cannot detect a required application.
   if ( ! command -v 'timeshift' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
+    return
+
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
-  # Success: Snapshot or restore system using Timeshift (if installed).
+  # Success: Display help and exit.
+  elif [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-timeshift [OPTION]"
+    echo_wrap "Dependencies: 'timeshift' command from package 'timeshift'."
+    echo_wrap "Quickly manage system snapshots using Timeshift."
+    echo
+    echo_wrap "  create\tCreate a Timeshift snapshot with a default label"
+    echo_wrap "  restore\tPrompt the user on which snapshot to restore"
+    echo_wrap "  --help\tDisplay this help and exit"
+    return
+
+  # Success: Create a snapshot of the system and provide a default label.
   elif [ "$1" = 'create' ] ; then
     sudo timeshift --create --yes --comment "System Checkpoint (Patina)." --scripted
+    return
+
+  # Success: User will be prompted to restore a specific snapshot.
   elif [ "$1" = 'restore' ] ; then
     sudo timeshift --restore
+    return
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
