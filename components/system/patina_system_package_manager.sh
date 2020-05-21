@@ -85,20 +85,19 @@ patina_detect_system_package_manager() {
     patina_throw_exception 'PE0000'
   fi
 
-  # Rubbish collection
+  # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
 }
 
-# Warning: sudo command(s)
+# Warning: Uses sudo command(s) to perform software management tasks.
 patina_package_manager() {
-  # Check Internet connection before starting
   patina_detect_internet_connection
 
   if [ "$patina_has_internet" = 'false' ] ; then
     patina_throw_exception 'PE0008'
     return
 
-  elif [ "$#" -eq "0" ] ; then
+  elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
     return
 
@@ -147,7 +146,10 @@ patina_package_manager() {
         fi
         return
         ;;
-      *) patina_throw_exception 'PE0003' ;;
+      *)
+        patina_throw_exception 'PE0003'
+        return
+        ;;
     esac
   fi
 }
