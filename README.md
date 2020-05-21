@@ -22,12 +22,12 @@ Additional Patina components can be found here:
     - [ClamAV](#clamav)
     - [Disk Image Creation (genisoimage)](#disk-image-creation-genisoimage)
     - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
+    - [File Encryption (GnuPG)](#file-encryption-gnupg)
     - [Source Control (git)](#source-control-git)
     - [System Snapshots (Timeshift)](#system-snapshots-timeshift)
     - [Uncomplicated Firewall (UFW)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
-    - [File Encryption](#file-encryption)
     - [Network Management](#network-management)
     - [Package Management](#package-management)
     - [Patina Status](#patina-status)
@@ -261,9 +261,9 @@ The `p-clamscan repair` command requires `sudo` privileges, please review source
 code before use.
 
 ```bash
-p-clamscan         # Perform a ClamAV virus scan on a given path.
-p-clamscan repair  # Repair ClamAV update mechanism.
-p-clamscan --help  # Display instructions for the `p-clamscan` commands.
+p-clamscan           # Perform a ClamAV virus scan on a given path.
+p-clamscan --repair  # Repair ClamAV update mechanism.
+p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 ```
 
 #### Disk Image Creation (genisoimage)
@@ -271,8 +271,9 @@ p-clamscan --help  # Display instructions for the `p-clamscan` commands.
 The following command requires the `genisoimage` package to be installed.
 
 ```bash
-p-iso "<Directory Name>"  # Create an ISO disk image from a folder.
-p-iso --help              # Display instructions for the `p-iso` command.
+p-iso "<Directory Name>"          # Create an ISO disk image from a folder.
+p-iso "<Directory Name>" --force  # Create a non-compliant ISO disk image.
+p-iso --help                      # Display help for the `p-iso` command.
 ```
 
 #### Document Conversion (LibreOffice)
@@ -281,6 +282,16 @@ The following command requires the `libreoffice` package to be installed.
 
 ```bash
 p-pdf "<Document Name>"  # Convert a compatible document into PDF.
+```
+
+#### File Encryption (GnuPG)
+
+The following commands make use of symmetric GnuPG encryption. A pass-phrase is
+required to both encrypt and decrypt a file.
+
+```bash
+p-gpg --decrypt "<Filename>"  # Decrypt a file.
+p-gpg --encrypt "<Filename>"  # Encrypt a file.
 ```
 
 #### Source Control (git)
@@ -297,8 +308,8 @@ In both cases, the following commands require `sudo` privileges, please review
 source code before use.
 
 ```bash
-p-timeshift create   # Create a system snapshot using 'Timeshift.'
-p-timeshift restore  # Restore a system snapshot using 'Timeshift'.
+p-timeshift --create   # Create a system snapshot using 'Timeshift.'
+p-timeshift --restore  # Restore a system snapshot using 'Timeshift'.
 ```
 
 #### Uncomplicated Firewall (UFW)
@@ -308,11 +319,11 @@ source code before use. Note that this is aimed toward Linux distributions which
 provide 'ufw' but do not activate it by default.
 
 ```bash
-p-ufw disable  # Disable the `ufw` firewall (not recommended).
-p-ufw enable   # Enable the `ufw` firewall (recommended).
-p-ufw reset    # Enable the `ufw` firewall and reset default rules.
-p-ufw setup    # Enable the `ufw` firewall with some basic defaults.
-p-ufw status   # Display the status of the `ufw` firewall in a table.
+p-ufw --disable  # Disable the `ufw` firewall (not recommended).
+p-ufw --enable   # Enable the `ufw` firewall (recommended).
+p-ufw --reset    # Enable the `ufw` firewall and reset default rules.
+p-ufw --setup    # Enable the `ufw` firewall with some basic defaults.
+p-ufw --status   # Display the status of the `ufw` firewall in a table.
 p-ufw --help   # Display instructions for `p-ufw` commands.
 ```
 
@@ -334,16 +345,6 @@ videos     # Open the Videos directory.
 ```
 
 ### System Components
-
-#### File Encryption
-
-The following commands make use of symmetric GnuPG encryption. A passphrase is
-required to both encrypt and decrypt a file.
-
-```bash
-p-decrypt "<Filename>"  # Decrypt a file.
-p-encrypt "<Filename>"  # Encrypt a file.
-```
 
 #### Network Management
 
