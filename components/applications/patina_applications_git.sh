@@ -31,7 +31,7 @@ patina_git() {
     echo_wrap "Dependencies: 'git' command from package 'git'."
     echo_wrap "Perform git operations within the current directory."
     echo
-    echo_wrap "  undo\t\tDiscard changes to repository since previous commit"
+    echo_wrap "  --undo\t\tDiscard changes to repository since previous commit"
     echo_wrap "  --help\tDisplay this help and exit"
     return
 
@@ -51,7 +51,7 @@ patina_git() {
     return
 
   # Success: Parse 'git' arguments.
-  elif [ "$1" = 'undo' ] ; then
+  elif [ "$1" = '--undo' ] ; then
     git reset --hard HEAD
     return
 

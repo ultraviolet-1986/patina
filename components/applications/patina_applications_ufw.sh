@@ -32,10 +32,10 @@ patina_ufw() {
     echo_wrap "Warning: Command(s) may require 'sudo' password."
     echo_wrap "Configure the 'ufw' firewall"
     echo
-    echo_wrap "  disable\tDisable 'ufw'"
-    echo_wrap "  enable\tEnable 'ufw'"
-    echo_wrap "  setup\t\tEnable 'ufw' with basic rules"
-    echo_wrap "  status\tDisplay the status of 'ufw' and list active rules"
+    echo_wrap "  --disable\tDisable 'ufw'"
+    echo_wrap "  --enable\tEnable 'ufw'"
+    echo_wrap "  --setup\tEnable 'ufw' with basic rules"
+    echo_wrap "  --status\tDisplay the status of 'ufw' and list active rules"
     echo_wrap "  --help\tDisplay this help and exit"
     return
 
@@ -58,21 +58,21 @@ patina_ufw() {
   # Warning: Uses 'sudo' to configure 'ufw'.
   elif [ -n "$1" ] ; then
     case "$1" in
-      'disable')
+      '--disable')
         sudo ufw disable
         return
         ;;
-      'enable')
+      '--enable')
         sudo ufw enable
         return
         ;;
-      'setup')
+      '--setup')
         sudo ufw enable
         sudo ufw default deny
         sudo ufw limit ssh
         return
         ;;
-      'status')
+      '--status')
         sudo ufw status
         return
         ;;

@@ -31,8 +31,8 @@ patina_timeshift() {
     echo_wrap "Dependencies: 'timeshift' command from package 'timeshift'."
     echo_wrap "Quickly manage system snapshots using Timeshift."
     echo
-    echo_wrap "  create\tCreate a Timeshift snapshot with a default label"
-    echo_wrap "  restore\tPrompt the user on which snapshot to restore"
+    echo_wrap "  --create\tCreate a Timeshift snapshot with a default label"
+    echo_wrap "  --restore\tPrompt the user on which snapshot to restore"
     echo_wrap "  --help\tDisplay this help and exit"
     return
 
@@ -52,13 +52,13 @@ patina_timeshift() {
     return
 
   # Success: Create a snapshot of the system and provide a default label.
-  elif [ "$1" = 'create' ] ; then
+  elif [ "$1" = '--create' ] ; then
     sudo timeshift --create --yes \
       --comment "System Checkpoint (Patina)." --scripted
     return
 
   # Success: User will be prompted to restore a specific snapshot.
-  elif [ "$1" = 'restore' ] ; then
+  elif [ "$1" = '--restore' ] ; then
     sudo timeshift --restore
     return
 

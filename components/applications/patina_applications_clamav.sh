@@ -38,7 +38,7 @@ patina_clamav() {
     echo_wrap "Warning: Command(s) may require 'sudo' password."
     echo_wrap "Perform a recursive virus scan of a given location and record results."
     echo
-    echo_wrap "  repair\tPurge and replace current virus database"
+    echo_wrap "  --repair\tPurge and replace current virus database"
     echo_wrap "  --help\tDisplay this help and exit"
     return
 
@@ -59,7 +59,7 @@ patina_clamav() {
 
   # Success: Repair Freshclam update mechanism.
   # Warning: Uses 'sudo' to delete system files.
-  elif [ "$1" = 'repair' ] ; then
+  elif [ "$1" = '--repair' ] ; then
     sudo rm --force \
       "$clamav_path/bytecode.cvd" \
       "$clamav_path/daily.cld" \
