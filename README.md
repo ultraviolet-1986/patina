@@ -111,6 +111,7 @@ the following packages (correct for Ubuntu):
 - `clamav` for the `p-clamscan <X>` commands.
 - `genisoimage` for the `p-iso` command.
 - `git` for the `p-update` and `p-git` commands.
+- `gnupg2` for the `p-gpg` commands.
 - `libreoffice` for the `p-pdf` command.
 - `systemd` for manipulating system services such as networking.
 - `timeshift` for the `p-timeshift` command.
@@ -208,9 +209,10 @@ p-update   # Check for and apply Patina updates.
 p-refresh  # Restart Patina to detect and connect to new components.
 p-reset    # Clear command-line history and restart Patina.
 
-p-list     # Display a list of connected Patina components.
-p-report   # Display information regarding the current system environment.
 p-version  # Display information regarding patina such as version and license.
+p-deps     # Display a list of Patina dependencies and their current state.
+p-list     # Display a list of connected Patina components.
+p-system   # Display information regarding the current system environment.
 ```
 
 ### Themes
