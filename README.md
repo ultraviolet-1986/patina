@@ -106,7 +106,7 @@ the following features:
 ## Recommended Packages
 
 Patina does not require anything except BASH as a rule, but it can make use of
-the following packages (correct for Ubuntu):
+the following packages (correct for Fedora):
 
 - `clamav` for the `p-clamscan <X>` commands.
 - `genisoimage` for the `p-iso` command.
@@ -118,6 +118,8 @@ the following packages (correct for Ubuntu):
 - `tree` for an enhanced version of the `p-list` command.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
+
+**NOTE:** This information may be accessed by using the `p-deps` command.
 
 ## Conventions
 
