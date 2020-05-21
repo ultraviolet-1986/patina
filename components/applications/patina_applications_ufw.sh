@@ -24,44 +24,68 @@
 # Functions #
 #############
 
-patina_ufw_configure() {
-  # Failure: Success condition(s) not met.
-  if ( ! command -v 'ufw' > /dev/null 2>&1 ) ; then
+patina_ufw() {
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-ufw [OPTION]"
+    echo_wrap "Dependencies: 'ufw' command from package 'ufw'."
+    echo_wrap "Warning: Command(s) may require 'sudo' password."
+    echo_wrap "Configure the 'ufw' firewall"
+    echo
+    echo_wrap "  disable\tDisable 'ufw'"
+    echo_wrap "  enable\tEnable 'ufw'"
+    echo_wrap "  setup\t\tEnable 'ufw' with basic rules"
+    echo_wrap "  status\tDisplay the status of 'ufw' and list active rules"
+    echo_wrap "  --help\tDisplay this help and exit"
+    return
+
+  # Failure: Patina cannot detect a required application.
+  elif ( ! command -v 'ufw' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
+    return
+
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt "1" ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Process argument and apply it to 'ufw'.
   # Warning: Uses 'sudo' to configure 'ufw'.
   elif [ -n "$1" ] ; then
     case "$1" in
-      'disable') sudo ufw disable ;;
-      'enable') sudo ufw enable ;;
-      '--help')
-        echo_wrap "Usage: p-ufw [OPTION]"
-        echo_wrap "Dependencies: 'ufw' command from package 'ufw'."
-        echo_wrap "Configure the 'ufw' firewall"
-        echo
-        echo_wrap "  disable\tDisable 'ufw'"
-        echo_wrap "  enable\tEnable 'ufw'"
-        echo_wrap "  setup\t\tEnable 'ufw' with basic rules"
-        echo_wrap "  status\tDisplay the status of 'ufw' and list active rules"
-        echo_wrap "  --help\tDisplay this help and exit"
+      'disable')
+        sudo ufw disable
+        return
+        ;;
+      'enable')
+        sudo ufw enable
+        return
         ;;
       'setup')
         sudo ufw enable
         sudo ufw default deny
         sudo ufw limit ssh
+        return
         ;;
-      'status') sudo ufw status ;;
-      *) patina_throw_exception 'PE0003' ;;
+      'status')
+        sudo ufw status
+        return
+        ;;
+      *)
+        patina_throw_exception 'PE0003'
+        return
+        ;;
     esac
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
@@ -69,6 +93,6 @@ patina_ufw_configure() {
 # Aliases #
 ###########
 
-alias 'p-ufw'='patina_ufw_configure'
+alias 'p-ufw'='patina_ufw'
 
 # End of File.

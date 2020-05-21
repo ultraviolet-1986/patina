@@ -30,8 +30,18 @@ generate_volume_label() {
 }
 
 patina_genisoimage() {
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-iso [DIRECTORY] [OPTION]"
+    echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
+    echo_wrap "Create a read-only disk image in .iso format."
+    echo
+    echo_wrap "  --force\tBypass ISO-9660 restrictions (optional)"
+    echo_wrap "  --help\tDisplay this help and exit"
+    return
+
   # Failure: Command 'mkisofs' is not available.
-  if ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
+  elif ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
     return
 
@@ -43,16 +53,6 @@ patina_genisoimage() {
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
-    return
-
-  # Success: Display help and exit.
-  elif [ "$1" = '--help' ] ; then
-    echo_wrap "Usage: p-iso [DIRECTORY] [OPTION]"
-    echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
-    echo_wrap "Create a read-only disk image in .iso format."
-    echo
-    echo_wrap "  --force\tBypass ISO-9660 restrictions (optional)"
-    echo_wrap "  --help\tDisplay this help and exit"
     return
 
   # Failure: A valid argument was not provided.

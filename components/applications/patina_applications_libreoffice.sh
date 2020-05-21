@@ -24,9 +24,18 @@
 # Functions #
 #############
 
-patina_libreoffice_convert_document() {
+patina_libreoffice() {
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-pdf [FILE] [OPTION]"
+    echo_wrap "Dependencies: 'soffice' command from package 'libreoffice'."
+    echo_wrap "Convert a supported file to *.pdf format."
+    echo
+    echo_wrap "  --help\tDisplay this help and exit"
+    return
+
   # Failure: Patina cannot detect a required application.
-  if ( ! command -v 'soffice' > /dev/null 2>&1 ) ; then
+  elif ( ! command -v 'soffice' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
     return
 
@@ -45,15 +54,6 @@ patina_libreoffice_convert_document() {
     patina_throw_exception 'PE0015'
     return
 
-  # Success: Display help and exit.
-  elif [ "$1" = '--help' ] ; then
-    echo_wrap "Usage: p-pdf [FILE] [OPTION]"
-    echo_wrap "Dependencies: 'soffice' command from package 'libreoffice'."
-    echo_wrap "Convert a supported file to *.pdf format."
-    echo
-    echo_wrap "  --help\tDisplay this help and exit"
-    return
-
   # Success: Convert an existing document to PDF (if supported).
   elif [ -f "$1" ] ; then
     soffice --convert-to pdf "$1"
@@ -70,7 +70,7 @@ patina_libreoffice_convert_document() {
 # Aliases #
 ###########
 
-alias 'p-pdf'='patina_libreoffice_convert_document'
+alias 'p-pdf'='patina_libreoffice'
 
 # End of File.
 

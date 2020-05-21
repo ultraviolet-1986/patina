@@ -24,12 +24,26 @@
 # Functions #
 #############
 
-patina_clamav_scan() {
-  local patina_create_clamav_logfile=''
-  local patina_clamav_logfile=''
+patina_clamav() {
+  local patina_create_clamav_logfile
+  local patina_clamav_logfile
+
+  local clamav_path
+  clamav_path='/var/lib/clamav'
+
+  # Success: Display contents of help file.
+  if [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
+    echo_wrap "Dependencies: 'clamscan' command from package 'clamav'."
+    echo_wrap "Warning: Command(s) may require 'sudo' password."
+    echo_wrap "Perform a recursive virus scan of a given location and record results."
+    echo
+    echo_wrap "  repair\tPurge and replace current virus database"
+    echo_wrap "  --help\tDisplay this help and exit"
+    return
 
   # Failure: Success condition(s) not met.
-  if ( ! command -v 'clamscan' > /dev/null 2>&1 ) ; then
+  elif ( ! command -v 'clamscan' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
     return
 
@@ -43,23 +57,14 @@ patina_clamav_scan() {
     patina_throw_exception 'PE0002'
     return
 
-  # Success: Display contents of help file.
-  elif [ "$1" = '--help' ] ; then
-    echo_wrap "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
-    echo_wrap "Dependencies: 'clamscan' command from package 'clamav'."
-    echo_wrap "Perform a recursive virus scan of a given location and record results."
-    echo
-    echo_wrap "  --repair\tPurge and replace current virus database"
-    echo_wrap "  --help\tDisplay this help and exit"
-    return
-
   # Success: Repair Freshclam update mechanism.
   # Warning: Uses 'sudo' to delete system files.
-  elif [ "$1" = '--repair' ] ; then
-    local clamav_path='/var/lib/clamav'
-    cd "$clamav_path" || exit
-    sudo rm bytecode.cvd daily.cld main.cvd mirrors.dat
-    cd ~- || exit
+  elif [ "$1" = 'repair' ] ; then
+    sudo rm --force \
+      "$clamav_path/bytecode.cvd" \
+      "$clamav_path/daily.cld" \
+      "$clamav_path/main.cvd" \
+      "$clamav_path/mirrors.dat"
     return
 
   # Failure: Scan target does not exist.
@@ -74,25 +79,37 @@ patina_clamav_scan() {
     read -n1 -r answer
 
     case "$answer" in
-      'Y'|'y') patina_create_clamav_logfile='true' ;;
-      'N'|'n') patina_create_clamav_logfile='false' ;;
-      *) patina_throw_exception 'PE0003' ;;
+      'Y'|'y')
+        patina_create_clamav_logfile='true'
+        patina_clamav_logfile="clamscan_log_$(generate_date_stamp).txt"
+        ;;
+      'N'|'n')
+        patina_create_clamav_logfile='false'
+        ;;
+      *)
+        patina_throw_exception 'PE0003'
+        return
+        ;;
     esac
 
-    patina_clamav_logfile="clamscan_log_$(generate_date_stamp).txt"
-
-    echo -e "\\n"
-
-    echo_wrap "Preparing 'clamav' virus scan, please wait...\\n"
+    echo_wrap "\\n\\nPreparing 'clamav' virus scan, please wait...\\n"
 
     case "$patina_create_clamav_logfile" in
-      true) clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v ;;
-      false) clamscan -r "$1" -v ;;
-      *) patina_throw_exception 'PE0003'; return ;;
+      true)
+        clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v
+        echo
+        return
+        ;;
+      false)
+        clamscan -r "$1" -v
+        echo
+        return
+        ;;
+      *)
+        patina_throw_exception 'PE0003'
+        return
+        ;;
     esac
-
-    echo
-    return
 
   # Failure: Catch all.
   else
@@ -105,6 +122,6 @@ patina_clamav_scan() {
 # Aliases #
 ###########
 
-alias 'p-clamscan'='patina_clamav_scan'
+alias 'p-clamscan'='patina_clamav'
 
 # End of File.

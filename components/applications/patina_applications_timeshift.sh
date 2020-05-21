@@ -25,8 +25,19 @@
 #############
 
 patina_timeshift() {
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-timeshift [OPTION]"
+    echo_wrap "Dependencies: 'timeshift' command from package 'timeshift'."
+    echo_wrap "Quickly manage system snapshots using Timeshift."
+    echo
+    echo_wrap "  create\tCreate a Timeshift snapshot with a default label"
+    echo_wrap "  restore\tPrompt the user on which snapshot to restore"
+    echo_wrap "  --help\tDisplay this help and exit"
+    return
+
   # Failure: Patina cannot detect a required application.
-  if ( ! command -v 'timeshift' > /dev/null 2>&1 ) ; then
+  elif ( ! command -v 'timeshift' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
     return
 
@@ -40,20 +51,10 @@ patina_timeshift() {
     patina_throw_exception 'PE0002'
     return
 
-  # Success: Display help and exit.
-  elif [ "$1" = '--help' ] ; then
-    echo_wrap "Usage: p-timeshift [OPTION]"
-    echo_wrap "Dependencies: 'timeshift' command from package 'timeshift'."
-    echo_wrap "Quickly manage system snapshots using Timeshift."
-    echo
-    echo_wrap "  create\tCreate a Timeshift snapshot with a default label"
-    echo_wrap "  restore\tPrompt the user on which snapshot to restore"
-    echo_wrap "  --help\tDisplay this help and exit"
-    return
-
   # Success: Create a snapshot of the system and provide a default label.
   elif [ "$1" = 'create' ] ; then
-    sudo timeshift --create --yes --comment "System Checkpoint (Patina)." --scripted
+    sudo timeshift --create --yes \
+      --comment "System Checkpoint (Patina)." --scripted
     return
 
   # Success: User will be prompted to restore a specific snapshot.
