@@ -29,7 +29,7 @@ patina_gpg() {
   if [ "$1" == '--help' ] ; then
     echo_wrap "Usage: p-gpg [OPTION] [FILE]"
     echo_wrap "Dependencies: 'gpg' command from package 'gnupg2'."
-    echo_wrap "Manage GnuPG-encrypted files"
+    echo_wrap "Manage files using GnuPG"
     echo
     echo_wrap "  --encrypt\tCreate a *.gpg encrypted backup of the target file"
     echo_wrap "  --decrypt\tDecrypt a *.gpg encrypted target file"
