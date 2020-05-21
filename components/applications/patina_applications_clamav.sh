@@ -31,10 +31,17 @@ patina_clamav_scan() {
   # Failure: Success condition(s) not met.
   if ( ! command -v 'clamscan' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
+    return
+
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
+    return
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display contents of help file.
   elif [ "$1" = '--help' ] ; then
@@ -57,7 +64,8 @@ patina_clamav_scan() {
 
   # Failure: Scan target does not exist.
   elif [[ ! -e "$1" ]] ; then
-    patina_throw_exception 'PE0004'
+    patina_throw_exception 'PE0016'
+    return
 
   # Success: Guide user in performing virus scan.
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
@@ -84,10 +92,12 @@ patina_clamav_scan() {
     esac
 
     echo
+    return
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 

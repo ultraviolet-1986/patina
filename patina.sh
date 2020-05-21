@@ -56,6 +56,8 @@ export readonly PE0012='PE0012: Patina cannot overwrite a pre-existing directory
 export readonly PE0013='PE0013: Patina cannot execute this command under this environment.'
 export readonly PE0014='PE0014: Patina cannot perform current operation on a file.'
 export readonly PE0015='PE0015: Patina cannot perform current operation on a directory.'
+export readonly PE0016='PE0016: Patina cannot find the item specified.'
+export readonly PE0017='PE0017: Patina cannot perform current operation on item specified.'
 
 # Patina / Paths / Root
 patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"

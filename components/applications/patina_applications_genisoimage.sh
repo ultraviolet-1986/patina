@@ -33,39 +33,47 @@ patina_genisoimage_create_iso() {
   # Failure: Command 'mkisofs' is not available.
   if ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
+    return
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
+    return
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
+    return
 
   # Success: Display help and exit.
   elif [ "$1" = '--help' ] ; then
-    echo_wrap "Usage: p-iso [FILE/DIRECTORY] [OPTION]"
+    echo_wrap "Usage: p-iso [DIRECTORY] [OPTION]"
     echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
     echo_wrap "Create a read-only disk image in .iso format."
     echo
     echo_wrap "  --force\tBypass ISO-9660 restrictions (optional)"
     echo_wrap "  --help\tDisplay this help and exit"
+    return
 
   # Failure: A valid argument was not provided.
   elif [ -n "$2" ] && [ "$2" != '--force' ] ; then
     patina_throw_exception 'PE0001'
+    return
 
   # Failure: The target exists, but is a file.
   elif [ -f "$1" ] ; then
-    patina_throw_exception 'PE0003'
+    patina_throw_exception 'PE0014'
+    return
 
   # Failure: The target directory does not exist.
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
+    return
 
   # Failure: The target disk image already exists.
   elif [ -f "$(basename "$1").iso" ] ; then
     patina_throw_exception 'PE0011'
+    return
 
   # Success: Create ISO Disk Image (ISO-9660 compliant).
   elif [ -d "$1" ] && [ -z "$2" ] ; then
@@ -91,6 +99,7 @@ patina_genisoimage_create_iso() {
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 

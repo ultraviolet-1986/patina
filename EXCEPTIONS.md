@@ -75,6 +75,14 @@ numbers (Patina Exception) here for reference.
     incorrect operation on a directory such as a command which performs
     operations on a file.
 
+- **PE0016 `Patina cannot find the item specified.`**
+  - This error should be raised when an operation is intended to execute on
+    either a directory or a file, but the target does not exist.
+
+- **PE0017 `Patina cannot perform current operation on item specified.`**
+  - This exception should be raised when the execution target is invalid for the
+    current operation, for example: the current target is in use.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a

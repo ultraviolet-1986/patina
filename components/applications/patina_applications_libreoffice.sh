@@ -20,24 +20,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#################
-# Documentation #
-#################
-
-# Function: 'patina_libreoffice_convert_document'
-
-#   Notes:
-#     1. Converts a compatible document to PDF using LibreOffice.
-
-#   Required Packages:
-#     1. 'libreoffice' for command 'soffice'.
-
-#   Parameters:
-#     1. Filename of compatible document.
-
-#   Example Usage:
-#     $ p-pdf "Document.docx"
-
 #############
 # Functions #
 #############
@@ -58,18 +40,29 @@ patina_libreoffice_convert_document() {
     patina_throw_exception 'PE0002'
     return
 
-
+  # Failure: Patina cannot convert a directory to PDF.
   elif [ -d "$1" ] ; then
-    patina_throw_exception 'PE0006'
+    patina_throw_exception 'PE0015'
+    return
+
+  # Success: Display help and exit.
+  elif [ "$1" = '--help' ] ; then
+    echo_wrap "Usage: p-pdf [FILE] [OPTION]"
+    echo_wrap "Dependencies: 'soffice' command from package 'libreoffice'."
+    echo_wrap "Convert a supported file to *.pdf format."
+    echo
+    echo_wrap "  --help\tDisplay this help and exit"
     return
 
   # Success: Convert an existing document to PDF (if supported).
   elif [ -f "$1" ] ; then
     soffice --convert-to pdf "$1"
+    return
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
+    return
   fi
 }
 
