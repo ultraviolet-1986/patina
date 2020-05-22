@@ -28,6 +28,8 @@ patina_gpg() {
   # Success: Display help and exit.
   if [ "$1" == '--help' ] ; then
     echo_wrap "Usage: p-gpg [OPTION] [FILE]"
+    echo_wrap "Shortcut: p-encrypt [FILE]"
+    echo_wrap "Shortcut: p-decrypt [FILE]"
     echo_wrap "Dependencies: 'gpg' command from package 'gnupg2'."
     echo_wrap "Manage files using GnuPG"
     echo
@@ -87,6 +89,11 @@ patina_gpg() {
 # Aliases #
 ###########
 
+# Main Command(s).
 alias 'p-gpg'='patina_gpg'
+
+# Shortcut Command(s).
+alias 'p-decrypt'='p-gpg --decrypt'
+alias 'p-encrypt'='p-gpg --encrypt'
 
 # End of File.

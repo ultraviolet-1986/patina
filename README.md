@@ -297,6 +297,8 @@ required to both encrypt and decrypt a file.
 ```bash
 p-gpg --decrypt "<Filename>"  # Decrypt a file.
 p-gpg --encrypt "<Filename>"  # Encrypt a file.
+p-decrypt "<Filename>"        # Decrypt a file.
+p-encrypt "<Filename>"        # Encrypt a file.
 ```
 
 #### Source Control (git)
