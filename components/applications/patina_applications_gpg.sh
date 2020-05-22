@@ -28,8 +28,8 @@ patina_gpg() {
   # Success: Display help and exit.
   if [ "$1" == '--help' ] ; then
     echo_wrap "Usage: p-gpg [OPTION] [FILE]"
-    echo_wrap "Shortcut: p-encrypt [FILE]"
-    echo_wrap "Shortcut: p-decrypt [FILE]"
+    echo_wrap "Usage: p-encrypt [FILE]"
+    echo_wrap "Usage: p-decrypt [FILE]"
     echo_wrap "Dependencies: 'gpg' command from package 'gnupg2'."
     echo_wrap "Manage files using GnuPG"
     echo
