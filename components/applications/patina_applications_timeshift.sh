@@ -34,6 +34,7 @@ patina_timeshift() {
     echo_wrap "  create\tCreate a Timeshift snapshot with a default label."
     echo_wrap "  restore\tPrompt the user on which snapshot to restore."
     echo_wrap "  --help\tDisplay this help and exit."
+    echo
     return
 
   # Failure: Patina cannot detect a required application.
