@@ -36,6 +36,7 @@ patina_gpg() {
     echo_wrap "  encrypt\tCreate a *.gpg encrypted backup of the target file."
     echo_wrap "  decrypt\tDecrypt a *.gpg encrypted target file."
     echo_wrap "  --help\tDisplay this help and exit."
+    echo
     return
 
   # Failure: Patina has not been given an argument.
