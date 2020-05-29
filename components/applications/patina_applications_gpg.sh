@@ -31,11 +31,11 @@ patina_gpg() {
     echo_wrap "Usage: p-encrypt [FILE]"
     echo_wrap "Usage: p-decrypt [FILE]"
     echo_wrap "Dependencies: 'gpg' command from package 'gnupg2'."
-    echo_wrap "Manage files using GnuPG"
+    echo_wrap "Manage file encryption using GnuPG."
     echo
-    echo_wrap "  --encrypt\tCreate a *.gpg encrypted backup of the target file"
-    echo_wrap "  --decrypt\tDecrypt a *.gpg encrypted target file"
-    echo_wrap "  --help\tDisplay this help and exit"
+    echo_wrap "  encrypt\tCreate a *.gpg encrypted backup of the target file."
+    echo_wrap "  decrypt\tDecrypt a *.gpg encrypted target file."
+    echo_wrap "  --help\tDisplay this help and exit."
     return
 
   # Failure: Patina has not been given an argument.
@@ -61,14 +61,14 @@ patina_gpg() {
   # Success: Use GnuPG to manage file.
   elif [ -f "$2" ] ; then
     case "$1" in
-      '--decrypt')
+      'decrypt')
         local decrypted_filename
         decrypted_filename="$(printf '%s\n' "${2//.gpg/}")"
 
         gpg --output "$decrypted_filename" --decrypt "$2"
         return
         ;;
-      '--encrypt')
+      'encrypt')
         gpg --symmetric "$2"
         return
         ;;
@@ -93,7 +93,7 @@ patina_gpg() {
 alias 'p-gpg'='patina_gpg'
 
 # Shortcut Command(s).
-alias 'p-decrypt'='p-gpg --decrypt'
-alias 'p-encrypt'='p-gpg --encrypt'
+alias 'p-decrypt'='p-gpg decrypt'
+alias 'p-encrypt'='p-gpg encrypt'
 
 # End of File.
