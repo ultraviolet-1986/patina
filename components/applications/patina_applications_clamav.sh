@@ -40,6 +40,7 @@ patina_clamav() {
     echo
     echo_wrap "  --repair\tPurge and replace current virus database"
     echo_wrap "  --help\tDisplay this help and exit"
+    echo
     return
 
   # Failure: Command 'clamscan' is not available.
