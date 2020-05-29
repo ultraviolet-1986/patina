@@ -38,8 +38,8 @@ patina_clamav() {
     echo_wrap "Warning: Command(s) may require 'sudo' password."
     echo_wrap "Perform a recursive virus scan of a given location and record results."
     echo
-    echo_wrap "  --repair\tPurge and replace current virus database"
-    echo_wrap "  --help\tDisplay this help and exit"
+    echo_wrap "  --repair\tPurge and replace current virus database."
+    echo_wrap "  --help\tDisplay this help and exit."
     echo
     return
 

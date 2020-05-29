@@ -31,7 +31,8 @@ patina_libreoffice() {
     echo_wrap "Dependencies: 'soffice' command from package 'libreoffice'."
     echo_wrap "Convert a supported file to *.pdf format."
     echo
-    echo_wrap "  --help\tDisplay this help and exit"
+    echo_wrap "  --help\tDisplay this help and exit."
+    echo
     return
 
   # Failure: Patina cannot detect a required application.

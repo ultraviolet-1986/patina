@@ -30,13 +30,14 @@ patina_ufw() {
     echo_wrap "Usage: p-ufw [OPTION]"
     echo_wrap "Dependencies: 'ufw' command from package 'ufw'."
     echo_wrap "Warning: Command(s) may require 'sudo' password."
-    echo_wrap "Configure the 'ufw' firewall"
+    echo_wrap "Configure the 'ufw' firewall."
     echo
-    echo_wrap "  --disable\tDisable 'ufw'"
-    echo_wrap "  --enable\tEnable 'ufw'"
-    echo_wrap "  --setup\tEnable 'ufw' with basic rules"
-    echo_wrap "  --status\tDisplay the status of 'ufw' and list active rules"
-    echo_wrap "  --help\tDisplay this help and exit"
+    echo_wrap "  disable\tDisable 'ufw'."
+    echo_wrap "  enable\tEnable 'ufw'."
+    echo_wrap "  setup\tEnable 'ufw' with basic rules."
+    echo_wrap "  status\tDisplay the status of 'ufw' and list active rules."
+    echo_wrap "  --help\tDisplay this help and exit."
+    echo
     return
 
   # Failure: Patina cannot detect a required application.

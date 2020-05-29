@@ -36,8 +36,9 @@ patina_genisoimage() {
     echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
     echo_wrap "Create a read-only disk image in .iso format."
     echo
-    echo_wrap "  --force\tBypass ISO-9660 restrictions (optional)"
-    echo_wrap "  --help\tDisplay this help and exit"
+    echo_wrap "  --force\tBypass ISO-9660 restrictions."
+    echo_wrap "  --help\tDisplay this help and exit."
+    echo
     return
 
   # Failure: Command 'mkisofs' is not available.
