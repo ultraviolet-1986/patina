@@ -34,7 +34,7 @@ patina_ufw() {
     echo
     echo_wrap "  disable\tDisable 'ufw'."
     echo_wrap "  enable\tEnable 'ufw'."
-    echo_wrap "  setup\tEnable 'ufw' with basic rules."
+    echo_wrap "  setup\t\tEnable 'ufw' with basic rules."
     echo_wrap "  status\tDisplay the status of 'ufw' and list active rules."
     echo_wrap "  --help\tDisplay this help and exit."
     echo
