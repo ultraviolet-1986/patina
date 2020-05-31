@@ -83,6 +83,10 @@ numbers (Patina Exception) here for reference.
   - This exception should be raised when the execution target is invalid for the
     current operation, for example: the current target is in use.
 
+- **PE0018 `Patina cannot be initialized in an unsupported environment.`**
+  - This exception should be raised when initialized within an unsupported
+    environment such as an alternative operating system.
+
 ## Utilising Exceptions
 
 When writing scripts or components to use with Patina, a user can look up a

@@ -84,6 +84,7 @@ export readonly PE0014='PE0014: Patina cannot perform current operation on a fil
 export readonly PE0015='PE0015: Patina cannot perform current operation on a directory.'
 export readonly PE0016='PE0016: Patina cannot find the item specified.'
 export readonly PE0017='PE0017: Patina cannot perform current operation on item specified.'
+export readonly PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
 
 # Patina / Paths / Root
 patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
@@ -109,10 +110,10 @@ readonly system_lsb_release='/etc/lsb-release'
 # Functions #
 #############
 
-patina_start() {
+patina_initialize() {
   # Ensure Patina is operating inside of a GNU/Linux environment.
   if [ "$OSTYPE" != 'linux-gnu' ] ; then
-    echo_wrap "${red}Patina does not currently support your operating system.${color_reset}"
+    patina_throw_exception 'PE0018'
     return
   fi
 
@@ -218,7 +219,7 @@ patina_show_component_report() {
   fi
 }
 
-patina_show_dependency_report(){
+patina_show_dependency_report() {
   # Display Header.
   echo
   echo_wrap "${bold}${patina_major_color}Patina Dependency Report${color_reset}\\n"
@@ -534,6 +535,6 @@ alias 'p-uuid'='generate_uuid'
 # Kickstart #
 #############
 
-patina_start
+patina_initialize
 
 # End of File.
