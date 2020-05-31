@@ -39,6 +39,32 @@ readonly patina_metadata_version='0.7.8'
 readonly patina_metadata_codename='Duchess'
 readonly patina_metadata_url='https://github.com/ultraviolet-1986/patina'
 
+# Patina / Text Formatting / Colors
+export readonly blue='\e[34m'
+export readonly cyan='\e[36m'
+export readonly green='\e[32m'
+export readonly magenta='\e[35m'
+export readonly red='\e[31m'
+export readonly yellow='\e[33m'
+export readonly light_blue='\e[94m'
+export readonly light_cyan='\e[96m'
+export readonly light_gray='\e[37m'
+export readonly light_green='\e[92m'
+export readonly light_magenta='\e[95m'
+export readonly light_red='\e[91m'
+export readonly light_yellow='\e[93m'
+export readonly black='\e[30m'
+export readonly gray='\e[90m'
+export readonly white='\e[97m'
+
+# Patina / Text Formatting / Style
+export readonly bold='\e[1m'
+export readonly underline='\e[4m'
+
+# Patina / Text Formatting / Reset
+export readonly color_default='\e[39m'
+export readonly color_reset='\e[0m'
+
 # Patina / Core / Exceptions
 export readonly PE0000='PE0000: Patina has encountered an unknown error.'
 export readonly PE0001='PE0001: Patina has not been given an expected argument.'
@@ -86,7 +112,7 @@ readonly system_lsb_release='/etc/lsb-release'
 patina_start() {
   # Ensure Patina is operating inside of a GNU/Linux environment.
   if [ "$OSTYPE" != 'linux-gnu' ] ; then
-    echo_wrap "Patina does not currently support your operating system. For more information, or to make a feature request, please visit '$patina_metadata_url'."
+    echo_wrap "${red}Patina does not currently support your operating system.${color_reset}"
     return
   fi
 

@@ -28,37 +28,6 @@
 # shellcheck disable=SC2154
 
 #############
-# Variables #
-#############
-
-# Text / Colors
-export readonly blue='\e[34m'
-export readonly cyan='\e[36m'
-export readonly green='\e[32m'
-export readonly magenta='\e[35m'
-export readonly red='\e[31m'
-export readonly yellow='\e[33m'
-
-export readonly light_blue='\e[94m'
-export readonly light_cyan='\e[96m'
-export readonly light_gray='\e[37m'
-export readonly light_green='\e[92m'
-export readonly light_magenta='\e[95m'
-export readonly light_red='\e[91m'
-export readonly light_yellow='\e[93m'
-
-export readonly black='\e[30m'
-export readonly gray='\e[90m'
-export readonly white='\e[97m'
-
-# Text / Formatting
-export readonly bold='\e[1m'
-export readonly underline='\e[4m'
-
-export readonly color_default='\e[39m'
-export readonly color_reset='\e[0m'
-
-#############
 # Functions #
 #############
 
@@ -164,8 +133,12 @@ patina_theme_apply() {
     return
   fi
 
-  # Refresh the prompt
-  export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+  # Refresh the prompt (enable diamond prefix for Fedora Silverblue Toolbox).
+  if [ "$HOSTNAME" == 'toolbox' ] ; then
+    export PS1="\\[\\e]2;Patina \\w\\a\\]${magenta}⬢${color_reset} \\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+  else
+    export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+  fi
 }
 
 patina_initialization_theme_apply() {
