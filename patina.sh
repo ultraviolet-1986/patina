@@ -170,10 +170,11 @@ patina_show_version_report() {
   elif [ "$#" -eq 0 ] ; then
     echo_wrap "Patina ${patina_metadata_version} '${patina_metadata_codename}'"
     echo_wrap "Copyright (C) 2020 William Whinn"
-    echo_wrap "${patina_metadata_url}"
+    echo_wrap "<${patina_metadata_url}>"
     echo_wrap "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>."
     echo_wrap "This is free software: you are free to change and redistribute it."
     echo_wrap "There is NO WARRANTY, to the extent permitted by law."
+    echo
     return
 
   # Failure: Catch all.
