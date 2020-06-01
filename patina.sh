@@ -194,7 +194,7 @@ patina_show_component_report() {
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     # Display Header
     echo
-    echo_wrap "${bold}PATINA COMPONENT REPORT${color_reset}\\n"
+    echo_wrap "${bold}Patina Component Report${color_reset}\\n"
     echo_wrap "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
     # Success: 'tree' is installed. Display enhanced component list.
@@ -223,7 +223,7 @@ patina_show_component_report() {
 patina_show_dependency_report() {
   # Display Header.
   echo
-  echo_wrap "${bold}PATINA DEPENDENCY REPORT${color_reset}\\n"
+  echo_wrap "${bold}Patina Dependency Report${color_reset}\\n"
 
   echo_wrap "${bold}NOTE${color_reset} Distribution-Native Packages Detected Only.\\n"
 
@@ -300,15 +300,15 @@ patina_show_system_report() {
   elif [ "$#" -eq 0 ] ; then
     # Display Header
     echo
-    echo_wrap "${bold}PATINA SYSTEM REPORT${color_reset}\\n"
+    echo_wrap "${bold}Patina System Report${color_reset}\\n"
 
     # Show System Report
-    echo_wrap "${bold}${patina_minor_color}Operating System:${color_reset}\\t$PRETTY_NAME"
-    echo_wrap "${bold}${patina_minor_color}Operating System URL:${color_reset}\\t$HOME_URL"
-    echo_wrap "${bold}${patina_minor_color}Current Session:${color_reset}\\t$XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
-    echo_wrap "${bold}${patina_minor_color}Linux Kernel Version:${color_reset}\\t$(uname -r)"
-    echo_wrap "${bold}${patina_minor_color}Package Manager:${color_reset}\\t$(to_upper "${patina_package_manager}")"
-    echo_wrap "${bold}${patina_minor_color}BASH Version:${color_reset}\\t\\t${BASH_VERSION%%[^0-9.]*}"
+    echo_wrap "${bold}Operating System${color_reset}\\t$PRETTY_NAME"
+    echo_wrap "${bold}Operating System URL${color_reset}\\t<$HOME_URL>"
+    echo_wrap "${bold}Current Session${color_reset}\\t\\t$XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
+    echo_wrap "${bold}Linux Kernel Version${color_reset}\\t$(uname -r)"
+    echo_wrap "${bold}Package Manager${color_reset}\\t\\t$(to_upper "${patina_package_manager}")"
+    echo_wrap "${bold}BASH Version${color_reset}\\t\\t${BASH_VERSION%%[^0-9.]*}"
 
     echo
     return
