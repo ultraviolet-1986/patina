@@ -135,7 +135,7 @@ patina_theme_apply() {
 
   # Refresh the prompt (enable diamond prefix for Fedora Silverblue Toolbox).
   if [ "$HOSTNAME" == 'toolbox' ] ; then
-    export PS1="\\[\\e]2;Patina \\w\\a\\]${magenta}⬢${color_reset} \\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+    export PS1="\\[\\e]2;Patina \\w\\a\\]${magenta}\\[\\]⬢\\[\\]${color_reset} \\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
   else
     export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
   fi
