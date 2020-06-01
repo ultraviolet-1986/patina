@@ -194,7 +194,7 @@ patina_show_component_report() {
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     # Display Header
     echo
-    echo_wrap "${bold}${patina_major_color}Patina Component Report${color_reset}\\n"
+    echo_wrap "${bold}${patina_major_color}PATINA COMPONENT REPORT${color_reset}\\n"
     echo_wrap "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
     # Success: 'tree' is installed. Display enhanced component list.
@@ -223,7 +223,7 @@ patina_show_component_report() {
 patina_show_dependency_report() {
   # Display Header.
   echo
-  echo_wrap "${bold}${patina_major_color}Patina Dependency Report${color_reset}\\n"
+  echo_wrap "${bold}${patina_major_color}PATINA DEPENDENCY REPORT${color_reset}\\n"
 
   echo_wrap "${bold}NOTE${color_reset} Distribution-Native Packages Detected Only.\\n"
 
@@ -300,7 +300,7 @@ patina_show_system_report() {
   elif [ "$#" -eq 0 ] ; then
     # Display Header
     echo
-    echo_wrap "${bold}${patina_major_color}Patina System Report${color_reset}\\n"
+    echo_wrap "${bold}${patina_major_color}PATINA SYSTEM REPORT${color_reset}\\n"
 
     # Show System Report
     echo_wrap "${bold}${patina_minor_color}Operating System:${color_reset}\\t$PRETTY_NAME"
