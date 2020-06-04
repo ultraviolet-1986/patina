@@ -113,7 +113,7 @@ patina_initialize() {
   # Ensure Patina is operating inside of a GNU/Linux environment.
   if [ "$OSTYPE" != 'linux-gnu' ] ; then
     patina_throw_exception 'PE0018'
-    return
+    return 1
   fi
 
   # Import additional system variables.
@@ -163,7 +163,7 @@ patina_show_version_report() {
   # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Display Patina information.
   elif [ "$#" -eq 0 ] ; then
@@ -174,7 +174,7 @@ patina_show_version_report() {
     echo_wrap "This is free software: you are free to change and redistribute it."
     echo_wrap "There is NO WARRANTY, to the extent permitted by law."
     echo
-    return
+    return 0
 
   # Failure: Catch all.
   else
@@ -187,7 +187,7 @@ patina_show_component_report() {
   # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
@@ -200,7 +200,7 @@ patina_show_component_report() {
     if ( command -v 'tree' > /dev/null 2>&1 ) ; then
       tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$patina_path_components"
       echo
-      return
+      return 0
 
     # Success: 'tree' is not installed. Display standard component list.
     else
@@ -209,13 +209,13 @@ patina_show_component_report() {
       done
 
       echo
-      return
+      return 0
     fi
 
   # Failure: Patina Component(s) were not detected.
   else
     patina_throw_exception 'PE0007'
-    return
+    return 1
   fi
 }
 
@@ -286,14 +286,14 @@ patina_show_dependency_report() {
   fi
 
   echo
-  return
+  return 0
 }
 
 patina_show_system_report() {
   # Failure: Patina has been given too many arguments.
   if [ "$#" -ge 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Display the Patina System Report.
   elif [ "$#" -eq 0 ] ; then
@@ -310,12 +310,12 @@ patina_show_system_report() {
     echo_wrap "${bold}BASH Version${color_reset}\\t\\t${BASH_VERSION%%[^0-9.]*}"
 
     echo
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
@@ -323,22 +323,22 @@ patina_throw_exception() {
   # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Display Patina Exception.
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
     echo_wrap "${red}${!1}${color_reset}"
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
@@ -346,50 +346,53 @@ patina_open_folder() {
   # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Failure: Target is a file.
   elif [ -f "$1" ] ; then
     patina_throw_exception 'PE0003'
-    return
+    return 1
 
   # Failure: Target directory does not exist
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
-    return
+    return 1
 
   # Success: Change directory.
   elif [ -d "$1" ] && [ -z "$2" ] ; then
     cd "$1" || return
-    return
+    return 0
 
   # Success: Change directory and open in graphical File Manager if possible.
   elif [ -d "$1" ] && [ "$2" ] ; then
     case "$2" in
       "-g")
-        cd "$1" || return
-
+        # Success: Open location graphically.
         if ( command -v 'xdg-open' > /dev/null 2>&1 ) ; then
+          cd "$1" || return
           xdg-open "$(pwd)" > /dev/null 2>&1
+          return 0
+        else
+          # Failure: Cannot open location graphically.
+          patina_throw_exception 'PE0013'
+          return 1
         fi
-
-        return
         ;;
       *)
         patina_throw_exception 'PE0003'
-        return
+        return 1
         ;;
     esac
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
@@ -399,22 +402,22 @@ echo_wrap() {
   # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Display wrapped text.
   elif [ -n "$1" ] ; then
     (echo -e "$1") | fmt -w "$(tput cols)"
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
@@ -422,22 +425,22 @@ to_lower() {
   # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Display text as lower-case.
   elif [ -n "$1" ] ; then
     echo -e "$1" | tr '[:upper:]' '[:lower:]'
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
@@ -445,22 +448,22 @@ to_upper() {
   # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Display text as upper-case.
   elif [ -n "$1" ] ; then
     echo -e "$1" | tr '[:lower:]' '[:upper:]'
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
@@ -472,17 +475,19 @@ generate_uuid() {
     printf '-'; eval "$label_command_4"; printf '-'; eval "$label_command_4"; \
     printf '-'; eval "$label_command_4"; printf '-'; eval "$label_command_4"; \
     printf '-'; eval "$label_command_6"; )"
+
+  return 0
 }
 
 patina_terminal_refresh() {
-  cd || return
+  cd || return 1
   clear
   reset
   exec bash
 }
 
 patina_terminal_reset() {
-  cd || return
+  cd || return 1
   clear
   history -c
   true > ~/.bash_history
