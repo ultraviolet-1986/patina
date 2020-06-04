@@ -40,6 +40,7 @@ patina_system_session() {
       patina_session_action='poweroff'
     else
       patina_throw_exception 'PE0001'
+      return 1
     fi
 
     printf "Your current session will end. Do you wish to continue [Y/N]? "
@@ -49,16 +50,19 @@ patina_system_session() {
     case "$answer" in
       'Y' | 'y')
         systemctl "$patina_session_action"
+        return 0
         ;;
       'N' | 'n')
-        return
+        return 0
         ;;
       *)
         patina_throw_exception 'PE0003'
+        return 1
         ;;
     esac
   else
     patina_throw_exception 'PE0006'
+    return 1
   fi
 }
 

@@ -34,38 +34,38 @@ patina_timeshift() {
     echo_wrap "  restore\tPrompt the user on which snapshot to restore."
     echo_wrap "  --help\tDisplay this help and exit."
     echo
-    return
+    return 0
 
   # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'timeshift' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Create a snapshot of the system and provide a default label.
   elif [ "$1" = 'create' ] ; then
     sudo timeshift --create --yes \
       --comment "System Checkpoint (Patina)." --scripted
-    return
+    return 0
 
   # Success: User will be prompted to restore a specific snapshot.
   elif [ "$1" = 'restore' ] ; then
     sudo timeshift --restore
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 

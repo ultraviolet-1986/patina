@@ -34,17 +34,17 @@ patina_theme_apply() {
   # Failure: Patina has not been given an argument
   if [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given multiple arguments
   elif [ "$#" -gt "1" ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Default theme
   elif [ "$1" = 'default' ] ; then
     patina_theme_apply 'magenta'
-    return
+    return 0
 
   # Standard themes
   elif [ "$1" = 'blue' ] ; then
@@ -116,7 +116,7 @@ patina_theme_apply() {
   # Failure: Catch any other error condition here
   else
     patina_throw_exception 'PE0003'
-    return
+    return 1
   fi
 
   # Export the selected theme
@@ -129,25 +129,27 @@ patina_theme_apply() {
   # Failure: Rewrite configuration file
   else
     patina_create_configuration_file
-    return
+    return 0
   fi
 
   # Refresh the prompt (enable diamond prefix for Fedora Silverblue Toolbox).
   if [ "$HOSTNAME" == 'toolbox' ] ; then
     export PS1="\\[\\e]2;Patina \\w\\a\\]${magenta}\\[\\]⬢\\[\\]${color_reset} \\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+    return 0
   else
     export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+    return 0
   fi
 }
 
 patina_initialization_theme_apply() {
   if [ "$patina_theme" ] ; then
     patina_theme_apply "$patina_theme"
-    return
+    return 0
   else
     export patina_theme=default
     patina_theme_apply "$patina_theme"
-    return
+    return 0
   fi
 }
 

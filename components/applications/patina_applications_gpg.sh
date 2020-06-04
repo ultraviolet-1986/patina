@@ -36,27 +36,27 @@ patina_gpg() {
     echo_wrap "  decrypt\tDecrypt a *.gpg encrypted target file."
     echo_wrap "  --help\tDisplay this help and exit."
     echo
-    return
+    return 0
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Failure: Patina cannot perform current operation on a directory.
   elif [ -d "$2" ] ; then
     patina_throw_exception 'PE0015'
-    return
+    return 1
 
   # Failure: Patina cannot find the file specified.
   elif [ ! -f "$2" ] ; then
     patina_throw_exception 'PE0005'
-    return
+    return 1
 
   # Success: Use GnuPG to manage file.
   elif [ -f "$2" ] ; then
@@ -66,22 +66,22 @@ patina_gpg() {
         decrypted_filename="$(printf '%s\n' "${2//.gpg/}")"
 
         gpg --output "$decrypted_filename" --decrypt "$2"
-        return
+        return 0
         ;;
       'encrypt')
         gpg --symmetric "$2"
-        return
+        return 0
         ;;
       *)
         patina_throw_exception 'PE0000'
-        return
+        return 1
         ;;
     esac
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 

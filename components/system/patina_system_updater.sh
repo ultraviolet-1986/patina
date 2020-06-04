@@ -36,29 +36,29 @@ patina_update() {
   # Failure: Package 'git' is not installed
   if ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
 
   # Failure: Patina root is not a 'git' repository
   elif ( ! git -C "$patina_path_root" rev-parse ) ; then
     patina_throw_exception 'PE0009'
-    return
+    return 1
 
   # Failure: Patina is not connected to the Internet
   elif [ "$patina_has_internet" = 'false' ] ; then
     patina_throw_exception 'PE0008'
-    return
+    return 1
 
   # Success: Patina will check for newer 'git' commits
   elif ( git -C "$patina_path_root" rev-parse ) ; then
-    cd "$patina_path_root" || return
+    cd "$patina_path_root" || return 1
     git pull
-    cd ~- || return
-    return
+    cd ~- || return 1
+    return 0
 
   # Failure: Catch any other error condition here
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 

@@ -39,10 +39,10 @@ patina_has_internet=''
 patina_detect_internet_connection() {
   if ( ping -c 1 1.1.1.1 ) &> /dev/null ; then
     patina_has_internet='true'
-    return
+    return 0
   else
     patina_has_internet='false'
-    return
+    return 0
   fi
 }
 
@@ -52,31 +52,31 @@ patina_show_network_status() {
 
   if [ "$patina_has_internet" = 'true' ] ; then
     echo_wrap "Patina has access to the Internet."
-    return
+    return 0
   elif [ "$patina_has_internet" = 'false' ] ; then
     patina_throw_exception 'PE0008'
-    return
+    return 0
   elif [ -z "$patina_has_internet" ] ; then
     patina_show_network_status
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
 patina_systemd_network_manager() {
   if ( ! command -v 'systemctl' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
   elif [ "$#" -eq "0" ] ; then
     patina_throw_exception 'PE0003'
-    return
+    return 1
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   elif ( command -v 'systemctl' > /dev/null 2>&1 ) ; then
     case "$1" in
@@ -94,23 +94,25 @@ patina_systemd_network_manager() {
         ;;
       'status')
         patina_show_network_status
-        return
+        return 0
         ;;
       'stop')
         # Pass argument to system and continue.
         ;;
       *)
         patina_throw_exception 'PE0003'
+        return 1
         ;;
     esac
 
     sleep 0.1
     systemctl "$1" NetworkManager.service
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 

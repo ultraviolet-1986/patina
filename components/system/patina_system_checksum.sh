@@ -26,6 +26,7 @@
 patina_checksum_recursive() {
   shopt -s globstar dotglob
   "$1" ./** > "${PWD##*/}.$1"
+  return 0
 }
 
 ###########

@@ -157,6 +157,8 @@ patina_create_configuration_file() {
 
   # Refresh the terminal to load new configuration.
   patina_terminal_refresh
+
+  return 0
 }
 
 patina_show_version_report() {
@@ -179,7 +181,7 @@ patina_show_version_report() {
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
@@ -396,7 +398,7 @@ patina_open_folder() {
   fi
 }
 
-generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; }
+generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; return 0 ; }
 
 echo_wrap() {
   # Failure: Patina has not been given an argument.
@@ -484,6 +486,7 @@ patina_terminal_refresh() {
   clear
   reset
   exec bash
+  return 0
 }
 
 patina_terminal_reset() {
@@ -493,6 +496,7 @@ patina_terminal_reset() {
   true > ~/.bash_history
   reset
   exec bash
+  return 0
 }
 
 ###########

@@ -32,32 +32,32 @@ patina_git() {
     echo
     echo_wrap "  undo\t\tDiscard changes to repository since previous commit."
     echo_wrap "  --help\tDisplay this help and exit."
-    return
+    return 0
 
   # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Parse 'git' arguments.
   elif [ "$1" = 'undo' ] ; then
     git reset --hard HEAD
-    return
+    return 0
 
   # Failure: An invalid argument was provided.
   else
     patina_throw_exception 'PE0003'
-    return
+    return 1
   fi
 }
 

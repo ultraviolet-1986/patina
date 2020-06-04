@@ -94,60 +94,66 @@ patina_package_manager() {
 
   if [ "$patina_has_internet" = 'false' ] ; then
     patina_throw_exception 'PE0008'
-    return
+    return 1
 
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   else
     case "$1" in
       'install')
         if [ -z "$2" ] ; then
           patina_throw_exception 'PE0001'
-          return
+          return 1
         else
           if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
             eval "$patina_package_manager" "$patina_package_install" "${@:2}"
+            return 0
           else
             sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
+            return 0
           fi
-          return
         fi
         ;;
       'remove')
         if [ -z "$2" ] ; then
           patina_throw_exception 'PE0001'
+          return 1
         else
           if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
             eval "$patina_package_manager" "$patina_package_remove" "${@:2}"
+            return 0
           else
             sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
+            return 0
           fi
-          return
         fi
         ;;
       'update')
         if [ "$patina_package_manager" = 'dnf' ] ; then
           eval "$patina_package_manager" "$patina_package_update" --refresh
+          return 0
         elif [ "$patina_package_manager" = 'rpm-ostree' ] ; then
           eval "$patina_package_manager" "$patina_package_upgrade" --check
+          return 0
         else
           sudo "$patina_package_manager" "$patina_package_update"
+          return 0
         fi
-        return
         ;;
       'upgrade')
         if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
           eval "$patina_package_manager" "$patina_package_upgrade"
+          return 0
         else
           sudo "$patina_package_manager" "$patina_package_upgrade" --refresh
+          return 0
         fi
-        return
         ;;
       *)
         patina_throw_exception 'PE0003'
-        return
+        return 1
         ;;
     esac
   fi

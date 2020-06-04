@@ -32,37 +32,37 @@ patina_libreoffice() {
     echo
     echo_wrap "  --help\tDisplay this help and exit."
     echo
-    return
+    return 0
 
   # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'soffice' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Failure: Patina cannot convert a directory to PDF.
   elif [ -d "$1" ] ; then
     patina_throw_exception 'PE0015'
-    return
+    return 1
 
   # Success: Convert an existing document to PDF (if supported).
   elif [ -f "$1" ] ; then
     soffice --convert-to pdf "$1"
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 

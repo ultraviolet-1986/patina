@@ -37,22 +37,22 @@ patina_ufw() {
     echo_wrap "  status\tDisplay the status of 'ufw' and list active rules."
     echo_wrap "  --help\tDisplay this help and exit."
     echo
-    return
+    return 0
 
   # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'ufw' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Process argument and apply it to 'ufw'.
   # Warning: Uses 'sudo' to configure 'ufw'.
@@ -60,32 +60,32 @@ patina_ufw() {
     case "$1" in
       '--disable')
         sudo ufw disable
-        return
+        return 0
         ;;
       '--enable')
         sudo ufw enable
-        return
+        return 0
         ;;
       '--setup')
         sudo ufw enable
         sudo ufw default deny
         sudo ufw limit ssh
-        return
+        return 0
         ;;
       '--status')
         sudo ufw status
-        return
+        return 0
         ;;
       *)
         patina_throw_exception 'PE0003'
-        return
+        return 1
         ;;
     esac
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 

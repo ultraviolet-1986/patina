@@ -38,42 +38,42 @@ patina_genisoimage() {
     echo_wrap "  --force\tBypass ISO-9660 restrictions."
     echo_wrap "  --help\tDisplay this help and exit."
     echo
-    return
+    return 0
 
   # Failure: Command 'mkisofs' is not available.
   elif ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Failure: A valid argument was not provided.
   elif [ -n "$2" ] && [ "$2" != '--force' ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: The target exists, but is a file.
   elif [ -f "$1" ] ; then
     patina_throw_exception 'PE0014'
-    return
+    return 1
 
   # Failure: The target directory does not exist.
   elif [ ! -d "$1" ] ; then
     patina_throw_exception 'PE0004'
-    return
+    return 1
 
   # Failure: The target disk image already exists.
   elif [ -f "$(basename "$1").iso" ] ; then
     patina_throw_exception 'PE0011'
-    return
+    return 1
 
   # Success: Create ISO Disk Image (ISO-9660 compliant).
   elif [ -d "$1" ] && [ -z "$2" ] ; then
@@ -83,7 +83,7 @@ patina_genisoimage() {
       -joliet-long \
       -rock \
       "$1"
-    return
+    return 0
 
   # Success: Create ISO Disk Image (Non ISO-9660 compliant).
   elif [ -d "$1" ] && [ "$2" = '--force' ] ; then
@@ -94,12 +94,12 @@ patina_genisoimage() {
       -disable-deep-relocation \
       -untranslated-filenames \
       "$1"
-    return
+    return 0
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 

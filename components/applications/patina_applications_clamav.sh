@@ -40,22 +40,22 @@ patina_clamav() {
     echo_wrap "  --repair\tPurge and replace current virus database."
     echo_wrap "  --help\tDisplay this help and exit."
     echo
-    return
+    return 0
 
   # Failure: Command 'clamscan' is not available.
   elif ( ! command -v 'clamscan' > /dev/null 2>&1 ) ; then
     patina_throw_exception 'PE0006'
-    return
+    return 1
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_throw_exception 'PE0001'
-    return
+    return 1
 
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_throw_exception 'PE0002'
-    return
+    return 1
 
   # Success: Repair Freshclam update mechanism.
   # Warning: Uses 'sudo' to delete system files.
@@ -65,12 +65,12 @@ patina_clamav() {
       "$clamav_path/daily.cld" \
       "$clamav_path/main.cvd" \
       "$clamav_path/mirrors.dat"
-    return
+    return 0
 
   # Failure: Scan target does not exist.
   elif [[ ! -e "$1" ]] ; then
     patina_throw_exception 'PE0016'
-    return
+    return 1
 
   # Success: Guide user in performing virus scan.
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
@@ -88,7 +88,7 @@ patina_clamav() {
         ;;
       *)
         patina_throw_exception 'PE0003'
-        return
+        return 1
         ;;
     esac
 
@@ -98,23 +98,23 @@ patina_clamav() {
       true)
         clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v
         echo
-        return
+        return 0
         ;;
       false)
         clamscan -r "$1" -v
         echo
-        return
+        return 0
         ;;
       *)
         patina_throw_exception 'PE0003'
-        return
+        return 1
         ;;
     esac
 
   # Failure: Catch all.
   else
     patina_throw_exception 'PE0000'
-    return
+    return 1
   fi
 }
 
