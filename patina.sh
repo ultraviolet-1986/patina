@@ -486,7 +486,6 @@ patina_terminal_refresh() {
   clear
   reset
   exec bash
-  return 0
 }
 
 patina_terminal_reset() {
@@ -496,7 +495,6 @@ patina_terminal_reset() {
   true > ~/.bash_history
   reset
   exec bash
-  return 0
 }
 
 ###########
