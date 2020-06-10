@@ -24,9 +24,27 @@
 #############
 
 patina_checksum_recursive() {
-  shopt -s globstar dotglob
-  "$1" ./** > "${PWD##*/}.$1"
-  return 0
+  # Failure: Command for the hasing algorithm is not available.
+  if ( ! command -v "$1" > /dev/null 2>&1 ) ; then
+    patina_throw_exception 'PE0006'
+    return 1
+
+  # Failure: Patina has been given too many arguments.
+  elif [ "$#" -ge 2 ] ; then
+    patina_throw_exception 'PE0002'
+    return 1
+
+  # Success: Parse all files recursively using the selected hashing algorithm.
+  elif [ "$#" -eq 1 ] ; then
+    shopt -s globstar dotglob
+    "$1" ./** > "${PWD##*/}.$1"
+    return 0
+
+  # Failure: Catch all.
+  else
+    patina_throw_exception 'PE0000'
+    return 1
+  fi
 }
 
 ###########
@@ -39,8 +57,10 @@ export -f 'patina_checksum_recursive'
 # Aliases #
 ###########
 
+alias 'p-b2sum'="patina_checksum_recursive 'b2sum'"
 alias 'p-md5sum'="patina_checksum_recursive 'md5sum'"
 alias 'p-sha1sum'="patina_checksum_recursive 'sha1sum'"
+alias 'p-sha224sum'="patina_checksum_recursive 'sha224sum'"
 alias 'p-sha256sum'="patina_checksum_recursive 'sha256sum'"
 alias 'p-sha384sum'="patina_checksum_recursive 'sha384sum'"
 alias 'p-sha512sum'="patina_checksum_recursive 'sha512sum'"

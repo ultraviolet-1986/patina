@@ -36,6 +36,8 @@ after an evil butler tries to steal their inheritance.
     This information can now be accessed using the `p-deps` command.
   - Fedora Toolbox users will now see a hexagon prefix to their prompt when
     working within a Toolbox container.
+  - Include other file hashing algorithms such as `SHA224` and `BLAKE2` to
+    create the new `p-b2sum` and `p-sha224sum` commands.
 - **0.7.7 Released Tuesday, April 28th 2020**
   - Included new component `patina_system_patina_status.sh` which includes the
     command `p-status`. This command will display a list of Patina-compatible

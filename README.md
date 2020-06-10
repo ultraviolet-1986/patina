@@ -361,8 +361,10 @@ the name of the directory followed by a .(hash) suffix; for example:
 `directory.sha512sum` or `directory.md5sum`.
 
 ```bash
+p-b2sum      # Create a checksum file using the BLAKE2 algorithm.
 p-md5sum     # Create a checksum file using the MD5 algorithm.
 p-sha1sum    # Create a checksum file using the SHA-1 algorithm.
+p-sha224sum  # Create a checksum file using the SHA-224 algorithm.
 p-sha256sum  # Create a checksum file using the SHA-256 algorithm.
 p-sha384sum  # Create a checksum file using the SHA-384 algorithm.
 p-sha512sum  # Create a checksum file using the SHA-512 algorithm.
