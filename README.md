@@ -374,8 +374,10 @@ To verify the output checksum file, use the following command(s) depending on
 file type you specified:
 
 ```bash
+b2sum -c "<filename>.b2sum"          # Verify checksum for *.md5sum files.
 md5sum -c "<filename>.md5sum"        # Verify checksum for *.md5sum files.
 sha1sum -c "<filename>.sha1sum"      # Verify checksum for *.sha1sum files.
+sha224sum -c "<filename>.sha256sum"  # Verify checksum for *.sha224sum files.
 sha256sum -c "<filename>.sha256sum"  # Verify checksum for *.sha256sum files.
 sha384sum -c "<filename>.sha384sum"  # Verify checksum for *.sha384sum files.
 sha512sum -c "<filename>.sha512sum"  # Verify checksum for *.sha512sum files.
