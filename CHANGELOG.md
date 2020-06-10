@@ -13,8 +13,6 @@ after an evil butler tries to steal their inheritance.
 
 - **0.7.8 Currently in development**
   - Errors and Patina Exceptions now appear in red for better readability.
-  - Included the `p-report` command. This will now display a short report on the
-    details of the current system.
   - Deleted component `patina_system_display_server.sh` as this information can
     now be accessed by using the above `p-system` command.
   - Converted some application component arguments to double-hyphen syntax to
