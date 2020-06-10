@@ -16,6 +16,7 @@ Additional Patina components can be found here:
 - [Patina Layout](#patina-layout)
 - [Built-in Commands](#built-in-commands)
   - [Patina Core](#patina-core)
+  - [Patina Reports](#patina-reports)
   - [Themes](#themes)
   - [Places](#places)
   - [Application Components](#application-components)
@@ -31,7 +32,6 @@ Additional Patina components can be found here:
     - [Checksum Management](#checksum-management)
     - [Network Management](#network-management)
     - [Package Management](#package-management)
-    - [Patina Status](#patina-status)
     - [Desktop Session](#desktop-session)
 - [Helper Functions](#helper-functions)
 - [String Generators](#string-generators)
@@ -210,11 +210,18 @@ p-help     # Display this file within the Terminal.
 p-update   # Check for and apply Patina updates.
 p-refresh  # Restart Patina to detect and connect to new components.
 p-reset    # Clear command-line history and restart Patina.
+```
 
-p-version  # Display information regarding Patina such as version and license.
+### Patina Reports
+
+The following commands will display information regarding the current Operating
+System.
+
+```bash
 p-deps     # Display a list of Patina dependencies and their current state.
 p-list     # Display a list of connected Patina components.
 p-system   # Display information regarding the current system environment.
+p-version  # Display information regarding Patina such as version and license.
 ```
 
 ### Themes
@@ -412,18 +419,6 @@ p-pkg install      # Install package(s).
 p-pkg remove       # Remove package(s).
 p-pkg update       # Update package catalogue.
 p-pkg upgrade      # Upgrade outdated package(s).
-```
-
-#### Patina Status
-
-The following command will display a list of Patina-compatible applications and
-whether or not they are installed on the system.
-
-**NOTE:** This will detect only distribution-native packages.
-Flatpak/Snap/AppImage has not been accounted for at this time.
-
-```bash
-p-status  # Show Patina-compatible applications and their installation status.
 ```
 
 #### Desktop Session
