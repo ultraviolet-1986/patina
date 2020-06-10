@@ -545,6 +545,50 @@ to_upper() {
   fi
 }
 
+bold() {
+  # Failure: Patina has not been given an argument.
+  if [ "$#" -eq 0 ] ; then
+    patina_throw_exception 'PE0001'
+    return 1
+
+  # Failure: Patina has been given too many arguments.
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return 1
+  # Success: Display text as upper-case.
+  elif [ -n "$1" ] ; then
+    echo_wrap "${bold}$1${color_reset}"
+    return 0
+
+  # Failure: Catch all.
+  else
+    patina_throw_exception 'PE0000'
+    return 1
+  fi
+}
+
+underline() {
+  # Failure: Patina has not been given an argument.
+  if [ "$#" -eq 0 ] ; then
+    patina_throw_exception 'PE0001'
+    return 1
+
+  # Failure: Patina has been given too many arguments.
+  elif [ "$#" -gt 1 ] ; then
+    patina_throw_exception 'PE0002'
+    return 1
+  # Success: Display text as upper-case.
+  elif [ -n "$1" ] ; then
+    echo_wrap "${underline}$1${color_reset}"
+    return 0
+
+  # Failure: Catch all.
+  else
+    patina_throw_exception 'PE0000'
+    return 1
+  fi
+}
+
 generate_uuid() {
   local label_command_6="head /dev/urandom | tr -dc A-Za-z0-9 | head -c6"
   local label_command_4="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4"
