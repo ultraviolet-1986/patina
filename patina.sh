@@ -7,17 +7,16 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later
-# version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License along with
-# this program. If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #########################
 # ShellCheck Directives #
@@ -65,98 +64,44 @@ export readonly color_default='\e[39m'
 export readonly color_reset='\e[0m'
 
 # Patina / Core / Exceptions
-PE0000='PE0000: Patina has encountered an unknown error.'
-export readonly PE0000
-
-PE0001='PE0001: Patina has not been given an expected argument.'
-export readonly PE0001
-
-PE0002='PE0002: Patina has been given too many arguments.'
-export readonly PE0002
-
-PE0003='PE0003: Patina has not been given a valid argument.'
-export readonly PE0003
-
-PE0004='PE0004: Patina cannot find the directory specified.'
-export readonly PE0004
-
-PE0005='PE0005: Patina cannot find the file specified.'
-export readonly PE0005
-
-PE0006='PE0006: Patina could not detect a required application.'
-export readonly PE0006
-
-PE0007='PE0007: Patina has not connected any components.'
-export readonly PE0007
-
-PE0008='PE0008: Patina does not have access to the Internet.'
-export readonly PE0008
-
-PE0009='PE0009: Patina cannot detect a valid version control repository.'
-export readonly PE0009
-
-PE0010='PE0010: Patina cannot access a required variable.'
-export readonly PE0010
-
-PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
-export readonly PE0011
-
-PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
-export readonly PE0012
-
-PE0013='PE0013: Patina cannot execute this command under this environment.'
-export readonly PE0013
-
-PE0014='PE0014: Patina cannot perform current operation on a file.'
-export readonly PE0014
-
-PE0015='PE0015: Patina cannot perform current operation on a directory.'
-export readonly PE0015
-
-PE0016='PE0016: Patina cannot find the item specified.'
-export readonly PE0016
-
-PE0017='PE0017: Patina cannot perform current operation on item specified.'
-export readonly PE0017
-
-PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
-export readonly PE0018
+export readonly PE0000='PE0000: Patina has encountered an unknown error.'
+export readonly PE0001='PE0001: Patina has not been given an expected argument.'
+export readonly PE0002='PE0002: Patina has been given too many arguments.'
+export readonly PE0003='PE0003: Patina has not been given a valid argument.'
+export readonly PE0004='PE0004: Patina cannot find the directory specified.'
+export readonly PE0005='PE0005: Patina cannot find the file specified.'
+export readonly PE0006='PE0006: Patina could not detect a required application.'
+export readonly PE0007='PE0007: Patina has not connected any components.'
+export readonly PE0008='PE0008: Patina does not have access to the Internet.'
+export readonly PE0009='PE0009: Patina cannot detect a valid version control repository.'
+export readonly PE0010='PE0010: Patina cannot access a required variable.'
+export readonly PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
+export readonly PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
+export readonly PE0013='PE0013: Patina cannot execute this command under this environment.'
+export readonly PE0014='PE0014: Patina cannot perform current operation on a file.'
+export readonly PE0015='PE0015: Patina cannot perform current operation on a directory.'
+export readonly PE0016='PE0016: Patina cannot find the item specified.'
+export readonly PE0017='PE0017: Patina cannot perform current operation on item specified.'
+export readonly PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
 
 # Patina / Paths / Root
-patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
-export readonly patina_path_root
+export readonly patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
 
 # Patina / Paths / Configuration
-patina_path_configuration="$HOME/.config/patina"
-export readonly patina_path_configuration
-
-patina_file_configuration="$patina_path_configuration/patina.conf"
-export readonly patina_file_configuration
-
-patina_file_source="${BASH_SOURCE[0]}"
-export readonly patina_file_source
+export readonly patina_path_configuration="$HOME/.config/patina"
+export readonly patina_file_configuration="$patina_path_configuration/patina.conf"
+export readonly patina_file_source="${BASH_SOURCE[0]}"
 
 # Patina / Paths / Components
-patina_path_components="$patina_path_root/components"
-export readonly patina_path_components
-
-patina_path_components_applications="$patina_path_components/applications"
-export readonly patina_path_components_applications
-
-patina_path_components_places="$patina_path_components/places"
-export readonly patina_path_components_places
-
-patina_path_components_system="$patina_path_components/system"
-export readonly patina_path_components_system
-
+export readonly patina_path_components="$patina_path_root/components"
+export readonly  patina_path_components_applications="$patina_path_components/applications"
+export readonly patina_path_components_places="$patina_path_components/places"
+export readonly patina_path_components_system="$patina_path_components/system"
 export readonly patina_path_components_user="$patina_path_components/user"
 
 # Patina / Paths / System / Files
-system_os_release='/etc/os-release'
-readonly system_os_release
-
-system_lsb_release='/etc/lsb-release'
-readonly system_lsb_release
+export readonly  system_os_release='/etc/os-release'
+export readonly system_lsb_release='/etc/lsb-release'
 
 #############
 # Functions #
