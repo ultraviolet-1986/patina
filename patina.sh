@@ -94,7 +94,7 @@ export readonly patina_file_source="${BASH_SOURCE[0]}"
 
 # Patina / Paths / Components
 export readonly patina_path_components="$patina_path_root/components"
-export readonly  patina_path_components_applications="$patina_path_components/applications"
+export readonly patina_path_components_applications="$patina_path_components/applications"
 export readonly patina_path_components_places="$patina_path_components/places"
 export readonly patina_path_components_system="$patina_path_components/system"
 export readonly patina_path_components_user="$patina_path_components/user"
