@@ -85,7 +85,8 @@ export readonly PE0017='PE0017: Patina cannot perform current operation on item 
 export readonly PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
 
 # Patina / Paths / Root
-export readonly patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+patina_path_root="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+export readonly patina_path_root
 
 # Patina / Paths / Configuration
 export readonly patina_path_configuration="$HOME/.config/patina"
