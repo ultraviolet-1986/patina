@@ -140,10 +140,12 @@ patina_theme_apply() {
 
   # Display a custom 'PS1' command prompt depending on the current environment.
   if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
-    export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
+    # export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
+    export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${magenta}\\]⬢\\[${color_reset}\\] \\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
     return 0
   else
-    export PS1="$window_title$user_host $working_directory $command_scope"
+    # export PS1="$window_title$user_host $working_directory $command_scope"
+    export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
     return 0
   fi
 }
