@@ -148,6 +148,8 @@ patina_initialize() {
 
   # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
+
+  return 0
 }
 
 patina_create_configuration_file() {
@@ -552,6 +554,7 @@ patina_terminal_refresh() {
   clear
   reset
   exec bash
+  return 0
 }
 
 patina_terminal_reset() {
@@ -561,6 +564,7 @@ patina_terminal_reset() {
   true > ~/.bash_history
   reset
   exec bash
+  return 0
 }
 
 ###########
