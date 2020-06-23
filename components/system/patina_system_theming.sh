@@ -132,20 +132,18 @@ patina_theme_apply() {
   fi
 
   # Define PS1 prompt properties.
-  local window_title="\e]0;Patina\a"
-  local toolbox_diamond="\[${magenta}\]⬢\[${color_reset}\]"
-  local user_host="\[${patina_major_color}\]\u@\h\[${color_reset}\]"
-  local working_directory="\[${patina_minor_color}\]\w\[${color_reset}\]"
-  local command_scope="P\$ "
+  local window_title="\\[\\e]0;Patina\\a\\]"
+  local toolbox_diamond="\\[${magenta}\\]⬢\\[${color_reset}\\]"
+  local user_host="\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\]"
+  local working_directory="\\[${patina_minor_color}\\]\\w\\[${color_reset}\\]"
+  local command_scope="P\\$ "
 
   # Display a custom 'PS1' command prompt depending on the current environment.
   if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
-    # export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
-    export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${magenta}\\]⬢\\[${color_reset}\\] \\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+    export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
     return 0
   else
-    # export PS1="$window_title$user_host $working_directory $command_scope"
-    export PS1="\\[\\e]2;Patina \\w\\a\\]\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\] \\[${patina_minor_color}\\]\\w\\[${color_reset}\\] P\\$ "
+    export PS1="$window_title$user_host $working_directory $command_scope"
     return 0
   fi
 }
