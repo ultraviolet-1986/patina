@@ -7,16 +7,18 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-# General Public License as published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License along with this program. If not,
-# see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #########################
 # ShellCheck Directives #
@@ -32,12 +34,12 @@
 patina_theme_apply() {
   # Failure: Patina has not been given an argument
   if [ "$#" -eq "0" ] ; then
-    patina_throw_exception 'PE0001'
+    patina_raise_exception 'PE0001'
     return 1
 
   # Failure: Patina has been given multiple arguments
   elif [ "$#" -gt "1" ] ; then
-    patina_throw_exception 'PE0002'
+    patina_raise_exception 'PE0002'
     return 1
 
   # Default theme
@@ -47,83 +49,83 @@ patina_theme_apply() {
 
   # Standard themes
   elif [ "$1" = 'blue' ] ; then
-    export patina_major_color="${light_blue}"
-    export patina_minor_color="${blue}"
+    export PATINA_MAJOR_COLOR="${light_blue}"
+    export PATINA_MINOR_COLOR="${blue}"
 
   elif [ "$1" = 'cyan' ] ; then
-    export patina_major_color="${light_cyan}"
-    export patina_minor_color="${cyan}"
+    export PATINA_MAJOR_COLOR="${light_cyan}"
+    export PATINA_MINOR_COLOR="${cyan}"
 
   elif [ "$1" = 'green' ] ; then
-    export patina_major_color="${light_green}"
-    export patina_minor_color="${green}"
+    export PATINA_MAJOR_COLOR="${light_green}"
+    export PATINA_MINOR_COLOR="${green}"
 
   elif [ "$1" = 'magenta' ] ; then
-    export patina_major_color="${light_magenta}"
-    export patina_minor_color="${magenta}"
+    export PATINA_MAJOR_COLOR="${light_magenta}"
+    export PATINA_MINOR_COLOR="${MAGENTA}"
 
   elif [ "$1" = 'red' ] ; then
-    export patina_major_color="${light_red}"
-    export patina_minor_color="${red}"
+    export PATINA_MAJOR_COLOR="${light_red}"
+    export PATINA_MINOR_COLOR="${red}"
 
   elif [ "$1" = 'yellow' ] ; then
-    export patina_major_color="${light_yellow}"
-    export patina_minor_color="${yellow}"
+    export PATINA_MAJOR_COLOR="${light_yellow}"
+    export PATINA_MINOR_COLOR="${yellow}"
 
   # Monochrome themes
   elif [ "$1" = 'black' ] ; then
-    export patina_major_color="${black}"
-    export patina_minor_color="${black}"
+    export PATINA_MAJOR_COLOR="${black}"
+    export PATINA_MINOR_COLOR="${black}"
 
   elif [ "$1" = 'gray' ] || [ "$1" = 'grey' ] ; then
-    export patina_major_color="${light_gray}"
-    export patina_minor_color="${gray}"
+    export PATINA_MAJOR_COLOR="${light_gray}"
+    export PATINA_MINOR_COLOR="${gray}"
 
   elif [ "$1" = 'white' ] ; then
-    export patina_major_color="${white}"
-    export patina_minor_color="${white}"
+    export PATINA_MAJOR_COLOR="${white}"
+    export PATINA_MINOR_COLOR="${white}"
 
   # Additional themes
   elif [ "$1" = 'blossom' ] ; then
-    export patina_major_color="${light_magenta}"
-    export patina_minor_color="${light_red}"
+    export PATINA_MAJOR_COLOR="${light_magenta}"
+    export PATINA_MINOR_COLOR="${light_red}"
 
   elif [ "$1" = 'classic' ] ; then
-    export patina_major_color="${light_magenta}"
-    export patina_minor_color="${light_cyan}"
+    export PATINA_MAJOR_COLOR="${light_magenta}"
+    export PATINA_MINOR_COLOR="${light_cyan}"
 
   elif [ "$1" = 'cygwin' ] ; then
-    export patina_major_color="${light_green}"
-    export patina_minor_color="${light_yellow}"
+    export PATINA_MAJOR_COLOR="${light_green}"
+    export PATINA_MINOR_COLOR="${light_yellow}"
 
   elif [ "$1" = 'gravity' ] ; then
-    export patina_major_color="${light_magenta}"
-    export patina_minor_color="${light_yellow}"
+    export PATINA_MAJOR_COLOR="${light_magenta}"
+    export PATINA_MINOR_COLOR="${light_yellow}"
 
   elif [ "$1" = 'mint' ] ; then
-    export patina_major_color="${light_green}"
-    export patina_minor_color="${light_blue}"
+    export PATINA_MAJOR_COLOR="${light_green}"
+    export PATINA_MINOR_COLOR="${light_blue}"
 
   elif [ "$1" = 'varia' ] ; then
-    export patina_major_color="${light_red}"
-    export patina_minor_color="${light_yellow}"
+    export PATINA_MAJOR_COLOR="${light_red}"
+    export PATINA_MINOR_COLOR="${light_yellow}"
 
   elif [ "$1" = 'water' ] ; then
-    export patina_major_color="${light_blue}"
-    export patina_minor_color="${cyan}"
+    export PATINA_MAJOR_COLOR="${light_blue}"
+    export PATINA_MINOR_COLOR="${cyan}"
 
   # Failure: Catch any other error condition here
   else
-    patina_throw_exception 'PE0003'
+    patina_raise_exception 'PE0003'
     return 1
   fi
 
   # Export the selected theme
-  export patina_theme="$1"
+  export PATINA_THEME="$1"
 
   # Success: Update configuration file
-  if grep --quiet 'patina_theme=' "$patina_file_configuration" ; then
-    sed -i "s/patina_theme=.*$/patina_theme=${patina_theme}/g" "$patina_file_configuration"
+  if grep --quiet 'PATINA_THEME=' "$PATINA_FILE_CONFIGURATION" ; then
+    sed -i "s/PATINA_THEME=.*$/PATINA_THEME=${PATINA_THEME}/g" "$PATINA_FILE_CONFIGURATION"
 
   # Failure: Rewrite configuration file
   else
@@ -133,9 +135,9 @@ patina_theme_apply() {
 
   # Define PS1 prompt properties.
   local window_title="\\[\\e]0;Patina\\a\\]"
-  local toolbox_diamond="\\[${magenta}\\]⬢\\[${color_reset}\\]"
-  local user_host="\\[${patina_major_color}\\]\\u@\\h\\[${color_reset}\\]"
-  local working_directory="\\[${patina_minor_color}\\]\\w\\[${color_reset}\\]"
+  local toolbox_diamond="\\[${MAGENTA}\\]⬢\\[${COLOR_RESET}\\]"
+  local user_host="\\[${PATINA_MAJOR_COLOR}\\]\\u@\\h\\[${COLOR_RESET}\\]"
+  local working_directory="\\[${PATINA_MINOR_COLOR}\\]\\w\\[${COLOR_RESET}\\]"
   local command_scope="P\\$ "
 
   # Display a custom 'PS1' command prompt depending on the current environment.
@@ -149,12 +151,12 @@ patina_theme_apply() {
 }
 
 patina_initialization_theme_apply() {
-  if [ "$patina_theme" ] ; then
-    patina_theme_apply "$patina_theme"
+  if [ "$PATINA_THEME" ] ; then
+    patina_theme_apply "$PATINA_THEME"
     return 0
   else
-    export patina_theme=default
-    patina_theme_apply "$patina_theme"
+    export PATINA_THEME='default'
+    patina_theme_apply "$PATINA_THEME"
     return 0
   fi
 }
@@ -163,7 +165,8 @@ patina_initialization_theme_apply() {
 # Aliases #
 ###########
 
-# Colors
+# Patina > Aliases > Theme Commands
+
 alias 'p-theme'='patina_theme_apply'
 
 #############
