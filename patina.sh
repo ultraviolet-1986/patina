@@ -242,8 +242,8 @@ patina_show_component_report() {
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     # Display Header
     echo
-    echo_wrap "${BOLD}Patina Component Report${COLOR_RESET}\\n"
-    echo_wrap "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
+    echo_wrap "${BOLD}Patina Component Report${COLOR_RESET}\n"
+    echo_wrap "Patina has connected the following ${#patina_components_list[@]} component(s):\n"
 
     # Success: 'tree' is installed. Display enhanced component list.
     if ( command -v 'tree' > /dev/null 2>&1 ) ; then
@@ -271,67 +271,67 @@ patina_show_component_report() {
 patina_show_dependency_report() {
   # Display Header.
   echo
-  echo_wrap "${BOLD}Patina Dependency Report${COLOR_RESET}\\n"
+  echo_wrap "${BOLD}Patina Dependency Report${COLOR_RESET}\n"
 
-  echo_wrap "${BOLD}NOTE${COLOR_RESET} Distribution-Native Packages Detected Only.\\n"
+  echo_wrap "${BOLD}NOTE${COLOR_RESET} Distribution-Native Packages Detected Only.\n"
 
   # Display table header.
-  echo_wrap "${BOLD}PACKAGE\\t\\tCOMMAND\\t\\tSTATE${COLOR_RESET}"
+  echo_wrap "${BOLD}PACKAGE\t\tCOMMAND\t\tSTATE${COLOR_RESET}"
 
-  printf "clamav\\t\\tp-clamscan"
+  printf "clamav\t\tp-clamscan"
   if ( command -v 'clamscan' > /dev/null 2>&1 ) ; then
-    echo_wrap "\\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
   printf "genisoimage\tp-iso"
   if ( command -v 'mkisofs' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "git\\t\\tp-update"
+  printf "git\t\tp-update"
   if ( command -v 'git' > /dev/null 2>&1 ) ; then
-    echo_wrap "\\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "gnupg2\\t\\tp-gpg"
+  printf "gnupg2\t\tp-gpg"
   if ( command -v 'gpg' > /dev/null 2>&1 ) ; then
-    echo_wrap "\\t\\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\\t\\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "libreoffice\\tp-pdf"
+  printf "libreoffice\tp-pdf"
   if ( command -v 'soffice' > /dev/null 2>&1 ) ; then
-    echo_wrap "\\t\\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\\t\\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "timeshift\\tp-timeshift"
+  printf "timeshift\tp-timeshift"
   if ( command -v 'timeshift' > /dev/null 2>&1 ) ; then
-    echo_wrap "\\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "tree\\t\\tp-list"
+  printf "tree\t\tp-list"
   if ( command -v 'tree' > /dev/null 2>&1 ) ; then
-    echo_wrap "\\t\\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\\t\\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "ufw\\t\\tp-ufw"
+  printf "ufw\t\tp-ufw"
   if ( command -v 'ufw' > /dev/null 2>&1 ) ; then
-    echo_wrap "\\t\\t${light_green}Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\\t\\t${light_red}Not Installed${COLOR_RESET}"
+    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
   fi
 
   echo
@@ -346,17 +346,28 @@ patina_show_system_report() {
 
   # Success: Display the Patina System Report.
   elif [ "$#" -eq 0 ] ; then
+    patina_detect_internet_connection
+
+    local network_status
+
+    if [ "$PATINA_HAS_INTERNET" = 'true' ] ; then
+      network_status="${LIGHT_GREEN}Active${COLOR_RESET}"
+    else
+      network_status="${LIGHT_RED}Inactive${COLOR_RESET}"
+    fi
+
     # Display Header
     echo
-    echo_wrap "${BOLD}Patina System Report${COLOR_RESET}\\n"
+    echo_wrap "${BOLD}Patina System Report${COLOR_RESET}\n"
 
     # Show System Report
-    echo_wrap "${BOLD}Operating System${COLOR_RESET}\\t$PRETTY_NAME"
-    echo_wrap "${BOLD}Operating System URL${COLOR_RESET}\\t<$HOME_URL>"
-    echo_wrap "${BOLD}Current Session${COLOR_RESET}\\t\\t$XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
-    echo_wrap "${BOLD}Linux Kernel Version${COLOR_RESET}\\t$(uname -r)"
-    echo_wrap "${BOLD}Package Manager${COLOR_RESET}\\t\\t$(to_upper "${PATINA_PACKAGE_MANAGER}")"
-    echo_wrap "${BOLD}BASH Version${COLOR_RESET}\\t\\t${BASH_VERSION%%[^0-9.]*}"
+    echo_wrap "${BOLD}Operating System${COLOR_RESET}\t$PRETTY_NAME"
+    echo_wrap "${BOLD}Operating System URL${COLOR_RESET}\t<$HOME_URL>"
+    echo_wrap "${BOLD}Current Session${COLOR_RESET}\t\t$XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
+    echo_wrap "${BOLD}Linux Kernel Version${COLOR_RESET}\t$(uname -r)"
+    echo_wrap "${BOLD}Package Manager${COLOR_RESET}\t\t$(to_upper "${PATINA_PACKAGE_MANAGER}")"
+    echo_wrap "${BOLD}BASH Version${COLOR_RESET}\t\t${BASH_VERSION%%[^0-9.]*}"
+    echo_wrap "${BOLD}Internet Connection${COLOR_RESET}\t$network_status"
 
     echo
     return 0

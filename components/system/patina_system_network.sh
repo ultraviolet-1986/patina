@@ -54,7 +54,7 @@ patina_show_network_status() {
   patina_detect_internet_connection
 
   if [ "$PATINA_HAS_INTERNET" = 'true' ] ; then
-    echo_wrap "Patina has access to the Internet."
+    echo_wrap "${GREEN}Patina has access to the Internet.${COLOR_RESET}"
     return 0
   elif [ "$PATINA_HAS_INTERNET" = 'false' ] ; then
     patina_raise_exception 'PE0008'
