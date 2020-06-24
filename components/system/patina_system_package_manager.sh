@@ -144,11 +144,14 @@ patina_package_manager() {
         fi
         ;;
       'upgrade')
-        if [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
+        if [ "$PATINA_PACKAGE_MANAGER" = 'dnf' ] ; then
+          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE" --refresh
+          return 0
+        elif [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
           eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE"
           return 0
         else
-          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE" --refresh
+          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE"
           return 0
         fi
         ;;
