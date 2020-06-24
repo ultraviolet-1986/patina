@@ -355,7 +355,7 @@ patina_show_system_report() {
     echo_wrap "${BOLD}Operating System URL${COLOR_RESET}\\t<$HOME_URL>"
     echo_wrap "${BOLD}Current Session${COLOR_RESET}\\t\\t$XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
     echo_wrap "${BOLD}Linux Kernel Version${COLOR_RESET}\\t$(uname -r)"
-    echo_wrap "${BOLD}Package Manager${COLOR_RESET}\\t\\t$(to_upper "${patina_package_manager}")"
+    echo_wrap "${BOLD}Package Manager${COLOR_RESET}\\t\\t$(to_upper "${PATINA_PACKAGE_MANAGER}")"
     echo_wrap "${BOLD}BASH Version${COLOR_RESET}\\t\\t${BASH_VERSION%%[^0-9.]*}"
 
     echo

@@ -33,12 +33,12 @@
 
 patina_theme_apply() {
   # Failure: Patina has not been given an argument
-  if [ "$#" -eq "0" ] ; then
+  if [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
 
   # Failure: Patina has been given multiple arguments
-  elif [ "$#" -gt "1" ] ; then
+  elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
@@ -49,70 +49,70 @@ patina_theme_apply() {
 
   # Standard themes
   elif [ "$1" = 'blue' ] ; then
-    export PATINA_MAJOR_COLOR="${light_blue}"
-    export PATINA_MINOR_COLOR="${blue}"
+    export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"
+    export PATINA_MINOR_COLOR="${BLUE}"
 
   elif [ "$1" = 'cyan' ] ; then
-    export PATINA_MAJOR_COLOR="${light_cyan}"
-    export PATINA_MINOR_COLOR="${cyan}"
+    export PATINA_MAJOR_COLOR="${LIGHT_CYAN}"
+    export PATINA_MINOR_COLOR="${CYAN}"
 
   elif [ "$1" = 'green' ] ; then
-    export PATINA_MAJOR_COLOR="${light_green}"
-    export PATINA_MINOR_COLOR="${green}"
+    export PATINA_MAJOR_COLOR="${LIGHT_GREEN}"
+    export PATINA_MINOR_COLOR="${GREEN}"
 
   elif [ "$1" = 'magenta' ] ; then
-    export PATINA_MAJOR_COLOR="${light_magenta}"
+    export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
     export PATINA_MINOR_COLOR="${MAGENTA}"
 
   elif [ "$1" = 'red' ] ; then
-    export PATINA_MAJOR_COLOR="${light_red}"
-    export PATINA_MINOR_COLOR="${red}"
+    export PATINA_MAJOR_COLOR="${LIGHT_RED}"
+    export PATINA_MINOR_COLOR="${RED}"
 
   elif [ "$1" = 'yellow' ] ; then
-    export PATINA_MAJOR_COLOR="${light_yellow}"
-    export PATINA_MINOR_COLOR="${yellow}"
+    export PATINA_MAJOR_COLOR="${LIGHT_YELLOW}"
+    export PATINA_MINOR_COLOR="${YELLOW}"
 
   # Monochrome themes
   elif [ "$1" = 'black' ] ; then
-    export PATINA_MAJOR_COLOR="${black}"
-    export PATINA_MINOR_COLOR="${black}"
+    export PATINA_MAJOR_COLOR="${BLACK}"
+    export PATINA_MINOR_COLOR="${BLACK}"
 
   elif [ "$1" = 'gray' ] || [ "$1" = 'grey' ] ; then
-    export PATINA_MAJOR_COLOR="${light_gray}"
-    export PATINA_MINOR_COLOR="${gray}"
+    export PATINA_MAJOR_COLOR="${LIGHT_GRAY}"
+    export PATINA_MINOR_COLOR="${GRAY}"
 
   elif [ "$1" = 'white' ] ; then
-    export PATINA_MAJOR_COLOR="${white}"
-    export PATINA_MINOR_COLOR="${white}"
+    export PATINA_MAJOR_COLOR="${WHITE}"
+    export PATINA_MINOR_COLOR="${WHITE}"
 
   # Additional themes
   elif [ "$1" = 'blossom' ] ; then
-    export PATINA_MAJOR_COLOR="${light_magenta}"
-    export PATINA_MINOR_COLOR="${light_red}"
+    export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
+    export PATINA_MINOR_COLOR="${LIGHT_RED}"
 
   elif [ "$1" = 'classic' ] ; then
-    export PATINA_MAJOR_COLOR="${light_magenta}"
-    export PATINA_MINOR_COLOR="${light_cyan}"
+    export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
+    export PATINA_MINOR_COLOR="${LIGHT_CYAN}"
 
   elif [ "$1" = 'cygwin' ] ; then
-    export PATINA_MAJOR_COLOR="${light_green}"
-    export PATINA_MINOR_COLOR="${light_yellow}"
+    export PATINA_MAJOR_COLOR="${LIGHT_GREEN}"
+    export PATINA_MINOR_COLOR="${LIGHT_YELLOW}"
 
   elif [ "$1" = 'gravity' ] ; then
-    export PATINA_MAJOR_COLOR="${light_magenta}"
-    export PATINA_MINOR_COLOR="${light_yellow}"
+    export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
+    export PATINA_MINOR_COLOR="${LIGHT_YELLOW}"
 
   elif [ "$1" = 'mint' ] ; then
-    export PATINA_MAJOR_COLOR="${light_green}"
-    export PATINA_MINOR_COLOR="${light_blue}"
+    export PATINA_MAJOR_COLOR="${LIGHT_GREEN}"
+    export PATINA_MINOR_COLOR="${LIGHT_BLUE}"
 
   elif [ "$1" = 'varia' ] ; then
-    export PATINA_MAJOR_COLOR="${light_red}"
-    export PATINA_MINOR_COLOR="${light_yellow}"
+    export PATINA_MAJOR_COLOR="${LIGHT_RED}"
+    export PATINA_MINOR_COLOR="${LIGHT_YELLOW}"
 
   elif [ "$1" = 'water' ] ; then
-    export PATINA_MAJOR_COLOR="${light_blue}"
-    export PATINA_MINOR_COLOR="${cyan}"
+    export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"
+    export PATINA_MINOR_COLOR="${CYAN}"
 
   # Failure: Catch any other error condition here
   else

@@ -34,51 +34,51 @@
 patina_detect_system_package_manager() {
   # Success: Distribution is Ubuntu or compatible.
   if ( command -v 'apt' > /dev/null 2>&1 ) ; then
-    readonly patina_package_manager='apt'
-    readonly patina_package_install='install'
-    readonly patina_package_remove='remove'
-    readonly patina_package_update='update'
-    readonly patina_package_upgrade='upgrade'
+    readonly PATINA_PACKAGE_MANAGER='apt'
+    readonly PATINA_PACKAGE_INSTALL='install'
+    readonly PATINA_PACKAGE_REMOVE='remove'
+    readonly PATINA_PACKAGE_UPDATE='update'
+    readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
   # Success: Distribution is Fedora or compatible.
   elif ( command -v 'dnf' > /dev/null 2>&1 ) ; then
-    readonly patina_package_manager='dnf'
-    readonly patina_package_install='install'
-    readonly patina_package_remove='remove'
-    readonly patina_package_update='check-update'
-    readonly patina_package_upgrade='upgrade'
+    readonly PATINA_PACKAGE_MANAGER='dnf'
+    readonly PATINA_PACKAGE_INSTALL='install'
+    readonly PATINA_PACKAGE_REMOVE='remove'
+    readonly PATINA_PACKAGE_UPDATE='check-update'
+    readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
   # Success: Distribution is Solus or compatible.
   elif ( command -v 'eopkg' > /dev/null 2>&1 ) ; then
-    readonly patina_package_manager='eopkg'
-    readonly patina_package_install='install'
-    readonly patina_package_remove='remove'
-    readonly patina_package_update='update-repo'
-    readonly patina_package_upgrade='upgrade'
+    readonly PATINA_PACKAGE_MANAGER='eopkg'
+    readonly PATINA_PACKAGE_INSTALL='install'
+    readonly PATINA_PACKAGE_REMOVE='remove'
+    readonly PATINA_PACKAGE_UPDATE='update-repo'
+    readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
   # Success: Distribution is Arch or compatible.
   elif ( command -v 'pacman' > /dev/null 2>&1 ) ; then
-    readonly patina_package_manager='pacman'
-    readonly patina_package_install='-S'
-    readonly patina_package_remove='-R'
-    readonly patina_package_update='-Syu'
-    readonly patina_package_upgrade='-Syu'
+    readonly PATINA_PACKAGE_MANAGER='pacman'
+    readonly PATINA_PACKAGE_INSTALL='-S'
+    readonly PATINA_PACKAGE_REMOVE='-R'
+    readonly PATINA_PACKAGE_UPDATE='-Syu'
+    readonly PATINA_PACKAGE_UPGRADE='-Syu'
 
   # Success: Distribution is Fedora Silverblue or compatible.
   elif ( command -v 'rpm-ostree' > /dev/null 2>&1 ) ; then
-    readonly patina_package_manager='rpm-ostree'
-    readonly patina_package_install='install'
-    readonly patina_package_remove='uninstall'
-    readonly patina_package_update='refresh-md'
-    readonly patina_package_upgrade='upgrade'
+    readonly PATINA_PACKAGE_MANAGER='rpm-ostree'
+    readonly PATINA_PACKAGE_INSTALL='install'
+    readonly PATINA_PACKAGE_REMOVE='uninstall'
+    readonly PATINA_PACKAGE_UPDATE='refresh-md'
+    readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
   # Success: Distribution is openSUSE or compatible.
   elif ( command -v 'zypper' > /dev/null 2>&1 ) ; then
-    readonly patina_package_manager='zypper'
-    readonly patina_package_install='install'
-    readonly patina_package_remove='remove'
-    readonly patina_package_update='refresh'
-    readonly patina_package_upgrade='update'
+    readonly PATINA_PACKAGE_MANAGER='zypper'
+    readonly PATINA_PACKAGE_INSTALL='install'
+    readonly PATINA_PACKAGE_REMOVE='remove'
+    readonly PATINA_PACKAGE_UPDATE='refresh'
+    readonly PATINA_PACKAGE_UPGRADE='update'
 
   # Failure: Catch all.
   else
@@ -108,11 +108,11 @@ patina_package_manager() {
           patina_raise_exception 'PE0001'
           return 1
         else
-          if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
-            eval "$patina_package_manager" "$patina_package_install" "${@:2}"
+          if [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
+            eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_INSTALL" "${@:2}"
             return 0
           else
-            sudo "$patina_package_manager" "$patina_package_install" "${@:2}"
+            sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_INSTALL" "${@:2}"
             return 0
           fi
         fi
@@ -122,33 +122,33 @@ patina_package_manager() {
           patina_raise_exception 'PE0001'
           return 1
         else
-          if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
-            eval "$patina_package_manager" "$patina_package_remove" "${@:2}"
+          if [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
+            eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_REMOVE" "${@:2}"
             return 0
           else
-            sudo "$patina_package_manager" "$patina_package_remove" "${@:2}"
+            sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_REMOVE" "${@:2}"
             return 0
           fi
         fi
         ;;
       'update')
-        if [ "$patina_package_manager" = 'dnf' ] ; then
-          eval "$patina_package_manager" "$patina_package_update" --refresh
+        if [ "$PATINA_PACKAGE_MANAGER" = 'dnf' ] ; then
+          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE" --refresh
           return 0
-        elif [ "$patina_package_manager" = 'rpm-ostree' ] ; then
-          eval "$patina_package_manager" "$patina_package_upgrade" --check
+        elif [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
+          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE" --check
           return 0
         else
-          sudo "$patina_package_manager" "$patina_package_update"
+          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE"
           return 0
         fi
         ;;
       'upgrade')
-        if [ "$patina_package_manager" = 'rpm-ostree' ] ; then
-          eval "$patina_package_manager" "$patina_package_upgrade"
+        if [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
+          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE"
           return 0
         else
-          sudo "$patina_package_manager" "$patina_package_upgrade" --refresh
+          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE" --refresh
           return 0
         fi
         ;;
