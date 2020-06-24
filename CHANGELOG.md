@@ -25,8 +25,8 @@ after an evil butler tries to steal their inheritance.
     previously provided by the `resources/help` directory.
   - Control flow has been updated to make Patina more efficient with regards to
     speed.
-  - Changed all patina application options to use a `--` prefix to more closely
-    match standard command-line applications.
+  - Changed all optional Patina application options to use a `--` prefix to more
+    closely match standard command-line applications.
   - Moved functionality from `patina_system_patina_status.sh` to `patina.sh`.
     This information can now be accessed using the `p-deps` command.
   - Fedora Toolbox users will now see a hexagon prefix to their prompt when
