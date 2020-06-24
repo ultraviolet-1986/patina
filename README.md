@@ -221,7 +221,6 @@ System.
 p-deps     # Display a list of Patina dependencies and their current state.
 p-list     # Display a list of connected Patina components.
 p-system   # Display information regarding the current system environment.
-p-version  # Display information regarding Patina such as version and license.
 ```
 
 ### Themes

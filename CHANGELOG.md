@@ -17,9 +17,6 @@ after an evil butler tries to steal their inheritance.
     now be accessed by using the above `p-system` command.
   - Converted some application component arguments to double-hyphen syntax to
     more closely match standard command-line applications.
-  - The main header will now be hidden by default. Information previously shown
-    here can now be accessed using the `p-version` command. This will also show
-    information regarding the current software license.
   - The concept of resources has been removed to favour a more native built-in
     help system.
   - Included new Patina Exceptions `PE0014`, `PE0015`, `PE0016`, `PE0017` and
