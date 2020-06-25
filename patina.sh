@@ -211,6 +211,8 @@ patina_initialize() {
   readonly TERM="$TERM"
   readonly OSTYPE="$OSTYPE"
 
+  clear
+
   # Display main Patina author/copyright header.
   echo_wrap "${PATINA_MAJOR_COLOR}Patina ${PATINA_VERSION} '${PATINA_CODENAME}' / BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
   echo_wrap "${PATINA_MAJOR_COLOR}Copyright (C) 2019 William Whinn${COLOR_RESET}"
