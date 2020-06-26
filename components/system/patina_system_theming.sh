@@ -141,7 +141,9 @@ patina_theme_apply() {
   local command_scope="P\\$ "
 
   # Display a custom 'PS1' command prompt depending on the current environment.
-  if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
+  if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && \
+    [ "$VARIANT_ID" == 'container' ]
+  then
     export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
     return 0
   else
