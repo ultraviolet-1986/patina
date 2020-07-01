@@ -7,18 +7,16 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #########################
 # ShellCheck Directives #
@@ -34,13 +32,15 @@
 # Variables #
 #############
 
-# Patina > Global Variables > Patina Metadata
+# PATINA > GLOBAL VARIABLES > PATINA METADATA
 
 readonly PATINA_VERSION='0.7.8'
 readonly PATINA_CODENAME='Duchess'
-readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
+# readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
+# readonly PATINA_URL='https://tinyurl.com/patina-git'
+readonly PATINA_URL='https://tinyurl.com/patina-bash'
 
-# Patina > Global Variables > Text Formatting > Text Colors
+# PATINA > GLOBAL VARIABLES > TEXT FORMATTING > TEXT COLORS
 
 export readonly BLUE='\e[34m'
 export readonly CYAN='\e[36m'
@@ -61,109 +61,58 @@ export readonly BLACK='\e[30m'
 export readonly GRAY='\e[90m'
 export readonly WHITE='\e[97m'
 
-# Patina > Global Variables > Text Formatting > Text Style
+# PATINA > GLOBAL VARIABLES > TEXT FORMATTING > TEXT STYLE
 
 export readonly BOLD='\e[1m'
 export readonly UNDERLINE='\e[4m'
 
-# Patina > Global Variables > Text Formatting > Reset
+# PATINA > GLOBAL VARIABLES > TEXT FORMATTING > RESET
 
 export readonly COLOR_DEFAULT='\e[39m'
 export readonly COLOR_RESET='\e[0m'
 
-# Patina > Global Variables > Patina Exceptions
+# PATINA > GLOBAL VARIABLES > PATINA EXCEPTIONS
 
-PE0000='PE0000: Patina has encountered an unknown error.'
-export readonly PE0000
+export readonly PE0000='PE0000: Patina has encountered an unknown error.'
+export readonly PE0001='PE0001: Patina has not been given an expected argument.'
+export readonly PE0002='PE0002: Patina has been given too many arguments.'
+export readonly PE0003='PE0003: Patina has not been given a valid argument.'
+export readonly PE0004='PE0004: Patina cannot find the directory specified.'
+export readonly PE0005='PE0005: Patina cannot find the file specified.'
+export readonly PE0006='PE0006: Patina could not detect a required application.'
+export readonly PE0007='PE0007: Patina has not connected any components.'
+export readonly PE0008='PE0008: Patina does not have access to the Internet.'
+export readonly PE0009='PE0009: Patina cannot detect a valid version control repository.'
+export readonly PE0010='PE0010: Patina cannot access a required variable.'
+export readonly PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
+export readonly PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
+export readonly PE0013='PE0013: Patina cannot execute this command under this environment.'
+export readonly PE0014='PE0014: Patina cannot perform current operation on a file.'
+export readonly PE0015='PE0015: Patina cannot perform current operation on a directory.'
+export readonly PE0016='PE0016: Patina cannot find the item specified.'
+export readonly PE0017='PE0017: Patina cannot perform current operation on item specified.'
+export readonly PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
 
-PE0001='PE0001: Patina has not been given an expected argument.'
-export readonly PE0001
-
-PE0002='PE0002: Patina has been given too many arguments.'
-export readonly PE0002
-
-PE0003='PE0003: Patina has not been given a valid argument.'
-export readonly PE0003
-
-PE0004='PE0004: Patina cannot find the directory specified.'
-export readonly PE0004
-
-PE0005='PE0005: Patina cannot find the file specified.'
-export readonly PE0005
-
-PE0006='PE0006: Patina could not detect a required application.'
-export readonly PE0006
-
-PE0007='PE0007: Patina has not connected any components.'
-export readonly PE0007
-
-PE0008='PE0008: Patina does not have access to the Internet.'
-export readonly PE0008
-
-PE0009='PE0009: Patina cannot detect a valid version control repository.'
-export readonly PE0009
-
-PE0010='PE0010: Patina cannot access a required variable.'
-export readonly PE0010
-
-PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
-export readonly PE0011
-
-PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
-export readonly PE0012
-
-PE0013='PE0013: Patina cannot execute this command under this environment.'
-export readonly PE0013
-
-PE0014='PE0014: Patina cannot perform current operation on a file.'
-export readonly PE0014
-
-PE0015='PE0015: Patina cannot perform current operation on a directory.'
-export readonly PE0015
-
-PE0016='PE0016: Patina cannot find the item specified.'
-export readonly PE0016
-
-PE0017='PE0017: Patina cannot perform current operation on item specified.'
-export readonly PE0017
-
-PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
-export readonly PE0018
-
-# Patina > Global Variables > Paths > Patina Root Directory
+# PATINA > GLOBAL VARIABLES > PATHS > PATINA ROOT DIRECTORY
 
 PATINA_PATH_ROOT="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
 export readonly PATINA_PATH_ROOT
 
-# Patina  > Global Variables > Paths > Patina Configuration
+# PATINA > GLOBAL VARIABLES > PATHS > PATINA CONFIGURATION
 
-PATINA_PATH_CONFIGURATION="$HOME/.config/patina"
-export readonly PATINA_PATH_CONFIGURATION
+export readonly PATINA_PATH_CONFIGURATION="$HOME/.config/patina"
+export readonly PATINA_FILE_CONFIGURATION="$PATINA_PATH_CONFIGURATION/patina.conf"
+export readonly PATINA_FILE_SOURCE="${BASH_SOURCE[0]}"
 
-PATINA_FILE_CONFIGURATION="$PATINA_PATH_CONFIGURATION/patina.conf"
-export readonly PATINA_FILE_CONFIGURATION
+# PATINA > GLOBAL VARIABLES > PATHS > PATINA COMPONENTS
 
-PATINA_FILE_SOURCE="${BASH_SOURCE[0]}"
-export readonly PATINA_FILE_SOURCE
+export readonly PATINA_PATH_COMPONENTS="$PATINA_PATH_ROOT/components"
+export readonly PATINA_PATH_COMPONENTS_APPLICATIONS="$PATINA_PATH_COMPONENTS/applications"
+export readonly PATINA_PATH_COMPONENTS_PLACES="$PATINA_PATH_COMPONENTS/places"
+export readonly PATINA_PATH_COMPONENTS_SYSTEM="$PATINA_PATH_COMPONENTS/system"
+export readonly PATINA_PATH_COMPONENTS_USER="$PATINA_PATH_COMPONENTS/user"
 
-# Patina > Global Variables > Paths > Patina Components
-
-PATINA_PATH_COMPONENTS="$PATINA_PATH_ROOT/components"
-export readonly PATINA_PATH_COMPONENTS
-
-PATINA_PATH_COMPONENTS_APPLICATIONS="$PATINA_PATH_COMPONENTS/applications"
-export readonly PATINA_PATH_COMPONENTS_APPLICATIONS
-
-PATINA_PATH_COMPONENTS_PLACES="$PATINA_PATH_COMPONENTS/places"
-export readonly PATINA_PATH_COMPONENTS_PLACES
-
-PATINA_PATH_COMPONENTS_SYSTEM="$PATINA_PATH_COMPONENTS/system"
-export readonly PATINA_PATH_COMPONENTS_SYSTEM
-
-PATINA_PATH_COMPONENTS_USER="$PATINA_PATH_COMPONENTS/user"
-export readonly PATINA_PATH_COMPONENTS_USER
-
-# Patina > Global Variables > Paths > System Files
+# PATINA > GLOBAL VARIABLES > PATHS > SYSTEM FILES
 
 export readonly SYSTEM_OS_RELEASE='/etc/os-release'
 export readonly SYSTEM_LSB_RELEASE='/etc/lsb-release'
@@ -183,9 +132,8 @@ patina_initialize() {
   if [ -f "$SYSTEM_OS_RELEASE" ] ; then source "$SYSTEM_OS_RELEASE" ; fi
   if [ -f "$SYSTEM_LSB_RELEASE" ] ; then source "$SYSTEM_LSB_RELEASE" ; fi
 
-  # Create Patina Directory Structure.
-  mkdir -p "$PATINA_PATH_CONFIGURATION"
-  mkdir -p "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}
+  # Create Patina Directory Structure (if not exists).
+  mkdir -p "$PATINA_PATH_CONFIGURATION" "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}
 
   # Success: Connect and apply Patina configuration.
   if [ -f "$PATINA_FILE_CONFIGURATION" ] ; then
@@ -198,9 +146,9 @@ patina_initialize() {
   fi
 
   # Connect all detected Patina components.
-  for component in \
-    "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}/patina_*.sh ; do
+  for component in "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}/patina_*.sh ; do
     if [ -f "$component" ] ; then
+      chmod a-x "$component"
       source "$component"
       patina_components_list+=("${component}")
     fi
@@ -214,9 +162,9 @@ patina_initialize() {
   clear
 
   # Display main Patina author/copyright header.
-  echo_wrap "${PATINA_MAJOR_COLOR}Patina ${PATINA_VERSION} '${PATINA_CODENAME}' / BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
-  echo_wrap "${PATINA_MAJOR_COLOR}Copyright (C) 2019 William Whinn${COLOR_RESET}"
-  echo_wrap "${PATINA_MINOR_COLOR}$PATINA_URL${COLOR_RESET}\n"
+  echo -e "${PATINA_MAJOR_COLOR}Patina ${PATINA_VERSION} '${PATINA_CODENAME}'${COLOR_RESET}"
+  echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2019 William Whinn${COLOR_RESET}"
+  echo -e "${PATINA_MINOR_COLOR}$PATINA_URL${COLOR_RESET}\n"
 
   # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
