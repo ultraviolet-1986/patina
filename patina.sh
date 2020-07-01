@@ -431,118 +431,13 @@ patina_open_folder_graphically() {
 
 generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; return 0 ; }
 
-echo_wrap() {
-  # Failure: Patina has not been given an argument.
-  if [ "$#" -eq 0 ] ; then
-    patina_raise_exception 'PE0001'
-    return 1
+echo_wrap() { ( echo -e "${@}" ) | fmt -w "$( tput cols )" ; return 0 ; }
 
-  # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
-    patina_raise_exception 'PE0002'
-    return 1
+to_lower() { echo_wrap "${@}" | tr '[:upper:]' '[:lower:]' ; return 0 ; }
+to_upper() { echo_wrap "${@}" | tr '[:lower:]' '[:upper:]' ; return 0 ; }
 
-  # Success: Display wrapped text.
-  elif [ -n "$1" ] ; then
-    (echo -e "$1") | fmt -w "$(tput cols)"
-    return 0
-
-  # Failure: Catch all.
-  else
-    patina_raise_exception 'PE0000'
-    return 1
-  fi
-}
-
-to_lower() {
-  # Failure: Patina has not been given an argument.
-  if [ "$#" -eq 0 ] ; then
-    patina_raise_exception 'PE0001'
-    return 1
-
-  # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
-    patina_raise_exception 'PE0002'
-    return 1
-
-  # Success: Display text as lower-case.
-  elif [ -n "$1" ] ; then
-    echo -e "$1" | tr '[:upper:]' '[:lower:]'
-    return 0
-
-  # Failure: Catch all.
-  else
-    patina_raise_exception 'PE0000'
-    return 1
-  fi
-}
-
-to_upper() {
-  # Failure: Patina has not been given an argument.
-  if [ "$#" -eq 0 ] ; then
-    patina_raise_exception 'PE0001'
-    return 1
-
-  # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
-    patina_raise_exception 'PE0002'
-    return 1
-
-  # Success: Display text as upper-case.
-  elif [ -n "$1" ] ; then
-    echo -e "$1" | tr '[:lower:]' '[:upper:]'
-    return 0
-
-  # Failure: Catch all.
-  else
-    patina_raise_exception 'PE0000'
-    return 1
-  fi
-}
-
-bold() {
-  # Failure: Patina has not been given an argument.
-  if [ "$#" -eq 0 ] ; then
-    patina_raise_exception 'PE0001'
-    return 1
-
-  # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
-    patina_raise_exception 'PE0002'
-    return 1
-  # Success: Display text as upper-case.
-  elif [ -n "$1" ] ; then
-    echo_wrap "${BOLD}$1${COLOR_RESET}"
-    return 0
-
-  # Failure: Catch all.
-  else
-    patina_raise_exception 'PE0000'
-    return 1
-  fi
-}
-
-underline() {
-  # Failure: Patina has not been given an argument.
-  if [ "$#" -eq 0 ] ; then
-    patina_raise_exception 'PE0001'
-    return 1
-
-  # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
-    patina_raise_exception 'PE0002'
-    return 1
-  # Success: Display text as upper-case.
-  elif [ -n "$1" ] ; then
-    echo_wrap "${UNDERLINE}$1${COLOR_RESET}"
-    return 0
-
-  # Failure: Catch all.
-  else
-    patina_raise_exception 'PE0000'
-    return 1
-  fi
-}
+bold() { echo_wrap "${BOLD}${*}${COLOR_RESET}" ; return 0 ; }
+underline() { echo_wrap "${UNDERLINE}${*}${COLOR_RESET}" ; return 0 ; }
 
 generate_uuid() {
   local label_command_6="head /dev/urandom | tr -dc A-Za-z0-9 | head -c6"
@@ -581,6 +476,8 @@ export -f 'generate_date_stamp'
 export -f 'patina_raise_exception'
 export -f 'to_lower'
 export -f 'to_upper'
+export -f 'bold'
+export -f 'underline'
 export -f 'generate_uuid'
 
 ###########
@@ -589,7 +486,7 @@ export -f 'generate_uuid'
 
 # Patina > Aliases > Help Commands
 
-alias 'p-help'='less $PATINA_PATH_ROOT/README.md'
+alias 'p-help'='less "${PATINA_PATH_ROOT}/README.md"'
 
 # Patina > Aliases > System Report Commands
 
@@ -605,15 +502,15 @@ alias 'p-reset'='patina_terminal_reset'
 # Patina > Aliases > File Manager Commands
 
 alias 'files'='patina_open_folder_graphically'
-alias 'p-root'='patina_open_folder $PATINA_PATH_ROOT'
+alias 'p-root'='patina_open_folder "${PATINA_PATH_ROOT}"'
 
 # Patina > Aliases > Component Location Commands
 
-alias 'p-c'='patina_open_folder $PATINA_PATH_COMPONENTS'
-alias 'p-c-applications'='patina_open_folder $PATINA_PATH_COMPONENTS_APPLICATIONS'
-alias 'p-c-places'='patina_open_folder $PATINA_PATH_COMPONENTS_PLACES'
-alias 'p-c-system'='patina_open_folder $PATINA_PATH_COMPONENTS_SYSTEM'
-alias 'p-c-user'='patina_open_folder $PATINA_PATH_COMPONENTS_USER'
+alias 'p-c'='patina_open_folder "${PATINA_PATH_COMPONENTS}"'
+alias 'p-c-applications'='patina_open_folder "${PATINA_PATH_COMPONENTS_APPLICATIONS}"'
+alias 'p-c-places'='patina_open_folder "${PATINA_PATH_COMPONENTS_PLACES}"'
+alias 'p-c-system'='patina_open_folder "${PATINA_PATH_COMPONENTS_SYSTEM}"'
+alias 'p-c-user'='patina_open_folder "${PATINA_PATH_COMPONENTS_USER}"'
 
 # Patina > Aliases > String Generator Commands
 

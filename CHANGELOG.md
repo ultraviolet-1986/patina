@@ -35,6 +35,8 @@ after an evil butler tries to steal their inheritance.
     create the new `p-b2sum` and `p-sha224sum` commands.
   - Included the new commands `bold` and `underline`, which depend on
     `echo_wrap` and will echo with pre-defined formatting.
+  - Updated all text formatting functions to now print all arguments to remove
+    the restriction of enforcing the use of a single string.
 - **0.7.7 Released Tuesday, April 28th 2020**
   - Included new component `patina_system_patina_status.sh` which includes the
     command `p-status`. This command will display a list of Patina-compatible
