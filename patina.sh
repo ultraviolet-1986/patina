@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-##########
-# Notice #
-##########
+###########
+# License #
+###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
@@ -64,6 +64,8 @@ export readonly WHITE='\e[97m'
 # PATINA > GLOBAL VARIABLES > TEXT FORMATTING > TEXT STYLE
 
 export readonly BOLD='\e[1m'
+export readonly ITALIC='\e[3m'
+export readonly STRIKETHROUGH='\e[9m'
 export readonly UNDERLINE='\e[4m'
 
 # PATINA > GLOBAL VARIABLES > TEXT FORMATTING > RESET
@@ -181,6 +183,8 @@ patina_create_configuration_file() {
 
   return 0
 }
+
+# REPORTS
 
 patina_show_component_report() {
   # Failure: Success condition(s) not met.
@@ -329,6 +333,8 @@ patina_show_system_report() {
   fi
 }
 
+# ERROR HANDLING
+
 patina_raise_exception() {
   # Failure: Patina has not been given an argument.
   if [ "$#" -eq 0 ] ; then
@@ -351,6 +357,8 @@ patina_raise_exception() {
     return 1
   fi
 }
+
+# FILE MANAGER
 
 patina_open_folder() {
   # Failure: Patina has not been given an argument.
@@ -429,7 +437,7 @@ patina_open_folder_graphically() {
   fi
 }
 
-generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; return 0 ; }
+# TEXT FORMATTING
 
 echo_wrap() { ( echo -e "${@}" ) | fmt -w "$( tput cols )" ; return 0 ; }
 
@@ -438,6 +446,12 @@ to_upper() { echo_wrap "${@}" | tr '[:lower:]' '[:upper:]' ; return 0 ; }
 
 bold() { echo_wrap "${BOLD}${*}${COLOR_RESET}" ; return 0 ; }
 underline() { echo_wrap "${UNDERLINE}${*}${COLOR_RESET}" ; return 0 ; }
+italic() { echo_wrap "${ITALIC}${*}${COLOR_RESET}" ; return 0 ; }
+strikethrough() { echo_wrap "${STRIKETHROUGH}${*}${COLOR_RESET}" ; return 0 ; }
+
+# STRING GENERATORS
+
+generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; return 0 ; }
 
 generate_uuid() {
   local label_command_6="head /dev/urandom | tr -dc A-Za-z0-9 | head -c6"
@@ -450,6 +464,8 @@ generate_uuid() {
 
   return 0
 }
+
+# TERMINAL MANAGEMENT
 
 patina_terminal_refresh() {
   cd || return 1
@@ -471,40 +487,53 @@ patina_terminal_reset() {
 # Exports #
 ###########
 
-export -f 'echo_wrap'
-export -f 'generate_date_stamp'
+# PATINA > FUNCTIONS > ERROR HANDLING
+
 export -f 'patina_raise_exception'
+
+# PATINA > FUNCTIONS > TEXT FORMATTING
+
+export -f 'echo_wrap'
+
 export -f 'to_lower'
 export -f 'to_upper'
+
 export -f 'bold'
+export -f 'italic'
+export -f 'strikethrough'
 export -f 'underline'
+
+# PATINA > FUNCTIONS > STRING GENERATORS
+
+export -f 'generate_date_stamp'
 export -f 'generate_uuid'
 
 ###########
 # Aliases #
 ###########
 
-# Patina > Aliases > Help Commands
+# PATINA > ALIASES > HELP COMMANDS
 
+alias 'p-changes'='less "${PATINA_PATH_ROOT}/CHANGELOG.md"'
 alias 'p-help'='less "${PATINA_PATH_ROOT}/README.md"'
 
-# Patina > Aliases > System Report Commands
+# PATINA > ALIASES > SYSTEM REPORT COMMANDS
 
 alias 'p-deps'='patina_show_dependency_report'
 alias 'p-list'='patina_show_component_report'
 alias 'p-system'='patina_show_system_report'
 
-# Patina > Aliases > Terminal Reset Commands
+# PATINA > ALIASES > TERMINAL MANAGEMENT COMMANDS
 
 alias 'p-refresh'='patina_terminal_refresh'
 alias 'p-reset'='patina_terminal_reset'
 
-# Patina > Aliases > File Manager Commands
+# PATINA > ALIASES > FILE MANAGER COMMANDS
 
 alias 'files'='patina_open_folder_graphically'
 alias 'p-root'='patina_open_folder "${PATINA_PATH_ROOT}"'
 
-# Patina > Aliases > Component Location Commands
+# PATINA > ALIASES > COMPONENT LOCATION COMMANDS
 
 alias 'p-c'='patina_open_folder "${PATINA_PATH_COMPONENTS}"'
 alias 'p-c-applications'='patina_open_folder "${PATINA_PATH_COMPONENTS_APPLICATIONS}"'
@@ -512,7 +541,7 @@ alias 'p-c-places'='patina_open_folder "${PATINA_PATH_COMPONENTS_PLACES}"'
 alias 'p-c-system'='patina_open_folder "${PATINA_PATH_COMPONENTS_SYSTEM}"'
 alias 'p-c-user'='patina_open_folder "${PATINA_PATH_COMPONENTS_USER}"'
 
-# Patina > Aliases > String Generator Commands
+# PATINA > ALIASES > STRING GENERATOR COMMANDS
 
 alias 'p-uuid'='generate_uuid'
 
