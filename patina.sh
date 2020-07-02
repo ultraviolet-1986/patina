@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# License #
+# LICENSE #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -19,7 +19,7 @@
 # see <http://www.gnu.org/licenses/>.
 
 #########################
-# ShellCheck Directives #
+# SHELLCHECK DIRECTIVES #
 #########################
 
 # Override SC1090: "Can't follow non-constant source".
@@ -29,7 +29,7 @@
 # shellcheck disable=SC2154
 
 #############
-# Variables #
+# VARIABLES #
 #############
 
 # PATINA > GLOBAL VARIABLES > PATINA METADATA
@@ -120,8 +120,10 @@ export readonly SYSTEM_OS_RELEASE='/etc/os-release'
 export readonly SYSTEM_LSB_RELEASE='/etc/lsb-release'
 
 #############
-# Functions #
+# FUNCTIONS #
 #############
+
+# PATINA > FUNCTIONS > PATINA INITIALIZATION
 
 patina_initialize() {
   # Ensure Patina is operating inside of a GNU/Linux environment.
@@ -164,9 +166,10 @@ patina_initialize() {
   clear
 
   # Display main Patina author/copyright header.
-  echo -e "${PATINA_MAJOR_COLOR}Patina ${PATINA_VERSION} '${PATINA_CODENAME}'${COLOR_RESET}"
+  printf "${PATINA_MAJOR_COLOR}Patina %s '%s' / " "${PATINA_VERSION}" "${PATINA_CODENAME}"
+  echo -e "BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
   echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2019 William Whinn${COLOR_RESET}"
-  echo -e "${PATINA_MINOR_COLOR}$PATINA_URL${COLOR_RESET}\n"
+  echo -e "${PATINA_MINOR_COLOR}$PATINA_URL${COLOR_RESET}\\n"
 
   # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
@@ -184,7 +187,7 @@ patina_create_configuration_file() {
   return 0
 }
 
-# REPORTS
+# PATINA > FUNCTIONS > REPORTS
 
 patina_show_component_report() {
   # Failure: Success condition(s) not met.
@@ -196,8 +199,8 @@ patina_show_component_report() {
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     # Display Header
     echo
-    echo_wrap "${BOLD}Patina Component Report${COLOR_RESET}\n"
-    echo_wrap "Patina has connected the following ${#patina_components_list[@]} component(s):\n"
+    echo -e "${BOLD}Patina Component Report${COLOR_RESET}\\n"
+    echo -e "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
     # Success: 'tree' is installed. Display enhanced component list.
     if ( command -v 'tree' > /dev/null 2>&1 ) ; then
@@ -208,7 +211,7 @@ patina_show_component_report() {
     # Success: 'tree' is not installed. Display standard component list.
     else
       for component in "${patina_components_list[@]}" ; do
-        echo_wrap "$(basename "$component")"
+        echo_wrap "$( basename "$component" )"
       done
 
       echo
@@ -225,67 +228,67 @@ patina_show_component_report() {
 patina_show_dependency_report() {
   # Display Header.
   echo
-  echo_wrap "${BOLD}Patina Dependency Report${COLOR_RESET}\n"
+  echo -e "${BOLD}Patina Dependency Report${COLOR_RESET}\\n"
 
-  echo_wrap "${BOLD}NOTE${COLOR_RESET} Distribution-Native Packages Detected Only.\n"
+  echo -e "${BOLD}NOTE${COLOR_RESET} Distribution-Native Packages Detected Only.\\n"
 
   # Display table header.
-  echo_wrap "${BOLD}PACKAGE\t\tCOMMAND\t\tSTATE${COLOR_RESET}"
+  echo -e "${BOLD}PACKAGE\\t\\tCOMMAND\\t\\tSTATE${COLOR_RESET}"
 
-  printf "clamav\t\tp-clamscan"
+  printf "clamav\\t\\tp-clamscan"
   if ( command -v 'clamscan' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "genisoimage\tp-iso"
+  printf "genisoimage\\tp-iso"
   if ( command -v 'mkisofs' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "git\t\tp-update"
+  printf "git\\t\\tp-update"
   if ( command -v 'git' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "gnupg2\t\tp-gpg"
+  printf "gnupg2\\t\\tp-gpg"
   if ( command -v 'gpg' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "libreoffice\tp-pdf"
+  printf "libreoffice\\tp-pdf"
   if ( command -v 'soffice' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "timeshift\tp-timeshift"
+  printf "timeshift\\tp-timeshift"
   if ( command -v 'timeshift' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "tree\t\tp-list"
+  printf "tree\\t\\tp-list"
   if ( command -v 'tree' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "ufw\t\tp-ufw"
+  printf "ufw\\t\\tp-ufw"
   if ( command -v 'ufw' > /dev/null 2>&1 ) ; then
-    echo_wrap "\t\t${LIGHT_GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo_wrap "\t\t${LIGHT_RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   echo
@@ -305,23 +308,24 @@ patina_show_system_report() {
     local network_status
 
     if [ "$PATINA_HAS_INTERNET" = 'true' ] ; then
-      network_status="${LIGHT_GREEN}Active${COLOR_RESET}"
+      network_status="${GREEN}Active${COLOR_RESET}"
     else
-      network_status="${LIGHT_RED}Inactive${COLOR_RESET}"
+      network_status="${RED}Inactive${COLOR_RESET}"
     fi
 
     # Display Header
     echo
-    echo_wrap "${BOLD}Patina System Report${COLOR_RESET}\n"
+    echo -e "${BOLD}Patina System Report${COLOR_RESET}\\n"
 
     # Show System Report
-    echo_wrap "${BOLD}Operating System${COLOR_RESET}\t$PRETTY_NAME"
-    echo_wrap "${BOLD}Operating System URL${COLOR_RESET}\t<$HOME_URL>"
-    echo_wrap "${BOLD}Current Session${COLOR_RESET}\t\t$XDG_CURRENT_DESKTOP ($XDG_SESSION_TYPE)"
-    echo_wrap "${BOLD}Linux Kernel Version${COLOR_RESET}\t$(uname -r)"
-    echo_wrap "${BOLD}Package Manager${COLOR_RESET}\t\t$(to_upper "${PATINA_PACKAGE_MANAGER}")"
-    echo_wrap "${BOLD}BASH Version${COLOR_RESET}\t\t${BASH_VERSION%%[^0-9.]*}"
-    echo_wrap "${BOLD}Internet Connection${COLOR_RESET}\t$network_status"
+    echo -e "${BOLD}Operating System${COLOR_RESET}\\t${PRETTY_NAME}"
+    echo -e "${BOLD}Operating System URL${COLOR_RESET}\\t<${HOME_URL}>"
+    echo -e "${BOLD}Desktop Session${COLOR_RESET}\\t\\t${XDG_CURRENT_DESKTOP}"
+    echo -e "${BOLD}Display Server${COLOR_RESET}\\t\\t$( to_upper "${XDG_SESSION_TYPE}" )"
+    echo -e "${BOLD}Linux Kernel Version${COLOR_RESET}\\t$( uname -r )"
+    echo -e "${BOLD}Package Manager${COLOR_RESET}\\t\\t$( to_upper "${PATINA_PACKAGE_MANAGER}" )"
+    echo -e "${BOLD}BASH Version${COLOR_RESET}\\t\\t${BASH_VERSION%%[^0-9.]*}"
+    echo -e "${BOLD}Internet Connection${COLOR_RESET}\\t${network_status}"
 
     echo
     return 0
@@ -333,7 +337,8 @@ patina_show_system_report() {
   fi
 }
 
-# ERROR HANDLING
+
+# PATINA > FUNCTIONS > ERROR HANDLING
 
 patina_raise_exception() {
   # Failure: Patina has not been given an argument.
@@ -358,7 +363,7 @@ patina_raise_exception() {
   fi
 }
 
-# FILE MANAGER
+# PATINA > FUNCTIONS > FILE MANAGER
 
 patina_open_folder() {
   # Failure: Patina has not been given an argument.
@@ -393,7 +398,7 @@ patina_open_folder() {
         # Success: Open location graphically.
         if ( command -v 'xdg-open' > /dev/null 2>&1 ) ; then
           cd "$1" || return
-          xdg-open "$(pwd)" > /dev/null 2>&1
+          xdg-open "$( pwd )" > /dev/null 2>&1
           return 0
         else
           # Failure: Cannot open location graphically.
@@ -437,7 +442,7 @@ patina_open_folder_graphically() {
   fi
 }
 
-# TEXT FORMATTING
+# PATINA > FUNCTIONS > TEXT FORMATTING
 
 echo_wrap() { ( echo -e "${@}" ) | fmt -w "$( tput cols )" ; return 0 ; }
 
@@ -449,7 +454,7 @@ underline() { echo_wrap "${UNDERLINE}${*}${COLOR_RESET}" ; return 0 ; }
 italic() { echo_wrap "${ITALIC}${*}${COLOR_RESET}" ; return 0 ; }
 strikethrough() { echo_wrap "${STRIKETHROUGH}${*}${COLOR_RESET}" ; return 0 ; }
 
-# STRING GENERATORS
+# PATINA > FUNCTIONS > STRING GENERATORS
 
 generate_date_stamp() { date --utc +%Y%m%dT%H%M%SZ ; return 0 ; }
 
@@ -457,15 +462,15 @@ generate_uuid() {
   local label_command_6="head /dev/urandom | tr -dc A-Za-z0-9 | head -c6"
   local label_command_4="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4"
 
-  echo -e "$( eval "$label_command_6"; printf '-'; eval "$label_command_4"; \
-    printf '-'; eval "$label_command_4"; printf '-'; eval "$label_command_4"; \
-    printf '-'; eval "$label_command_4"; printf '-'; eval "$label_command_4"; \
-    printf '-'; eval "$label_command_6"; )"
+  echo -e "$( eval "${label_command_6}" ; printf '-' ; eval "${label_command_4}" ; \
+    printf '-' ; eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; \
+    printf '-' ; eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; \
+    printf '-' ; eval "${label_command_6}" ; )"
 
   return 0
 }
 
-# TERMINAL MANAGEMENT
+# PATINA > FUNCTIONS > TERMINAL MANAGEMENT
 
 patina_terminal_refresh() {
   cd || return 1
@@ -546,7 +551,7 @@ alias 'p-c-user'='patina_open_folder "${PATINA_PATH_COMPONENTS_USER}"'
 alias 'p-uuid'='generate_uuid'
 
 #############
-# Kickstart #
+# KICKSTART #
 #############
 
 patina_initialize
