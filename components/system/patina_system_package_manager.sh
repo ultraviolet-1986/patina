@@ -1,34 +1,32 @@
 #!/usr/bin/env bash
 
-##########
-# Notice #
-##########
+###########
+# LICENSE #
+###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #########################
-# ShellCheck Directives #
+# SHELLCHECK DIRECTIVES #
 #########################
 
 # Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
-# Functions #
+# FUNCTIONS #
 #############
 
 patina_detect_system_package_manager() {
@@ -91,6 +89,20 @@ patina_detect_system_package_manager() {
 
 # Warning: Uses sudo command(s) to perform software management tasks.
 patina_package_manager() {
+  if [ "$1" = '--help' ] ; then
+    echo -e "Usage: p-pkg [OPTION] [PACKAGE(S)]"
+    echo -e "Warning: Command(s) may require 'sudo' password."
+    echo -e "Connect to system package manager to perform software management tasks."
+    echo
+    echo -e "  install\\tInstall package(s)."
+    echo -e "  remove\\tRemove package(s)."
+    echo -e "  update\\tUpdate package repository information."
+    echo -e "  upgrade\\tUpgrade system software."
+    echo -e "  --help\tDisplay this help and exit."
+    echo
+    return 0
+  fi
+
   patina_detect_internet_connection
 
   if [ "$PATINA_HAS_INTERNET" = 'false' ] ; then
@@ -136,7 +148,7 @@ patina_package_manager() {
           eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE" --refresh
           return 0
         elif [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
-          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE" --check
+          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE"
           return 0
         else
           sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE"
@@ -164,16 +176,15 @@ patina_package_manager() {
 }
 
 ###########
-# Aliases #
+# ALIASES #
 ###########
 
-# Patina > Aliases > Package Management Commands
+# PATINA > FUNCTIONS > PACKAGE MANAGEMENT
 
-alias 'p-package'='patina_package_manager'
 alias 'p-pkg'='patina_package_manager'
 
 #############
-# Kickstart #
+# KICKSTART #
 #############
 
 patina_detect_system_package_manager
