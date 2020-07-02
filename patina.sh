@@ -337,7 +337,6 @@ patina_show_system_report() {
   fi
 }
 
-
 # PATINA > FUNCTIONS > ERROR HANDLING
 
 patina_raise_exception() {
