@@ -101,6 +101,8 @@ patina_genisoimage() {
 # EXPORTS #
 ###########
 
+# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE/MKISOFS
+
 export -f 'patina_genisoimage'
 
 ###########
