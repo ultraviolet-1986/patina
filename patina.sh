@@ -233,10 +233,17 @@ patina_show_dependency_report() {
   echo -e "${BOLD}NOTE${COLOR_RESET} Distribution-Native Packages Detected Only.\\n"
 
   # Display table header.
-  echo -e "${BOLD}PACKAGE\\t\\tCOMMAND\\t\\tSTATE${COLOR_RESET}"
+  echo -e "${BOLD}PACKAGE\\t\\tCOMMAND\\t\\t\\tSTATE${COLOR_RESET}"
 
   printf "clamav\\t\\tp-clamscan"
   if ( command -v 'clamscan' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
+  printf "curl\\t\\tp-clamscan --repair"
+  if ( command -v 'curl' > /dev/null 2>&1 ) ; then
     echo -e "\\t${GREEN}Installed${COLOR_RESET}"
   else
     echo -e "\\t${RED}Not Installed${COLOR_RESET}"
@@ -244,51 +251,51 @@ patina_show_dependency_report() {
 
   printf "genisoimage\\tp-iso"
   if ( command -v 'mkisofs' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   printf "git\\t\\tp-update"
   if ( command -v 'git' > /dev/null 2>&1 ) ; then
-    echo -e "\\t${GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo -e "\\t${RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   printf "gnupg2\\t\\tp-gpg"
   if ( command -v 'gpg' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   printf "libreoffice\\tp-pdf"
   if ( command -v 'soffice' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   printf "timeshift\\tp-timeshift"
   if ( command -v 'timeshift' > /dev/null 2>&1 ) ; then
-    echo -e "\\t${GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo -e "\\t${RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   printf "tree\\t\\tp-list"
   if ( command -v 'tree' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   printf "ufw\\t\\tp-ufw"
   if ( command -v 'ufw' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
-    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
   echo

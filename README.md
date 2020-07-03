@@ -109,6 +109,7 @@ Patina does not require anything except BASH as a rule, but it can make use of
 the following packages (correct for Fedora):
 
 - `clamav` for the `p-clamscan <X>` commands.
+- `curl` for the `p-clamscan --repair` command.
 - `genisoimage` for the `p-iso` command.
 - `git` for the `p-update` and `p-git` commands.
 - `gnupg2` for the `p-gpg` commands.
@@ -448,10 +449,7 @@ multitude of purposes such as passwords, disk labels, programming placeholders,
 etc.
 
 ```bash
-to_upper "$(p-uuid)"          # Create the above in all upper-case characters.
-to_lower "$(p-uuid)"          # Create the above in all lower-case characters.
-
-p-date                        # Create a timestamp.
-p-uuid                        # Create a 32-character UUID string.
-generate_volume_label         # Create 8-character disk label.
+p-date  # Create a timestamp.
+p-uuid  # Create a 32-character UUID string.
+p-vol   # Create 8-character disk label.
 ```

@@ -26,8 +26,8 @@ patina_genisoimage() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo_wrap "Usage: p-iso [DIRECTORY] [OPTION]"
-    echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
     echo_wrap "Create a read-only disk image in .iso format."
+    echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
     echo
     echo_wrap "  --udf\t\tCreate UDF disk image (Non ISO-9660 compliant)."
     echo_wrap "  --help\tDisplay this help and exit."
@@ -71,7 +71,7 @@ patina_genisoimage() {
 
   # Success: Create ISO Disk Image (ISO-9660 compliant).
   elif [ -d "$1" ] && [ -z "$2" ] ; then
-    mkisofs -volid "$(generate_volume_label)" -o "$(basename "$1").iso" \
+    mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" \
       -input-charset UTF-8 \
       -joliet \
       -joliet-long \
@@ -109,7 +109,7 @@ export -f 'patina_genisoimage'
 # ALIASES #
 ###########
 
-# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE/MKISOFS
+# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE/MKISOFS COMMANDS
 
 alias 'p-iso'='patina_genisoimage'
 

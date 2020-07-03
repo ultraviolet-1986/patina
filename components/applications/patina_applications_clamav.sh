@@ -22,7 +22,7 @@
 # FUNCTIONS #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > CLAMAV/FRESHCLAM
+# PATINA > FUNCTIONS > APPLICATIONS > CLAMAV
 
 patina_clamav() {
   local patina_create_clamav_logfile
@@ -34,10 +34,10 @@ patina_clamav() {
   # Success: Display contents of help file.
   if [ "$1" = '--help' ] ; then
     echo -e "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
+    echo -e "Perform a recursive virus scan of a given location and record results."
     echo -e "Dependencies: 'clamscan' command from package 'clamav'."
     echo -e "Dependencies: 'freshclam' command from package 'clamav'/'clamav-update'."
     echo -e "Warning: Command(s) may require 'sudo' password."
-    echo -e "Perform a recursive virus scan of a given location and record results."
     echo
     echo -e "  --repair\tPurge and replace current virus database."
     echo -e "  --help\tDisplay this help and exit."
@@ -49,16 +49,9 @@ patina_clamav() {
     patina_raise_exception 'PE0006'
     return 127
 
-  # Failure: Command 'freshclam' is not available.
-  elif ( ! command -v 'freshclam' > /dev/null 2>&1 ) ; then
-    patina_raise_exception 'PE0006'
-    return 127
-
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
-    echo
-    patina_clamav --help
     return 1
 
   # Failure: Patina has been given too many arguments.
@@ -69,19 +62,44 @@ patina_clamav() {
   # Success: Repair Freshclam update mechanism.
   # Warning: Uses 'sudo' to delete system files and execute Freshclam update program.
   elif [ "$1" = '--repair' ] ; then
-    printf "${YELLOW}This command requires root permissions. Continue [Y/N]?${COLOR_RESET} "
+    printf "%bNOTE:%b This command requires root permissions. Continue [Y/N]? " \
+      "${BOLD}" "${COLOR_RESET}"
     read -n1 -r answer
     echo
 
     case "$answer" in
       'Y'|'y')
-        sudo rm --force \
-          "$clamav_path/bytecode.cvd" \
-          "$clamav_path/daily.cld" \
-          "$clamav_path/main.cvd" \
-          "$clamav_path/mirrors.dat" && \
-        sudo freshclam
-        return 0
+        patina_detect_internet_connection
+
+        # Failure: Patina cannot download updated Database files from ClamAV mirror.
+        if [ "$PATINA_HAS_INTERNET" = 'false' ] ; then
+          patina_raise_exception 'PE0008'
+          return 1
+
+        # Success: Delete old ClamAV database files and download new ones from ClamAV mirror.
+        else
+          local clamav_mirror='http://database.clamav.net'
+
+          sudo rm --force \
+            "$clamav_path/bytecode.cvd" \
+            "$clamav_path/daily.cld" \
+            "$clamav_path/main.cvd"
+
+          printf "\\n%bNOTE:%b Downloading 'bytecode.cvd' from '${clamav_mirror}'...\\n" \
+            "${BOLD}" "${COLOR_RESET}"
+          sudo curl "$clamav_mirror/bytecode.cvd" --output "$clamav_path/bytecode.cvd"
+
+          printf "\\n%bNOTE:%b Downloading 'daily.cvd' from '${clamav_mirror}'...\\n" \
+            "${BOLD}" "${COLOR_RESET}"
+          sudo curl "$clamav_mirror/daily.cvd" --output "$clamav_path/daily.cvd"
+
+          printf "\\n%bNOTE:%b Downloading 'main.cvd' from '${clamav_mirror}'...\\n" \
+            "${BOLD}" "${COLOR_RESET}"
+          sudo curl "$clamav_mirror/main.cvd" --output "$clamav_path/main.cvd"
+          echo
+
+          return 0
+        fi
         ;;
       'N'|'n')
         return 0
@@ -100,7 +118,7 @@ patina_clamav() {
   # Success: Guide user in performing virus scan.
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
     echo
-    printf "${YELLOW}Do you wish to record a log file in your Home directory [Y/N]?${COLOR_RESET} "
+    printf "Do you wish to record a log file in your Home directory [Y/N]? "
     read -n1 -r answer
     echo
 
@@ -118,7 +136,7 @@ patina_clamav() {
         ;;
     esac
 
-    echo -e "\\n\\nPreparing 'clamav' virus scan, please wait...\\n"
+    echo -e "\\nPreparing 'clamav' virus scan, please wait...\\n"
 
     case "$patina_create_clamav_logfile" in
       true)
@@ -148,7 +166,7 @@ patina_clamav() {
 # ALIASES #
 ###########
 
-# PATINA > FUNCTIONS > APPLICATIONS > CLAMAV/FRESHCLAM
+# PATINA > FUNCTIONS > APPLICATIONS > CLAMAV COMMANDS
 
 alias 'p-clamscan'='patina_clamav'
 
