@@ -50,7 +50,7 @@ patina_genisoimage() {
     return 1
 
   # Failure: A valid argument was not provided.
-  elif [ -n "$2" ] && [ "$2" != '--force' ] ; then
+  elif [ -n "$2" ] && [ "$2" != '--udf' ] ; then
     patina_raise_exception 'PE0001'
     return 1
 
@@ -80,7 +80,7 @@ patina_genisoimage() {
     return 0
 
   # Success: Create ISO Disk Image (Non ISO-9660 compliant).
-  elif [ -d "$1" ] && [ "$2" = '--force' ] ; then
+  elif [ -d "$1" ] && [ "$2" = '--udf' ] ; then
     mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" \
       -input-charset UTF-8 \
       -udf \
