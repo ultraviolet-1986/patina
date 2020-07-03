@@ -1,33 +1,26 @@
 #!/usr/bin/env bash
 
-##########
-# Notice #
-##########
+###########
+# LICENSE #
+###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #############
-# Functions #
+# FUNCTIONS #
 #############
-
-generate_volume_label() {
-  local label_command="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4 | tr '[:lower:]' '[:upper:]'"
-  echo -e "$(eval "$label_command"; printf "-"; eval "$label_command")"
-}
 
 patina_genisoimage() {
   # Success: Display help and exit.
@@ -36,7 +29,7 @@ patina_genisoimage() {
     echo_wrap "Dependencies: 'mkisofs' command from package 'genisoimage'."
     echo_wrap "Create a read-only disk image in .iso format."
     echo
-    echo_wrap "  --force\tBypass ISO-9660 restrictions."
+    echo_wrap "  --udf\t\tCreate UDF disk image (Non ISO-9660 compliant)."
     echo_wrap "  --help\tDisplay this help and exit."
     echo
     return 0
@@ -44,7 +37,7 @@ patina_genisoimage() {
   # Failure: Command 'mkisofs' is not available.
   elif ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
-    return 1
+    return 127
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
@@ -105,17 +98,16 @@ patina_genisoimage() {
 }
 
 ###########
-# Exports #
+# EXPORTS #
 ###########
 
-export -f 'generate_volume_label'
 export -f 'patina_genisoimage'
 
 ###########
-# Aliases #
+# ALIASES #
 ###########
 
-# Patina > Aliases > Package 'genisoimage' Commands
+# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE COMMANDS
 
 alias 'p-iso'='patina_genisoimage'
 

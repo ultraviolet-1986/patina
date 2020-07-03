@@ -469,6 +469,11 @@ generate_uuid() {
   return 0
 }
 
+generate_volume_label() {
+  local label_command="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4 | tr '[:lower:]' '[:upper:]'"
+  echo -e "$(eval "$label_command"; printf "-"; eval "$label_command")"
+}
+
 # PATINA > FUNCTIONS > TERMINAL MANAGEMENT
 
 patina_terminal_refresh() {
@@ -511,6 +516,7 @@ export -f 'underline'
 
 export -f 'generate_date_stamp'
 export -f 'generate_uuid'
+export -f 'generate_volume_label'
 
 ###########
 # Aliases #
@@ -547,7 +553,9 @@ alias 'p-c-user'='patina_open_folder "${PATINA_PATH_COMPONENTS_USER}"'
 
 # PATINA > ALIASES > STRING GENERATOR COMMANDS
 
+alias 'p-date'='generate_date_stamp'
 alias 'p-uuid'='generate_uuid'
+alias 'p-vol'='generate_volume_label'
 
 #############
 # KICKSTART #

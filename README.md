@@ -282,9 +282,9 @@ p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 The following command requires the `genisoimage` package to be installed.
 
 ```bash
-p-iso "<Directory Name>"          # Create an ISO disk image from a folder.
-p-iso "<Directory Name>" --force  # Create a non-compliant ISO disk image.
-p-iso --help                      # Display help for the `p-iso` command.
+p-iso "<Directory Name>"        # Create an ISO disk image from a folder.
+p-iso "<Directory Name>" --udf  # Create a UDF non-compliant ISO disk image.
+p-iso --help                    # Display help for the `p-iso` command.
 ```
 
 #### Document Conversion (LibreOffice)
@@ -321,8 +321,8 @@ In both cases, the following commands require `sudo` privileges, please review
 source code before use.
 
 ```bash
-p-timeshift --create   # Create a system snapshot using 'Timeshift.'
-p-timeshift --restore  # Restore a system snapshot using 'Timeshift'.
+p-timeshift create   # Create a system snapshot using 'Timeshift.'
+p-timeshift restore  # Restore a system snapshot using 'Timeshift'.
 ```
 
 #### Uncomplicated Firewall (UFW)
@@ -332,11 +332,11 @@ source code before use. Note that this is aimed toward Linux distributions which
 provide 'ufw' but do not activate it by default.
 
 ```bash
-p-ufw --disable  # Disable the `ufw` firewall (not recommended).
-p-ufw --enable   # Enable the `ufw` firewall (recommended).
-p-ufw --reset    # Enable the `ufw` firewall and reset default rules.
-p-ufw --setup    # Enable the `ufw` firewall with some basic defaults.
-p-ufw --status   # Display the status of the `ufw` firewall in a table.
+p-ufw disable  # Disable the `ufw` firewall (not recommended).
+p-ufw enable   # Enable the `ufw` firewall (recommended).
+p-ufw reset    # Enable the `ufw` firewall and reset default rules.
+p-ufw setup    # Enable the `ufw` firewall with some basic defaults.
+p-ufw status   # Display the status of the `ufw` firewall in a table.
 p-ufw --help     # Display instructions for `p-ufw` commands.
 ```
 
@@ -380,7 +380,7 @@ To verify the output checksum file, use the following command(s) depending on
 file type you specified:
 
 ```bash
-b2sum -c "<filename>.b2sum"          # Verify checksum for *.md5sum files.
+b2sum -c "<filename>.b2sum"          # Verify checksum for *.b2sum files.
 md5sum -c "<filename>.md5sum"        # Verify checksum for *.md5sum files.
 sha1sum -c "<filename>.sha1sum"      # Verify checksum for *.sha1sum files.
 sha224sum -c "<filename>.sha256sum"  # Verify checksum for *.sha224sum files.
@@ -405,19 +405,14 @@ p-network stop     # Stop the networking service.
 
 #### Package Management
 
-The following commands require `sudo` privileges and detect the default package
-manager, please review source code before use.
+The following commands may require `sudo` privileges and detect the default
+package manager, please review source code before use.
 
 ```bash
-p-package install  # Install package(s).
-p-package remove   # Remove package(s).
-p-package update   # Update package catalogue.
-p-package upgrade  # Upgrade outdated package(s).
-
-p-pkg install      # Install package(s).
-p-pkg remove       # Remove package(s).
-p-pkg update       # Update package catalogue.
-p-pkg upgrade      # Upgrade outdated package(s).
+p-pkg install  # Install package(s).
+p-pkg remove   # Remove package(s).
+p-pkg update   # Update package catalogue.
+p-pkg upgrade  # Upgrade outdated package(s).
 ```
 
 #### Desktop Session
@@ -437,11 +432,13 @@ The following helper functions can be included in any component or external
 script as long as Patina is running:
 
 ```bash
-echo_wrap "<Paragraph typed here>"  # Will echo and word-wrap a paragraph.
-to_lower "<Phrase typed here>"      # Will convert text to lower-case and echo.
-to_upper "<Phrase typed here>"      # Will convert text to upper-case and echo.
-bold "<Phrase typed here>"          # Will convert text to bold and echo.
-underline "<Phrase typed here>"     # Will convert text to underlined and echo.
+echo_wrap "<string>"      # Will echo and word-wrap a paragraph.
+to_lower "<string>"       # Will convert text to lower-case and echo.
+to_upper "<string>"       # Will convert text to upper-case and echo.
+bold "<string>"           # Will convert text to bold and echo.
+italic "<string"          # Will convert text to italic and echo.
+strikethrough "<string>"  # Will convert text to strikethrough and echo.
+underline "<string>"      # Will convert text to underlined and echo.
 ```
 
 ## String Generators
@@ -454,6 +451,7 @@ etc.
 to_upper "$(p-uuid)"          # Create the above in all upper-case characters.
 to_lower "$(p-uuid)"          # Create the above in all lower-case characters.
 
+p-date                        # Create a timestamp.
 p-uuid                        # Create a 32-character UUID string.
 generate_volume_label         # Create 8-character disk label.
 ```

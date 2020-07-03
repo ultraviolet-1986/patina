@@ -59,21 +59,21 @@ patina_ufw() {
   # Warning: Uses 'sudo' to configure 'ufw'.
   elif [ -n "$1" ] ; then
     case "$1" in
-      '--disable')
+      'disable')
         sudo ufw disable
         return 0
         ;;
-      '--enable')
+      'enable')
         sudo ufw enable
         return 0
         ;;
-      '--setup')
+      'setup')
         sudo ufw enable
         sudo ufw default deny
         sudo ufw limit ssh
         return 0
         ;;
-      '--status')
+      'status')
         sudo ufw status
         return 0
         ;;
