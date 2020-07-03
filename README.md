@@ -269,12 +269,12 @@ p-c-user          # Open the Patina 'user components' directory.
 
 #### ClamAV
 
-The `p-clamscan repair` command requires `sudo` privileges, please review source
-code before use.
+The `p-clamscan --repair` command requires `sudo` privileges, please review
+source code before use.
 
 ```bash
 p-clamscan           # Perform a ClamAV virus scan on a given path.
-p-clamscan --repair  # Repair ClamAV update mechanism.
+p-clamscan --repair  # Purge and replace current virus database.
 p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 ```
 
@@ -284,7 +284,7 @@ The following command requires the `genisoimage` package to be installed.
 
 ```bash
 p-iso "<Directory Name>"        # Create an ISO disk image from a folder.
-p-iso "<Directory Name>" --udf  # Create a UDF non-compliant ISO disk image.
+p-iso "<Directory Name>" --udf  # Create a UDF ISO disk image from a folder.
 p-iso --help                    # Display help for the `p-iso` command.
 ```
 
