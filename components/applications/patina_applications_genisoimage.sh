@@ -107,7 +107,7 @@ export -f 'patina_genisoimage'
 # ALIASES #
 ###########
 
-# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE COMMANDS
+# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE/MKISOFS
 
 alias 'p-iso'='patina_genisoimage'
 
