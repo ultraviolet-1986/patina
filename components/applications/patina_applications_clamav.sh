@@ -33,14 +33,13 @@ patina_clamav() {
 
   # Success: Display contents of help file.
   if [ "$1" = '--help' ] ; then
-    echo -e "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
-    echo -e "Perform a recursive virus scan of a given location and record results."
-    echo -e "Dependencies: 'clamscan' command from package 'clamav'."
-    echo -e "Dependencies: 'freshclam' command from package 'clamav'/'clamav-update'."
-    echo -e "Warning: Command(s) may require 'sudo' password."
+    echo "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
+    echo "Perform a recursive virus scan of a given location and record results."
+    echo "Dependencies: 'clamscan' command from package 'clamav'."
+    echo "Warning: Command(s) may require 'sudo' password."
     echo
-    echo -e "  --repair\tPurge and replace current virus database."
-    echo -e "  --help\tDisplay this help and exit."
+    echo -e "  --repair\\tPurge and replace current virus database."
+    echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
 

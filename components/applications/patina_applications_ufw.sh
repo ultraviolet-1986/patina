@@ -1,49 +1,47 @@
 #!/usr/bin/env bash
 
-##########
-# Notice #
-##########
+###########
+# LICENSE #
+###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #############
-# Functions #
+# FUNCTIONS #
 #############
 
 patina_ufw() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
-    echo_wrap "Usage: p-ufw [OPTION]"
-    echo_wrap "Dependencies: 'ufw' command from package 'ufw'."
-    echo_wrap "Warning: Command(s) may require 'sudo' password."
-    echo_wrap "Configure the 'ufw' firewall."
+    echo "Usage: p-ufw [OPTION]"
+    echo "Configure the 'ufw' firewall."
+    echo "Warning: Command(s) require 'sudo' password."
+    echo "Dependencies: 'ufw' command from package 'ufw'."
     echo
-    echo_wrap "  disable\tDisable 'ufw'."
-    echo_wrap "  enable\tEnable 'ufw'."
-    echo_wrap "  setup\t\tEnable 'ufw' with basic rules."
-    echo_wrap "  status\tDisplay the status of 'ufw' and list active rules."
-    echo_wrap "  --help\tDisplay this help and exit."
+    echo -e "  disable\\tDisable 'ufw'."
+    echo -e "  enable\\tEnable 'ufw'."
+    echo -e "  setup\\t\\tEnable 'ufw' with basic rules."
+    echo -e "  status\\tDisplay the status of 'ufw' and list active rules."
+    echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
 
   # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'ufw' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
-    return 1
+    return 127
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
@@ -91,10 +89,10 @@ patina_ufw() {
 }
 
 ###########
-# Aliases #
+# ALIASES #
 ###########
 
-# Patina > Aliases > Package 'ufw' Commands
+# PATINA > FUNCTIONS > APPLICATIONS > UFW COMMANDS
 
 alias 'p-ufw'='patina_ufw'
 

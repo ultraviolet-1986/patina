@@ -28,17 +28,17 @@
 # Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
-#############
-# VARIABLES #
-#############
+####################
+# GLOBAL VARIABLES #
+####################
 
 # PATINA > GLOBAL VARIABLES > PATINA METADATA
 
 readonly PATINA_VERSION='0.7.8'
 readonly PATINA_CODENAME='Duchess'
-# readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
+readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
+# readonly PATINA_URL='https://tinyurl.com/patina-bash'
 # readonly PATINA_URL='https://tinyurl.com/patina-git'
-readonly PATINA_URL='https://tinyurl.com/patina-bash'
 
 # PATINA > GLOBAL VARIABLES > TEXT FORMATTING > TEXT COLORS
 

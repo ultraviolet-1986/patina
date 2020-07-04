@@ -1,44 +1,42 @@
 #!/usr/bin/env bash
 
-##########
-# Notice #
-##########
+###########
+# LICENSE #
+###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #############
-# Functions #
+# FUNCTIONS #
 #############
 
 patina_libreoffice() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
-    echo_wrap "Usage: p-pdf [FILE] [OPTION]"
-    echo_wrap "Dependencies: 'soffice' command from package 'libreoffice'."
-    echo_wrap "Convert a supported file to *.pdf format."
+    echo "Usage: p-pdf [FILE]"
+    echo "Convert a supported file to *.pdf format."
+    echo "Dependencies: 'soffice' command from package 'libreoffice'."
     echo
-    echo_wrap "  --help\tDisplay this help and exit."
+    echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
 
   # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'soffice' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
-    return 1
+    return 127
 
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
@@ -68,12 +66,11 @@ patina_libreoffice() {
 }
 
 ###########
-# Aliases #
+# ALIASES #
 ###########
 
-# Patina > Aliases > Package 'libreoffice' Commands
+# PATINA > FUNCTIONS > APPLICATIONS > LIBREOFFICE COMMANDS
 
 alias 'p-pdf'='patina_libreoffice'
 
 # End of File.
-

@@ -283,8 +283,8 @@ p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 The following command requires the `genisoimage` package to be installed.
 
 ```bash
-p-iso "<Directory Name>"        # Create an ISO disk image from a folder.
-p-iso "<Directory Name>" --udf  # Create a UDF ISO disk image from a folder.
+p-iso "<Directory Name>"        # Create an ISO image (ISO-9660 compliant).
+p-iso "<Directory Name>" --udf  # Create a UDF image (Non ISO-9660 compliant).
 p-iso --help                    # Display help for the `p-iso` command.
 ```
 
