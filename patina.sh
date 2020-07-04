@@ -211,7 +211,7 @@ patina_show_component_report() {
     # Success: 'tree' is not installed. Display standard component list.
     else
       for component in "${patina_components_list[@]}" ; do
-        echo_wrap "$( basename "$component" )"
+        echo -e "$( basename "$component" )"
       done
 
       echo
