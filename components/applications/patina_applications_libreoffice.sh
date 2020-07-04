@@ -22,6 +22,8 @@
 # FUNCTIONS #
 #############
 
+# PATINA > FUNCTIONS > APPLICATIONS > LIBREOFFICE
+
 patina_libreoffice() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then

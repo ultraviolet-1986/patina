@@ -22,6 +22,8 @@
 # FUNCTIONS #
 #############
 
+# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE
+
 patina_genisoimage() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then

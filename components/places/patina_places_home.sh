@@ -37,7 +37,7 @@ export readonly PATINA_PATH_HOME_VIDEOS="$HOME/Videos"
 # ALIASES #
 ###########
 
-# PATINA > GLOBAL VARIABLES > PATHS > HOME DIRECTORY COMMANDS
+# PATINA > FUNCTIONS > FILE MANAGER COMMANDS > HOME DIRECTORY
 
 alias 'home'='patina_open_folder $HOME'
 

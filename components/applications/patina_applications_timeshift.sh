@@ -22,6 +22,8 @@
 # FUNCTIONS #
 #############
 
+# PATINA > FUNCTIONS > APPLICATIONS > TIMESHIFT
+
 patina_timeshift() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then

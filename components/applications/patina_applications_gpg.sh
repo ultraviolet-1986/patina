@@ -22,6 +22,8 @@
 # FUNCTIONS #
 #############
 
+# PATINA > FUNCTIONS > APPLICATIONS > GNUPG
+
 patina_gpg() {
   # Success: Display help and exit.
   if [ "$1" == '--help' ] ; then

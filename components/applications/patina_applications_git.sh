@@ -22,6 +22,8 @@
 # FUNCTIONS #
 #############
 
+# PATINA > FUNCTIONS > APPLICATIONS > GIT
+
 patina_git() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then

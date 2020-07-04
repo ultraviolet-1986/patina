@@ -22,6 +22,8 @@
 # FUNCTIONS #
 #############
 
+# PATINA > FUNCTIONS > APPLICATIONS > UFW
+
 patina_ufw() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then

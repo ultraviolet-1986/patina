@@ -529,28 +529,28 @@ export -f 'generate_volume_label'
 # Aliases #
 ###########
 
-# PATINA > ALIASES > HELP COMMANDS
+# PATINA > FUNCTIONS > HELP COMMANDS
 
 alias 'p-changes'='less "${PATINA_PATH_ROOT}/CHANGELOG.md"'
 alias 'p-help'='less "${PATINA_PATH_ROOT}/README.md"'
 
-# PATINA > ALIASES > SYSTEM REPORT COMMANDS
+# PATINA > FUNCTIONS > SYSTEM REPORT COMMANDS
 
 alias 'p-deps'='patina_show_dependency_report'
 alias 'p-list'='patina_show_component_report'
 alias 'p-system'='patina_show_system_report'
 
-# PATINA > ALIASES > TERMINAL MANAGEMENT COMMANDS
+# PATINA > FUNCTIONS > TERMINAL MANAGEMENT COMMANDS
 
 alias 'p-refresh'='patina_terminal_refresh'
 alias 'p-reset'='patina_terminal_reset'
 
-# PATINA > ALIASES > FILE MANAGER COMMANDS
+# PATINA > FUNCTIONS > FILE MANAGER COMMANDS
 
 alias 'files'='patina_open_folder_graphically'
 alias 'p-root'='patina_open_folder "${PATINA_PATH_ROOT}"'
 
-# PATINA > ALIASES > COMPONENT LOCATION COMMANDS
+# PATINA > FUNCTIONS > FILE MANAGER COMMANDS > COMPONENT DIRECTORIES
 
 alias 'p-c'='patina_open_folder "${PATINA_PATH_COMPONENTS}"'
 alias 'p-c-applications'='patina_open_folder "${PATINA_PATH_COMPONENTS_APPLICATIONS}"'
@@ -558,7 +558,7 @@ alias 'p-c-places'='patina_open_folder "${PATINA_PATH_COMPONENTS_PLACES}"'
 alias 'p-c-system'='patina_open_folder "${PATINA_PATH_COMPONENTS_SYSTEM}"'
 alias 'p-c-user'='patina_open_folder "${PATINA_PATH_COMPONENTS_USER}"'
 
-# PATINA > ALIASES > STRING GENERATOR COMMANDS
+# PATINA > FUNCTIONS > STRING GENERATOR COMMANDS
 
 alias 'p-date'='generate_date_stamp'
 alias 'p-uuid'='generate_uuid'
