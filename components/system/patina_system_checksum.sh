@@ -18,6 +18,12 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
+##############
+# References #
+##############
+
+# Recursive Checksum Scanning ....................... https://tinyurl.com/patina-system-checksum-001
+
 #############
 # Functions #
 #############
@@ -25,20 +31,47 @@
 # PATINA > FUNCTIONS > SYSTEM > CHECKSUM
 
 patina_checksum_recursive() {
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo "Usage: p-hash [OPTION] [DIRECTORY]"
+    echo "Recursively hash directory contents and record results to a file."
+    echo "Dependencies: Package 'coreutils'."
+    echo "Note: Shortcuts exist: e.g.: 'p-md5sum', 'p-sha512sum', etc..."
+    echo
+    echo -e "  b2sum\\t\\tRecursively hash directory contents using BLAKE2 algorithm."
+    echo -e "  md5sum\\tRecursively hash directory contents using MD5 algorithm."
+    echo -e "  sha1sum\\tRecursively hash directory contents using SHA1 algorithm."
+    echo -e "  sha224sum\\tRecursively hash directory contents using SHA224 algorithm."
+    echo -e "  sha256sum\\tRecursively hash directory contents using SHA256 algorithm."
+    echo -e "  sha384sum\\tRecursively hash directory contents using SHA384 algorithm."
+    echo -e "  sha512sum\\tRecursively hash directory contents using SHA512 algorithm."
+    echo -e "  --help\\tDisplay this help and exit."
+    echo
+    return 0
+
   # Failure: Command for the hasing algorithm is not available.
-  if ( ! command -v "$1" > /dev/null 2>&1 ) ; then
+  elif ( ! command -v "$1" > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     return 127
 
+  # Failure: Patina has not been given the correct number of arguments.
+  elif [ "$#" -lt 2 ] ; then
+    patina_raise_exception 'PE0001'
+    return 1
+
   # Failure: Patina has been given too many arguments.
-  elif [ "$#" -ge 2 ] ; then
+  elif [ "$#" -gt 2 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
   # Success: Parse all files recursively using the selected hashing algorithm.
-  elif [ "$#" -eq 1 ] ; then
+  elif [ "$#" -eq 2 ] && [ -d "$2" ] ; then
+    rm --force "${PWD##*/}.$1"
     shopt -s globstar dotglob
-    "$1" ./** > "${PWD##*/}.$1"
+    for file in "$2"/**; do
+      [[ -f "$file" ]] && [[ "${PWD##*/}.$1" != "$file" ]] &&
+        "$1" "$file" | tee --append "${PWD##*/}.$1"
+    done
     return 0
 
   # Failure: Catch all.
@@ -61,6 +94,8 @@ export -f 'patina_checksum_recursive'
 ###########
 
 # PATINA > FUNCTIONS > SYSTEM > CHECKSUM COMMANDS
+
+alias 'p-hash'='patina_checksum_recursive'
 
 alias 'p-b2sum'="patina_checksum_recursive 'b2sum'"
 alias 'p-md5sum'="patina_checksum_recursive 'md5sum'"

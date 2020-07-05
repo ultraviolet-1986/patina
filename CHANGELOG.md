@@ -43,6 +43,10 @@ after an evil butler tries to steal their inheritance.
   - Corrected software updating for RPM-OSTREE systems.
   - Patina now contains return codes for each function and their respective
     success/fail conditions. This can be checked with `echo $?`.
+  - Included the new `p-hash` command, which can be used in conjunction with the
+    shortcuts such as `p-md5sum`, `p-b2sum`, etc.
+  - The entire project has been parsed, checked and corrected using
+    [ShellCheck](https://www.shellcheck.net/).
 - **0.7.7 Released Tuesday, April 28th 2020**
   - Included new component `patina_system_patina_status.sh` which includes the
     command `p-status`. This command will display a list of Patina-compatible
