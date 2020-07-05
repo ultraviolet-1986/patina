@@ -255,9 +255,9 @@ to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc. (this
 is not required for navigation using the `files` command).
 
 ```bash
-files      # Open home directory graphically and change directory.
-files <x>  # Open directory graphically and change directory.
-p-root     # Open the Patina root directory.
+files                     # Open '~' directory graphically and change directory.
+files "<Directory Name>"  # Open directory graphically and change directory.
+p-root                    # Open the Patina root directory.
 
 p-c               # Open the Patina 'components' directory.
 p-c-applications  # Open the Patina 'application components' directory.
@@ -294,8 +294,8 @@ p-iso --help                    # Display help for the `p-iso` command.
 The following command requires the `libreoffice` package to be installed.
 
 ```bash
-p-pdf "<Document Name>"  # Convert a compatible document into PDF.
-p-pdf --help             # Display instructions for `p-pdf` commands.
+p-pdf "<File Name>"  # Convert a compatible document into PDF.
+p-pdf --help         # Display instructions for `p-pdf` commands.
 ```
 
 #### File Encryption (GnuPG)
@@ -304,8 +304,8 @@ The following commands make use of symmetric GnuPG encryption. A pass-phrase is
 required to both encrypt and decrypt a file.
 
 ```bash
-p-gpg decrypt "<Filename>"  # Decrypt a file.
-p-gpg encrypt "<Filename>"  # Encrypt a file.
+p-gpg decrypt "<File Name>"  # Decrypt a file.
+p-gpg encrypt "<File Name>"  # Encrypt a file.
 p-gpg --help                # Display instructions for `p-gpg` commands.
 ```
 
@@ -313,8 +313,8 @@ The following shortcut commands perform the same tasks as above, without the
 need for providing an additional argument.
 
 ```bash
-p-decrypt "<Filename>"  # Decrypt a file.
-p-encrypt "<Filename>"  # Encrypt a file.
+p-decrypt "<File Name>"  # Decrypt a file.
+p-encrypt "<File Name>"  # Encrypt a file.
 ```
 
 #### Source Control (git)
@@ -406,13 +406,13 @@ To verify the output checksum file, use the following command(s) depending on
 file type you specified:
 
 ```bash
-b2sum -c "<filename>.b2sum"          # Verify checksum for *.b2sum files.
-md5sum -c "<filename>.md5sum"        # Verify checksum for *.md5sum files.
-sha1sum -c "<filename>.sha1sum"      # Verify checksum for *.sha1sum files.
-sha224sum -c "<filename>.sha256sum"  # Verify checksum for *.sha224sum files.
-sha256sum -c "<filename>.sha256sum"  # Verify checksum for *.sha256sum files.
-sha384sum -c "<filename>.sha384sum"  # Verify checksum for *.sha384sum files.
-sha512sum -c "<filename>.sha512sum"  # Verify checksum for *.sha512sum files.
+b2sum -c "<File Name>.b2sum"          # Verify checksum for *.b2sum files.
+md5sum -c "<File Name>.md5sum"        # Verify checksum for *.md5sum files.
+sha1sum -c "<File Name>.sha1sum"      # Verify checksum for *.sha1sum files.
+sha224sum -c "<File Name>.sha256sum"  # Verify checksum for *.sha224sum files.
+sha256sum -c "<File Name>.sha256sum"  # Verify checksum for *.sha256sum files.
+sha384sum -c "<File Name>.sha384sum"  # Verify checksum for *.sha384sum files.
+sha512sum -c "<File Name>.sha512sum"  # Verify checksum for *.sha512sum files.
 ```
 
 #### Network Management
@@ -461,13 +461,13 @@ The following helper functions can be included in any component or external
 script as long as Patina is running:
 
 ```bash
-echo_wrap "<string>"      # Will echo and word-wrap a paragraph.
-to_lower "<string>"       # Will convert text to lower-case and echo.
-to_upper "<string>"       # Will convert text to upper-case and echo.
-bold "<string>"           # Will convert text to bold and echo.
+echo_wrap "<String>"      # Will echo and word-wrap a paragraph.
+to_lower "<String>"       # Will convert text to lower-case and echo.
+to_upper "<String>"       # Will convert text to upper-case and echo.
+bold "<String>"           # Will convert text to bold and echo.
 italic "<string"          # Will convert text to italic and echo.
-strikethrough "<string>"  # Will convert text to strikethrough and echo.
-underline "<string>"      # Will convert text to underlined and echo.
+strikethrough "<String>"  # Will convert text to strikethrough and echo.
+underline "<String>"      # Will convert text to underlined and echo.
 ```
 
 ## String Generators
