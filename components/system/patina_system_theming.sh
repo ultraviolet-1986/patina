@@ -42,12 +42,14 @@ patina_theme_apply() {
     patina_raise_exception 'PE0002'
     return 1
 
-  # Default theme
+  # DEFAULT THEME
+
   elif [ "$1" = 'default' ] ; then
     patina_theme_apply 'magenta'
     return 0
 
-  # Standard themes
+  # STANDARD THEMES
+
   elif [ "$1" = 'blue' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"
     export PATINA_MINOR_COLOR="${BLUE}"
@@ -72,7 +74,8 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${LIGHT_YELLOW}"
     export PATINA_MINOR_COLOR="${YELLOW}"
 
-  # Monochrome themes
+  # MONOCHROME THEMES
+
   elif [ "$1" = 'black' ] ; then
     export PATINA_MAJOR_COLOR="${BLACK}"
     export PATINA_MINOR_COLOR="${BLACK}"
@@ -85,7 +88,8 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${WHITE}"
     export PATINA_MINOR_COLOR="${WHITE}"
 
-  # Additional themes
+  # ADDITIONAL THEMES
+
   elif [ "$1" = 'blossom' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
     export PATINA_MINOR_COLOR="${LIGHT_RED}"
