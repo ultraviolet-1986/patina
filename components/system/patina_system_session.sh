@@ -32,7 +32,20 @@
 # PATINA > FUNCTIONS > SYSTEM > SYSTEM SESSION
 
 patina_system_session() {
-  if ( command -v 'systemctl' > /dev/null 2>&1 ); then
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo "Usage: p-session [OPTION]"
+    echo "Manage current system session using 'systemd'."
+    echo "Dependencies: 'systemctl' command from package 'systemd'."
+    echo
+    echo -e "  reboot\\tReboot the machine."
+    echo -e "  restart\\tReboot the machine."
+    echo -e "  shutdown\\tShut down the machine."
+    echo -e "  --help\\tDisplay this help and exit."
+    echo
+    return 0
+
+  elif ( command -v 'systemctl' > /dev/null 2>&1 ); then
     local patina_session_action=''
 
     if [ "$1" = 'reboot' ] || [ "$1" = 'restart' ] ; then

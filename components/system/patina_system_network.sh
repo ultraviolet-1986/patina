@@ -69,16 +69,38 @@ patina_show_network_status() {
 }
 
 patina_systemd_network_manager() {
-  if ( ! command -v 'systemctl' > /dev/null 2>&1 ) ; then
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo "Usage: p-network [OPTION]"
+    echo "Manage various Network settings using 'systemd'."
+    echo "Dependencies: 'systemctl' command from package 'systemd'."
+    echo
+    echo -e "  disable\\tDisable Network services."
+    echo -e "  enable\\tEnable Network services."
+    echo -e "  restart\\tRestart Network services."
+    echo -e "  start\\t\\tStart Network services."
+    echo -e "  status\\tReview Network service status."
+    echo -e "  stop\\t\\tStop Network services."
+    echo -e "  --help\\tDisplay this help and exit."
+    echo
+    return 0
+
+  # Failure: Command 'systemctl' is not available.
+  elif ( ! command -v 'systemctl' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     return 127
+
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq "0" ] ; then
     patina_raise_exception 'PE0003'
     return 1
+
+  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
+  # Success: Manage system network services using 'systemd'.
   elif ( command -v 'systemctl' > /dev/null 2>&1 ) ; then
     case "$1" in
       'disable') ;; # Pass argument to system and continue.

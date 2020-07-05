@@ -68,8 +68,7 @@ source "$HOME/Workspace/patina/patina.sh"
 ### Step 3
 
 Patina should now be connected. In the header of a new Terminal window, the word
-'Patina' and the current working directory should now be visible. Also, the
-command prompt will change to:
+'Patina' should now be visible. Also, the command prompt will change to:
 
 ```bash
 user@host ~ P$
@@ -109,6 +108,7 @@ Patina does not require anything except BASH as a rule, but it can make use of
 the following packages (correct for Fedora):
 
 - `clamav` for the `p-clamscan <X>` commands.
+- `coreutils` for the `p-hash <X>` commands.
 - `curl` for the `p-clamscan --repair` command.
 - `genisoimage` for the `p-iso` command.
 - `git` for the `p-update` and `p-git` commands.
@@ -219,9 +219,9 @@ The following commands will display information regarding the current Operating
 System.
 
 ```bash
-p-deps     # Display a list of Patina dependencies and their current state.
-p-list     # Display a list of connected Patina components.
-p-system   # Display information regarding the current system environment.
+p-deps    # Display a list of Patina dependencies and their current state.
+p-list    # Display a list of connected Patina components.
+p-system  # Display information regarding the current system environment.
 ```
 
 ### Themes
@@ -245,6 +245,7 @@ p-theme gravity  # Apply light magenta/light yellow theme.
 p-theme mint     # Apply light green/light blue theme.
 p-theme varia    # Apply light red/light yellow theme.
 p-theme water    # Apply light blue/cyan theme.
+p-theme --help   # Display instructions for the `p-theme` commands.
 ```
 
 ### Places
@@ -254,9 +255,9 @@ to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc. (this
 is not required for navigation using the `files` command).
 
 ```bash
-files             # Open home directory graphically and change directory.
-files <x>         # Open directory graphically and change directory.
-p-root            # Open the Patina root directory.
+files      # Open home directory graphically and change directory.
+files <x>  # Open directory graphically and change directory.
+p-root     # Open the Patina root directory.
 
 p-c               # Open the Patina 'components' directory.
 p-c-applications  # Open the Patina 'application components' directory.
@@ -294,6 +295,7 @@ The following command requires the `libreoffice` package to be installed.
 
 ```bash
 p-pdf "<Document Name>"  # Convert a compatible document into PDF.
+p-pdf --help             # Display instructions for `p-pdf` commands.
 ```
 
 #### File Encryption (GnuPG)
@@ -302,10 +304,17 @@ The following commands make use of symmetric GnuPG encryption. A pass-phrase is
 required to both encrypt and decrypt a file.
 
 ```bash
-p-gpg --decrypt "<Filename>"  # Decrypt a file.
-p-gpg --encrypt "<Filename>"  # Encrypt a file.
-p-decrypt "<Filename>"        # Decrypt a file.
-p-encrypt "<Filename>"        # Encrypt a file.
+p-gpg decrypt "<Filename>"  # Decrypt a file.
+p-gpg encrypt "<Filename>"  # Encrypt a file.
+p-gpg --help                # Display instructions for `p-gpg` commands.
+```
+
+The following shortcut commands perform the same tasks as above, without the
+need for providing an additional argument.
+
+```bash
+p-decrypt "<Filename>"  # Decrypt a file.
+p-encrypt "<Filename>"  # Encrypt a file.
 ```
 
 #### Source Control (git)
@@ -313,7 +322,8 @@ p-encrypt "<Filename>"        # Encrypt a file.
 These commands will help to perform multi-argument tasks more quickly.
 
 ```bash
-p-git undo  # Discard changes made to a git repository since previous commit.
+p-git undo    # Discard changes made to a git repository since previous commit.
+p-git --help  # Display instructions for `p-git` commands.
 ```
 
 #### System Snapshots (Timeshift)
@@ -324,6 +334,7 @@ source code before use.
 ```bash
 p-timeshift create   # Create a system snapshot using 'Timeshift.'
 p-timeshift restore  # Restore a system snapshot using 'Timeshift'.
+p-timeshift --help   # Display instructions for `p-timeshift` commands.
 ```
 
 #### Uncomplicated Firewall (UFW)
@@ -338,7 +349,7 @@ p-ufw enable   # Enable the `ufw` firewall (recommended).
 p-ufw reset    # Enable the `ufw` firewall and reset default rules.
 p-ufw setup    # Enable the `ufw` firewall with some basic defaults.
 p-ufw status   # Display the status of the `ufw` firewall in a table.
-p-ufw --help     # Display instructions for `p-ufw` commands.
+p-ufw --help   # Display instructions for `p-ufw` commands.
 ```
 
 ### Place Components
@@ -375,7 +386,13 @@ p-hash sha224sum  # Create a checksum file using the SHA-224 algorithm.
 p-hash sha256sum  # Create a checksum file using the SHA-256 algorithm.
 p-hash sha384sum  # Create a checksum file using the SHA-384 algorithm.
 p-hash sha512sum  # Create a checksum file using the SHA-512 algorithm.
+p-hash --help     # Display help for the `p-hash` commands.
+```
 
+The following shortcut commands perform the same tasks as above, without the
+need for providing an additional argument.
+
+```bash
 p-b2sum      # Create a checksum file using the BLAKE2 algorithm.
 p-md5sum     # Create a checksum file using the MD5 algorithm.
 p-sha1sum    # Create a checksum file using the SHA-1 algorithm.
@@ -410,6 +427,7 @@ p-network restart  # Restart the networking service.
 p-network start    # Start the networking service.
 p-network status   # Display the status of an Internet connection.
 p-network stop     # Stop the networking service.
+p-network --help   # Display help for the `p-network` commands.
 ```
 
 #### Package Management
@@ -422,6 +440,7 @@ p-pkg install  # Install package(s).
 p-pkg remove   # Remove package(s).
 p-pkg update   # Update package catalogue.
 p-pkg upgrade  # Upgrade outdated package(s).
+p-pkg --help   # Display help for the `p-pkg` commands.
 ```
 
 #### Desktop Session
@@ -433,6 +452,7 @@ that the user must be operating within a `systemd` environment.
 p-session reboot    # Prompt the user to reboot their machine.
 p-session restart   # Prompt the user to reboot their machine.
 p-session shutdown  # Prompt the user to power down their machine.
+p-session --help    # Display help for the `p-session` commands.
 ```
 
 ## Helper Functions

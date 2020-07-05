@@ -32,8 +32,36 @@
 # PATINA > FUNCTIONS > SYSTEM > THEMING
 
 patina_theme_apply() {
+  # Success: Display help and exit.
+  if [ "$1" = '--help' ] ; then
+    echo "Usage: p-theme [OPTION]"
+    echo "Change the current Patina theme."
+    echo "Note: Theme settings are saved in [~/.config/patina/patina.conf]."
+    echo
+    echo -e "  default\\tApply light/dark magenta theme."
+    echo -e "  blue\\t\\tApply light/dark blue theme."
+    echo -e "  cyan\\t\\tApply light/dark cyan theme."
+    echo -e "  green\\t\\tApply light/dark green theme."
+    echo -e "  magenta\\tApply light/dark magenta theme."
+    echo -e "  red\\t\\tApply light/dark red theme."
+    echo -e "  yellow\\tApply light/dark yellow theme."
+    echo -e "  black\\t\\tApply basic black theme."
+    echo -e "  gray\\t\\tApply basic light/dark gray theme."
+    echo -e "  grey\\t\\tApply basic light/dark gray theme."
+    echo -e "  white\\t\\tApply basic white theme."
+    echo -e "  blossom\\tApply light magenta/light red theme."
+    echo -e "  classic\\tApply light magenta/light cyan theme."
+    echo -e "  cygwin\\tApply light green/light yellow theme."
+    echo -e "  gravity\\tApply light magenta/light yellow theme."
+    echo -e "  mint\\t\\tApply light green/light blue theme."
+    echo -e "  varia\\t\\tApply light red/light yellow theme."
+    echo -e "  water\\t\\tApply light blue/cyan theme."
+    echo -e "  --help\\tDisplay this help and exit."
+    echo
+    return 0
+
   # Failure: Patina has not been given an argument
-  if [ "$#" -eq 0 ] ; then
+  elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
 

@@ -93,8 +93,8 @@ patina_detect_system_package_manager() {
 patina_package_manager() {
   if [ "$1" = '--help' ] ; then
     echo -e "Usage: p-pkg [OPTION] [PACKAGE(S)]"
-    echo -e "Warning: Command(s) may require 'sudo' password."
     echo -e "Connect to system package manager to perform software management tasks."
+    echo -e "Warning: Command(s) may require 'sudo' password."
     echo
     echo -e "  install\\tInstall package(s)."
     echo -e "  remove\\tRemove package(s)."

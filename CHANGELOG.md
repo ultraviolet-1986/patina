@@ -47,6 +47,7 @@ after an evil butler tries to steal their inheritance.
     shortcuts such as `p-md5sum`, `p-b2sum`, etc.
   - The entire project has been parsed, checked and corrected using
     [ShellCheck](https://www.shellcheck.net/).
+
 - **0.7.7 Released Tuesday, April 28th 2020**
   - Included new component `patina_system_patina_status.sh` which includes the
     command `p-status`. This command will display a list of Patina-compatible
@@ -58,6 +59,7 @@ after an evil butler tries to steal their inheritance.
     the `p-git` command. At present, the command only works with the argument
     `undo`. The complete command `p-git undo` will scrap any changes made in a
     git repository since the previous commit.
+
 - **0.7.6 Released Friday, September 13th 2019**
   - Corrected path variables for the sake of user component
     `patina_user_minecraft`, and allow future components to work with user
@@ -82,6 +84,7 @@ after an evil butler tries to steal their inheritance.
     running in a headless server environment.
   - Corrected a 'permission denied' error with changing component permissions
     during Patina initialisation.
+
 - **0.7.5 Released Monday, April 29th 2019**
   - Included `repair` functionality to the `p-clamscan` command to overcome a
     problem encountered under Fedora 29.
@@ -104,6 +107,7 @@ after an evil butler tries to steal their inheritance.
     arguments are passed.
   - Updated application header to match current year of release.
   - Included `p-help` command to show `README.md` contents within the Terminal.
+
 - **0.7.4 Released Monday, January 28th 2019**
   - Altered the `patina_throw_exception` function and assigned error output to
     variables stored within `patina.sh`. This will help to improve Patina's
@@ -135,6 +139,7 @@ after an evil butler tries to steal their inheritance.
     will contain functionality useful to managing session management such as
     logging out, rebooting, shutting down a system, etc.
   - The commands `p-display` and `p-session` have been added.
+
 - **0.7.3 Released Wednesday, August 8th 2018**
   - Included the initial check and import of the '/etc/os-release' and
     '/etc/lsb-release' files to allow a better interrogation of the host
@@ -143,6 +148,7 @@ after an evil butler tries to steal their inheritance.
     the terminal output has been updated to reflect this.
   - Version numbering has been reverted to a string for the sake of simplicity.
   - Updated the initial loading message.
+
 - **0.7.2 Released Monday, May 21st 2018**
   - Drastically simplified `patina_system_theming.sh` code by removing `case`
     statements and shifting all logic to the outer `if` tree.
@@ -162,6 +168,7 @@ after an evil butler tries to steal their inheritance.
   - Some functionality has been updated to improve execution times.
   - The entire project has been parsed, checked and corrected using
     [ShellCheck](https://www.shellcheck.net/).
+
 - **0.7.1 Released Tuesday, April 24th 2018**
   - A new folder specifically for documentation has been included in Patina's
     root directory and is named `resources`. At present it contains two sub-
@@ -201,6 +208,7 @@ after an evil butler tries to steal their inheritance.
     current folder in the terminal. This can be opened graphically also by
     appending `-g` to the end of the command.
   - Fixed minor bugs with function termination.
+
 - **0.7.0 Released Wednesday, April 4th 2018**
   - Version numbering has been split into three integer variables to introduce
     the possibility of validating a component against a specific version of
@@ -230,6 +238,7 @@ during the conclusion of the game, she became the game's ultimate heroine.
   - The script declaration has been changed from `#!/bin/bash` to the more
     modern and correct `#!/usr/bin/env bash`.
   - Have updated the `README.md` file for the sake of standardisation.
+
 - **0.6.8 Released Wednesday, January 24th 2018**
   - The folders `Templates` and `Public` in a standard home folder can now be
     accessed using the `templates` and `public` commands respectively. The
@@ -238,6 +247,7 @@ during the conclusion of the game, she became the game's ultimate heroine.
     `patina` project directory and all configuration of Patina is now stored in
     the user's home directory as a hidden file named `.patinarc` to follow the
     convention of `.bashrc` or other `.rc` files.
+
 - **0.6.7 Released Wednesday, November 15th 2017**
   - Have updated the `patina_system_xdg.sh` file so that the commands `p-url`
     and `p-url X` (where X is a valid URL) will open a URL in the default
@@ -248,6 +258,7 @@ during the conclusion of the game, she became the game's ultimate heroine.
     and preserve terminal screen estate in the `patina_system_xdg.sh` file.
   - All components have been edited to reduce the amount of colour used and the
     amount of empty whitespace shown on message output.
+
 - **0.6.6 Released Wednesday, November 15th 2017**
   - Have included a new component for basic management of the 'ufw' firewall
     named `patina_applications_ufw.sh`. Check `README.md` for updated
@@ -264,12 +275,14 @@ during the conclusion of the game, she became the game's ultimate heroine.
     `p-theme solus` command. Best used with the `p-prompt solus` command.
   - The entire project has been parsed, checked and corrected using
     [ShellCheck](https://www.shellcheck.net/).
+
 - **0.6.5 Released Tuesday, November 14th 2017**
   - Some of Patina's logic has been moved to the relevant components to ensure
     that the source file `patina.sh` is easier to debug and maintain.
   - A new component named `patina_system_theming.sh` has been added.
   - The entire project has been parsed, checked and corrected using
     [ShellCheck](https://www.shellcheck.net/).
+
 - **0.6.4 Released Monday, November 13th 2017**
   - Shortened the BASH version number displayed in Patina's initial start-up.
   - Separated colours and formatting to `patina_system_stylesheet.sh` component.
@@ -277,24 +290,28 @@ during the conclusion of the game, she became the game's ultimate heroine.
     currently connected.
   - The entire project has been parsed, checked and corrected using
     [ShellCheck](https://www.shellcheck.net/).
+
 - **0.6.3 Released Friday, September 8th 2017**
   - Minor bug-fixes for `patina_system_package_manager.sh` component.
   - Included support for **Solus** package manager `eopkg` within `p-package`.
   - The `p-package` command now has a shorthand equivalent of `p-pkg`.
   - Added a `patina_metadata_codename` variable which will change by series.
   - Cleaned the repository from before this point because of commit errors.
+
 - **0.6.2 Released Thursday, September 7th 2017**
   - Minor tweaks and bug-fixes.
   - Have removed the `hotdog` and `bigtop` themes, replacing them with Metroid-
     inspired themes `gravity` and `varia`.
   - Patina now detects incorrect or null settings and corrects accordingly -
     this is to be updated to prevent the use of nested IF statements.
+
 - **0.6.1 Released Tuesday, July 25th 2017**
   - Created a new branch called 'test' for new changes to be written.
   - Added a new `p-prompt` command to change the default prompt to mimic other
     Linux distribution defaults.
   - The entire project has been parsed, checked and corrected using
     [ShellCheck](https://www.shellcheck.net/).
+
 - **0.6.0 Released Friday, July 21st 2017**
   - Created a new repository called *patina* for this version.
   - Cygwin support has been removed to ensure better integration for Linux and
