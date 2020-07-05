@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# LICENSE #
+# License #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -19,15 +19,17 @@
 # see <http://www.gnu.org/licenses/>.
 
 #########################
-# SHELLCHECK DIRECTIVES #
+# Shellcheck Directives #
 #########################
 
 # Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
 #############
-# FUNCTIONS #
+# Functions #
 #############
+
+# PATINA > FUNCTIONS > SYSTEM > PACKAGE MANAGEMENT
 
 patina_detect_system_package_manager() {
   # Success: Distribution is Ubuntu or compatible.
@@ -176,15 +178,15 @@ patina_package_manager() {
 }
 
 ###########
-# ALIASES #
+# Aliases #
 ###########
 
-# PATINA > FUNCTIONS > PACKAGE MANAGEMENT COMMANDS
+# PATINA > FUNCTIONS > SYSTEM > PACKAGE MANAGEMENT COMMANDS
 
 alias 'p-pkg'='patina_package_manager'
 
 #############
-# KICKSTART #
+# Kickstart #
 #############
 
 patina_detect_system_package_manager
