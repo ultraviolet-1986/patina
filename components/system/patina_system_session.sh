@@ -1,24 +1,22 @@
 #!/usr/bin/env bash
 
-##########
-# Notice #
-##########
+###########
+# License #
+###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #########################
 # ShellCheck Directives #
@@ -30,6 +28,8 @@
 #############
 # Functions #
 #############
+
+# PATINA > FUNCTIONS > SYSTEM > SYSTEM SESSION
 
 patina_system_session() {
   if ( command -v 'systemctl' > /dev/null 2>&1 ); then
@@ -63,7 +63,7 @@ patina_system_session() {
     esac
   else
     patina_raise_exception 'PE0006'
-    return 1
+    return 127
   fi
 }
 
@@ -71,7 +71,7 @@ patina_system_session() {
 # Aliases #
 ###########
 
-# Patina > Aliases > System Session Commands
+# PATINA > FUNCTIONS > SYSTEM > SYSTEM SESSION COMMANDS
 
 alias 'p-session'='patina_system_session'
 
