@@ -36,8 +36,8 @@
 
 readonly PATINA_VERSION='0.7.8'
 readonly PATINA_CODENAME='Duchess'
-readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
-# readonly PATINA_URL='https://tinyurl.com/patina-bash'
+# readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
+readonly PATINA_URL='https://tinyurl.com/patina-bash'
 # readonly PATINA_URL='https://tinyurl.com/patina-git'
 
 # PATINA > GLOBAL VARIABLES > TEXT FORMATTING > TEXT COLORS
@@ -150,7 +150,7 @@ patina_initialize() {
   fi
 
   # Connect all detected Patina components.
-  for component in "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}/patina_*.sh ; do
+  for component in "${PATINA_PATH_COMPONENTS}"/{applications,places,system,user}/patina_*.sh ; do
     if [ -f "$component" ] ; then
       chmod a-x "$component"
       source "$component"
@@ -169,7 +169,7 @@ patina_initialize() {
   printf "${PATINA_MAJOR_COLOR}Patina %s '%s' / " "${PATINA_VERSION}" "${PATINA_CODENAME}"
   echo -e "BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
   echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2019 William Whinn${COLOR_RESET}"
-  echo -e "${PATINA_MINOR_COLOR}$PATINA_URL${COLOR_RESET}\\n"
+  echo -e "${PATINA_MINOR_COLOR}${PATINA_URL}${COLOR_RESET}\\n"
 
   # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
