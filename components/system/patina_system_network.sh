@@ -1,24 +1,22 @@
 #!/usr/bin/env bash
 
-##########
-# Notice #
-##########
+###########
+# License #
+###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with this program. If not,
+# see <http://www.gnu.org/licenses/>.
 
 #########################
 # ShellCheck Directives #
@@ -31,9 +29,9 @@
 # Variables #
 #############
 
-# Patina > Global Variables > Internet Status
+# PATINA > GLOBAL VARIABLES > INTERNET STATUS
 
-PATINA_HAS_INTERNET=''
+export PATINA_HAS_INTERNET=''
 
 #############
 # Functions #
@@ -73,7 +71,7 @@ patina_show_network_status() {
 patina_systemd_network_manager() {
   if ( ! command -v 'systemctl' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
-    return 1
+    return 127
   elif [ "$#" -eq "0" ] ; then
     patina_raise_exception 'PE0003'
     return 1
@@ -83,25 +81,15 @@ patina_systemd_network_manager() {
 
   elif ( command -v 'systemctl' > /dev/null 2>&1 ) ; then
     case "$1" in
-      'disable')
-        # Pass argument to system and continue.
-        ;;
-      'enable')
-        # Pass argument to system and continue.
-        ;;
-      'restart')
-        # Pass argument to system and continue.
-        ;;
-      'start')
-        # Pass argument to system and continue.
-        ;;
+      'disable') ;; # Pass argument to system and continue.
+      'enable') ;; # Pass argument to system and continue.
+      'restart') ;; # Pass argument to system and continue.
+      'start') ;; # Pass argument to system and continue.
       'status')
         patina_show_network_status
         return 0
         ;;
-      'stop')
-        # Pass argument to system and continue.
-        ;;
+      'stop') ;; # Pass argument to system and continue.
       *)
         patina_raise_exception 'PE0003'
         return 1
@@ -123,13 +111,15 @@ patina_systemd_network_manager() {
 # Exports #
 ###########
 
+# PATINA > FUNCTIONS > SYSTEM > INTERNET STATUS
+
 export -f 'patina_detect_internet_connection'
 
 ###########
 # Aliases #
 ###########
 
-# Patina > Aliases > Network Management Commands
+# PATINA > FUNCTIONS > SYSTEM > NETWORK MANAGEMENT COMMANDS
 
 alias 'p-network'='patina_systemd_network_manager'
 
