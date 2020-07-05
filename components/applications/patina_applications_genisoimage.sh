@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# LICENSE #
+# License #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -19,7 +19,7 @@
 # see <http://www.gnu.org/licenses/>.
 
 #############
-# FUNCTIONS #
+# Functions #
 #############
 
 # PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE
@@ -100,7 +100,7 @@ patina_genisoimage() {
 }
 
 ###########
-# EXPORTS #
+# Exports #
 ###########
 
 # PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE
@@ -108,7 +108,7 @@ patina_genisoimage() {
 export -f 'patina_genisoimage'
 
 ###########
-# ALIASES #
+# Aliases #
 ###########
 
 # PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE COMMANDS

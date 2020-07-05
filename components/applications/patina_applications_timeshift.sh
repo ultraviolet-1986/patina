@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# LICENSE #
+# License #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -19,7 +19,7 @@
 # see <http://www.gnu.org/licenses/>.
 
 #############
-# FUNCTIONS #
+# Functions #
 #############
 
 # PATINA > FUNCTIONS > APPLICATIONS > TIMESHIFT
@@ -70,7 +70,7 @@ patina_timeshift() {
 }
 
 ###########
-# ALIASES #
+# Aliases #
 ###########
 
 # PATINA > FUNCTIONS > APPLICATIONS > TIMESHIFT COMMANDS

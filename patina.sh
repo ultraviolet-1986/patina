@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# LICENSE #
+# License #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -19,7 +19,7 @@
 # see <http://www.gnu.org/licenses/>.
 
 #########################
-# SHELLCHECK DIRECTIVES #
+# Shellcheck Directives #
 #########################
 
 # Override SC1090: "Can't follow non-constant source".
@@ -28,9 +28,9 @@
 # Override SC2154: "var is referenced but not assigned".
 # shellcheck disable=SC2154
 
-####################
-# GLOBAL VARIABLES #
-####################
+#############
+# Variables #
+#############
 
 # PATINA > GLOBAL VARIABLES > PATINA METADATA
 
@@ -120,7 +120,7 @@ export readonly SYSTEM_OS_RELEASE='/etc/os-release'
 export readonly SYSTEM_LSB_RELEASE='/etc/lsb-release'
 
 #############
-# FUNCTIONS #
+# Functions #
 #############
 
 # PATINA > FUNCTIONS > PATINA INITIALIZATION
@@ -565,7 +565,7 @@ alias 'p-uuid'='generate_uuid'
 alias 'p-vol'='generate_volume_label'
 
 #############
-# KICKSTART #
+# Kickstart #
 #############
 
 patina_initialize

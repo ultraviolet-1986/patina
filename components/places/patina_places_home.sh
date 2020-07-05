@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# LICENSE #
+# License #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -18,9 +18,9 @@
 # You should have received a copy of the GNU General Public License along with this program. If not,
 # see <http://www.gnu.org/licenses/>.
 
-####################
-# GLOBAL VARIABLES #
-####################
+#############
+# Variables #
+#############
 
 # PATINA > GLOBAL VARIABLES > PATHS > HOME DIRECTORY
 
@@ -34,7 +34,7 @@ export readonly PATINA_PATH_HOME_TEMPLATES="$HOME/Templates"
 export readonly PATINA_PATH_HOME_VIDEOS="$HOME/Videos"
 
 ###########
-# ALIASES #
+# Aliases #
 ###########
 
 # PATINA > FUNCTIONS > FILE MANAGER COMMANDS > HOME DIRECTORY

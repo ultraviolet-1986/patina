@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# LICENSE #
+# License #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -19,7 +19,7 @@
 # see <http://www.gnu.org/licenses/>.
 
 #############
-# FUNCTIONS #
+# Functions #
 #############
 
 # PATINA > FUNCTIONS > APPLICATIONS > CLAMAV
@@ -162,7 +162,7 @@ patina_clamav() {
 }
 
 ###########
-# ALIASES #
+# Aliases #
 ###########
 
 # PATINA > FUNCTIONS > APPLICATIONS > CLAMAV COMMANDS

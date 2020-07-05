@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###########
-# LICENSE #
+# License #
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
@@ -19,7 +19,7 @@
 # see <http://www.gnu.org/licenses/>.
 
 #############
-# FUNCTIONS #
+# Functions #
 #############
 
 # PATINA > FUNCTIONS > APPLICATIONS > UFW
@@ -91,7 +91,7 @@ patina_ufw() {
 }
 
 ###########
-# ALIASES #
+# Aliases #
 ###########
 
 # PATINA > FUNCTIONS > APPLICATIONS > UFW COMMANDS
