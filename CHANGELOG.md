@@ -45,6 +45,7 @@ after an evil butler tries to steal their inheritance.
     success/fail conditions. This can be checked with `echo $?`.
   - Included the new `p-hash` command, which can be used in conjunction with the
     shortcuts such as `p-md5sum`, `p-b2sum`, etc.
+  - Global variables are now declared in `CONSTANT_CASE`.
   - The entire project has been parsed, checked and corrected using
     [ShellCheck](https://www.shellcheck.net/).
 
