@@ -255,8 +255,8 @@ to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc. (this
 is not required for navigation using the `files` command).
 
 ```bash
-files                     # Open '~' directory graphically and change directory.
-files "<Directory Name>"  # Open directory graphically and change directory.
+files                     # Open 'home' folder graphically and change directory.
+files "<Directory Name>"  # Open target folder graphically and change directory.
 p-root                    # Open the Patina root directory.
 
 p-c               # Open the Patina 'components' directory.
@@ -275,7 +275,7 @@ source code before use.
 
 ```bash
 p-clamscan           # Perform a ClamAV virus scan on a given path.
-p-clamscan --repair  # Purge and replace current virus database.
+p-clamscan --repair  # Purge and replace current virus definition database.
 p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 ```
 
@@ -306,7 +306,7 @@ required to both encrypt and decrypt a file.
 ```bash
 p-gpg decrypt "<File Name>"  # Decrypt a file.
 p-gpg encrypt "<File Name>"  # Encrypt a file.
-p-gpg --help                # Display instructions for `p-gpg` commands.
+p-gpg --help                 # Display instructions for `p-gpg` commands.
 ```
 
 The following shortcut commands perform the same tasks as above, without the
