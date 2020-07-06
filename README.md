@@ -78,14 +78,14 @@ This prompt is split into three components:
 
 1. User name and host name.
 2. Current working directory.
-3. Command prompt for Patina BASH ('P$' as opposed to '$').
+3. Command prompt for Patina BASH ('P$' or 'P#' as opposed to '$' or '#').
 
 From this point onward, all Patina commands should now be available.
 
 ## Features
 
-Patina is a BASH script with transparent and easy-to-read code, which contains
-the following features:
+Patina is a collection of BASH scripts with transparent and easy-to-read code,
+which contains the following features:
 
 - Compatible with any Linux distribution and Microsoft Windows 10 using the
   Windows sub-system for Linux, requiring only BASH to operate at its most
@@ -98,7 +98,7 @@ the following features:
 - Provides a means of instantly accessing your scripts.
 - Can be restarted to detect and connect new scripts without closing the
   console.
-- Contains a simple update mechanism using `git` source control.
+- Contains a simple self-update mechanism using `git` source control.
 - Is not intrusive and its own conventions are easy to learn and never replace
   existing functionality.
 
