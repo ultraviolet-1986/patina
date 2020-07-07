@@ -81,7 +81,7 @@ patina_workspace_bootstrap() {
   return 0
 }
 
-patina_workspace_update_git_repository() {
+patina_workspace_update_git_repositories() {
   patina_detect_internet_connection
 
   # Failure: Patina could not detect an active Internet connection.
@@ -148,7 +148,7 @@ patina_workspace_update_git_repository() {
 # PATINA > FUNCTIONS > PLACES > WORKSPACE COMMANDS
 
 alias 'p-workspace'='patina_workspace_bootstrap'
-alias 'p-gitupdate'='patina_workspace_update_git_repository'
+alias 'p-gitupdate'='patina_workspace_update_git_repositories'
 
 # PATINA > FUNCTIONS > FILE MANAGER COMMANDS > WORKSPACE DIRECTORY
 
