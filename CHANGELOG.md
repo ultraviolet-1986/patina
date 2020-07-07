@@ -11,6 +11,16 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
+- **0.7.9 Currently in Development**
+  - Included new component `patina_places_workspaces.sh` to help create a
+    working environment for developers based on detected programming languages
+    installed on the user's system.
+  - This new component will also attempt to update all viable `git` repositories
+    within this new workspace.
+  - Because of the above, the commands `p-workspace` and `p-gitupdate` are now
+    included.
+  - Shortened some Patina Exceptions for better readability.
+
 - **0.7.8 Released Tuesday, 7th July 2020**
   - Errors and Patina Exceptions now appear in red for better readability.
   - Deleted component `patina_system_display_server.sh` as this information can

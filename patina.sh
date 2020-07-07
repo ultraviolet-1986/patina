@@ -34,7 +34,7 @@
 
 # PATINA > GLOBAL VARIABLES > PATINA METADATA
 
-readonly PATINA_VERSION='0.7.8'
+readonly PATINA_VERSION='0.7.9'
 readonly PATINA_CODENAME='Duchess'
 readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
 # readonly PATINA_URL='https://tinyurl.com/patina-bash'
@@ -89,11 +89,12 @@ export readonly PE0010='PE0010: Patina cannot access a required variable.'
 export readonly PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
 export readonly PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
 export readonly PE0013='PE0013: Patina cannot execute this command under this environment.'
-export readonly PE0014='PE0014: Patina cannot perform current operation on a file.'
-export readonly PE0015='PE0015: Patina cannot perform current operation on a directory.'
+export readonly PE0014='PE0014: Patina cannot perform operation on a file.'
+export readonly PE0015='PE0015: Patina cannot perform operation on a directory.'
 export readonly PE0016='PE0016: Patina cannot find the item specified.'
-export readonly PE0017='PE0017: Patina cannot perform current operation on item specified.'
+export readonly PE0017='PE0017: Patina cannot perform operation on item specified.'
 export readonly PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
+export readonly PE0019='PE0019: Patina cannot perform operation on empty directory.'
 
 # PATINA > GLOBAL VARIABLES > PATHS > PATINA ROOT DIRECTORY
 
@@ -359,7 +360,7 @@ patina_raise_exception() {
 
   # Success: Display Patina Exception.
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
-    echo_wrap "${RED}${!1}${COLOR_RESET}"
+    echo_wrap "\\n${RED}${!1}${COLOR_RESET}\\n"
     return 0
 
   # Failure: Catch all.

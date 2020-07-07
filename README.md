@@ -19,6 +19,8 @@ Additional Patina components can be found here:
   - [Patina Reports](#patina-reports)
   - [Themes](#themes)
   - [Places](#places)
+    - [Home Directory](#home-directory)
+    - [Workspace Directory](#workspace-directory)
   - [Application Components](#application-components)
     - [ClamAV](#clamav)
     - [Disk Image Creation (genisoimage)](#disk-image-creation-genisoimage)
@@ -250,6 +252,8 @@ p-theme --help   # Display instructions for the `p-theme` commands.
 
 ### Places
 
+#### Home Directory
+
 These locations can also be opened in the default file manager by appending `-g`
 to the end of the command, for example: `p-root -g` or `p-c-user -g`, etc. (this
 is not required for navigation using the `files` command).
@@ -264,6 +268,13 @@ p-c-applications  # Open the Patina 'application components' directory.
 p-c-places        # Open the Patina 'place components' directory.
 p-c-system        # Open the Patina 'system components' directory.
 p-c-user          # Open the Patina 'user components' directory.
+```
+
+#### Workspace Directory
+
+```bash
+p-gitupdate  # Update viable 'git' repositories within 'Workspace' directory.
+p-workspace  # Bootstrap working environment based on detected languages.
 ```
 
 ### Application Components
