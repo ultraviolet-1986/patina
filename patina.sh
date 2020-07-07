@@ -264,6 +264,9 @@ patina_show_dependency_report() {
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
+  # Additional uses for 'git'.
+  printf "^\\t\\tp-gitupdate\\t\\t^\\n"
+
   printf "gnupg2\\t\\tp-gpg"
   if ( command -v 'gpg' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
