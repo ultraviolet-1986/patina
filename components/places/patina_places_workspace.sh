@@ -19,62 +19,69 @@
 # see <http://www.gnu.org/licenses/>.
 
 #############
+# Variables #
+#############
+
+# PATINA > GLOBAL VARIABLES > PATHS > WORKSPACE DIRECTORY
+
+export readonly PATINA_PATH_WORKSPACE="$HOME/Documents/Workspace"
+
+export readonly PATINA_PATH_WORKSPACE_GIT="$PATINA_PATH_WORKSPACE/git"
+
+#############
 # Functions #
 #############
 
 # PATINA > FUNCTIONS > PLACES > WORKSPACE
 
 patina_workspace_bootstrap() {
-  local workspace_directory="$HOME/Documents/Workspace"
 
-  mkdir -p "$workspace_directory"
+  mkdir -p "$PATINA_PATH_WORKSPACE"
 
   # Detect 'git' executable and create workspace directory.
   if ( command -v 'git' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/git"
+    mkdir -p "$PATINA_PATH_WORKSPACE_GIT"
   fi
 
   # Detect 'C' compiler (gcc) and create workspace directory.
   if ( command -v 'gcc' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/C"
+    mkdir -p "$PATINA_PATH_WORKSPACE/C"
   fi
 
   # Detect 'C++' compiler (g++) and create workspace directory.
   if ( command -v 'gcc' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/C++"
+    mkdir -p "$PATINA_PATH_WORKSPACE/C++"
   fi
 
   # Detect 'BASH' shell scripting language and create workspace directory.
   if ( command -v 'bash' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/BASH"
+    mkdir -p "$PATINA_PATH_WORKSPACE/BASH"
   fi
 
   # Detect 'Perl' programming language and create workspace directory.
   if ( command -v 'perl' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/Perl"
+    mkdir -p "$PATINA_PATH_WORKSPACE/Perl"
   fi
 
   # Detect 'Python' programming language and create workspace directory.
   if ( command -v 'python' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/Python"
+    mkdir -p "$PATINA_PATH_WORKSPACE/Python"
   fi
 
   # Detect 'R' programming language and create workspace directory.
   if ( command -v 'R' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/R"
+    mkdir -p "$PATINA_PATH_WORKSPACE/R"
   fi
 
   # Detect 'Ruby' programming language and create workspace directory.
   if ( command -v 'irb' > /dev/null 2>&1 ) ; then
-    mkdir -p "$workspace_directory/Ruby"
+    mkdir -p "$PATINA_PATH_WORKSPACE/Ruby"
   fi
 
   return 0
 }
 
 patina_workspace_update_git_repository() {
-  local git_workspace="$HOME/Documents/Workspace/git"
-
   patina_detect_internet_connection
 
   # Failure: Patina could not detect an active Internet connection.
@@ -87,18 +94,18 @@ patina_workspace_update_git_repository() {
     patina_raise_exception 'PE0006'
     return 127
 
-  # Failure: '$git_workspace' is empty.
-  elif ( ! ls -A "$git_workspace" > /dev/null 2>&1 ) ; then
+  # Failure: '$PATINA_PATH_WORKSPACE_GIT' is empty.
+  elif ( ! ls -A "$PATINA_PATH_WORKSPACE_GIT" > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0019'
     return 1
 
   # Success: 'git' was detected.
   elif ( command -v 'git' > /dev/null 2>&1 ) ; then
-    mkdir -p "$git_workspace"
+    mkdir -p "$PATINA_PATH_WORKSPACE_GIT"
 
     echo -e "\\n${BOLD}Updating Detected 'git' Repositories${COLOR_RESET}\\n"
 
-    for f in "$git_workspace"/* ; do
+    for f in "$PATINA_PATH_WORKSPACE_GIT"/* ; do
       # Success: Target is a directory and a 'git' repository.
       if [ -d "$f" ] && ( git -C "$f" rev-parse > /dev/null 2>&1 ) ; then
         cd "$f" || return 1
@@ -142,5 +149,10 @@ patina_workspace_update_git_repository() {
 
 alias 'p-workspace'='patina_workspace_bootstrap'
 alias 'p-gitupdate'='patina_workspace_update_git_repository'
+
+# PATINA > FUNCTIONS > FILE MANAGER COMMANDS > WORKSPACE DIRECTORY
+
+alias 'p-w'='patina_open_folder "$PATINA_PATH_WORKSPACE"'
+alias 'p-w-git'='patina_open_folder "$PATINA_PATH_WORKSPACE_GIT"'
 
 # End of File.

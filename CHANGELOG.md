@@ -20,6 +20,9 @@ after an evil butler tries to steal their inheritance.
   - Because of the above, the commands `p-workspace` and `p-gitupdate` are now
     included.
   - Shortened some Patina Exceptions for better readability.
+  - Included commands `p-w` to open the user's Workspace directory, and
+    `p-w-git` to access the version control `git` folder within the Workspace
+    directory.
 
 - **0.7.8 Released Tuesday, 7th July 2020**
   - Errors and Patina Exceptions now appear in red for better readability.
