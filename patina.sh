@@ -483,6 +483,8 @@ generate_uuid() {
 generate_volume_label() {
   local label_command="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4 | tr '[:lower:]' '[:upper:]'"
   echo -e "$(eval "$label_command"; printf "-"; eval "$label_command")"
+
+  return 0
 }
 
 # PATINA > FUNCTIONS > TERMINAL MANAGEMENT
