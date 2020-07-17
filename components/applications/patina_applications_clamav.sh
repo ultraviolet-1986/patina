@@ -68,15 +68,13 @@ patina_clamav() {
 
     case "$answer" in
       'Y'|'y')
-        patina_detect_internet_connection
-
         # Failure: Patina cannot download updated Database files from ClamAV mirror.
-        if [ "$PATINA_HAS_INTERNET" = 'false' ] ; then
+        if ( ! patina_detect_internet_connection ) ; then
           patina_raise_exception 'PE0008'
           return 1
 
         # Success: Delete old ClamAV database files and download new ones from ClamAV mirror.
-        else
+        elif ( patina_detect_internet_connection ) ; then
           local clamav_mirror='http://database.clamav.net'
 
           sudo rm --force \
@@ -98,6 +96,11 @@ patina_clamav() {
           echo
 
           return 0
+
+        # Failure: Catch all.
+        else
+          patina_raise_exception 'PE0000'
+          return 1
         fi
         ;;
       'N'|'n')

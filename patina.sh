@@ -318,7 +318,7 @@ patina_show_system_report() {
 
     local network_status
 
-    if [ "$PATINA_HAS_INTERNET" = 'true' ] ; then
+    if ( patina_detect_internet_connection ) ; then
       network_status="${GREEN}Active${COLOR_RESET}"
     else
       network_status="${RED}Inactive${COLOR_RESET}"

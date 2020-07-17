@@ -13,8 +13,8 @@ after an evil butler tries to steal their inheritance.
 
 - **0.7.9 Currently in Development**
   - Included new component `patina_places_workspaces.sh` to help create a
-    working environment for developers based on detected programming languages
-    installed on the user's system.
+    working environment for developers to store their source code or
+    documentation.
   - This new component will also attempt to update all viable `git` repositories
     within this new workspace.
   - Because of the above, the commands `p-workspace` and `p-gitupdate` are now
@@ -23,6 +23,8 @@ after an evil butler tries to steal their inheritance.
   - Included commands `p-w` to open the user's Workspace directory, and
     `p-w-git` to access the version control `git` folder within the Workspace
     directory.
+  - Removed the `PATINA_HAS_INTERNET` global variable to favour checking the
+    result of the `patina_detect_internet_connection` function's return code.
 
 - **0.7.8 Released Tuesday, 7th July 2020**
   - Errors and Patina Exceptions now appear in red for better readability.

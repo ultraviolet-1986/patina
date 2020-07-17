@@ -105,17 +105,18 @@ patina_package_manager() {
     return 0
   fi
 
-  patina_detect_internet_connection
-
-  if [ "$PATINA_HAS_INTERNET" = 'false' ] ; then
-    patina_raise_exception 'PE0008'
-    return 1
-
-  elif [ "$#" -eq 0 ] ; then
+  # Failure: An argument was not provided.
+  if [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
 
-  else
+  # Failure: Patina does not have an active Internet connection.
+  elif ( ! patina_detect_internet_connection ) ; then
+    patina_raise_exception 'PE0008'
+    return 1
+
+  # Success: Patina has an active Internet connection.
+  elif ( patina_detect_internet_connection ) ; then
     case "$1" in
       'install')
         if [ -z "$2" ] ; then
@@ -174,6 +175,11 @@ patina_package_manager() {
         return 1
         ;;
     esac
+
+  # Failure: Catch all.
+  else
+    patina_raise_exception 'PE0000'
+    return 1
   fi
 }
 

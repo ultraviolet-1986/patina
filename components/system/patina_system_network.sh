@@ -26,39 +26,26 @@
 # shellcheck disable=SC2154
 
 #############
-# Variables #
-#############
-
-# PATINA > GLOBAL VARIABLES > INTERNET STATUS
-
-export PATINA_HAS_INTERNET=''
-
-#############
 # Functions #
 #############
 
 patina_detect_internet_connection() {
   if ( ping -c 1 1.1.1.1 ) &> /dev/null ; then
-    PATINA_HAS_INTERNET='true'
     return 0
   else
-    PATINA_HAS_INTERNET='false'
-    return 0
+    return 1
   fi
 }
 
 patina_show_network_status() {
-  # Prerequisite: Detect an Internet connection.
-  patina_detect_internet_connection
+  # Success: Patina has an active connection to the Internet.
+  if ( patina_detect_internet_connection ) ; then
+    echo_wrap "\\n${GREEN}Patina has access to the Internet.${COLOR_RESET}\\n"
+    return 0
 
-  if [ "$PATINA_HAS_INTERNET" = 'true' ] ; then
-    echo_wrap "${GREEN}Patina has access to the Internet.${COLOR_RESET}"
-    return 0
-  elif [ "$PATINA_HAS_INTERNET" = 'false' ] ; then
+  # Failure: Patina does not have an active connection to the Internet.
+  elif ( ! patina_detect_internet_connection ) ; then
     patina_raise_exception 'PE0008'
-    return 0
-  elif [ -z "$PATINA_HAS_INTERNET" ] ; then
-    patina_show_network_status
     return 0
 
   # Failure: Catch all.

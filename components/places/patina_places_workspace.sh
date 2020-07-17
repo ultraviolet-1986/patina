@@ -43,49 +43,12 @@ patina_workspace_bootstrap() {
     mkdir -p "$PATINA_PATH_WORKSPACE_GIT"
   fi
 
-  # Detect 'C' compiler (gcc) and create workspace directory.
-  if ( command -v 'gcc' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE/C"
-  fi
-
-  # Detect 'C++' compiler (g++) and create workspace directory.
-  if ( command -v 'gcc' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE/C++"
-  fi
-
-  # Detect 'BASH' shell scripting language and create workspace directory.
-  if ( command -v 'bash' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE/BASH"
-  fi
-
-  # Detect 'Perl' programming language and create workspace directory.
-  if ( command -v 'perl' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE/Perl"
-  fi
-
-  # Detect 'Python' programming language and create workspace directory.
-  if ( command -v 'python' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE/Python"
-  fi
-
-  # Detect 'R' programming language and create workspace directory.
-  if ( command -v 'R' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE/R"
-  fi
-
-  # Detect 'Ruby' programming language and create workspace directory.
-  if ( command -v 'irb' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE/Ruby"
-  fi
-
   return 0
 }
 
 patina_workspace_update_git_repositories() {
-  patina_detect_internet_connection
-
   # Failure: Patina could not detect an active Internet connection.
-  if [ "$PATINA_HAS_INTERNET" == 'false' ] ; then
+  if ( ! patina_detect_internet_connection ) ; then
     patina_raise_exception 'PE0008'
     return 1
 

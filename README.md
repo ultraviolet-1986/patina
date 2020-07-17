@@ -273,8 +273,8 @@ p-c-user          # Open the Patina 'user components' directory.
 #### Workspace Directory
 
 ```bash
-p-gitupdate  # Update viable 'git' repositories within 'Workspace' directory.
-p-workspace  # Bootstrap working environment based on detected languages.
+p-gitupdate  # Update 'git' repositories within 'Workspace/git' directory.
+p-workspace  # Bootstrap working environment within ~/Documents/Workspace.
 
 p-w      # Open the Workspace directory.
 p-w-git  # Open the 'git' folder within the Workspace directory.

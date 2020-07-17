@@ -32,8 +32,6 @@
 # PATINA > FUNCTIONS > SYSTEM > PATINA UPDATER
 
 patina_update() {
-  patina_detect_internet_connection
-
   # Failure: Package 'git' is not installed
   if ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
@@ -45,7 +43,7 @@ patina_update() {
     return 1
 
   # Failure: Patina is not connected to the Internet
-  elif [ "$PATINA_HAS_INTERNET" = 'false' ] ; then
+  elif ( ! patina_detect_internet_connection ) ; then
     patina_raise_exception 'PE0008'
     return 1
 
