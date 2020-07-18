@@ -12,6 +12,7 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.9 Currently in Development**
+  - Included GPG key to better secure repository for users.
   - Included new component `patina_places_workspaces.sh` to help create a
     working environment for developers to store their source code or
     documentation.
