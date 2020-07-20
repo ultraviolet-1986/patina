@@ -68,32 +68,16 @@ patina_workspace_update_git_repositories() {
 
     echo -e "\\n${BOLD}Updating Detected 'git' Repositories${COLOR_RESET}\\n"
 
-    for f in "$PATINA_PATH_WORKSPACE_GIT"/* ; do
-      # Success: Target is a directory and a 'git' repository.
-      if [ -d "$f" ] && ( git -C "$f" rev-parse > /dev/null 2>&1 ) ; then
-        cd "$f" || return 1
-        printf "Updating repository %b%s%b... " "${YELLOW}" "$( basename "$f" )" "${COLOR_RESET}"
-        if ( git remote show origin > /dev/null 2>&1 ) ; then
-          git pull > /dev/null 2>&1
-          echo -e "${GREEN}Done${COLOR_RESET}"
-        else
-          echo -e "${RED}Error${COLOR_RESET}"
-        fi
-        cd ~- || return 1
-
-      # Target is a file. Ignore.
-      elif [ -f "$f" ] ; then
-        continue
-
-      # Target is a directory, but not a valid 'git' repository.
-      else
-        printf "Directory %b%s%b is not a valid 'git' repository." \
-          "${YELLOW}" "$( basename "$f" )" "${COLOR_RESET}"
+    # Change into Git directory and pull any updates recursively.
+    for f in "${PATINA_PATH_WORKSPACE_GIT}"/*; do
+      if [ -d "$f" ] ; then
+        echo_wrap "Updating Repository: ${PATINA_MAJOR_COLOR}$(basename "$f")${COLOR_RESET}"
+        cd "$f" || return
+        git pull
+        cd ~- || return
         echo
       fi
     done
-
-    echo
 
     return 0
 
