@@ -72,9 +72,9 @@ patina_workspace_update_git_repositories() {
     for f in "${PATINA_PATH_WORKSPACE_GIT}"/*; do
       if [ -d "$f" ] ; then
         echo_wrap "Updating Repository: ${PATINA_MAJOR_COLOR}$(basename "$f")${COLOR_RESET}"
-        cd "$f" || return
+        cd "$f" || return 1
         git pull
-        cd ~- || return
+        cd ~- || return 1
         echo
       fi
     done
