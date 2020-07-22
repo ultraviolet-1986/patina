@@ -35,7 +35,6 @@ export readonly PATINA_PATH_WORKSPACE_GIT="$PATINA_PATH_WORKSPACE/git"
 # PATINA > FUNCTIONS > PLACES > WORKSPACE
 
 patina_workspace_bootstrap() {
-
   mkdir -p "$PATINA_PATH_WORKSPACE"
 
   # Detect 'git' executable and create workspace directory.
