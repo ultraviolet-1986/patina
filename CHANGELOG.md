@@ -12,7 +12,7 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.9 Currently in Development**
-  - Included GPG key to better secure repository for users.
+  - Included GPG signing to better secure repository for users.
   - Included new component `patina_places_workspaces.sh` to help create a
     working environment for developers to store their source code or
     documentation.
@@ -25,12 +25,13 @@ after an evil butler tries to steal their inheritance.
     `p-w-git` to access the version control `git` folder within the Workspace
     directory.
   - Removed the `PATINA_HAS_INTERNET` global variable to favour checking the
-    result of the `patina_detect_internet_connection` function's return code.
+    result of the `patina_detect_internet_connection` function's return code
+    directly.
 
 - **0.7.8 Released Tuesday, 7th July 2020**
   - Errors and Patina Exceptions now appear in red for better readability.
   - Deleted component `patina_system_display_server.sh` as this information can
-    now be accessed by using the above `p-system` command.
+    now be accessed by using the new `p-system` command.
   - Converted some application component arguments to double-hyphen syntax to
     more closely match standard command-line applications.
   - The concept of resources has been removed to favour a more native built-in
