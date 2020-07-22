@@ -473,9 +473,9 @@ generate_uuid() {
   local label_command_4="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4"
 
   echo -e "$( eval "${label_command_6}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
-    eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
-    eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
-    eval "${label_command_6}" ; )"
+  eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
+  eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
+  eval "${label_command_6}" ; )"
 
   return 0
 }
