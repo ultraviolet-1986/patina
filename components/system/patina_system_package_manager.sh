@@ -82,11 +82,13 @@ patina_detect_system_package_manager() {
 
   # Failure: Catch all.
   else
-    patina_raise_exception 'PE0000'
+    patina_raise_exception 'PE0006'
+    return 127
   fi
 
   # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
+  return 0
 }
 
 # Warning: Uses sudo command(s) to perform software management tasks.
