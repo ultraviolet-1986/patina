@@ -13,7 +13,7 @@ after an evil butler tries to steal their inheritance.
 
 - **0.7.9 Currently in Development**
   - Included GPG signing to better secure repository for users.
-  - Included new component `patina_places_workspaces.sh` to help create a
+  - Included new component `patina_places_workspace.sh` to help create a
     working environment for developers to store their source code or
     documentation.
   - This new component will also attempt to update all viable `git` repositories
@@ -159,8 +159,8 @@ after an evil butler tries to steal their inheritance.
   - The commands `p-display` and `p-session` have been added.
 
 - **0.7.3 Released Wednesday, August 8th 2018**
-  - Included the initial check and import of the '/etc/os-release' and
-    '/etc/lsb-release' files to allow a better interrogation of the host
+  - Included the initial check and import of the `/etc/os-release` and
+    `/etc/lsb-release` files to allow a better interrogation of the host
     operating system. This aids system integration.
   - The source code for Patina now contains the correct license references and
     the terminal output has been updated to reflect this.
