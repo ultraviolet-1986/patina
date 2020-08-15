@@ -12,6 +12,8 @@ mother to three mischievous young kittens and guides them on a long journey home
 after an evil butler tries to steal their inheritance.
 
 - **0.7.9 Currently in Development**
+  - Wrapped comments and other documentation within code to 72 columns while
+    source code remains wrapped at 100 columns.
   - Included GPG signing to better secure repository for users.
   - Included new component `patina_places_workspace.sh` to help create a
     working environment for developers to store their source code or

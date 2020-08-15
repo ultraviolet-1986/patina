@@ -7,16 +7,18 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-# General Public License as published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License along with this program. If not,
-# see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http:#www.gnu.org/licenses/>.
 
 #############
 # Functions #
@@ -59,12 +61,14 @@ patina_gpg() {
     patina_raise_exception 'PE0005'
     return 1
 
-  # Failure: Location is a file without a '.gpg' extension. Do not decrypt file.
+  # Failure: Location is a file without a '.gpg' extension. Do not
+  # decrypt file.
   elif [ "$1" == 'decrypt' ] && [ -f "$2" ] && [[ "$2" != *.gpg ]] ; then
     patina_raise_exception 'PE0017'
     return 1
 
-  # Failure: Location is a file with a '.gpg' extension. Do not encrypt file.
+  # Failure: Location is a file with a '.gpg' extension. Do not encrypt
+  # file.
   elif [ "$1" == 'encrypt' ] && [ -f "$2" ] && [[ "$2" == *.gpg ]] ; then
     patina_raise_exception 'PE0017'
     return 1

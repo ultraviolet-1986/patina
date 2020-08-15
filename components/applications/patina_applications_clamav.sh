@@ -7,16 +7,18 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-# General Public License as published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License along with this program. If not,
-# see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http:#www.gnu.org/licenses/>.
 
 #############
 # Functions #
@@ -59,7 +61,8 @@ patina_clamav() {
     return 1
 
   # Success: Repair Freshclam update mechanism.
-  # Warning: Uses 'sudo' to delete system files and execute Freshclam update program.
+  # Warning: Uses 'sudo' to delete system files and execute Freshclam
+  # update program.
   elif [ "$1" = '--repair' ] ; then
     printf "%bNOTE:%b This command requires root permissions. Continue [Y/N]? " \
       "${BOLD}" "${COLOR_RESET}"
@@ -68,12 +71,14 @@ patina_clamav() {
 
     case "$answer" in
       'Y'|'y')
-        # Failure: Patina cannot download updated Database files from ClamAV mirror.
+        # Failure: Patina cannot download updated Database files from
+        # ClamAV mirror.
         if ( ! patina_detect_internet_connection ) ; then
           patina_raise_exception 'PE0008'
           return 1
 
-        # Success: Delete old ClamAV database files and download new ones from ClamAV mirror.
+        # Success: Delete old ClamAV database files and download new
+        # ones from ClamAV mirror.
         elif ( patina_detect_internet_connection ) ; then
           local clamav_mirror='http://database.clamav.net'
 

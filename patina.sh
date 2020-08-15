@@ -7,16 +7,18 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-# General Public License as published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License along with this program. If not,
-# see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http:#www.gnu.org/licenses/>.
 
 #########################
 # Shellcheck Directives #
@@ -401,7 +403,7 @@ patina_open_folder() {
     cd "$1" || return
     return 0
 
-  # Success: Change directory and open in graphical File Manager if possible.
+  # Success: Change directory and open in graphical File Manager.
   elif [ -d "$1" ] && [ "$2" ] ; then
     case "$2" in
       "-g")
@@ -430,7 +432,7 @@ patina_open_folder() {
 }
 
 patina_open_folder_graphically() {
-  # Success: No argument provided, attempt to open Home folder graphically.
+  # Success: No argument provided, attempt to open Home folder.
   if [ "$#" -eq 0 ] ; then
     patina_open_folder "$HOME" -g
     return 0
@@ -440,7 +442,7 @@ patina_open_folder_graphically() {
     patina_raise_exception 'PE0002'
     return 1
 
-  # Success: Argument provided, attempt to open given folder graphically.
+  # Success: Argument provided, attempt to open given folder.
   elif [ "$#" -eq 1 ] ; then
     patina_open_folder "$1" -g
     return 0
