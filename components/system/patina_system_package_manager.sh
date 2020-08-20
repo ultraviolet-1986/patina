@@ -162,7 +162,8 @@ patina_package_manager() {
         if [ "$PATINA_PACKAGE_MANAGER" = 'dnf' ] ; then
           eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE" --refresh
           return 0
-        elif [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
+        elif [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] || \
+          [ "$PATINA_PACKAGE_MANAGER" = 'pkcon' ] ; then
           eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE"
           return 0
         else
