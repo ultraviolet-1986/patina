@@ -41,7 +41,6 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_REMOVE='remove'
     readonly PATINA_PACKAGE_UPDATE='refresh'
     readonly PATINA_PACKAGE_UPGRADE='update'
-    return 0
 
   # Success: Distribution is Ubuntu or compatible.
   elif ( command -v 'apt' > /dev/null 2>&1 ) ; then
