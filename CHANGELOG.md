@@ -29,6 +29,9 @@ after a greedy butler tries to steal their inheritance.
     directly.
   - Wrapped comments and other documentation within code to 72 columns while
     source code remains wrapped at 100 columns.
+  - Updated `patina_system_package_manager.sh` to include support for
+    `PackageKit`. PackageKit will be detected first to ensure stability on
+    Operating Systems which include it (Zorin OS, KDE Neon, etc.).
 
 - **0.7.8 Released Tuesday, 7th July 2020**
   - Errors and Patina Exceptions now appear in red for better readability.

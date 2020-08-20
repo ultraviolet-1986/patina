@@ -34,8 +34,17 @@
 # PATINA > FUNCTIONS > SYSTEM > PACKAGE MANAGEMENT
 
 patina_detect_system_package_manager() {
+  # Success: Distribution uses PackageKit.
+  if ( command -v 'pkcon' > /dev/null 2>&1 ) ; then
+    readonly PATINA_PACKAGE_MANAGER='pkcon'
+    readonly PATINA_PACKAGE_INSTALL='install'
+    readonly PATINA_PACKAGE_REMOVE='remove'
+    readonly PATINA_PACKAGE_UPDATE='refresh'
+    readonly PATINA_PACKAGE_UPGRADE='update'
+    return 0
+
   # Success: Distribution is Ubuntu or compatible.
-  if ( command -v 'apt' > /dev/null 2>&1 ) ; then
+  elif ( command -v 'apt' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='apt'
     readonly PATINA_PACKAGE_INSTALL='install'
     readonly PATINA_PACKAGE_REMOVE='remove'
@@ -95,16 +104,16 @@ patina_detect_system_package_manager() {
 
 # Warning: Uses sudo command(s) to perform software management tasks.
 patina_package_manager() {
-  if [ "$1" = '--help' ] ; then
-    echo -e "Usage: p-pkg [OPTION] [PACKAGE(S)]"
-    echo -e "Connect to system package manager to perform software management tasks."
-    echo -e "Warning: Command(s) may require 'sudo' password."
+  if [ "$1" = '-h' ] || [ "$1" = '--help' ] ; then
+    echo "Usage: p-pkg [OPTION] [PACKAGE(S)]"
+    echo "Connect to system package manager to perform software management tasks."
+    echo "Warning: Command(s) may require 'sudo' password."
     echo
-    echo -e "  install\\tInstall package(s)."
-    echo -e "  remove\\tRemove package(s)."
-    echo -e "  update\\tUpdate package repository information."
-    echo -e "  upgrade\\tUpgrade system software."
-    echo -e "  --help\tDisplay this help and exit."
+    echo -e "  install\\t\\tInstall package(s)."
+    echo -e "  remove\\t\\tRemove package(s)."
+    echo -e "  update\\t\\tUpdate package repository information."
+    echo -e "  upgrade\\t\\tUpgrade system software."
+    echo -e "  -h, --help\\t\\tDisplay this help and exit."
     echo
     return 0
   fi
