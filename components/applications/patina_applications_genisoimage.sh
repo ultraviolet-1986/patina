@@ -77,6 +77,7 @@ patina_genisoimage() {
   elif [ -d "$1" ] && [ -z "$2" ] ; then
     mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" \
       -input-charset UTF-8 \
+      -iso-level 4 \
       -joliet \
       -joliet-long \
       -rock \
