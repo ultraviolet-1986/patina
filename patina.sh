@@ -36,7 +36,7 @@
 
 # PATINA > GLOBAL VARIABLES > PATINA METADATA
 
-readonly PATINA_VERSION='0.7.9'
+readonly PATINA_VERSION='0.7.10'
 readonly PATINA_CODENAME='Duchess'
 readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
 # readonly PATINA_URL='https://tinyurl.com/patina-bash'
