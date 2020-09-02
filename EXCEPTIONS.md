@@ -65,12 +65,12 @@ numbers (Patina Exception) here for reference.
     constraint under the current system environment e.g. a graphical application
     cannot be executed in a headless environment.
 
-- **PE0014 `Patina cannot perform current operation on a file.`**
+- **PE0014 `Patina cannot perform operation on a file.`**
   - This exception is raised when an attempt has been made to perform an
     incorrect operation on a file such as a command which performs operations on
     a directory.
 
-- **PE0015 `Patina cannot perform current operation on a directory.`**
+- **PE0015 `Patina cannot perform operation on a directory.`**
   - This exception is raised when an attempt has been made to perform an
     incorrect operation on a directory such as a command which performs
     operations on a file.
@@ -79,13 +79,17 @@ numbers (Patina Exception) here for reference.
   - This error should be raised when an operation is intended to execute on
     either a directory or a file, but the target does not exist.
 
-- **PE0017 `Patina cannot perform current operation on item specified.`**
+- **PE0017 `Patina cannot perform operation on item specified.`**
   - This exception should be raised when the execution target is invalid for the
     current operation, for example: the current target is in use.
 
 - **PE0018 `Patina cannot be initialized in an unsupported environment.`**
   - This exception should be raised when initialized within an unsupported
     environment such as an alternative operating system.
+
+- **PE0019 `PE0019: Patina cannot perform operation on empty directory.`**
+  - This exception should be raised when an operation cannot be completed
+    because the target location is empty.
 
 ## Utilising Exceptions
 

@@ -7,16 +7,18 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-# General Public License as published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License along with this program. If not,
-# see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #########################
 # ShellCheck Directives #
@@ -60,12 +62,12 @@ patina_theme_apply() {
     echo
     return 0
 
-  # Failure: Patina has not been given an argument
+  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
 
-  # Failure: Patina has been given multiple arguments
+  # Failure: Patina has been given multiple arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
@@ -146,20 +148,20 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"
     export PATINA_MINOR_COLOR="${CYAN}"
 
-  # Failure: Catch any other error condition here
+  # Failure: Catch any other error condition here.
   else
     patina_raise_exception 'PE0003'
     return 1
   fi
 
-  # Export the selected theme
+  # Export the selected theme.
   export PATINA_THEME="$1"
 
-  # Success: Update configuration file
+  # Success: Update configuration file.
   if grep --quiet 'PATINA_THEME=' "$PATINA_FILE_CONFIGURATION" ; then
     sed -i "s/PATINA_THEME=.*$/PATINA_THEME=${PATINA_THEME}/g" "$PATINA_FILE_CONFIGURATION"
 
-  # Failure: Rewrite configuration file
+  # Failure: Rewrite configuration file.
   else
     patina_create_configuration_file
     return 0
@@ -172,10 +174,9 @@ patina_theme_apply() {
   local working_directory="\\[${PATINA_MINOR_COLOR}\\]\\w\\[${COLOR_RESET}\\]"
   local command_scope="P\\$ "
 
-  # Display a custom 'PS1' command prompt depending on the current environment.
-  if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && \
-    [ "$VARIANT_ID" == 'container' ]
-  then
+  # Display a custom 'PS1' command prompt depending on the current
+  # environment.
+  if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
     export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
     return 0
   else

@@ -7,16 +7,18 @@
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
 # Copyright (C) 2020 William Willis Whinn
 
-# This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-# General Public License as published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-# even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License along with this program. If not,
-# see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #########################
 # Shellcheck Directives #
@@ -34,7 +36,7 @@
 
 # PATINA > GLOBAL VARIABLES > PATINA METADATA
 
-readonly PATINA_VERSION='0.7.8'
+readonly PATINA_VERSION='0.7.9'
 readonly PATINA_CODENAME='Duchess'
 readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
 # readonly PATINA_URL='https://tinyurl.com/patina-bash'
@@ -89,11 +91,12 @@ export readonly PE0010='PE0010: Patina cannot access a required variable.'
 export readonly PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
 export readonly PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
 export readonly PE0013='PE0013: Patina cannot execute this command under this environment.'
-export readonly PE0014='PE0014: Patina cannot perform current operation on a file.'
-export readonly PE0015='PE0015: Patina cannot perform current operation on a directory.'
+export readonly PE0014='PE0014: Patina cannot perform operation on a file.'
+export readonly PE0015='PE0015: Patina cannot perform operation on a directory.'
 export readonly PE0016='PE0016: Patina cannot find the item specified.'
-export readonly PE0017='PE0017: Patina cannot perform current operation on item specified.'
+export readonly PE0017='PE0017: Patina cannot perform operation on item specified.'
 export readonly PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
+export readonly PE0019='PE0019: Patina cannot perform operation on empty directory.'
 
 # PATINA > GLOBAL VARIABLES > PATHS > PATINA ROOT DIRECTORY
 
@@ -168,7 +171,7 @@ patina_initialize() {
   # Display main Patina author/copyright header.
   printf "${PATINA_MAJOR_COLOR}Patina %s '%s' / " "${PATINA_VERSION}" "${PATINA_CODENAME}"
   echo -e "BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
-  echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2019 William Whinn${COLOR_RESET}"
+  echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2020 William Whinn${COLOR_RESET}"
   echo -e "${PATINA_MINOR_COLOR}${PATINA_URL}${COLOR_RESET}\\n"
 
   # Finally: Garbage collection.
@@ -263,6 +266,9 @@ patina_show_dependency_report() {
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
+  # Additional uses for 'git'.
+  printf "^\\t\\tp-gitupdate\\t\\t^\\n"
+
   printf "gnupg2\\t\\tp-gpg"
   if ( command -v 'gpg' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
@@ -314,7 +320,7 @@ patina_show_system_report() {
 
     local network_status
 
-    if [ "$PATINA_HAS_INTERNET" = 'true' ] ; then
+    if ( patina_detect_internet_connection ) ; then
       network_status="${GREEN}Active${COLOR_RESET}"
     else
       network_status="${RED}Inactive${COLOR_RESET}"
@@ -359,7 +365,7 @@ patina_raise_exception() {
 
   # Success: Display Patina Exception.
   elif [[ "$1" =~ [P][E][0-9][0-9][0-9][0-9] ]] ; then
-    echo_wrap "${RED}${!1}${COLOR_RESET}"
+    echo_wrap "\\n${RED}${!1}${COLOR_RESET}\\n"
     return 0
 
   # Failure: Catch all.
@@ -397,7 +403,7 @@ patina_open_folder() {
     cd "$1" || return
     return 0
 
-  # Success: Change directory and open in graphical File Manager if possible.
+  # Success: Change directory and open in graphical File Manager.
   elif [ -d "$1" ] && [ "$2" ] ; then
     case "$2" in
       "-g")
@@ -426,7 +432,7 @@ patina_open_folder() {
 }
 
 patina_open_folder_graphically() {
-  # Success: No argument provided, attempt to open Home folder graphically.
+  # Success: No argument provided, attempt to open Home folder.
   if [ "$#" -eq 0 ] ; then
     patina_open_folder "$HOME" -g
     return 0
@@ -436,7 +442,7 @@ patina_open_folder_graphically() {
     patina_raise_exception 'PE0002'
     return 1
 
-  # Success: Argument provided, attempt to open given folder graphically.
+  # Success: Argument provided, attempt to open given folder.
   elif [ "$#" -eq 1 ] ; then
     patina_open_folder "$1" -g
     return 0
@@ -469,16 +475,18 @@ generate_uuid() {
   local label_command_4="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4"
 
   echo -e "$( eval "${label_command_6}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
-    eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
-    eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
-    eval "${label_command_6}" ; )"
+  eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
+  eval "${label_command_4}" ; printf '-' ; eval "${label_command_4}" ; printf '-' ; \
+  eval "${label_command_6}" ; )"
 
   return 0
 }
 
 generate_volume_label() {
   local label_command="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4 | tr '[:lower:]' '[:upper:]'"
-  echo -e "$(eval "$label_command"; printf "-"; eval "$label_command")"
+  echo -e "$(eval "$label_command" ; printf "-" ; eval "$label_command")"
+
+  return 0
 }
 
 # PATINA > FUNCTIONS > TERMINAL MANAGEMENT

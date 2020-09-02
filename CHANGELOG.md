@@ -9,12 +9,34 @@
 
 The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
-after an evil butler tries to steal their inheritance.
+after a greedy butler tries to steal their inheritance.
+
+- **0.7.9 Released Wednesday, 2nd September 2020**
+  - Included GPG signing to better secure repository for users.
+  - Included new component `patina_places_workspace.sh` to help create a
+    working environment for developers to store their source code or
+    documentation.
+  - This new component will also attempt to update all viable `git` repositories
+    within this new workspace.
+  - Because of the above, the commands `p-workspace` and `p-gitupdate` are now
+    included.
+  - Shortened some Patina Exceptions for better readability.
+  - Included commands `p-w` to open the user's Workspace directory, and
+    `p-w-git` to access the version control `git` folder within the Workspace
+    directory.
+  - Removed the `PATINA_HAS_INTERNET` global variable to favour checking the
+    result of the `patina_detect_internet_connection` function's return code
+    directly.
+  - Wrapped comments and other documentation within code to 72 columns while
+    source code remains wrapped at 100 columns.
+  - Updated `patina_system_package_manager.sh` to include support for
+    `PackageKit`. PackageKit will be detected first to ensure stability on
+    Operating Systems which include it (Zorin OS, KDE Neon, etc.).
 
 - **0.7.8 Released Tuesday, 7th July 2020**
   - Errors and Patina Exceptions now appear in red for better readability.
   - Deleted component `patina_system_display_server.sh` as this information can
-    now be accessed by using the above `p-system` command.
+    now be accessed by using the new `p-system` command.
   - Converted some application component arguments to double-hyphen syntax to
     more closely match standard command-line applications.
   - The concept of resources has been removed to favour a more native built-in
@@ -142,8 +164,8 @@ after an evil butler tries to steal their inheritance.
   - The commands `p-display` and `p-session` have been added.
 
 - **0.7.3 Released Wednesday, August 8th 2018**
-  - Included the initial check and import of the '/etc/os-release' and
-    '/etc/lsb-release' files to allow a better interrogation of the host
+  - Included the initial check and import of the `/etc/os-release` and
+    `/etc/lsb-release` files to allow a better interrogation of the host
     operating system. This aids system integration.
   - The source code for Patina now contains the correct license references and
     the terminal output has been updated to reflect this.
