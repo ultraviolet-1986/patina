@@ -177,10 +177,10 @@ patina_theme_apply() {
   # Display a custom 'PS1' command prompt depending on the current
   # environment.
   if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
-    export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
+    export PS1="$window_title$toolbox_diamond $user_host $working_directory\n$command_scope"
     return 0
   else
-    export PS1="$window_title$user_host $working_directory $command_scope"
+    export PS1="$window_title$user_host $working_directory\n$command_scope"
     return 0
   fi
 }
