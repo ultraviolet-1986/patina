@@ -12,6 +12,7 @@ mother to three mischievous young kittens and guides them on a long journey home
 after a greedy butler tries to steal their inheritance.
 
 - **0.7.10 Currently in Development**
+  - Updated the prompt to show only the current folder rather than a full path.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.
