@@ -171,16 +171,16 @@ patina_theme_apply() {
   local window_title="\\[\\e]0;Patina\\a\\]"
   local toolbox_diamond="\\[${MAGENTA}\\]⬢\\[${COLOR_RESET}\\]"
   local user_host="\\[${PATINA_MAJOR_COLOR}\\]\\u@\\h\\[${COLOR_RESET}\\]"
-  local working_directory="\\[${PATINA_MINOR_COLOR}\\]\\w\\[${COLOR_RESET}\\]"
+  local working_directory="\\[${PATINA_MINOR_COLOR}\\]\\W\\[${COLOR_RESET}\\]"
   local command_scope="P\\$ "
 
   # Display a custom 'PS1' command prompt depending on the current
   # environment.
   if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
-    export PS1="$window_title$toolbox_diamond $user_host $working_directory\n$command_scope"
+    export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
     return 0
   else
-    export PS1="$window_title$user_host $working_directory\n$command_scope"
+    export PS1="$window_title$user_host $working_directory $command_scope"
     return 0
   fi
 }
