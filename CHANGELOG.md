@@ -13,6 +13,9 @@ after a greedy butler tries to steal their inheritance.
 
 - **0.7.10 Currently in Development**
   - Updated the prompt to show only the current folder rather than a full path.
+  - Corrected issue with Fedora 33's version of Toolbox supplying a blank
+    `$HOSTNAME` variable. The distinguishing diamond should now appear on all
+    supported versions.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.
