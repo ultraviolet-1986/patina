@@ -95,12 +95,14 @@ patina_workspace_update_git_repositories() {
 
 # PATINA > FUNCTIONS > PLACES > WORKSPACE COMMANDS
 
-alias 'p-workspace'='patina_workspace_bootstrap'
+alias 'p-workspace-bootstrap'='patina_workspace_bootstrap'
 alias 'p-gitupdate'='patina_workspace_update_git_repositories'
 
 # PATINA > FUNCTIONS > FILE MANAGER COMMANDS > WORKSPACE DIRECTORIES
 
 alias 'p-w'='patina_open_folder "$PATINA_PATH_WORKSPACE"'
+alias 'p-workspace'='patina_open_folder "$PATINA_PATH_WORKSPACE"'
 alias 'p-w-git'='patina_open_folder "$PATINA_PATH_WORKSPACE_GIT"'
+alias 'p-workspace-git'='patina_open_folder "$PATINA_PATH_WORKSPACE_GIT"'
 
 # End of File.
