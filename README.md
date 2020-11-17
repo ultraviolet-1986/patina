@@ -181,14 +181,17 @@ component contains valid BASH syntax:
   functions is preferred instead for execution only at the user's discretion.
 - There should be no horizontal trailing spaces.
 - Function names should be prefixed `patina_` and should be in `snake_case`.
-- Variables declared within a function should be in `snake_case` and also
-  prefixed with `local` and begin with `patina_` to ensure they are removed once
-  the function has terminated.
-- Variables declared at the top-level scope of a component should be in
-  `CONSTANT_CASE` and should be prefixed with `readonly` and begin with
-  `PATINA_` to prevent them being altered during runtime, or prefixed with
-  `export readonly` if they are to be used outside of *Patina*.
-- Filenames should follow the conventions listed above.
+- Variables declared within a function should be prefixed with `local` to ensure
+  they are removed once the function has terminated.
+- Variables declared within a function should have a name beginning with
+  `patina_` and remain in `snake_case`.
+- Variables declared at the top-level scope of a component should be prefixed
+  with `readonly` to prevent their change during runtime, or `export readonly`
+  if they are to be used outside of *Patina*.
+- Variables declared ad the top-level scope of a component should have a name
+  beginning with `PATINA_` and remain in `CONSTANT_CASE`.
+- Component filenames should begin with `patina_`, remain in `snake_case`, and
+  have a `.sh` extension.
 - Each file should contain the line `# End of File.` at the bottom of the file,
   followed by a single blank new line.
 
