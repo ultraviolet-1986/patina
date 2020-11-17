@@ -188,7 +188,7 @@ component contains valid BASH syntax:
 - Variables declared at the top-level scope of a component should be prefixed
   with `readonly` to prevent their change during runtime, or `export readonly`
   if they are to be used outside of *Patina*.
-- Variables declared ad the top-level scope of a component should have a name
+- Variables declared at the top-level scope of a component should have a name
   beginning with `PATINA_` and remain in `CONSTANT_CASE`.
 - Component filenames should begin with `patina_`, remain in `snake_case`, and
   have a `.sh` extension.
