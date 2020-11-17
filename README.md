@@ -13,6 +13,7 @@ Additional Patina components can be found here:
 - [Features](#features)
 - [Recommended Packages](#recommended-packages)
 - [Conventions](#conventions)
+- [Patina Style Guide](#patina-style-guide)
 - [Patina Layout](#patina-layout)
 - [Built-in Commands](#built-in-commands)
   - [Patina Core](#patina-core)
@@ -164,6 +165,24 @@ rest of the shell and help to prevent naming conflicts.
 With Patina version `0.1.0` and later, semantic version numbering is added and
 can be displayed by using the `p-version` command. This will be in the format of
 `Major.Minor.Revision`.
+
+## Patina Style Guide
+
+There are few rules to writing a Patina component, the following is proposed as
+the *Patina coding style*. These guidelines are all *optional* as long as the
+component contains valid BASH syntax:
+
+- All component files should begin with the `#!/usr/bin/env bash` shebang.
+- Patina uses 2 space characters for indentation, no tabs.
+- Each script has a limit of 100 columns for code, and 72 columns for all
+  commented lines.
+- All code should be checked using [ShellCheck](https://www.shellcheck.net/).
+- No code should execute automatically unless absolutely necessary. Aliasing
+  functions is preferred instead for execution only at the user's discretion.
+- There should be no trailing spaces.
+- Filenames should follow the conventions listed above.
+- Each file should contain the line `# End of File.` at the bottom of the file,
+  followed by a single blank new line.
 
 ## Patina Layout
 

@@ -16,6 +16,9 @@ after a greedy butler tries to steal their inheritance.
   - Corrected issue with Fedora 33's version of Toolbox supplying a blank
     `$HOSTNAME` variable. The distinguishing diamond should now appear on all
     supported versions.
+  - Have updated the `README.md` file to include the new *Patina coding style*
+    standard. This is to inform users of the style adopted by this project, this
+    style remains optional as long as components include valid BASH syntax.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.
