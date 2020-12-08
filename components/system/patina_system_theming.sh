@@ -45,6 +45,7 @@ patina_theme_apply() {
     echo -e "  cyan\\t\\tApply light/dark cyan theme."
     echo -e "  green\\t\\tApply light/dark green theme."
     echo -e "  magenta\\tApply light/dark magenta theme."
+    echo -e "  orange\\tApply light/dark orange theme."
     echo -e "  red\\t\\tApply light/dark red theme."
     echo -e "  yellow\\tApply light/dark yellow theme."
     echo -e "  black\\t\\tApply basic black theme."
@@ -96,6 +97,10 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
     export PATINA_MINOR_COLOR="${MAGENTA}"
 
+  elif [ "$1" = 'orange' ] ; then
+    export PATINA_MAJOR_COLOR="${LIGHT_ORANGE}"
+    export PATINA_MINOR_COLOR="${ORANGE}"
+
   elif [ "$1" = 'red' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_RED}"
     export PATINA_MINOR_COLOR="${RED}"
@@ -141,8 +146,8 @@ patina_theme_apply() {
     export PATINA_MINOR_COLOR="${LIGHT_BLUE}"
 
   elif [ "$1" = 'varia' ] ; then
-    export PATINA_MAJOR_COLOR="${LIGHT_RED}"
-    export PATINA_MINOR_COLOR="${LIGHT_YELLOW}"
+    export PATINA_MAJOR_COLOR="${LIGHT_ORANGE}"
+    export PATINA_MINOR_COLOR="${YELLOW}"
 
   elif [ "$1" = 'water' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"

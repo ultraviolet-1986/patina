@@ -264,6 +264,7 @@ p-theme blue     # Apply light/dark blue theme.
 p-theme cyan     # Apply light/dark cyan theme.
 p-theme green    # Apply light/dark green theme.
 p-theme magenta  # Apply light/dark magenta theme.
+p-theme orange   # Apply light/dark orange theme.
 p-theme red      # Apply light/dark red theme.
 p-theme yellow   # Apply light/dark yellow theme.
 p-theme black    # Apply basic black theme.

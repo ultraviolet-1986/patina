@@ -48,6 +48,7 @@ export readonly BLUE='\e[34m'
 export readonly CYAN='\e[36m'
 export readonly GREEN='\e[32m'
 export readonly MAGENTA='\e[35m'
+export readonly ORANGE='\e[38;5;130m'
 export readonly RED='\e[31m'
 export readonly YELLOW='\e[33m'
 
@@ -56,6 +57,7 @@ export readonly LIGHT_CYAN='\e[96m'
 export readonly LIGHT_GRAY='\e[37m'
 export readonly LIGHT_GREEN='\e[92m'
 export readonly LIGHT_MAGENTA='\e[95m'
+export readonly LIGHT_ORANGE='\e[38;5;202m'
 export readonly LIGHT_RED='\e[91m'
 export readonly LIGHT_YELLOW='\e[93m'
 
@@ -134,6 +136,9 @@ patina_initialize() {
     patina_raise_exception 'PE0018'
     return 1
   fi
+
+  # Set Terminal to 256 colour mode.
+  export TERM=xterm-256color
 
   # Import additional system variables.
   if [ -f "$SYSTEM_OS_RELEASE" ] ; then source "$SYSTEM_OS_RELEASE" ; fi
