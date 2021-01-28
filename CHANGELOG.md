@@ -23,6 +23,7 @@ after a greedy butler tries to steal their inheritance.
   - Included new application component `patina_applications_squashfs-tools.sh`
     to allow the creation of a read-only disk image of a folder in SquashFS
     format. This component makes use of the new `p-squash` command.
+  - Updated Metroid-inspired themes for better complimentary colours.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.

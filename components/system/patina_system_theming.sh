@@ -139,7 +139,7 @@ patina_theme_apply() {
 
   elif [ "$1" = 'gravity' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
-    export PATINA_MINOR_COLOR="${LIGHT_YELLOW}"
+    export PATINA_MINOR_COLOR="${YELLOW}"
 
   elif [ "$1" = 'mint' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_GREEN}"
