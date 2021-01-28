@@ -20,6 +20,9 @@ after a greedy butler tries to steal their inheritance.
     standard. This is to inform users of the style adopted by this project, this
     style remains optional as long as components include valid BASH syntax.
   - Include the new `orange` theme using `xterm-256color` codes.
+  - Included new application component `patina_applications_squashfs-tools.sh`
+    to allow the creation of a read-only disk image of a folder in SquashFS
+    format. This component makes use of the new `p-squash` command.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.

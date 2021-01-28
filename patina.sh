@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2020 William Willis Whinn
+# Copyright (C) 2021 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -176,7 +176,7 @@ patina_initialize() {
   # Display main Patina author/copyright header.
   printf "${PATINA_MAJOR_COLOR}Patina %s '%s' / " "${PATINA_VERSION}" "${PATINA_CODENAME}"
   echo -e "BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
-  echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2020 William Whinn${COLOR_RESET}"
+  echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2021 William Whinn${COLOR_RESET}"
   echo -e "${PATINA_MINOR_COLOR}${PATINA_URL}${COLOR_RESET}\\n"
 
   # Finally: Garbage collection.
@@ -288,6 +288,13 @@ patina_show_dependency_report() {
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
+  printf "squashfs-tools\\tp-squash"
+  if ( command -v 'mksquashfs' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
   printf "timeshift\\tp-timeshift"
   if ( command -v 'timeshift' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
@@ -338,6 +345,7 @@ patina_show_system_report() {
     # Show System Report
     echo -e "${BOLD}Operating System${COLOR_RESET}\\t${PRETTY_NAME}"
     echo -e "${BOLD}Operating System URL${COLOR_RESET}\\t<${HOME_URL}>"
+    echo -e "${BOLD}Machine Architecture${COLOR_RESET}\\t$( uname -m )"
     echo -e "${BOLD}Desktop Session${COLOR_RESET}\\t\\t${XDG_CURRENT_DESKTOP}"
     echo -e "${BOLD}Display Server${COLOR_RESET}\\t\\t$( to_upper "${XDG_SESSION_TYPE}" )"
     echo -e "${BOLD}Linux Kernel Version${COLOR_RESET}\\t$( uname -r )"

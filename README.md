@@ -24,7 +24,8 @@ Additional Patina components can be found here:
     - [Workspace Directory](#workspace-directory)
   - [Application Components](#application-components)
     - [ClamAV](#clamav)
-    - [Disk Image Creation (genisoimage)](#disk-image-creation-genisoimage)
+    - [Disk Image Creation (ISO)](#disk-image-creation-iso)
+    - [Disk Image Creation (SquashFS)](#disk-image-creation-squashfs)
     - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
     - [File Encryption (GnuPG)](#file-encryption-gnupg)
     - [Source Control (git)](#source-control-git)
@@ -38,6 +39,7 @@ Additional Patina components can be found here:
     - [Desktop Session](#desktop-session)
 - [Helper Functions](#helper-functions)
 - [String Generators](#string-generators)
+- [Alternative URLs](#alternative-urls)
 
 ## Introduction
 
@@ -117,6 +119,7 @@ the following packages (correct for Fedora):
 - `git` for the `p-update` and `p-git` commands.
 - `gnupg2` for the `p-gpg` commands.
 - `libreoffice` for the `p-pdf` command.
+- `squashfs-tools` for the `p-squash` command.
 - `systemd` for manipulating system services such as networking.
 - `timeshift` for the `p-timeshift` command.
 - `tree` for an enhanced version of the `p-list` command.
@@ -324,9 +327,9 @@ p-clamscan --repair  # Purge and replace current virus definition database.
 p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 ```
 
-#### Disk Image Creation (genisoimage)
+#### Disk Image Creation (ISO)
 
-The following command requires the `genisoimage` package to be installed.
+The following commands require the `genisoimage` package to be installed.
 
 ```bash
 p-iso "<Directory Name>"        # Create an ISO image (ISO-9660 compliant).
@@ -334,9 +337,18 @@ p-iso "<Directory Name>" --udf  # Create a UDF image (Non ISO-9660 compliant).
 p-iso --help                    # Display help for the `p-iso` command.
 ```
 
+#### Disk Image Creation (SquashFS)
+
+The following commands require the `squashfs-tools` package to be installed.
+
+```bash
+p-squash  "<Directory Name>"  # Create a SquashFS disk image.
+p-squash --help               # Display help for the `p-squash` command.
+```
+
 #### Document Conversion (LibreOffice)
 
-The following command requires the `libreoffice` package to be installed.
+The following commands require the `libreoffice` package to be installed.
 
 ```bash
 p-pdf "<File Name>"  # Convert a compatible document into PDF.
@@ -526,3 +538,11 @@ p-date  # Create a timestamp.
 p-uuid  # Create a 32-character UUID string.
 p-vol   # Create 8-character disk label.
 ```
+
+## Alternative URLs
+
+The following URLs were created for this project using the
+[TinyURL](https://tinyurl.com/) URL-shortening service:
+
+- <https://tinyurl.com/patina-bash>
+- <https://tinyurl.com/patina-git>
