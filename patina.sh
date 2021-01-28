@@ -39,8 +39,6 @@
 readonly PATINA_VERSION='0.7.10'
 readonly PATINA_CODENAME='Duchess'
 readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
-# readonly PATINA_URL='https://tinyurl.com/patina-bash'
-# readonly PATINA_URL='https://tinyurl.com/patina-git'
 
 # PATINA > GLOBAL VARIABLES > TEXT FORMATTING > TEXT COLORS
 
