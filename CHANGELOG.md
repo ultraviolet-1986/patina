@@ -19,7 +19,7 @@ after a greedy butler tries to steal their inheritance.
   - Have updated the `README.md` file to include the new *Patina coding style*
     standard. This is to inform users of the style adopted by this project, this
     style remains optional as long as components include valid BASH syntax.
-  - Include the new `orange` theme using `xterm-256color` codes.
+  - Include the new `orange` and `teal` themes using `xterm-256color` codes.
   - Included new application component `patina_applications_squashfs-tools.sh`
     to allow the creation of a read-only disk image of a folder in SquashFS
     format. This component makes use of the new `p-squash` command.
