@@ -167,7 +167,7 @@ convention, but it can be useful to keep your functionality separate from the
 rest of the shell and help to prevent naming conflicts.
 
 With Patina version `0.1.0` and later, semantic version numbering is added and
-can be displayed by using the `p-version` command. This will be in the format of
+can be toward the top of the window on startup. This will be in the format of
 `Major.Minor.Revision`.
 
 ## Patina Style Guide
