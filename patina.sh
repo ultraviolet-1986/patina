@@ -288,6 +288,21 @@ patina_show_dependency_report() {
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
+  printf "sed\\t\\tp-b2sum"
+  if ( command -v 'sed' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
+  # Additional uses for 'sed'.
+  printf "^\\t\\tp-md5sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha1sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha224sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha256sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha384sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha512sum\\t\\t^\\n"
+
   printf "squashfs-tools\\tp-squash"
   if ( command -v 'mksquashfs' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"

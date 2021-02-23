@@ -119,6 +119,7 @@ the following packages (correct for Fedora):
 - `git` for the `p-update` and `p-git` commands.
 - `gnupg2` for the `p-gpg` commands.
 - `libreoffice` for the `p-pdf` command.
+- `sed` for recursive checksum commands.
 - `squashfs-tools` for the `p-squash` command.
 - `systemd` for manipulating system services such as networking.
 - `timeshift` for the `p-timeshift` command.
@@ -182,7 +183,8 @@ component contains valid BASH syntax:
 - All code should be checked using [ShellCheck](https://www.shellcheck.net/).
 - No code should execute automatically unless absolutely necessary. Aliasing
   functions is preferred instead for execution only at the user's discretion.
-- There should be no horizontal trailing spaces.
+- There should be no horizontal trailing spaces except within markdown documents
+  when needed.
 - Function names should be prefixed `patina_` and should be in `snake_case`.
 - Variables declared within a function should be prefixed with `local` to ensure
   they are removed once the function has terminated.

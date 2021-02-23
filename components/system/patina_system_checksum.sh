@@ -76,6 +76,10 @@ patina_checksum_recursive() {
       [[ -f "$file" ]] && [[ "${PWD##*/}.$1" != "$file" ]] &&
         "$1" "$file" | tee --append "${PWD##*/}.$1"
     done
+
+    # Remove leading './' characters using 'sed'.
+    sed -i 's/  .\//  /g' "${PWD##*/}.$1"
+
     return 0
 
   # Failure: Catch all.

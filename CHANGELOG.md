@@ -25,7 +25,11 @@ after a greedy butler tries to steal their inheritance.
     format. This component makes use of the new `p-squash` command.
   - Updated Metroid-inspired themes for better complimentary colours.
   - Updated `p-system` command to show the machine's architecture.
-  - Updated `p-deps` command to show new `p-squash` dependency information.
+  - Updated `p-deps` command to show new `p-squash` and recursive checksum
+    dependency information.
+  - Corrected recursive checksum parsing. Output files now no longer contain a
+    leading `./` filename prefix using `sed`. This is not required as the
+    checksum files are already intended to be relative.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.
