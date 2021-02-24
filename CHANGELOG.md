@@ -30,6 +30,8 @@ after a greedy butler tries to steal their inheritance.
   - Corrected recursive checksum parsing. Output files now no longer contain a
     leading `./` filename prefix using `sed`. This is not required as the
     checksum files are already intended to be relative.
+  - `p-squash` files can be encrypted by appending the `--enc` argument after
+    the name of a target directory, eg. `p-squash Documents --enc`.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.

@@ -345,8 +345,9 @@ p-iso --help                    # Display help for the `p-iso` command.
 The following commands require the `squashfs-tools` package to be installed.
 
 ```bash
-p-squash  "<Directory Name>"  # Create a SquashFS disk image.
-p-squash --help               # Display help for the `p-squash` command.
+p-squash "<Directory Name>"        # Create a SquashFS disk image.
+p-squash "<Directory Name>" --enc  # Create LUKS encrypted SquashFS disk image.
+p-squash --help                    # Display help for the `p-squash` command.
 ```
 
 #### Document Conversion (LibreOffice)
