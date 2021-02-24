@@ -20,6 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+##############
+# References #
+##############
+
+# Add LUKS functionality to existing Squash-FS disk images.
+# <https://gist.github.com/ansemjo/6f1cf9d9b8f7ce8f70813f52c63b74a6>
+
 #############
 # Functions #
 #############
@@ -33,6 +40,7 @@ patina_squashfs-tools() {
     echo "Create a read-only disk image in SquashFS format."
     echo "Dependencies: 'mksquashfs' command from package 'squashfs-tools'."
     echo
+    echo -e "  --enc\\tCreate an encrypted disk image."
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
@@ -48,7 +56,7 @@ patina_squashfs-tools() {
     return 1
 
   # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 1 ] ; then
+  elif [ "$#" -gt 2 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
@@ -66,6 +74,24 @@ patina_squashfs-tools() {
   elif [ -f "$(basename "$1").sqsh" ] ; then
     patina_raise_exception 'PE0011'
     return 1
+
+  # Success: Create LUKS encrypted SquashFS image.
+  elif [ -d "$1" ] && [ "$2" = '--enc' ] ; then
+    mksquashfs "$1" "$1.luks.sqsh"
+
+    truncate -s +8M "$1.luks.sqsh"
+
+    cryptsetup -q reencrypt \
+      --encrypt \
+      --type luks2 \
+      --resilience none \
+      --disable-locks \
+      --reduce-device-size 8M \
+      "$1.luks.sqsh"
+
+    truncate -s -4M "$1.luks.sqsh"
+
+    return 0
 
   # Success: Create SquashFS disk image.
   elif [ -d "$1" ] ; then
