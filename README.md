@@ -199,6 +199,9 @@ component contains valid BASH syntax:
   have a `.sh` extension.
 - Each file should contain the line `# End of File.` at the bottom of the file,
   followed by a single blank new line.
+- Code references should be included in a `References` section toward the top of
+  the file.
+- Code reference URLs should be shortened for preserving code column limit.
 
 ## Patina Layout
 
