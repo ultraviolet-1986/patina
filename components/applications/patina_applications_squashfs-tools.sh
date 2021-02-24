@@ -24,8 +24,8 @@
 # References #
 ##############
 
-# Add LUKS functionality to existing Squash-FS disk images.
-# <https://gist.github.com/ansemjo/6f1cf9d9b8f7ce8f70813f52c63b74a6>
+# Add LUKS functionality to existing SquashFS disk image.
+# - <https://tinyurl.com/yu4zjkv6>
 
 #############
 # Functions #
