@@ -40,6 +40,7 @@ patina_clamav() {
     echo "Dependencies: 'clamscan' command from package 'clamav'."
     echo "Warning: Command(s) may require 'sudo' password."
     echo
+    echo -e "  --parse\\tScan log file and show a list of infections."
     echo -e "  --repair\\tPurge and replace current virus database."
     echo -e "  --help\\tDisplay this help and exit."
     echo
@@ -59,6 +60,26 @@ patina_clamav() {
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
+
+  # Success: Parse log file and show a list of infections.
+  elif [ "$1" = '--parse' ] ; then
+    # ShellCheck SC2002: Useless cat.
+    # shellcheck disable=SC2002
+
+    for f in clamscan_log*.txt ; do
+      if [ -f "$f" ] ; then
+        echo -e "\\nScanning ${PATINA_MAJOR_COLOR}$f${COLOR_RESET}..."
+        echo
+        cat "$f" | grep FOUND || echo -e \
+          "${GREEN}SUCCESS: No infections found in ClamAV logfile.${COLOR_RESET}"
+        echo
+        return 0
+
+      else
+        patina_raise_exception "PE0005"
+        return 1
+      fi
+    done
 
   # Success: Repair Freshclam update mechanism.
   # Warning: Uses 'sudo' to delete system files and execute Freshclam
@@ -169,26 +190,6 @@ patina_clamav() {
   fi
 }
 
-patina_clamav_parse_log() {
-  # ShellCheck SC2002: Useless cat.
-  # shellcheck disable=SC2002
-
-  for f in clamscan_log*.txt ; do
-    if [ -f "$f" ] ; then
-      echo -e "\\nScanning ${PATINA_MAJOR_COLOR}$f${COLOR_RESET}..."
-      echo
-      cat "$f" | grep FOUND || echo -e \
-        "${GREEN}SUCCESS: No infections found in ClamAV logfile.${COLOR_RESET}"
-      echo
-      return 0
-
-    else
-      patina_raise_exception "PE0005"
-      return 1
-    fi
-  done
-}
-
 ###########
 # Aliases #
 ###########
@@ -196,6 +197,5 @@ patina_clamav_parse_log() {
 # PATINA > FUNCTIONS > APPLICATIONS > CLAMAV COMMANDS
 
 alias 'p-clamscan'='patina_clamav'
-alias 'p-clamparse'='patina_clamav_parse_log'
 
 # End of File.

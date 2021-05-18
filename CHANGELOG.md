@@ -32,8 +32,8 @@ after a greedy butler tries to steal their inheritance.
     checksum files are already intended to be relative.
   - `p-squash` files can be encrypted by appending the `--enc` argument after
     the name of a target directory, eg. `p-squash Documents --enc`.
-  - Included the new `p-clamparse` command to highlight any found viruses from
-    the generated `ClamAV` scan log created by the `p-clamscan` command.
+  - Included the new `p-clamscan --parse` command to highlight any found viruses
+    from the generated `ClamAV` scan log created by the `p-clamscan` command.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.
