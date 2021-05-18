@@ -38,7 +38,6 @@ patina_clamav() {
     echo "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
     echo "Perform a recursive virus scan of a given location and record results."
     echo "Dependencies: 'clamscan' command from package 'clamav'."
-    echo "Warning: Command(s) may require 'sudo' password."
     echo
     echo -e "  --parse\\tScan log file and show a list of infections."
     echo -e "  --help\\tDisplay this help and exit."
