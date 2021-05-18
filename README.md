@@ -23,7 +23,7 @@ Additional Patina components can be found here:
     - [Home Directory](#home-directory)
     - [Workspace Directory](#workspace-directory)
   - [Application Components](#application-components)
-    - [ClamAV](#clamav)
+    - [Virus Scanning (ClamAV)](#virus-scanning-clamav)
     - [Disk Image Creation (ISO)](#disk-image-creation-iso)
     - [Disk Image Creation (SquashFS)](#disk-image-creation-squashfs)
     - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
@@ -322,7 +322,7 @@ p-w-git  # Open the 'git' folder within the Workspace directory.
 
 ### Application Components
 
-#### ClamAV
+#### Virus Scanning (ClamAV)
 
 The `p-clamscan --repair` command requires `sudo` privileges, please review
 source code before use.
