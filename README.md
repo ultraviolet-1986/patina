@@ -83,7 +83,7 @@ This prompt is split into three components:
 
 1. User name and host name.
 2. Current working directory.
-3. Command prompt for Patina BASH ('P$' or 'P#' as opposed to '$' or '#').
+3. Command prompt for Patina BASH (`P$` or `P#` as opposed to `$` or `#`).
 
 From this point onward, all Patina commands should now be available.
 
