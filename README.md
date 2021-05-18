@@ -331,6 +331,8 @@ source code before use.
 p-clamscan           # Perform a ClamAV virus scan on a given path.
 p-clamscan --repair  # Purge and replace current virus definition database.
 p-clamscan --help    # Display instructions for the `p-clamscan` commands.
+
+p-clamparse  # Scan the generated log file and show a list of infections.
 ```
 
 #### Disk Image Creation (ISO)

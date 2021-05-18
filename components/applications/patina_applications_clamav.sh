@@ -169,6 +169,26 @@ patina_clamav() {
   fi
 }
 
+patina_clamav_parse_log() {
+  # ShellCheck SC2002: Useless cat.
+  # shellcheck disable=SC2002
+
+  for f in clamscan_log*.txt ; do
+    if [ -f "$f" ] ; then
+      echo -e "\\nScanning ${PATINA_MAJOR_COLOR}$f${COLOR_RESET}..."
+      echo
+      cat "$f" | grep FOUND || echo -e \
+        "${GREEN}SUCCESS: No infections found in ClamAV logfile.${COLOR_RESET}"
+      echo
+      return 0
+
+    else
+      patina_raise_exception "PE0005"
+      return 1
+    fi
+  done
+}
+
 ###########
 # Aliases #
 ###########
@@ -176,5 +196,6 @@ patina_clamav() {
 # PATINA > FUNCTIONS > APPLICATIONS > CLAMAV COMMANDS
 
 alias 'p-clamscan'='patina_clamav'
+alias 'p-clamparse'='patina_clamav_parse_log'
 
 # End of File.
