@@ -34,6 +34,7 @@ after a greedy butler tries to steal their inheritance.
     the name of a target directory, eg. `p-squash Documents --enc`.
   - Included the new `p-clamscan --parse` command to highlight any found viruses
     from the generated `ClamAV` scan log created by the `p-clamscan` command.
+  - Removed `p-clamscan --repair` command as the URL is now unavailable.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.

@@ -41,7 +41,6 @@ patina_clamav() {
     echo "Warning: Command(s) may require 'sudo' password."
     echo
     echo -e "  --parse\\tScan log file and show a list of infections."
-    echo -e "  --repair\\tPurge and replace current virus database."
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
@@ -80,63 +79,6 @@ patina_clamav() {
         return 1
       fi
     done
-
-  # Success: Repair Freshclam update mechanism.
-  # Warning: Uses 'sudo' to delete system files and execute Freshclam
-  # update program.
-  elif [ "$1" = '--repair' ] ; then
-    printf "%bNOTE:%b This command requires root permissions. Continue [Y/N]? " \
-      "${BOLD}" "${COLOR_RESET}"
-    read -n1 -r answer
-    echo
-
-    case "$answer" in
-      'Y'|'y')
-        # Failure: Patina cannot download updated Database files from
-        # ClamAV mirror.
-        if ( ! patina_detect_internet_connection ) ; then
-          patina_raise_exception 'PE0008'
-          return 1
-
-        # Success: Delete old ClamAV database files and download new
-        # ones from ClamAV mirror.
-        elif ( patina_detect_internet_connection ) ; then
-          local clamav_mirror='http://database.clamav.net'
-
-          sudo rm --force \
-            "$clamav_path/bytecode.cvd" \
-            "$clamav_path/daily.cld" \
-            "$clamav_path/main.cvd"
-
-          printf "\\n%bNOTE:%b Downloading 'bytecode.cvd' from '${clamav_mirror}'...\\n" \
-            "${BOLD}" "${COLOR_RESET}"
-          sudo curl "$clamav_mirror/bytecode.cvd" --output "$clamav_path/bytecode.cvd"
-
-          printf "\\n%bNOTE:%b Downloading 'daily.cvd' from '${clamav_mirror}'...\\n" \
-            "${BOLD}" "${COLOR_RESET}"
-          sudo curl "$clamav_mirror/daily.cvd" --output "$clamav_path/daily.cvd"
-
-          printf "\\n%bNOTE:%b Downloading 'main.cvd' from '${clamav_mirror}'...\\n" \
-            "${BOLD}" "${COLOR_RESET}"
-          sudo curl "$clamav_mirror/main.cvd" --output "$clamav_path/main.cvd"
-          echo
-
-          return 0
-
-        # Failure: Catch all.
-        else
-          patina_raise_exception 'PE0000'
-          return 1
-        fi
-        ;;
-      'N'|'n')
-        return 0
-        ;;
-      *)
-        patina_raise_exception 'PE0003'
-        return 1
-        ;;
-    esac
 
   # Failure: Scan target does not exist.
   elif [[ ! -e "$1" ]] ; then

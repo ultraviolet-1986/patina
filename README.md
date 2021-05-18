@@ -114,7 +114,6 @@ the following packages (correct for Fedora):
 
 - `clamav` for the `p-clamscan <X>` commands.
 - `coreutils` for the `p-hash <X>` commands.
-- `curl` for the `p-clamscan --repair` command.
 - `genisoimage` for the `p-iso` command.
 - `git` for the `p-update` and `p-git` commands.
 - `gnupg2` for the `p-gpg` commands.
@@ -324,13 +323,9 @@ p-w-git  # Open the 'git' folder within the Workspace directory.
 
 #### Virus Scanning (ClamAV)
 
-The `p-clamscan --repair` command requires `sudo` privileges, please review
-source code before use.
-
 ```bash
 p-clamscan           # Perform a ClamAV virus scan on a given path.
 p-clamscan --parse   # Parse log file and show a list of infections.
-p-clamscan --repair  # Purge and replace current virus definition database.
 p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 ```
 

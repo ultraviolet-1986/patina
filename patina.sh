@@ -250,13 +250,6 @@ patina_show_dependency_report() {
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "curl\\t\\tp-clamscan --repair"
-  if ( command -v 'curl' > /dev/null 2>&1 ) ; then
-    echo -e "\\t${GREEN}Installed${COLOR_RESET}"
-  else
-    echo -e "\\t${RED}Not Installed${COLOR_RESET}"
-  fi
-
   printf "genisoimage\\tp-iso"
   if ( command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
