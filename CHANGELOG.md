@@ -11,7 +11,7 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after a greedy butler tries to steal their inheritance.
 
-- **0.7.10 Currently in Development**
+- **0.7.10 Released Wednesday, 14th July 2021**
   - Updated the prompt to show only the current folder rather than a full path.
   - Corrected issue with Fedora 33's version of Toolbox supplying a blank
     `$HOSTNAME` variable. The distinguishing diamond should now appear on all
