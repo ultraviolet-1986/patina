@@ -34,19 +34,14 @@
 patina_detect_internet_connection() { ( ping -c 1 1.1.1.1 &> /dev/null ) && return 0 || return 1 ; }
 
 patina_show_network_status() {
-  # Success: Patina has an active connection to the Internet.
+  # Success: Patina has a connection to the Internet.
   if ( patina_detect_internet_connection ) ; then
     echo_wrap "${GREEN}Patina has access to the Internet.${COLOR_RESET}"
     return 0
 
-  # Failure: Patina does not have an active connection to the Internet.
-  elif ( ! patina_detect_internet_connection ) ; then
-    patina_raise_exception 'PE0008'
-    return 0
-
-  # Failure: Catch all.
+  # Failure: Patina has no connection to the Internet.
   else
-    patina_raise_exception 'PE0000'
+    patina_raise_exception 'PE0008'
     return 1
   fi
 }
@@ -85,24 +80,18 @@ patina_systemd_network_manager() {
 
   # Success: Manage system network services using 'systemd'.
   elif ( command -v 'systemctl' > /dev/null 2>&1 ) ; then
+    local network_command="systemctl '$1' NetworkManager.service"
+
     case "$1" in
-      'disable') ;; # Pass argument to system and continue.
-      'enable') ;; # Pass argument to system and continue.
-      'restart') ;; # Pass argument to system and continue.
-      'start') ;; # Pass argument to system and continue.
-      'status')
-        patina_show_network_status
-        return 0
-        ;;
-      'stop') ;; # Pass argument to system and continue.
-      *)
-        patina_raise_exception 'PE0003'
-        return 1
-        ;;
+      'disable') eval "$network_command" ;;
+      'enable') eval "$network_command" ;;
+      'restart') eval "$network_command" ;;
+      'start') eval "$network_command" ;;
+      'status') patina_show_network_status ; return "$?" ;;
+      'stop') eval "$network_command" ;;
+      *) patina_raise_exception 'PE0003' ; return 1 ;;
     esac
 
-    sleep 0.1
-    systemctl "$1" NetworkManager.service
     return 0
 
   # Failure: Catch all.
