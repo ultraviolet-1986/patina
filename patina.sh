@@ -138,8 +138,8 @@ patina_initialize() {
   export TERM=xterm-256color
 
   # Import additional system variables.
-  if [ -f "$SYSTEM_OS_RELEASE" ] ; then source "$SYSTEM_OS_RELEASE" ; fi
-  if [ -f "$SYSTEM_LSB_RELEASE" ] ; then source "$SYSTEM_LSB_RELEASE" ; fi
+  if [ -f "$SYSTEM_OS_RELEASE" ] ; then . "$SYSTEM_OS_RELEASE" ; fi
+  if [ -f "$SYSTEM_LSB_RELEASE" ] ; then . "$SYSTEM_LSB_RELEASE" ; fi
 
   # Create Patina Directory Structure (if not exists).
   mkdir -p "$PATINA_PATH_CONFIGURATION" "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}
@@ -147,7 +147,7 @@ patina_initialize() {
   # Success: Connect and apply Patina configuration.
   if [ -f "$PATINA_FILE_CONFIGURATION" ] ; then
     chmod a-x "$PATINA_FILE_CONFIGURATION"
-    source "$PATINA_FILE_CONFIGURATION"
+    . "$PATINA_FILE_CONFIGURATION"
 
   # Failure: Configuration file does not exist.
   else
@@ -158,7 +158,7 @@ patina_initialize() {
   for component in "${PATINA_PATH_COMPONENTS}"/{applications,places,system,user}/patina_*.sh ; do
     if [ -f "$component" ] ; then
       chmod a-x "$component"
-      source "$component"
+      . "$component"
       patina_components_list+=("${component}")
     fi
   done
