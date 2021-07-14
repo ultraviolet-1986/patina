@@ -16,6 +16,7 @@ upon her less than triumphant return.
   - Begun using stable version numbering notation now code is several years old.
   - System reports have now been abstracted from `patina.sh` and have been
     placed in the new component `patina_system_reports.sh`.
+  - Unified the initial header's color scheme.
 
 ## 0.7.x Series: 'Duchess'
 

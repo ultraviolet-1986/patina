@@ -177,7 +177,7 @@ patina_initialize() {
   printf "${PATINA_MAJOR_COLOR}Patina %s '%s' / " "${PATINA_VERSION}" "${PATINA_CODENAME}"
   echo -e "BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
   echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2021 William Whinn${COLOR_RESET}"
-  echo -e "${PATINA_MINOR_COLOR}${PATINA_URL}${COLOR_RESET}\\n"
+  echo -e "${PATINA_MAJOR_COLOR}${PATINA_URL}${COLOR_RESET}\\n"
 
   # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
