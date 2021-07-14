@@ -30,6 +30,7 @@ Additional Patina components can be found here:
     - [File Encryption (GnuPG)](#file-encryption-gnupg)
     - [Source Control (git)](#source-control-git)
     - [System Snapshots (Timeshift)](#system-snapshots-timeshift)
+    - [Container Management (Toolbox)](#container-management-toolbox)
     - [Uncomplicated Firewall (UFW)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
@@ -118,10 +119,12 @@ the following packages (correct for Fedora):
 - `git` for the `p-update` and `p-git` commands.
 - `gnupg2` for the `p-gpg` commands.
 - `libreoffice` for the `p-pdf` command.
+- `podman` for the `p-toolbox` command.
 - `sed` for recursive checksum commands.
 - `squashfs-tools` for the `p-squash` command.
 - `systemd` for manipulating system services such as networking.
 - `timeshift` for the `p-timeshift` command.
+- `toolbox` for the `p-toolbox` command.
 - `tree` for an enhanced version of the `p-list` command.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
@@ -395,6 +398,17 @@ source code before use.
 p-timeshift create   # Create a system snapshot using 'Timeshift.'
 p-timeshift restore  # Restore a system snapshot using 'Timeshift'.
 p-timeshift --help   # Display instructions for `p-timeshift` commands.
+```
+
+#### Container Management (Toolbox)
+
+These commands can help to create and manage backups of `Toolbox` containers.
+
+```bash
+p-toolbox commit  # Create an image from a given container.
+p-toolbox export  # Export a given container to an archive.
+p-toolbox import  # Import a given archive to an image.
+p-toolbox --help  # Display instructions for `p-toolbox` commands.
 ```
 
 #### Uncomplicated Firewall (UFW)

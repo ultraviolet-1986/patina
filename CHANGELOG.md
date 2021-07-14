@@ -35,6 +35,8 @@ after a greedy butler tries to steal their inheritance.
   - Included the new `p-clamscan --parse` command to highlight any found viruses
     from the generated `ClamAV` scan log created by the `p-clamscan` command.
   - Removed `p-clamscan --repair` command as the URL is now unavailable.
+  - Included component `patina_applications_toolbox.sh` which provides the
+    command `p-toolbox`. The `README.md` file has been updated to reflect this.
 
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.

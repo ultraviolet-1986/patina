@@ -303,6 +303,20 @@ patina_show_dependency_report() {
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
+  printf "toolbox\\t\\tp-toolbox"
+  if ( command -v 'toolbox' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
+  printf "podman\\t\\t^"
+  if ( command -v 'podman' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
   printf "timeshift\\tp-timeshift"
   if ( command -v 'timeshift' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
