@@ -245,7 +245,7 @@ patina_open_folder() {
 
   # Success: Change directory.
   elif [ -d "$1" ] && [ -z "$2" ] ; then
-    cd "$1" || return
+    cd "$1" || return 1
     return 0
 
   # Success: Change directory and open in graphical File Manager.
@@ -254,7 +254,7 @@ patina_open_folder() {
       "-g")
         # Success: Open location graphically.
         if ( command -v 'xdg-open' > /dev/null 2>&1 ) ; then
-          cd "$1" || return
+          cd "$1" || return 1
           xdg-open "$( pwd )" > /dev/null 2>&1
           return 0
         else
