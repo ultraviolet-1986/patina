@@ -37,13 +37,13 @@ patina_report_components() {
     echo -e "\\n${BOLD}Patina Component Report${COLOR_RESET}\\n"
     echo -e "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
-    # Success: 'tree' is installed. Display enhanced component list.
+    # Success: 'tree' is installed. Show enhanced component list.
     if ( command -v 'tree' > /dev/null 2>&1 ) ; then
       tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$PATINA_PATH_COMPONENTS"
       echo
       return 0
 
-    # Success: 'tree' is not installed. Display standard component list.
+    # Success: 'tree' is not installed. Show standard component list.
     else
       for component in "${patina_components_list[@]}" ; do
         echo -e "$( basename "$component" )"
