@@ -68,6 +68,10 @@ Once the repository has been cloned, you must *source* it in your BASH profile.
 This is named `.bashrc` and a sample line can be seen below:
 
 ```bash
+. "$HOME/Workspace/patina/patina.sh"
+
+# OR
+
 source "$HOME/Workspace/patina/patina.sh"
 ```
 
