@@ -27,9 +27,6 @@
 # Override SC1090: "Can't follow non-constant source".
 # shellcheck source=/dev/null
 
-# Override SC2154: "var is referenced but not assigned".
-# shellcheck disable=SC2154
-
 #############
 # Variables #
 #############
