@@ -2,16 +2,26 @@
 
 ## Table of Contents
 
+- [1.0.x Series: 'Mae'](#10x-series-mae)
 - [0.7.x Series: 'Duchess'](#07x-series-duchess)
 - [0.6.x Series: 'Kyrie'](#06x-series-kyrie)
+
+## 1.0.x Series: 'Mae'
+
+The name for this version was taken from the game **Night in the Woods**. The
+protagonist, **Mae**, unravels a conspiracy deep in the heart of her home town
+upon her less than triumphant return.
+
+- **1.0.0 Currently in development**
+  - Begun using stable version numbering notation now code is several years old.
+  - System reports have now been abstracted from `patina.sh` and have been
+    placed in the new component `patina_system_reports.sh`.
 
 ## 0.7.x Series: 'Duchess'
 
 The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after a greedy butler tries to steal their inheritance.
-
-- **0.7.11 Currently in development**
 
 - **0.7.10 Released Wednesday, 14th July 2021**
   - Updated the prompt to show only the current folder rather than a full path.
