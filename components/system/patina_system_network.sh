@@ -20,13 +20,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#########################
-# ShellCheck Directives #
-#########################
-
-# Override SC2154: "var is referenced but not assigned".
-# shellcheck disable=SC2154
-
 #############
 # Functions #
 #############
@@ -34,12 +27,9 @@
 patina_detect_internet_connection() { ( ping -c 1 1.1.1.1 &> /dev/null ) && return 0 || return 1 ; }
 
 patina_show_network_status() {
-  # Success: Patina has a connection to the Internet.
-  if ( patina_detect_internet_connection ) ; then
-    echo_wrap "${GREEN}Patina has access to the Internet.${COLOR_RESET}"
+  if patina_detect_internet_connection ; then
+    echo -e "${GREEN}Patina has access to the Internet.${COLOR_RESET}"
     return 0
-
-  # Failure: Patina has no connection to the Internet.
   else
     patina_raise_exception 'PE0008'
     return 1
@@ -105,7 +95,7 @@ patina_systemd_network_manager() {
 # Exports #
 ###########
 
-# PATINA > FUNCTIONS > SYSTEM > INTERNET STATUS
+# PATINA > FUNCTIONS > SYSTEM > NETWORK
 
 export -f 'patina_detect_internet_connection'
 
@@ -113,7 +103,7 @@ export -f 'patina_detect_internet_connection'
 # Aliases #
 ###########
 
-# PATINA > FUNCTIONS > SYSTEM > NETWORK MANAGEMENT COMMANDS
+# PATINA > FUNCTIONS > SYSTEM > NETWORK COMMANDS
 
 alias 'p-network'='patina_systemd_network_manager'
 
