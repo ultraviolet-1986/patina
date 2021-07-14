@@ -195,7 +195,7 @@ patina_show_system_report() {
 
     # Show System Report
     echo -e "${BOLD}Operating System${COLOR_RESET}\\t${PRETTY_NAME}"
-    echo -e "${BOLD}Operating System URL${COLOR_RESET}\\t<${HOME_URL}>"
+    echo -e "${BOLD}Operating System URL${COLOR_RESET}\\t${HOME_URL}"
     echo -e "${BOLD}Machine Architecture${COLOR_RESET}\\t$( uname -m )"
     echo -e "${BOLD}Desktop Session${COLOR_RESET}\\t\\t${XDG_CURRENT_DESKTOP}"
     echo -e "${BOLD}Display Server${COLOR_RESET}\\t\\t$( to_upper "${XDG_SESSION_TYPE}" )"
