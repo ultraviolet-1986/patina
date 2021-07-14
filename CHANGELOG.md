@@ -17,6 +17,8 @@ upon her less than triumphant return.
   - System reports have now been abstracted from `patina.sh` and have been
     placed in the new component `patina_system_reports.sh`.
   - Unified the initial header's color scheme.
+  - Adopted a ternary or lambda style approach to listing dependencies in the
+    `p-deps` command.
 
 ## 0.7.x Series: 'Duchess'
 

@@ -26,7 +26,7 @@
 
 # PATINA > FUNCTIONS > REPORTS
 
-patina_show_component_report() {
+patina_report_components() {
   # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_raise_exception 'PE0002'
@@ -34,9 +34,7 @@ patina_show_component_report() {
 
   # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
-    # Display Header
-    echo
-    echo -e "${BOLD}Patina Component Report${COLOR_RESET}\\n"
+    echo -e "\\n${BOLD}Patina Component Report${COLOR_RESET}\\n"
     echo -e "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
     # Success: 'tree' is installed. Display enhanced component list.
@@ -62,60 +60,44 @@ patina_show_component_report() {
   fi
 }
 
-patina_show_dependency_report() {
-  # Display Header.
-  echo
-  echo -e "${BOLD}Patina Dependency Report${COLOR_RESET}\\n"
-
+patina_report_dependencies() {
+  echo -e "\\n${BOLD}Patina Dependency Report${COLOR_RESET}\\n"
   echo -e "${BOLD}NOTE${COLOR_RESET} Distribution-Native Packages Detected Only.\\n"
 
-  # Display table header.
   echo -e "${BOLD}PACKAGE\\t\\tCOMMAND\\t\\t\\tSTATE${COLOR_RESET}"
 
   printf "clamav\\t\\tp-clamscan"
-  if ( command -v 'clamscan' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'clamscan' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "genisoimage\\tp-iso"
-  if ( command -v 'mkisofs' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'mkisofs' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "git\\t\\tp-update"
-  if ( command -v 'git' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'git' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   # Additional uses for 'git'.
   printf "^\\t\\tp-gitupdate\\t\\t^\\n"
 
   printf "gnupg2\\t\\tp-gpg"
-  if ( command -v 'gpg' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'gpg' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "libreoffice\\tp-pdf"
-  if ( command -v 'soffice' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'soffice' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "sed\\t\\tp-b2sum"
-  if ( command -v 'sed' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'sed' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   # Additional uses for 'sed'.
   printf "^\\t\\tp-md5sum\\t\\t^\\n"
@@ -126,52 +108,40 @@ patina_show_dependency_report() {
   printf "^\\t\\tp-sha512sum\\t\\t^\\n"
 
   printf "squashfs-tools\\tp-squash"
-  if ( command -v 'mksquashfs' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'mksquashfs' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "toolbox\\t\\tp-toolbox"
-  if ( command -v 'toolbox' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'toolbox' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "podman\\t\\t^"
-  if ( command -v 'podman' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'podman' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "timeshift\\tp-timeshift"
-  if ( command -v 'timeshift' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'timeshift' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "tree\\t\\tp-list"
-  if ( command -v 'tree' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'tree' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   printf "ufw\\t\\tp-ufw"
-  if ( command -v 'ufw' > /dev/null 2>&1 ) ; then
-    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
-  else
+  ( command -v 'ufw' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-  fi
 
   echo
   return 0
 }
 
-patina_show_system_report() {
+patina_report_system() {
   # Failure: Patina has been given too many arguments.
   if [ "$#" -ge 1 ] ; then
     patina_raise_exception 'PE0002'
@@ -189,11 +159,8 @@ patina_show_system_report() {
       network_status="${RED}Inactive${COLOR_RESET}"
     fi
 
-    # Display Header
-    echo
-    echo -e "${BOLD}Patina System Report${COLOR_RESET}\\n"
+    echo -e "\\n${BOLD}Patina System Report${COLOR_RESET}\\n"
 
-    # Show System Report
     echo -e "${BOLD}Operating System${COLOR_RESET}\\t${PRETTY_NAME}"
     echo -e "${BOLD}Operating System URL${COLOR_RESET}\\t${HOME_URL}"
     echo -e "${BOLD}Machine Architecture${COLOR_RESET}\\t$( uname -m )"
@@ -220,8 +187,8 @@ patina_show_system_report() {
 
 # PATINA > FUNCTIONS > SYSTEM REPORT COMMANDS
 
-alias 'p-deps'='patina_show_dependency_report'
-alias 'p-list'='patina_show_component_report'
-alias 'p-system'='patina_show_system_report'
+alias 'p-list'='patina_report_components'
+alias 'p-deps'='patina_report_dependencies'
+alias 'p-system'='patina_report_system'
 
 # End of File.
