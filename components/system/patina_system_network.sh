@@ -31,18 +31,12 @@
 # Functions #
 #############
 
-patina_detect_internet_connection() {
-  if ( ping -c 1 1.1.1.1 ) &> /dev/null ; then
-    return 0
-  else
-    return 1
-  fi
-}
+patina_detect_internet_connection() { ( ping -c 1 1.1.1.1 &> /dev/null ) && return 0 || return 1 ; }
 
 patina_show_network_status() {
   # Success: Patina has an active connection to the Internet.
   if ( patina_detect_internet_connection ) ; then
-    echo_wrap "\\n${GREEN}Patina has access to the Internet.${COLOR_RESET}\\n"
+    echo_wrap "${GREEN}Patina has access to the Internet.${COLOR_RESET}"
     return 0
 
   # Failure: Patina does not have an active connection to the Internet.

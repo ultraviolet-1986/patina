@@ -19,6 +19,8 @@ upon her less than triumphant return.
   - Unified the initial header's color scheme.
   - Adopted a ternary or lambda style approach to listing dependencies in the
     `p-deps` command.
+    - This same approach has been used where possible to reduce the amount of
+      overall code required.
 
 ## 0.7.x Series: 'Duchess'
 

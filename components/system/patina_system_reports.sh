@@ -80,8 +80,6 @@ patina_report_dependencies() {
   ( command -v 'git' > /dev/null 2>&1 ) && \
     echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
-
-  # Additional uses for 'git'.
   printf "^\\t\\tp-gitupdate\\t\\t^\\n"
 
   printf "gnupg2\\t\\tp-gpg"
@@ -98,8 +96,6 @@ patina_report_dependencies() {
   ( command -v 'sed' > /dev/null 2>&1 ) && \
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
-
-  # Additional uses for 'sed'.
   printf "^\\t\\tp-md5sum\\t\\t^\\n"
   printf "^\\t\\tp-sha1sum\\t\\t^\\n"
   printf "^\\t\\tp-sha224sum\\t\\t^\\n"
@@ -149,15 +145,11 @@ patina_report_system() {
 
   # Success: Display the Patina System Report.
   elif [ "$#" -eq 0 ] ; then
-    patina_detect_internet_connection
-
     local network_status
 
-    if ( patina_detect_internet_connection ) ; then
-      network_status="${GREEN}Active${COLOR_RESET}"
-    else
+    patina_detect_internet_connection && \
+      network_status="${GREEN}Active${COLOR_RESET}" || \
       network_status="${RED}Inactive${COLOR_RESET}"
-    fi
 
     echo -e "\\n${BOLD}Patina System Report${COLOR_RESET}\\n"
 
@@ -169,9 +161,8 @@ patina_report_system() {
     echo -e "${BOLD}Linux Kernel Version${COLOR_RESET}\\t$( uname -r )"
     echo -e "${BOLD}Package Manager${COLOR_RESET}\\t\\t$( to_upper "${PATINA_PACKAGE_MANAGER}" )"
     echo -e "${BOLD}BASH Version${COLOR_RESET}\\t\\t${BASH_VERSION%%[^0-9.]*}"
-    echo -e "${BOLD}Internet Connection${COLOR_RESET}\\t${network_status}"
+    echo -e "${BOLD}Internet Connection${COLOR_RESET}\\t${network_status}\\n"
 
-    echo
     return 0
 
   # Failure: Catch all.
