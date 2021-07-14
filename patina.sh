@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2020 William Willis Whinn
+# Copyright (C) 2021 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,11 +36,9 @@
 
 # PATINA > GLOBAL VARIABLES > PATINA METADATA
 
-readonly PATINA_VERSION='0.7.9'
+readonly PATINA_VERSION='0.7.10'
 readonly PATINA_CODENAME='Duchess'
 readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
-# readonly PATINA_URL='https://tinyurl.com/patina-bash'
-# readonly PATINA_URL='https://tinyurl.com/patina-git'
 
 # PATINA > GLOBAL VARIABLES > TEXT FORMATTING > TEXT COLORS
 
@@ -48,7 +46,9 @@ export readonly BLUE='\e[34m'
 export readonly CYAN='\e[36m'
 export readonly GREEN='\e[32m'
 export readonly MAGENTA='\e[35m'
+export readonly ORANGE='\e[38;5;130m'
 export readonly RED='\e[31m'
+export readonly TEAL='\e[38;5;29m'
 export readonly YELLOW='\e[33m'
 
 export readonly LIGHT_BLUE='\e[94m'
@@ -56,7 +56,9 @@ export readonly LIGHT_CYAN='\e[96m'
 export readonly LIGHT_GRAY='\e[37m'
 export readonly LIGHT_GREEN='\e[92m'
 export readonly LIGHT_MAGENTA='\e[95m'
+export readonly LIGHT_ORANGE='\e[38;5;202m'
 export readonly LIGHT_RED='\e[91m'
+export readonly LIGHT_TEAL='\e[38;5;35m'
 export readonly LIGHT_YELLOW='\e[93m'
 
 export readonly BLACK='\e[30m'
@@ -135,6 +137,9 @@ patina_initialize() {
     return 1
   fi
 
+  # Set Terminal to 256 colour mode.
+  export TERM=xterm-256color
+
   # Import additional system variables.
   if [ -f "$SYSTEM_OS_RELEASE" ] ; then source "$SYSTEM_OS_RELEASE" ; fi
   if [ -f "$SYSTEM_LSB_RELEASE" ] ; then source "$SYSTEM_LSB_RELEASE" ; fi
@@ -171,7 +176,7 @@ patina_initialize() {
   # Display main Patina author/copyright header.
   printf "${PATINA_MAJOR_COLOR}Patina %s '%s' / " "${PATINA_VERSION}" "${PATINA_CODENAME}"
   echo -e "BASH ${BASH_VERSION%%[^0-9.]*}${COLOR_RESET}"
-  echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2020 William Whinn${COLOR_RESET}"
+  echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2021 William Whinn${COLOR_RESET}"
   echo -e "${PATINA_MINOR_COLOR}${PATINA_URL}${COLOR_RESET}\\n"
 
   # Finally: Garbage collection.
@@ -245,13 +250,6 @@ patina_show_dependency_report() {
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   fi
 
-  printf "curl\\t\\tp-clamscan --repair"
-  if ( command -v 'curl' > /dev/null 2>&1 ) ; then
-    echo -e "\\t${GREEN}Installed${COLOR_RESET}"
-  else
-    echo -e "\\t${RED}Not Installed${COLOR_RESET}"
-  fi
-
   printf "genisoimage\\tp-iso"
   if ( command -v 'mkisofs' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
@@ -278,6 +276,42 @@ patina_show_dependency_report() {
 
   printf "libreoffice\\tp-pdf"
   if ( command -v 'soffice' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
+  printf "sed\\t\\tp-b2sum"
+  if ( command -v 'sed' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
+  # Additional uses for 'sed'.
+  printf "^\\t\\tp-md5sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha1sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha224sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha256sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha384sum\\t\\t^\\n"
+  printf "^\\t\\tp-sha512sum\\t\\t^\\n"
+
+  printf "squashfs-tools\\tp-squash"
+  if ( command -v 'mksquashfs' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
+  printf "toolbox\\t\\tp-toolbox"
+  if ( command -v 'toolbox' > /dev/null 2>&1 ) ; then
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}"
+  else
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+  fi
+
+  printf "podman\\t\\t^"
+  if ( command -v 'podman' > /dev/null 2>&1 ) ; then
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}"
   else
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
@@ -333,6 +367,7 @@ patina_show_system_report() {
     # Show System Report
     echo -e "${BOLD}Operating System${COLOR_RESET}\\t${PRETTY_NAME}"
     echo -e "${BOLD}Operating System URL${COLOR_RESET}\\t<${HOME_URL}>"
+    echo -e "${BOLD}Machine Architecture${COLOR_RESET}\\t$( uname -m )"
     echo -e "${BOLD}Desktop Session${COLOR_RESET}\\t\\t${XDG_CURRENT_DESKTOP}"
     echo -e "${BOLD}Display Server${COLOR_RESET}\\t\\t$( to_upper "${XDG_SESSION_TYPE}" )"
     echo -e "${BOLD}Linux Kernel Version${COLOR_RESET}\\t$( uname -r )"

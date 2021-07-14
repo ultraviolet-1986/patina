@@ -20,26 +20,33 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+##############
+# References #
+##############
+
+# Add LUKS functionality to existing SquashFS disk image.
+# - <https://tinyurl.com/yu4zjkv6>
+
 #############
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE
+# PATINA > FUNCTIONS > APPLICATIONS > SQUASHFS-TOOLS
 
-patina_genisoimage() {
+patina_squashfs-tools() {
   # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
-    echo "Usage: p-iso [DIRECTORY] [OPTION]"
-    echo "Create a read-only disk image in .iso format."
-    echo "Dependencies: 'mkisofs' command from package 'genisoimage'."
+    echo "Usage: p-squash [DIRECTORY] [OPTION]"
+    echo "Create a read-only disk image in SquashFS format."
+    echo "Dependencies: 'mksquashfs' command from package 'squashfs-tools'."
     echo
-    echo -e "  --udf\\t\\tCreate UDF disk image (Non ISO-9660 compliant)."
+    echo -e "  --enc\\tCreate an encrypted disk image."
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
 
-  # Failure: Command 'mkisofs' is not available.
-  elif ( ! command -v 'mkisofs' > /dev/null 2>&1 ) ; then
+  # Failure: Command 'mksquashfs' is not available.
+  elif ( ! command -v 'mksquashfs' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     return 127
 
@@ -53,11 +60,6 @@ patina_genisoimage() {
     patina_raise_exception 'PE0002'
     return 1
 
-  # Failure: A valid argument was not provided.
-  elif [ -n "$2" ] && [ "$2" != '--udf' ] ; then
-    patina_raise_exception 'PE0001'
-    return 1
-
   # Failure: The target exists, but is a file.
   elif [ -f "$1" ] ; then
     patina_raise_exception 'PE0014'
@@ -69,29 +71,31 @@ patina_genisoimage() {
     return 1
 
   # Failure: The target disk image already exists.
-  elif [ -f "$(basename "$1").iso" ] ; then
+  elif [ -f "$(basename "$1").sqsh" ] ; then
     patina_raise_exception 'PE0011'
     return 1
 
-  # Success: Create ISO Disk Image (ISO-9660 compliant).
-  elif [ -d "$1" ] && [ -z "$2" ] ; then
-    mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" \
-      -input-charset UTF-8 \
-      -joliet \
-      -joliet-long \
-      -rock \
-      "$1"
+  # Success: Create LUKS encrypted SquashFS image.
+  elif [ -d "$1" ] && [ "$2" = '--enc' ] ; then
+    mksquashfs "$1" "$1.luks.sqsh"
+
+    truncate -s +8M "$1.luks.sqsh"
+
+    cryptsetup -q reencrypt \
+      --encrypt \
+      --type luks2 \
+      --resilience none \
+      --disable-locks \
+      --reduce-device-size 8M \
+      "$1.luks.sqsh"
+
+    truncate -s -4M "$1.luks.sqsh"
+
     return 0
 
-  # Success: Create ISO Disk Image (Non ISO-9660 compliant).
-  elif [ -d "$1" ] && [ "$2" = '--udf' ] ; then
-    mkisofs -volid "$(generate_volume_label)" -output "$(basename "$1").iso" \
-      -input-charset UTF-8 \
-      -udf \
-      -allow-limited-size \
-      -disable-deep-relocation \
-      -untranslated-filenames \
-      "$1"
+  # Success: Create SquashFS disk image.
+  elif [ -d "$1" ] ; then
+    mksquashfs "$1" "$1.sqsh"
     return 0
 
   # Failure: Catch all.
@@ -105,16 +109,16 @@ patina_genisoimage() {
 # Exports #
 ###########
 
-# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE
+# PATINA > FUNCTIONS > APPLICATIONS > SQUASHFS-TOOLS
 
-export -f 'patina_genisoimage'
+export -f 'patina_squashfs-tools'
 
 ###########
 # Aliases #
 ###########
 
-# PATINA > FUNCTIONS > APPLICATIONS > GENISOIMAGE COMMANDS
+# PATINA > FUNCTIONS > APPLICATIONS > SQUASHFS-TOOLS COMMANDS
 
-alias 'p-iso'='patina_genisoimage'
+alias 'p-squash'='patina_squashfs-tools'
 
 # End of File.

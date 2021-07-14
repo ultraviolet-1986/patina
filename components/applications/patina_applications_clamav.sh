@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2020 William Willis Whinn
+# Copyright (C) 2021 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,9 +38,8 @@ patina_clamav() {
     echo "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
     echo "Perform a recursive virus scan of a given location and record results."
     echo "Dependencies: 'clamscan' command from package 'clamav'."
-    echo "Warning: Command(s) may require 'sudo' password."
     echo
-    echo -e "  --repair\\tPurge and replace current virus database."
+    echo -e "  --parse\\tScan log file and show a list of infections."
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
@@ -60,62 +59,25 @@ patina_clamav() {
     patina_raise_exception 'PE0002'
     return 1
 
-  # Success: Repair Freshclam update mechanism.
-  # Warning: Uses 'sudo' to delete system files and execute Freshclam
-  # update program.
-  elif [ "$1" = '--repair' ] ; then
-    printf "%bNOTE:%b This command requires root permissions. Continue [Y/N]? " \
-      "${BOLD}" "${COLOR_RESET}"
-    read -n1 -r answer
-    echo
+  # Success: Parse log file and show a list of infections.
+  elif [ "$1" = '--parse' ] ; then
+    # ShellCheck SC2002: Useless cat.
+    # shellcheck disable=SC2002
 
-    case "$answer" in
-      'Y'|'y')
-        # Failure: Patina cannot download updated Database files from
-        # ClamAV mirror.
-        if ( ! patina_detect_internet_connection ) ; then
-          patina_raise_exception 'PE0008'
-          return 1
-
-        # Success: Delete old ClamAV database files and download new
-        # ones from ClamAV mirror.
-        elif ( patina_detect_internet_connection ) ; then
-          local clamav_mirror='http://database.clamav.net'
-
-          sudo rm --force \
-            "$clamav_path/bytecode.cvd" \
-            "$clamav_path/daily.cld" \
-            "$clamav_path/main.cvd"
-
-          printf "\\n%bNOTE:%b Downloading 'bytecode.cvd' from '${clamav_mirror}'...\\n" \
-            "${BOLD}" "${COLOR_RESET}"
-          sudo curl "$clamav_mirror/bytecode.cvd" --output "$clamav_path/bytecode.cvd"
-
-          printf "\\n%bNOTE:%b Downloading 'daily.cvd' from '${clamav_mirror}'...\\n" \
-            "${BOLD}" "${COLOR_RESET}"
-          sudo curl "$clamav_mirror/daily.cvd" --output "$clamav_path/daily.cvd"
-
-          printf "\\n%bNOTE:%b Downloading 'main.cvd' from '${clamav_mirror}'...\\n" \
-            "${BOLD}" "${COLOR_RESET}"
-          sudo curl "$clamav_mirror/main.cvd" --output "$clamav_path/main.cvd"
-          echo
-
-          return 0
-
-        # Failure: Catch all.
-        else
-          patina_raise_exception 'PE0000'
-          return 1
-        fi
-        ;;
-      'N'|'n')
+    for f in clamscan_log*.txt ; do
+      if [ -f "$f" ] ; then
+        echo -e "\\nScanning ${PATINA_MAJOR_COLOR}$f${COLOR_RESET}..."
+        echo
+        cat "$f" | grep FOUND || echo -e \
+          "${GREEN}SUCCESS: No infections found in ClamAV logfile.${COLOR_RESET}"
+        echo
         return 0
-        ;;
-      *)
-        patina_raise_exception 'PE0003'
+
+      else
+        patina_raise_exception "PE0005"
         return 1
-        ;;
-    esac
+      fi
+    done
 
   # Failure: Scan target does not exist.
   elif [[ ! -e "$1" ]] ; then

@@ -21,45 +21,48 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #############
+# Variables #
+#############
+
+export readonly PATINA_FILE_USER_COMMANDS="$PATINA_PATH_COMPONENTS_USER/patina_user_commands.sh"
+
+#############
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > LIBREOFFICE
-
-patina_libreoffice() {
+patina_define_command() {
   # Success: Display help and exit.
-  if [ "$1" = '--help' ] ; then
-    echo "Usage: p-pdf [FILE]"
-    echo "Convert a supported file to *.pdf format."
-    echo "Dependencies: 'soffice' command from package 'libreoffice'."
+  if [ "$1" = '-h' ] || [ "$1" = '--help' ] ; then
+    echo "Usage: p-define [ALIAS] [COMMAND]"
+    echo "Create a persistent alias for a command."
     echo
-    echo -e "  --help\\tDisplay this help and exit."
+    echo -e "  -h, --help\\tDisplay this help and exit."
     echo
     return 0
 
-  # Failure: Patina cannot detect a required application.
-  elif ( ! command -v 'soffice' > /dev/null 2>&1 ) ; then
-    patina_raise_exception 'PE0006'
-    return 127
-
-  # Failure: Patina has not been given an argument.
+  # Failure: An argument was not provided.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
 
-  # Failure: Patina has been given too many arguments.
-  elif [ "$#" -gt 2 ] ; then
+  # Failure: Too many exceptions were provided.
+  elif [ "$#" -ge 3 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Failure: Patina cannot convert a directory to PDF.
-  elif [ -d "$1" ] ; then
-    patina_raise_exception 'PE0015'
-    return 1
+  # Success: Two arguments were provided.
+  elif [ "$#" -eq 2 ] ; then
+    # Create command definition file if not exists.
+    if [ ! -f "$PATINA_FILE_USER_COMMANDS" ] ; then
+      touch "$PATINA_FILE_USER_COMMANDS"
+      echo -e "#!/usr/bin/env\n" > "$PATINA_FILE_USER_COMMANDS"
+    fi
 
-  # Success: Convert an existing document to PDF (if supported).
-  elif [ -f "$1" ] ; then
-    soffice --convert-to pdf "$1"
+    # Append new command definition to the user-defined command file.
+    echo -e "alias '$1'='$2'" | tee --append "$PATINA_FILE_USER_COMMANDS"
+
+    # Re-source the file to enable immediate use of the new command(s).
+    source "$PATINA_FILE_USER_COMMANDS"
     return 0
 
   # Failure: Catch all.
@@ -69,12 +72,10 @@ patina_libreoffice() {
   fi
 }
 
-###########
-# Aliases #
-###########
+#############
+# Kickstart #
+#############
 
-# PATINA > FUNCTIONS > APPLICATIONS > LIBREOFFICE COMMANDS
-
-alias 'p-pdf'='patina_libreoffice'
+alias 'p-define'='patina_define_command'
 
 # End of File.

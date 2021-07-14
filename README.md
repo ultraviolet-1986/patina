@@ -13,6 +13,7 @@ Additional Patina components can be found here:
 - [Features](#features)
 - [Recommended Packages](#recommended-packages)
 - [Conventions](#conventions)
+- [Patina Style Guide](#patina-style-guide)
 - [Patina Layout](#patina-layout)
 - [Built-in Commands](#built-in-commands)
   - [Patina Core](#patina-core)
@@ -22,12 +23,14 @@ Additional Patina components can be found here:
     - [Home Directory](#home-directory)
     - [Workspace Directory](#workspace-directory)
   - [Application Components](#application-components)
-    - [ClamAV](#clamav)
-    - [Disk Image Creation (genisoimage)](#disk-image-creation-genisoimage)
+    - [Virus Scanning (ClamAV)](#virus-scanning-clamav)
+    - [Disk Image Creation (ISO)](#disk-image-creation-iso)
+    - [Disk Image Creation (SquashFS)](#disk-image-creation-squashfs)
     - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
     - [File Encryption (GnuPG)](#file-encryption-gnupg)
     - [Source Control (git)](#source-control-git)
     - [System Snapshots (Timeshift)](#system-snapshots-timeshift)
+    - [Container Management (Toolbox)](#container-management-toolbox)
     - [Uncomplicated Firewall (UFW)](#uncomplicated-firewall-ufw)
   - [Place Components](#place-components)
   - [System Components](#system-components)
@@ -37,6 +40,7 @@ Additional Patina components can be found here:
     - [Desktop Session](#desktop-session)
 - [Helper Functions](#helper-functions)
 - [String Generators](#string-generators)
+- [Alternative URLs](#alternative-urls)
 
 ## Introduction
 
@@ -80,7 +84,7 @@ This prompt is split into three components:
 
 1. User name and host name.
 2. Current working directory.
-3. Command prompt for Patina BASH ('P$' or 'P#' as opposed to '$' or '#').
+3. Command prompt for Patina BASH (`P$` or `P#` as opposed to `$` or `#`).
 
 From this point onward, all Patina commands should now be available.
 
@@ -111,13 +115,16 @@ the following packages (correct for Fedora):
 
 - `clamav` for the `p-clamscan <X>` commands.
 - `coreutils` for the `p-hash <X>` commands.
-- `curl` for the `p-clamscan --repair` command.
 - `genisoimage` for the `p-iso` command.
 - `git` for the `p-update` and `p-git` commands.
 - `gnupg2` for the `p-gpg` commands.
 - `libreoffice` for the `p-pdf` command.
+- `podman` for the `p-toolbox` command.
+- `sed` for recursive checksum commands.
+- `squashfs-tools` for the `p-squash` command.
 - `systemd` for manipulating system services such as networking.
 - `timeshift` for the `p-timeshift` command.
+- `toolbox` for the `p-toolbox` command.
 - `tree` for an enhanced version of the `p-list` command.
 - `ufw` for the `p-ufw <X>` commands.
 - `xdg-utils` for opening locations graphically.
@@ -162,8 +169,41 @@ convention, but it can be useful to keep your functionality separate from the
 rest of the shell and help to prevent naming conflicts.
 
 With Patina version `0.1.0` and later, semantic version numbering is added and
-can be displayed by using the `p-version` command. This will be in the format of
+can be toward the top of the window on startup. This will be in the format of
 `Major.Minor.Revision`.
+
+## Patina Style Guide
+
+There are few rules to writing a Patina component, the following is proposed as
+the *Patina coding style*. These guidelines are all *optional* as long as the
+component contains valid BASH syntax:
+
+- All component files should begin with the `#!/usr/bin/env bash` shebang.
+- Patina uses 2 space characters for indentation, no tabs.
+- Each script has a limit of 100 columns for code, and 72 columns for all
+  commented lines.
+- All code should be checked using [ShellCheck](https://www.shellcheck.net/).
+- No code should execute automatically unless absolutely necessary. Aliasing
+  functions is preferred instead for execution only at the user's discretion.
+- There should be no horizontal trailing spaces except within markdown documents
+  when needed.
+- Function names should be prefixed `patina_` and should be in `snake_case`.
+- Variables declared within a function should be prefixed with `local` to ensure
+  they are removed once the function has terminated.
+- Variables declared within a function should have a name beginning with
+  `patina_` and remain in `snake_case`.
+- Variables declared at the top-level scope of a component should be prefixed
+  with `readonly` to prevent their change during runtime, or `export readonly`
+  if they are to be used outside of *Patina*.
+- Variables declared at the top-level scope of a component should have a name
+  beginning with `PATINA_` and remain in `CONSTANT_CASE`.
+- Component filenames should begin with `patina_`, remain in `snake_case`, and
+  have a `.sh` extension.
+- Each file should contain the line `# End of File.` at the bottom of the file,
+  followed by a single blank new line.
+- Code references should be included in a `References` section toward the top of
+  the file.
+- Code reference URLs should be shortened for preserving code column limit.
 
 ## Patina Layout
 
@@ -234,7 +274,9 @@ p-theme blue     # Apply light/dark blue theme.
 p-theme cyan     # Apply light/dark cyan theme.
 p-theme green    # Apply light/dark green theme.
 p-theme magenta  # Apply light/dark magenta theme.
+p-theme orange   # Apply light/dark orange theme.
 p-theme red      # Apply light/dark red theme.
+p-theme teal     # Apply light/dark teal theme.
 p-theme yellow   # Apply light/dark yellow theme.
 p-theme black    # Apply basic black theme.
 p-theme gray     # Apply basic light/dark gray theme.
@@ -243,9 +285,9 @@ p-theme white    # Apply basic white theme.
 p-theme blossom  # Apply light magenta/light red theme.
 p-theme classic  # Apply light magenta/light cyan theme.
 p-theme cygwin   # Apply light green/light yellow theme.
-p-theme gravity  # Apply light magenta/light yellow theme.
+p-theme gravity  # Apply light magenta/yellow theme.
 p-theme mint     # Apply light green/light blue theme.
-p-theme varia    # Apply light red/light yellow theme.
+p-theme varia    # Apply light orange/yellow theme.
 p-theme water    # Apply light blue/cyan theme.
 p-theme --help   # Display instructions for the `p-theme` commands.
 ```
@@ -282,20 +324,17 @@ p-w-git  # Open the 'git' folder within the Workspace directory.
 
 ### Application Components
 
-#### ClamAV
-
-The `p-clamscan --repair` command requires `sudo` privileges, please review
-source code before use.
+#### Virus Scanning (ClamAV)
 
 ```bash
 p-clamscan           # Perform a ClamAV virus scan on a given path.
-p-clamscan --repair  # Purge and replace current virus definition database.
+p-clamscan --parse   # Parse log file and show a list of infections.
 p-clamscan --help    # Display instructions for the `p-clamscan` commands.
 ```
 
-#### Disk Image Creation (genisoimage)
+#### Disk Image Creation (ISO)
 
-The following command requires the `genisoimage` package to be installed.
+The following commands require the `genisoimage` package to be installed.
 
 ```bash
 p-iso "<Directory Name>"        # Create an ISO image (ISO-9660 compliant).
@@ -303,9 +342,19 @@ p-iso "<Directory Name>" --udf  # Create a UDF image (Non ISO-9660 compliant).
 p-iso --help                    # Display help for the `p-iso` command.
 ```
 
+#### Disk Image Creation (SquashFS)
+
+The following commands require the `squashfs-tools` package to be installed.
+
+```bash
+p-squash "<Directory Name>"        # Create a SquashFS disk image.
+p-squash "<Directory Name>" --enc  # Create LUKS encrypted SquashFS disk image.
+p-squash --help                    # Display help for the `p-squash` command.
+```
+
 #### Document Conversion (LibreOffice)
 
-The following command requires the `libreoffice` package to be installed.
+The following commands require the `libreoffice` package to be installed.
 
 ```bash
 p-pdf "<File Name>"  # Convert a compatible document into PDF.
@@ -349,6 +398,17 @@ source code before use.
 p-timeshift create   # Create a system snapshot using 'Timeshift.'
 p-timeshift restore  # Restore a system snapshot using 'Timeshift'.
 p-timeshift --help   # Display instructions for `p-timeshift` commands.
+```
+
+#### Container Management (Toolbox)
+
+These commands can help to create and manage backups of `Toolbox` containers.
+
+```bash
+p-toolbox commit  # Create an image from a given container.
+p-toolbox export  # Export a given container to an archive.
+p-toolbox import  # Import a given archive to an image.
+p-toolbox --help  # Display instructions for `p-toolbox` commands.
 ```
 
 #### Uncomplicated Firewall (UFW)
@@ -495,3 +555,11 @@ p-date  # Create a timestamp.
 p-uuid  # Create a 32-character UUID string.
 p-vol   # Create 8-character disk label.
 ```
+
+## Alternative URLs
+
+The following URLs were created for this project using the
+[TinyURL](https://tinyurl.com/) URL-shortening service:
+
+- <https://tinyurl.com/patina-bash>
+- <https://tinyurl.com/patina-git>

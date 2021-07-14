@@ -11,6 +11,33 @@ The name **Duchess** was taken from the Disney film **The Aristocats**, she is a
 mother to three mischievous young kittens and guides them on a long journey home
 after a greedy butler tries to steal their inheritance.
 
+- **0.7.10 Released Wednesday, 14th July 2021**
+  - Updated the prompt to show only the current folder rather than a full path.
+  - Corrected issue with Fedora 33's version of Toolbox supplying a blank
+    `$HOSTNAME` variable. The distinguishing diamond should now appear on all
+    supported versions.
+  - Have updated the `README.md` file to include the new *Patina coding style*
+    standard. This is to inform users of the style adopted by this project, this
+    style remains optional as long as components include valid BASH syntax.
+  - Include the new `orange` and `teal` themes using `xterm-256color` codes.
+  - Included new application component `patina_applications_squashfs-tools.sh`
+    to allow the creation of a read-only disk image of a folder in SquashFS
+    format. This component makes use of the new `p-squash` command.
+  - Updated Metroid-inspired themes for better complimentary colours.
+  - Updated `p-system` command to show the machine's architecture.
+  - Updated `p-deps` command to show new `p-squash` and recursive checksum
+    dependency information.
+  - Corrected recursive checksum parsing. Output files now no longer contain a
+    leading `./` filename prefix using `sed`. This is not required as the
+    checksum files are already intended to be relative.
+  - `p-squash` files can be encrypted by appending the `--enc` argument after
+    the name of a target directory, eg. `p-squash Documents --enc`.
+  - Included the new `p-clamscan --parse` command to highlight any found viruses
+    from the generated `ClamAV` scan log created by the `p-clamscan` command.
+  - Removed `p-clamscan --repair` command as the URL is now unavailable.
+  - Included component `patina_applications_toolbox.sh` which provides the
+    command `p-toolbox`. The `README.md` file has been updated to reflect this.
+
 - **0.7.9 Released Wednesday, 2nd September 2020**
   - Included GPG signing to better secure repository for users.
   - Included new component `patina_places_workspace.sh` to help create a

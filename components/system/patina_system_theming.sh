@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2020 William Willis Whinn
+# Copyright (C) 2021 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +45,9 @@ patina_theme_apply() {
     echo -e "  cyan\\t\\tApply light/dark cyan theme."
     echo -e "  green\\t\\tApply light/dark green theme."
     echo -e "  magenta\\tApply light/dark magenta theme."
+    echo -e "  orange\\tApply light/dark orange theme."
     echo -e "  red\\t\\tApply light/dark red theme."
+    echo -e "  teal\\t\\tApply light/dark teal theme."
     echo -e "  yellow\\tApply light/dark yellow theme."
     echo -e "  black\\t\\tApply basic black theme."
     echo -e "  gray\\t\\tApply basic light/dark gray theme."
@@ -96,9 +98,17 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
     export PATINA_MINOR_COLOR="${MAGENTA}"
 
+  elif [ "$1" = 'orange' ] ; then
+    export PATINA_MAJOR_COLOR="${LIGHT_ORANGE}"
+    export PATINA_MINOR_COLOR="${ORANGE}"
+
   elif [ "$1" = 'red' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_RED}"
     export PATINA_MINOR_COLOR="${RED}"
+
+  elif [ "$1" = 'teal' ] ; then
+    export PATINA_MAJOR_COLOR="${LIGHT_TEAL}"
+    export PATINA_MINOR_COLOR="${TEAL}"
 
   elif [ "$1" = 'yellow' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_YELLOW}"
@@ -134,15 +144,15 @@ patina_theme_apply() {
 
   elif [ "$1" = 'gravity' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
-    export PATINA_MINOR_COLOR="${LIGHT_YELLOW}"
+    export PATINA_MINOR_COLOR="${YELLOW}"
 
   elif [ "$1" = 'mint' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_GREEN}"
     export PATINA_MINOR_COLOR="${LIGHT_BLUE}"
 
   elif [ "$1" = 'varia' ] ; then
-    export PATINA_MAJOR_COLOR="${LIGHT_RED}"
-    export PATINA_MINOR_COLOR="${LIGHT_YELLOW}"
+    export PATINA_MAJOR_COLOR="${LIGHT_ORANGE}"
+    export PATINA_MINOR_COLOR="${YELLOW}"
 
   elif [ "$1" = 'water' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"
@@ -171,14 +181,18 @@ patina_theme_apply() {
   local window_title="\\[\\e]0;Patina\\a\\]"
   local toolbox_diamond="\\[${MAGENTA}\\]⬢\\[${COLOR_RESET}\\]"
   local user_host="\\[${PATINA_MAJOR_COLOR}\\]\\u@\\h\\[${COLOR_RESET}\\]"
-  local working_directory="\\[${PATINA_MINOR_COLOR}\\]\\w\\[${COLOR_RESET}\\]"
+  local working_directory="\\[${PATINA_MINOR_COLOR}\\]\\W\\[${COLOR_RESET}\\]"
   local command_scope="P\\$ "
 
   # Display a custom 'PS1' command prompt depending on the current
   # environment.
-  if [ "$HOSTNAME" == 'toolbox' ] && [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
+
+  # Toolbox container prompt.
+  if [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
     export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
     return 0
+
+  # Standard prompt.
   else
     export PS1="$window_title$user_host $working_directory $command_scope"
     return 0

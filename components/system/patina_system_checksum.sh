@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2020 William Willis Whinn
+# Copyright (C) 2021 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -76,6 +76,10 @@ patina_checksum_recursive() {
       [[ -f "$file" ]] && [[ "${PWD##*/}.$1" != "$file" ]] &&
         "$1" "$file" | tee --append "${PWD##*/}.$1"
     done
+
+    # Remove leading './' characters using 'sed'.
+    sed -i 's/  .\//  /g' "${PWD##*/}.$1"
+
     return 0
 
   # Failure: Catch all.
