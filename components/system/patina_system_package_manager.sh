@@ -200,7 +200,7 @@ patina_package_manager() {
 # Aliases #
 ###########
 
-# PATINA > FUNCTIONS > SYSTEM > PACKAGE MANAGEMENT COMMANDS
+# PATINA > FUNCTIONS > SYSTEM > PACKAGE MANAGER COMMANDS
 
 alias 'p-pkg'='patina_package_manager'
 

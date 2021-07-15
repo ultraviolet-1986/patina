@@ -24,8 +24,8 @@
 # References #
 ##############
 
-# Add LUKS functionality to existing SquashFS disk image.
-# - <https://tinyurl.com/yu4zjkv6>
+# GitHub / Create an encrypted DVD with SquashFS and LUKS
+# - https://tinyurl.com/yu4zjkv6
 
 #############
 # Functions #
