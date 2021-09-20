@@ -71,15 +71,15 @@ patina_squashfs-tools() {
     return 1
 
   # Failure: The target disk image already exists.
-  elif [ -f "$(basename "$1").sqsh" ] ; then
+  elif [ -f "$(basename "$1").squashfs" ] ; then
     patina_raise_exception 'PE0011'
     return 1
 
   # Success: Create LUKS encrypted SquashFS image.
   elif [ -d "$1" ] && [ "$2" = '--enc' ] ; then
-    mksquashfs "$1" "$1.luks.sqsh"
+    mksquashfs "$1" "$1.luks.squashfs"
 
-    truncate -s +8M "$1.luks.sqsh"
+    truncate -s +8M "$1.luks.squashfs"
 
     cryptsetup -q reencrypt \
       --encrypt \
@@ -87,15 +87,15 @@ patina_squashfs-tools() {
       --resilience none \
       --disable-locks \
       --reduce-device-size 8M \
-      "$1.luks.sqsh"
+      "$1.luks.squashfs"
 
-    truncate -s -4M "$1.luks.sqsh"
+    truncate -s -4M "$1.luks.squashfs"
 
     return 0
 
   # Success: Create SquashFS disk image.
   elif [ -d "$1" ] ; then
-    mksquashfs "$1" "$1.sqsh"
+    mksquashfs "$1" "$1.squashfs"
     return 0
 
   # Failure: Catch all.
