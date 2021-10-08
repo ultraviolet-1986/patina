@@ -90,10 +90,10 @@ patina_toolbox(){
   # Success: Export a given image to an archive.
   elif [ "$1" = 'export' ] ; then
     local image="${YELLOW}${2}${COLOR_RESET}"
-    local file="${YELLOW}${2}_${datestamp}.tar${COLOR_RESET}"
+    local file="${YELLOW}${2}.tar${COLOR_RESET}"
 
     echo -e "Now exporting image ${image} to file ${file}. Please wait."
-    podman save -o "$2_$datestamp.tar" "$2" || return 1
+    podman save -o "$2.tar" "$2" || return 1
 
     return 0
 
