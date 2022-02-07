@@ -41,6 +41,7 @@ patina_git() {
   # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
+    patina_required_software 'git' 'git'
     return 127
 
   # Failure: Patina has not been given an argument.

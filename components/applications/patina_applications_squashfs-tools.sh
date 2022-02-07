@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,6 +48,7 @@ patina_squashfs-tools() {
   # Failure: Command 'mksquashfs' is not available.
   elif ( ! command -v 'mksquashfs' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
+    patina_required_software 'mksquashfs' 'squashfs-tools'
     return 127
 
   # Failure: Patina has not been given an argument.

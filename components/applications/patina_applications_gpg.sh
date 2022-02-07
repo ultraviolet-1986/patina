@@ -41,6 +41,12 @@ patina_gpg() {
     echo
     return 0
 
+  # Failure: Command 'gpg' is not available.
+  elif ( ! command -v 'gpg' > /dev/null 2>&1 ) ; then
+    patina_raise_exception 'PE0006'
+    patina_required_software 'gpg' 'gpg'
+    return 127
+
   # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
