@@ -25,6 +25,13 @@
 #############
 
 patina_encode_wave_to_aac(){
+  wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
+  local wav_count
+
+  m4a_count=$(find . -maxdepth 1 -name '*.m4a' | wc -l)
+  local m4a_count
+
+
   # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
     echo "Usage: p-wav2aac"
@@ -46,9 +53,19 @@ patina_encode_wave_to_aac(){
     patina_raise_exception 'PE0002'
     return 1
 
+  # Failure: No Wave files were detected.
+  elif [ "$wav_count" == 0 ]; then
+    patina_raise_exception 'PE0005'
+    return 1
+
+  # Failure: Patina will not overwrite pre-existing AAC files.
+  elif [ "$m4a_count" -gt 0 ]; then
+    patina_raise_exception 'PE0011'
+    return 1
+
   # Success: An argument was not provided.
   elif [ "$#" -eq "0" ]; then
-    for f in *.wav; do
+    for f in ./*.wav; do
       if [ -f "$f" ]; then
         fdkaac --bitrate-mode 5 "$f" -o "$(basename "$f" .wav).m4a"
         sync

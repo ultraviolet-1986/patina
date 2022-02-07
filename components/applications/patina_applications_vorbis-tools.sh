@@ -25,6 +25,12 @@
 #############
 
 patina_encode_wave_to_vorbis(){
+  wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
+  local wav_count
+
+  ogg_count=$(find . -maxdepth 1 -name '*.ogg' | wc -l)
+  local ogg_count
+
   # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
     echo "Usage: p-wav2vorbis"
@@ -44,6 +50,16 @@ patina_encode_wave_to_vorbis(){
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
+    return 1
+
+  # Failure: No Wave files were detected.
+  elif [ "$wav_count" == 0 ]; then
+    patina_raise_exception 'PE0005'
+    return 1
+
+  # Failure: Patina will not overwrite pre-existing Vorbis files.
+  elif [ "$ogg_count" -gt 0 ]; then
+    patina_raise_exception 'PE0011'
     return 1
 
   # Success: An argument was not provided.

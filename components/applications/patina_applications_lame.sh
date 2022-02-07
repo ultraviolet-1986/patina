@@ -25,6 +25,12 @@
 #############
 
 patina_encode_wave_to_mp3(){
+  wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
+  local wav_count
+
+  mp3_count=$(find . -maxdepth 1 -name '*.mp3' | wc -l)
+  local mp3_count
+
   # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
     echo "Usage: p-wav2vorbis"
@@ -44,6 +50,16 @@ patina_encode_wave_to_mp3(){
   # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
+    return 1
+
+  # Failure: No Wave files were detected.
+  elif [ "$wav_count" == 0 ]; then
+    patina_raise_exception 'PE0005'
+    return 1
+
+  # Failure: Patina will not overwrite pre-existing MP3 files.
+  elif [ "$mp3_count" -gt 0 ]; then
+    patina_raise_exception 'PE0011'
     return 1
 
   # Success: An argument was not provided.
