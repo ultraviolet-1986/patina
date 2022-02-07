@@ -232,10 +232,6 @@ patina_required_software(){
 
   # Success: Output required package notification.
   elif [ "$#" -eq 2 ]; then
-    executable="${PATINA_MAJOR_COLOR}${1}${COLOR_RESET}"
-    package="${PATINA_MAJOR_COLOR}${2}${COLOR_RESET}"
-    note="  ${YELLOW}NOTE:${COLOR_RESET}"
-
     echo_wrap "${YELLOW}  NOTE: Patina requires command '${1}' from package '${2}'.${COLOR_RESET}"
 
   # Failure: Catch all.
