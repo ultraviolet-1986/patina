@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,6 +71,17 @@ patina_report_dependencies() {
     echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
 
+  printf "fdkaac\\t\\tp-wav2aac"
+  ( command -v 'fdkaac' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+
+  printf "flac\\t\\tp-wav2flac"
+  ( command -v 'flac' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
+  printf "^\\t\\tp-flac2wav\\t\\t^\\n"
+
   printf "genisoimage\\tp-iso"
   ( command -v 'mkisofs' > /dev/null 2>&1 ) && \
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
@@ -82,10 +93,15 @@ patina_report_dependencies() {
     echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
   printf "^\\t\\tp-gitupdate\\t\\t^\\n"
 
-  printf "gnupg2\\t\\tp-gpg"
+  printf "gpg\\t\\tp-gpg"
   ( command -v 'gpg' > /dev/null 2>&1 ) && \
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
+
+  printf "lame\\t\\tp-wav2mp3"
+  ( command -v 'lame' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
 
   printf "libreoffice\\tp-pdf"
   ( command -v 'soffice' > /dev/null 2>&1 ) && \
@@ -132,6 +148,11 @@ patina_report_dependencies() {
   ( command -v 'ufw' > /dev/null 2>&1 ) && \
     echo -e "\\t\\t\\t${GREEN}Installed${COLOR_RESET}" || \
     echo -e "\\t\\t\\t${RED}Not Installed${COLOR_RESET}"
+
+  printf "vorbis-tools\\tp-wav2vorbis"
+  ( command -v 'oggenc' > /dev/null 2>&1 ) && \
+    echo -e "\\t\\t${GREEN}Installed${COLOR_RESET}" || \
+    echo -e "\\t\\t${RED}Not Installed${COLOR_RESET}"
 
   echo
   return 0
