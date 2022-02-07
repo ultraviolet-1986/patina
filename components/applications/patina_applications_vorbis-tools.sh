@@ -64,7 +64,7 @@ patina_encode_wave_to_vorbis(){
 
   # Success: An argument was not provided.
   elif [ "$#" -eq "0" ]; then
-    for f in *.wav; do
+    for f in ./*.wav; do
       if [ -f "$f" ]; then
         oggenc -q 10.0 "$f" -o "$(basename "$f" .wav).ogg"
         sync
