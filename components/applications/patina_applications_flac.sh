@@ -45,6 +45,7 @@ patina_encode_wave_to_flac(){
   # Failure: Command 'flac' is not available.
   elif ( ! command -v 'flac' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
+    patina_required_software 'flac' 'flac'
     return 127
 
   # Failure: Patina has been given too many arguments.
@@ -101,6 +102,7 @@ patina_decode_flac_to_wave(){
   # Failure: Command 'flac' is not available.
   elif ( ! command -v 'flac' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
+    patina_required_software 'flac' 'flac'
     return 127
 
   # Failure: Patina has been given too many arguments.

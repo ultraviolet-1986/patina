@@ -45,6 +45,7 @@ patina_encode_wave_to_vorbis(){
   # Failure: Command 'oggenc' is not available.
   elif ( ! command -v 'oggenc' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
+    patina_required_software 'oggenc' 'ogg-tools'
     return 127
 
   # Failure: Patina has been given too many arguments.

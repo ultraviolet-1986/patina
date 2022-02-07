@@ -217,6 +217,34 @@ patina_raise_exception() {
   fi
 }
 
+# PATINA > FUNCTIONS > REQUIRED PACKAGE WARNING
+
+patina_required_software(){
+  # Failure: Patina has not been given an argument.
+  if [ "$#" -eq 0 ]; then
+    patina_raise_exception 'PE0001'
+    return 1
+
+  # Failure: Patina has been given too many arguments.
+  elif [ "$#" -gt 2 ]; then
+    patina_raise_exception 'PE0002'
+    return 1
+
+  # Success: Output required package notification.
+  elif [ "$#" -eq 2 ]; then
+    executable="${PATINA_MAJOR_COLOR}${1}${COLOR_RESET}"
+    package="${PATINA_MAJOR_COLOR}${2}${COLOR_RESET}"
+    note="  ${YELLOW}NOTE:${COLOR_RESET}"
+
+    echo_wrap "${YELLOW}  NOTE: Patina requires command '${1}' from package '${2}'.${COLOR_RESET}"
+
+  # Failure: Catch all.
+  else
+    patina_raise_exception 'PE0000'
+    return 1
+  fi
+}
+
 # PATINA > FUNCTIONS > FILE MANAGER
 
 patina_open_folder() {

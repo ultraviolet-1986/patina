@@ -45,6 +45,7 @@ patina_encode_wave_to_mp3(){
   # Failure: Command 'lame' is not available.
   elif ( ! command -v 'lame' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
+    patina_required_software 'lame' 'lame'
     return 127
 
   # Failure: Patina has been given too many arguments.
