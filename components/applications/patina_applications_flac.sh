@@ -122,7 +122,7 @@ patina_decode_flac_to_wave(){
 
   # Success: An argument was not provided.
   elif [ "$#" -eq "0" ]; then
-    for f in ./*.wav; do
+    for f in ./*.flac; do
       if [ -f "$f" ]; then
         flac --decode "$f"
         sync
