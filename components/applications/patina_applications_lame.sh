@@ -54,7 +54,7 @@ patina_encode_wave_to_mp3(){
     return 1
 
   # Failure: No Wave files were detected.
-  elif [ "$wav_count" == 0 ]; then
+  elif [ "$wav_count" -eq 0 ]; then
     patina_raise_exception 'PE0005'
     return 1
 
