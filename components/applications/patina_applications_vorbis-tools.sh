@@ -67,7 +67,7 @@ patina_encode_wave_to_vorbis(){
   elif [ "$#" -eq "0" ]; then
     for f in ./*.wav; do
       if [ -f "$f" ]; then
-        oggenc -q 5 "$f"
+        oggenc -q 10 "$f"
         sync
         echo
       fi

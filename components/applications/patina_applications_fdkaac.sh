@@ -68,7 +68,7 @@ patina_encode_wave_to_aac(){
   elif [ "$#" -eq "0" ]; then
     for f in ./*.wav; do
       if [ -f "$f" ]; then
-        fdkaac --bitrate-mode 5 "$f" -o "$(basename "$f" .wav).m4a"
+        fdkaac --bitrate-mode 5 "$f"
         sync
         echo
       fi
