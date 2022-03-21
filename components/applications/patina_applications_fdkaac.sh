@@ -26,10 +26,7 @@
 
 patina_encode_wave_to_aac(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
-  # local wav_count
-
   m4a_count=$(find . -maxdepth 1 -name '*.m4a' | wc -l)
-  # local m4a_count
 
 
   # Success: Display help and exit.
