@@ -26,10 +26,10 @@
 
 patina_encode_wave_to_aac(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
-  local wav_count
+  # local wav_count
 
   m4a_count=$(find . -maxdepth 1 -name '*.m4a' | wc -l)
-  local m4a_count
+  # local m4a_count
 
 
   # Success: Display help and exit.
@@ -66,9 +66,23 @@ patina_encode_wave_to_aac(){
 
   # Success: An argument was not provided.
   elif [ "$#" -eq "0" ]; then
-    for f in ./*.wav; do
+
+    for f in *.wav; do
       if [ -f "$f" ]; then
-        fdkaac --bitrate-mode 5 "$f"
+        album_name="$(basename "$(pwd)")"
+        artist_name="$(basename "$(dirname "$(pwd)")")"
+        file_name="$(basename "$f" .wav)"
+        track_number=$(echo "$f" | awk '{print substr($0,0,2)}')
+        track_title="$(echo "${file_name}" | cut -c 4-)"
+        year="$(date +"%Y")"
+
+        fdkaac --bitrate-mode 5 "$f" \
+          --title "${track_title}" \
+          --album "${album_name}" \
+          --artist "${artist_name}" \
+          --album-artist "${artist_name}" \
+          --track "${track_number}/${wav_count}" \
+          --date "${year}"
         sync
         echo
       fi
