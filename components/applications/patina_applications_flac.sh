@@ -28,7 +28,6 @@ patina_encode_wave_to_flac(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
   flac_count=$(find . -maxdepth 1 -name '*.flac' | wc -l)
 
-  # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
     echo "Usage: p-wav2flac"
     echo "Batch encode all detected Wave files in current directory"
@@ -39,28 +38,23 @@ patina_encode_wave_to_flac(){
     echo
     return 0
 
-  # Failure: Command 'flac' is not available.
   elif ( ! command -v 'flac' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
     patina_required_software 'flac' 'flac'
     return 127
 
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Failure: No Wave files were detected.
   elif [ "$wav_count" -eq 0 ]; then
     patina_raise_exception 'PE0005'
     return 1
 
-  # Failure: Patina will not overwrite pre-existing FLAC files.
   elif [ "$flac_count" -gt 0 ]; then
     patina_raise_exception 'PE0011'
     return 1
 
-  # Success: An argument was not provided.
   elif [ "$#" -eq "0" ]; then
     for f in ./*.wav; do
       if [ -f "$f" ]; then
@@ -71,7 +65,6 @@ patina_encode_wave_to_flac(){
     done
     return 0
 
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -80,12 +73,8 @@ patina_encode_wave_to_flac(){
 
 patina_decode_flac_to_wave(){
   flac_count=$(find . -maxdepth 1 -name '*.flac' | wc -l)
-  local flac_count
-
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
-  local wav_count
 
-  # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
     echo "Usage: p-flac2wave"
     echo "Batch decode all detected FLAC files in current directory"
@@ -96,28 +85,23 @@ patina_decode_flac_to_wave(){
     echo
     return 0
 
-  # Failure: Command 'flac' is not available.
   elif ( ! command -v 'flac' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
     patina_required_software 'flac' 'flac'
     return 127
 
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Failure: No FLAC files were detected.
   elif [ "$flac_count" -eq 0 ]; then
     patina_raise_exception 'PE0005'
     return 1
 
-  # Failure: Patina will not overwrite pre-existing Wave files.
   elif [ "$wav_count" -gt 0 ]; then
     patina_raise_exception 'PE0011'
     return 1
 
-  # Success: An argument was not provided.
   elif [ "$#" -eq "0" ]; then
     for f in ./*.flac; do
       if [ -f "$f" ]; then
@@ -128,7 +112,6 @@ patina_decode_flac_to_wave(){
     done
     return 0
 
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1

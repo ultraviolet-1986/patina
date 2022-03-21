@@ -28,7 +28,6 @@ patina_encode_wave_to_vorbis(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
   ogg_count=$(find . -maxdepth 1 -name '*.ogg' | wc -l)
 
-  # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
     echo "Usage: p-wav2vorbis"
     echo "Batch convert all detected Wave files in current directory"
@@ -39,28 +38,23 @@ patina_encode_wave_to_vorbis(){
     echo
     return 0
 
-  # Failure: Command 'oggenc' is not available.
   elif ( ! command -v 'oggenc' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
     patina_required_software 'oggenc' 'ogg-tools'
     return 127
 
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Failure: No Wave files were detected.
   elif [ "$wav_count" -eq 0 ]; then
     patina_raise_exception 'PE0005'
     return 1
 
-  # Failure: Patina will not overwrite pre-existing Vorbis files.
   elif [ "$ogg_count" -gt 0 ]; then
     patina_raise_exception 'PE0011'
     return 1
 
-  # Success: An argument was not provided.
   elif [ "$#" -eq "0" ]; then
     for f in ./*.wav; do
       if [ -f "$f" ]; then
@@ -71,7 +65,6 @@ patina_encode_wave_to_vorbis(){
     done
     return 0
 
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
