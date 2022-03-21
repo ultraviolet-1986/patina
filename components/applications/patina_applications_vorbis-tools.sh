@@ -26,10 +26,7 @@
 
 patina_encode_wave_to_vorbis(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
-  local wav_count
-
   ogg_count=$(find . -maxdepth 1 -name '*.ogg' | wc -l)
-  local ogg_count
 
   # Success: Display help and exit.
   if [ "$1" = '--help' ]; then

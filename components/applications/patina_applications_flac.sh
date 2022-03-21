@@ -26,10 +26,7 @@
 
 patina_encode_wave_to_flac(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
-  local wav_count
-
   flac_count=$(find . -maxdepth 1 -name '*.flac' | wc -l)
-  local flac_count
 
   # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
