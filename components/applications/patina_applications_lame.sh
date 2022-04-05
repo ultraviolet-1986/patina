@@ -67,7 +67,7 @@ patina_encode_wave_to_mp3(){
   elif [ "$#" -eq "0" ]; then
     for f in ./*.wav; do
       if [ -f "$f" ]; then
-        lame -q 0 -V 0 -p "$f" "$(basename "$f" .wav).mp3"
+        lame -h -q 0 -V 0 -p "$f" "$(basename "$f" .wav).mp3"
         sync
         echo
       fi
