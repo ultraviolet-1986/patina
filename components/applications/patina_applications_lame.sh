@@ -26,10 +26,7 @@
 
 patina_encode_wave_to_mp3(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
-  local wav_count
-
   mp3_count=$(find . -maxdepth 1 -name '*.mp3' | wc -l)
-  local mp3_count
 
   # Success: Display help and exit.
   if [ "$1" = '--help' ]; then
@@ -67,7 +64,7 @@ patina_encode_wave_to_mp3(){
   elif [ "$#" -eq "0" ]; then
     for f in ./*.wav; do
       if [ -f "$f" ]; then
-        lame -h -q 0 -V 0 -p "$f" "$(basename "$f" .wav).mp3"
+        lame -h -q 0 -V 0 --replaygain-accurate "$f" "$(basename "$f" .wav).mp3"
         sync
         echo
       fi
