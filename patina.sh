@@ -141,6 +141,13 @@ patina_initialize() {
   if [ -f "$SYSTEM_OS_RELEASE" ] ; then . "$SYSTEM_OS_RELEASE" ; fi
   if [ -f "$SYSTEM_LSB_RELEASE" ] ; then . "$SYSTEM_LSB_RELEASE" ; fi
 
+  # Import personal 'bin' folder.
+  if [[ ! "${PATH}" == *"$HOME/bin"* ]]; then
+    if [ -d "$HOME/bin" ] ; then
+        PATH="$HOME/bin:$PATH"
+    fi
+  fi
+
   # Create Patina Directory Structure (if not exists).
   mkdir -p "$PATINA_PATH_CONFIGURATION" "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}
 
