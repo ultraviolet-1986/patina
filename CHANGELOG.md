@@ -21,6 +21,16 @@ upon her less than triumphant return.
     `p-deps` command.
     - This same approach has been used where possible to reduce the amount of
       overall code required.
+  - Included a means of bulk audio conversion, the following components have
+    been created and included:
+    - `patina_applications_fdkaac.sh`
+    - `patina_applications_flac.sh`
+    - `patina_applications_lame.sh`
+    - `patina_applications_vorbis-tools.sh`
+  - From this version, Patina will now check the `$PATH` variable to confirm
+    whether or not the directory `$HOME/bin` is included, and will include this
+    location if it is not defined within `$PATH` and exists. This change is made
+    primarily for users of [Ubuntu](https://ubuntu.com/).
 
 ## 0.7.x Series: 'Duchess'
 
