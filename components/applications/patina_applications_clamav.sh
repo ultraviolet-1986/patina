@@ -24,16 +24,10 @@
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > CLAMAV
-
 patina_clamav() {
   local patina_create_clamav_logfile
   local patina_clamav_logfile
 
-  local clamav_path
-  clamav_path='/var/lib/clamav'
-
-  # Success: Display contents of help file.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-clamscan [FILE/DIRECTORY] [OPTION]"
     echo "Perform a recursive virus scan of a given location and record results."
@@ -43,33 +37,22 @@ patina_clamav() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Command 'clamscan' is not available.
   elif ( ! command -v 'clamscan' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     patina_required_software 'clamscan' 'clamav'
     return 127
-
-  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
-
-  # Success: Parse log file and show a list of infections.
   elif [ "$1" = '--parse' ] ; then
-    # ShellCheck SC2002: Useless cat.
-    # shellcheck disable=SC2002
-
     for f in clamscan_log*.txt ; do
       if [ -f "$f" ] ; then
         echo -e "\\nScanning ${PATINA_MAJOR_COLOR}$f${COLOR_RESET}..."
         echo
-        cat "$f" | grep FOUND || echo -e \
+        grep FOUND "$f" || echo -e \
           "${GREEN}SUCCESS: No infections found in ClamAV logfile.${COLOR_RESET}"
         echo
         return 0
@@ -79,13 +62,9 @@ patina_clamav() {
         return 1
       fi
     done
-
-  # Failure: Scan target does not exist.
   elif [[ ! -e "$1" ]] ; then
     patina_raise_exception 'PE0016'
     return 1
-
-  # Success: Guide user in performing virus scan.
   elif [ "$#" -ne 0 ] && [[ -e "$1" ]] ; then
     echo
     printf "Do you wish to record a log file in your Home directory [Y/N]? "
@@ -124,8 +103,6 @@ patina_clamav() {
         return 1
         ;;
     esac
-
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -135,8 +112,6 @@ patina_clamav() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > APPLICATIONS > CLAMAV COMMANDS
 
 alias 'p-clamscan'='patina_clamav'
 
