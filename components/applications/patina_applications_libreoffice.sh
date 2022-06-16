@@ -24,10 +24,7 @@
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > LIBREOFFICE
-
 patina_libreoffice() {
-  # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-pdf [FILE]"
     echo "Convert a supported file to *.pdf format."
@@ -36,34 +33,22 @@ patina_libreoffice() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'soffice' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     patina_required_software 'soffice' 'libreoffice'
     return 127
-
-  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_raise_exception 'PE0002'
     return 1
-
-  # Failure: Patina cannot convert a directory to PDF.
   elif [ -d "$1" ] ; then
     patina_raise_exception 'PE0015'
     return 1
-
-  # Success: Convert an existing document to PDF (if supported).
   elif [ -f "$1" ] ; then
     soffice --convert-to pdf "$1"
     return 0
-
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -73,8 +58,6 @@ patina_libreoffice() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > APPLICATIONS > LIBREOFFICE COMMANDS
 
 alias 'p-pdf'='patina_libreoffice'
 
