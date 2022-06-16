@@ -24,10 +24,7 @@
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > GIT
-
 patina_git() {
-  # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-git [OPTION]"
     echo "Perform git operations within the current directory."
@@ -37,29 +34,19 @@ patina_git() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     patina_required_software 'git' 'git'
     return 127
-
-  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
-
-  # Success: Parse 'git' arguments.
   elif [ "$1" = 'undo' ] ; then
     git reset --hard HEAD
     return 0
-
-  # Failure: An invalid argument was provided.
   else
     patina_raise_exception 'PE0003'
     return 1
@@ -69,8 +56,6 @@ patina_git() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > APPLICATIONS > GIT COMMANDS
 
 alias 'p-git'='patina_git'
 
