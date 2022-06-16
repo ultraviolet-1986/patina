@@ -28,6 +28,8 @@ declare -r PATINA_VERSION='1.0.0'
 declare -r PATINA_CODENAME='Mae'
 declare -r PATINA_URL='https://github.com/ultraviolet-1986/patina'
 
+# Text Formatting
+
 declare -rx BLUE='\e[34m'
 declare -rx CYAN='\e[36m'
 declare -rx GREEN='\e[32m'
@@ -59,22 +61,48 @@ declare -rx UNDERLINE='\e[4m'
 declare -rx COLOR_DEFAULT='\e[39m'
 declare -rx COLOR_RESET='\e[0m'
 
+# Paths
+
+declare -rx SYSTEM_OS_RELEASE='/etc/os-release'
+declare -rx SYSTEM_LSB_RELEASE='/etc/lsb-release'
+
 PATINA_PATH_ROOT="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
 readonly PATINA_PATH_ROOT
 export PATINA_PATH_ROOT
 
-declare -rx PATINA_PATH_CONFIGURATION="$HOME/.config/patina"
-declare -rx PATINA_FILE_CONFIGURATION="$PATINA_PATH_CONFIGURATION/patina.conf"
-declare -rx PATINA_FILE_SOURCE="${BASH_SOURCE[0]}"
+PATINA_PATH_CONFIGURATION="${HOME}/.config/patina"
+readonly PATINA_PATH_CONFIGURATION
+export PATINA_PATH_CONFIGURATION
 
-declare -rx PATINA_PATH_COMPONENTS="$PATINA_PATH_ROOT/components"
-declare -rx PATINA_PATH_COMPONENTS_APPLICATIONS="$PATINA_PATH_COMPONENTS/applications"
-declare -rx PATINA_PATH_COMPONENTS_PLACES="$PATINA_PATH_COMPONENTS/places"
-declare -rx PATINA_PATH_COMPONENTS_SYSTEM="$PATINA_PATH_COMPONENTS/system"
-declare -rx PATINA_PATH_COMPONENTS_USER="$PATINA_PATH_COMPONENTS/user"
+PATINA_FILE_CONFIGURATION="${PATINA_PATH_CONFIGURATION}/patina.conf"
+readonly PATINA_FILE_CONFIGURATION
+export PATINA_FILE_CONFIGURATION
 
-declare -rx SYSTEM_OS_RELEASE='/etc/os-release'
-declare -rx SYSTEM_LSB_RELEASE='/etc/lsb-release'
+PATINA_FILE_SOURCE="${BASH_SOURCE[0]}"
+readonly PATINA_FILE_SOURCE
+export PATINA_FILE_SOURCE
+
+PATINA_PATH_COMPONENTS="${PATINA_PATH_ROOT}/components"
+readonly PATINA_PATH_COMPONENTS
+export PATINA_PATH_COMPONENTS
+
+PATINA_PATH_COMPONENTS_APPLICATIONS="${PATINA_PATH_COMPONENTS}/applications"
+readonly PATINA_PATH_COMPONENTS_APPLICATIONS
+export PATINA_PATH_COMPONENTS_APPLICATIONS
+
+PATINA_PATH_COMPONENTS_PLACES="${PATINA_PATH_COMPONENTS}/places"
+readonly PATINA_PATH_COMPONENTS_PLACES
+export PATINA_PATH_COMPONENTS_PLACES
+
+PATINA_PATH_COMPONENTS_SYSTEM="${PATINA_PATH_COMPONENTS}/system"
+readonly PATINA_PATH_COMPONENTS_SYSTEM
+export PATINA_PATH_COMPONENTS_SYSTEM
+
+PATINA_PATH_COMPONENTS_USER="${PATINA_PATH_COMPONENTS}/user"
+readonly PATINA_PATH_COMPONENTS_USER
+export PATINA_PATH_COMPONENTS_USER
+
+# Patina Exceptions
 
 declare -rx PE0000='PE0000: Patina has encountered an unknown error.'
 declare -rx PE0001='PE0001: Patina has not been given an expected argument.'
@@ -104,47 +132,48 @@ declare -rx PE0019='PE0019: Patina cannot perform operation on empty directory.'
 # shellcheck source=/dev/null
 patina_initialize() {
 
-  if [ "$OSTYPE" != 'linux-gnu' ] ; then
+  if [ "${OSTYPE}" != 'linux-gnu' ] ; then
     patina_raise_exception 'PE0018'
     return 1
   fi
 
   export TERM=xterm-256color
 
-  if [ -f "$SYSTEM_OS_RELEASE" ] ; then
-    . "$SYSTEM_OS_RELEASE"
+  if [ -f "${SYSTEM_OS_RELEASE}" ] ; then
+    . "${SYSTEM_OS_RELEASE}"
   fi
 
-  if [ -f "$SYSTEM_LSB_RELEASE" ] ; then
-    . "$SYSTEM_LSB_RELEASE"
+  if [ -f "${SYSTEM_LSB_RELEASE}" ] ; then
+    . "${SYSTEM_LSB_RELEASE}"
   fi
 
-  if [[ ! "${PATH}" == *"$HOME/bin"* ]]; then
-    if [ -d "$HOME/bin" ] ; then
-        PATH="$HOME/bin:$PATH"
+  if [[ ! "${PATH}" == *"${HOME}/bin"* ]]; then
+    if [ -d "${HOME}/bin" ] ; then
+        PATH="${HOME}/bin:${PATH}"
     fi
   fi
 
-  mkdir -p "$PATINA_PATH_CONFIGURATION" "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}
+  mkdir -p "${PATINA_PATH_CONFIGURATION}"
+  mkdir -p "${PATINA_PATH_COMPONENTS}"/{applications,places,system,user}
 
-  if [ -f "$PATINA_FILE_CONFIGURATION" ] ; then
-    chmod a-x "$PATINA_FILE_CONFIGURATION"
-    . "$PATINA_FILE_CONFIGURATION"
+  if [ -f "${PATINA_FILE_CONFIGURATION}" ] ; then
+    chmod a-x "${PATINA_FILE_CONFIGURATION}"
+    . "${PATINA_FILE_CONFIGURATION}"
   else
     patina_create_configuration_file
   fi
 
   for component in "${PATINA_PATH_COMPONENTS}"/{applications,places,system,user}/patina_*.sh ; do
-    if [ -f "$component" ] ; then
-      chmod a-x "$component"
-      . "$component"
+    if [ -f "${component}" ] ; then
+      chmod a-x "${component}"
+      . "${component}"
       patina_components_list+=("${component}")
     fi
   done
 
   readonly -a patina_components_list
-  readonly TERM="$TERM"
-  readonly OSTYPE="$OSTYPE"
+  readonly TERM="${TERM}"
+  readonly OSTYPE="${OSTYPE}"
 
   clear
   printf "${PATINA_MAJOR_COLOR}Patina %s '%s' / " "${PATINA_VERSION}" "${PATINA_CODENAME}"
@@ -158,7 +187,7 @@ patina_initialize() {
 }
 
 patina_create_configuration_file() {
-  echo 'PATINA_THEME=default' > "$PATINA_FILE_CONFIGURATION"
+  echo 'PATINA_THEME=default' > "${PATINA_FILE_CONFIGURATION}"
 
   patina_terminal_refresh
 
@@ -189,7 +218,7 @@ patina_required_software(){
     patina_raise_exception 'PE0002'
     return 1
   elif [ "$#" -eq 2 ]; then
-    echo_wrap "${YELLOW}  NOTE: Patina requires command '${1}' from package '${2}'.${COLOR_RESET}"
+    echo_wrap "${YELLOW}NOTE: Patina requires command '$1' from package '$2'.${COLOR_RESET}"
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -237,7 +266,7 @@ patina_open_folder() {
 
 patina_open_folder_graphically() {
   if [ "$#" -eq 0 ] ; then
-    patina_open_folder "$HOME" -g
+    patina_open_folder "${HOME}" -g
     return 0
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
@@ -252,37 +281,37 @@ patina_open_folder_graphically() {
 }
 
 echo_wrap() {
-  ( echo -e "${@}" ) | fmt -w "$( tput cols )"
+  ( echo -e "$@" ) | fmt -w "$( tput cols )"
   return 0
 }
 
 to_lower() {
-  echo_wrap "${@}" | tr '[:upper:]' '[:lower:]'
+  echo_wrap "$@" | tr '[:upper:]' '[:lower:]'
   return 0
 }
 
 to_upper() {
-  echo_wrap "${@}" | tr '[:lower:]' '[:upper:]'
+  echo_wrap "$@" | tr '[:lower:]' '[:upper:]'
    return 0
 }
 
 bold() {
-  echo_wrap "${BOLD}${*}${COLOR_RESET}"
+  echo_wrap "${BOLD}$*${COLOR_RESET}"
   return 0
 }
 
 underline() {
-  echo_wrap "${UNDERLINE}${*}${COLOR_RESET}"
+  echo_wrap "${UNDERLINE}$*${COLOR_RESET}"
   return 0
 }
 
 italic() {
-  echo_wrap "${ITALIC}${*}${COLOR_RESET}"
+  echo_wrap "${ITALIC}$*${COLOR_RESET}"
   return 0
 }
 
 strikethrough() {
-  echo_wrap "${STRIKETHROUGH}${*}${COLOR_RESET}"
+  echo_wrap "${STRIKETHROUGH}$*${COLOR_RESET}"
   return 0
 }
 
@@ -305,7 +334,7 @@ generate_uuid() {
 
 generate_volume_label() {
   local label_command="head /dev/urandom | tr -dc A-Za-z0-9 | head -c4 | tr '[:lower:]' '[:upper:]'"
-  echo -e "$(eval "$label_command" ; printf "-" ; eval "$label_command")"
+  echo -e "$(eval "${label_command}" ; printf "-" ; eval "${label_command}")"
 
   return 0
 }
