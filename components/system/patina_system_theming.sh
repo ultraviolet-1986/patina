@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,21 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#########################
-# ShellCheck Directives #
-#########################
-
-# Override SC2154: "var is referenced but not assigned".
-# shellcheck disable=SC2154
-
 #############
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > SYSTEM > THEMING
-
 patina_theme_apply() {
-  # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-theme [OPTION]"
     echo "Change the current Patina theme."
@@ -63,24 +53,20 @@ patina_theme_apply() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina has been given multiple arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # DEFAULT THEME
+  # Default Theme
 
   elif [ "$1" = 'default' ] ; then
     patina_theme_apply 'magenta'
     return 0
 
-  # STANDARD THEMES
+  # Standard Themes
 
   elif [ "$1" = 'blue' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"
@@ -114,7 +100,7 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${LIGHT_YELLOW}"
     export PATINA_MINOR_COLOR="${YELLOW}"
 
-  # MONOCHROME THEMES
+  # Monochrome Themes
 
   elif [ "$1" = 'black' ] ; then
     export PATINA_MAJOR_COLOR="${BLACK}"
@@ -128,7 +114,7 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${WHITE}"
     export PATINA_MINOR_COLOR="${WHITE}"
 
-  # ADDITIONAL THEMES
+  # Additional Themes
 
   elif [ "$1" = 'blossom' ] ; then
     export PATINA_MAJOR_COLOR="${LIGHT_MAGENTA}"
@@ -158,54 +144,45 @@ patina_theme_apply() {
     export PATINA_MAJOR_COLOR="${LIGHT_BLUE}"
     export PATINA_MINOR_COLOR="${CYAN}"
 
-  # Failure: Catch any other error condition here.
   else
     patina_raise_exception 'PE0003'
     return 1
   fi
 
-  # Export the selected theme.
   export PATINA_THEME="$1"
 
-  # Success: Update configuration file.
-  if grep --quiet 'PATINA_THEME=' "$PATINA_FILE_CONFIGURATION" ; then
-    sed -i "s/PATINA_THEME=.*$/PATINA_THEME=${PATINA_THEME}/g" "$PATINA_FILE_CONFIGURATION"
-
-  # Failure: Rewrite configuration file.
+  if grep --quiet 'PATINA_THEME=' "${PATINA_FILE_CONFIGURATION}" ; then
+    sed -i "s/PATINA_THEME=.*$/PATINA_THEME=${PATINA_THEME}/g" "${PATINA_FILE_CONFIGURATION}"
   else
     patina_create_configuration_file
     return 0
   fi
 
-  # Define PS1 prompt properties.
   local window_title="\\[\\e]0;Patina\\a\\]"
   local toolbox_diamond="\\[${MAGENTA}\\]⬢\\[${COLOR_RESET}\\]"
   local user_host="\\[${PATINA_MAJOR_COLOR}\\]\\u@\\h\\[${COLOR_RESET}\\]"
   local working_directory="\\[${PATINA_MINOR_COLOR}\\]\\W\\[${COLOR_RESET}\\]"
   local command_scope="P\\$ "
 
-  # Display a custom 'PS1' command prompt depending on the current
-  # environment.
-
-  # Toolbox container prompt.
-  if [ -v "$VARIANT_ID" ] && [ "$VARIANT_ID" == 'container' ] ; then
-    export PS1="$window_title$toolbox_diamond $user_host $working_directory $command_scope"
+  if [ -v "${VARIANT_ID}" ] && [ "${VARIANT_ID}" == 'container' ] ; then
+    PS1="${window_title}${toolbox_diamond} ${user_host} ${working_directory} ${command_scope}"
+    export PS1
     return 0
-
-  # Standard prompt.
   else
-    export PS1="$window_title$user_host $working_directory $command_scope"
+    PS1="${window_title}${user_host} ${working_directory} ${command_scope}"
+    export PS1
     return 0
   fi
 }
 
 patina_initialization_theme_apply() {
-  if [ "$PATINA_THEME" ] ; then
-    patina_theme_apply "$PATINA_THEME"
+  if [ "${PATINA_THEME}" ] ; then
+    patina_theme_apply "${PATINA_THEME}"
     return 0
   else
-    export PATINA_THEME='default'
-    patina_theme_apply "$PATINA_THEME"
+    PATINA_THEME='default'
+    export PATINA_THEME
+    patina_theme_apply "${PATINA_THEME}"
     return 0
   fi
 }
@@ -213,8 +190,6 @@ patina_initialization_theme_apply() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > SYSTEM > THEMING COMMANDS
 
 alias 'p-theme'='patina_theme_apply'
 
