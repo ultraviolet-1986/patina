@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,21 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#########################
-# ShellCheck Directives #
-#########################
-
-# Override SC2154: "var is referenced but not assigned".
-# shellcheck disable=SC2154
-
 #############
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > SYSTEM > SYSTEM SESSION
-
 patina_system_session() {
-  # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-session [OPTION]"
     echo "Manage current system session using 'systemd'."
@@ -46,7 +36,6 @@ patina_system_session() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
   elif ( command -v 'systemctl' > /dev/null 2>&1 ); then
     local patina_session_action=''
 
@@ -63,9 +52,9 @@ patina_system_session() {
     read -n1 -r answer
     echo
 
-    case "$answer" in
+    case "${answer}" in
       'Y' | 'y')
-        systemctl "$patina_session_action"
+        systemctl "${patina_session_action}"
         return 0
         ;;
       'N' | 'n')
@@ -85,8 +74,6 @@ patina_system_session() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > SYSTEM > SYSTEM SESSION COMMANDS
 
 alias 'p-session'='patina_system_session'
 
