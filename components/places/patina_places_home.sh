@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,22 +24,41 @@
 # Variables #
 #############
 
-# PATINA > GLOBAL VARIABLES > PATHS > HOME DIRECTORY
+PATINA_PATH_HOME_DESKTOP="$HOME/Desktop"
+readonly PATINA_PATH_HOME_DESKTOP
+export PATINA_PATH_HOME_DESKTOP
 
-export readonly PATINA_PATH_HOME_DESKTOP="$HOME/Desktop"
-export readonly PATINA_PATH_HOME_DOCUMENTS="$HOME/Documents"
-export readonly PATINA_PATH_HOME_DOWNLOADS="$HOME/Downloads"
-export readonly PATINA_PATH_HOME_MUSIC="$HOME/Music"
-export readonly PATINA_PATH_HOME_PICTURES="$HOME/Pictures"
-export readonly PATINA_PATH_HOME_PUBLIC="$HOME/Public"
-export readonly PATINA_PATH_HOME_TEMPLATES="$HOME/Templates"
-export readonly PATINA_PATH_HOME_VIDEOS="$HOME/Videos"
+PATINA_PATH_HOME_DOCUMENTS="$HOME/Documents"
+readonly PATINA_PATH_HOME_DOCUMENTS
+export PATINA_PATH_HOME_DOCUMENTS
+
+PATINA_PATH_HOME_DOWNLOADS="$HOME/Downloads"
+readonly PATINA_PATH_HOME_DOWNLOADS
+export PATINA_PATH_HOME_DOWNLOADS
+
+PATINA_PATH_HOME_MUSIC="$HOME/Music"
+readonly PATINA_PATH_HOME_MUSIC
+export PATINA_PATH_HOME_MUSIC
+
+PATINA_PATH_HOME_PICTURES="$HOME/Pictures"
+readonly PATINA_PATH_HOME_PICTURES
+export PATINA_PATH_HOME_PICTURES
+
+PATINA_PATH_HOME_PUBLIC="$HOME/Public"
+readonly PATINA_PATH_HOME_PUBLIC
+export PATINA_PATH_HOME_PUBLIC
+
+PATINA_PATH_HOME_TEMPLATES="$HOME/Templates"
+readonly PATINA_PATH_HOME_TEMPLATES
+export PATINA_PATH_HOME_TEMPLATES
+
+PATINA_PATH_HOME_VIDEOS="$HOME/Videos"
+readonly PATINA_PATH_HOME_VIDEOS
+export PATINA_PATH_HOME_VIDEOS
 
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > FILE MANAGER COMMANDS > HOME DIRECTORY
 
 alias 'home'='patina_open_folder $HOME'
 
