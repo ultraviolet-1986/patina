@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,21 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#########################
-# Shellcheck Directives #
-#########################
-
-# Override SC2154: "var is referenced but not assigned".
-# shellcheck disable=SC2154
-
 #############
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > SYSTEM > PACKAGE MANAGEMENT
-
 patina_detect_system_package_manager() {
-  # Success: Distribution uses PackageKit.
   if ( command -v 'pkcon' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='pkcon'
     readonly PATINA_PACKAGE_INSTALL='install'
@@ -42,7 +32,6 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_UPDATE='refresh'
     readonly PATINA_PACKAGE_UPGRADE='update'
 
-  # Success: Distribution is Ubuntu or compatible.
   elif ( command -v 'apt' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='apt'
     readonly PATINA_PACKAGE_INSTALL='install'
@@ -50,7 +39,6 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_UPDATE='update'
     readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
-  # Success: Distribution is Fedora or compatible.
   elif ( command -v 'dnf' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='dnf'
     readonly PATINA_PACKAGE_INSTALL='install'
@@ -58,7 +46,6 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_UPDATE='check-update'
     readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
-  # Success: Distribution is Solus or compatible.
   elif ( command -v 'eopkg' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='eopkg'
     readonly PATINA_PACKAGE_INSTALL='install'
@@ -66,7 +53,6 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_UPDATE='update-repo'
     readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
-  # Success: Distribution is Arch or compatible.
   elif ( command -v 'pacman' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='pacman'
     readonly PATINA_PACKAGE_INSTALL='-S'
@@ -74,7 +60,6 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_UPDATE='-Syu'
     readonly PATINA_PACKAGE_UPGRADE='-Syu'
 
-  # Success: Distribution is Fedora Silverblue or compatible.
   elif ( command -v 'rpm-ostree' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='rpm-ostree'
     readonly PATINA_PACKAGE_INSTALL='install'
@@ -82,7 +67,6 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_UPDATE='refresh-md'
     readonly PATINA_PACKAGE_UPGRADE='upgrade'
 
-  # Success: Distribution is openSUSE or compatible.
   elif ( command -v 'zypper' > /dev/null 2>&1 ) ; then
     readonly PATINA_PACKAGE_MANAGER='zypper'
     readonly PATINA_PACKAGE_INSTALL='install'
@@ -90,18 +74,15 @@ patina_detect_system_package_manager() {
     readonly PATINA_PACKAGE_UPDATE='refresh'
     readonly PATINA_PACKAGE_UPGRADE='update'
 
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0006'
     return 127
   fi
 
-  # Finally: Garbage collection.
   unset -f "${FUNCNAME[0]}"
   return 0
 }
 
-# Warning: Uses sudo command(s) to perform software management tasks.
 patina_package_manager() {
   if [ "$1" = '-h' ] || [ "$1" = '--help' ] ; then
     echo "Usage: p-pkg [OPTION] [PACKAGE(S)]"
@@ -116,18 +97,13 @@ patina_package_manager() {
     echo
     return 0
   fi
-
-  # Failure: An argument was not provided.
   if [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina does not have an active Internet connection.
   elif ( ! patina_detect_internet_connection ) ; then
     patina_raise_exception 'PE0008'
     return 1
 
-  # Success: Patina has an active Internet connection.
   elif ( patina_detect_internet_connection ) ; then
     case "$1" in
       'install')
@@ -135,11 +111,11 @@ patina_package_manager() {
           patina_raise_exception 'PE0001'
           return 1
         else
-          if [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
-            eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_INSTALL" "${@:2}"
+          if [ "${PATINA_PACKAGE_MANAGER}" = 'rpm-ostree' ] ; then
+            "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_INSTALL}" "${@:2}"
             return 0
           else
-            sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_INSTALL" "${@:2}"
+            sudo "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_INSTALL}" "${@:2}"
             return 0
           fi
         fi
@@ -149,37 +125,37 @@ patina_package_manager() {
           patina_raise_exception 'PE0001'
           return 1
         else
-          if [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
-            eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_REMOVE" "${@:2}"
+          if [ "${PATINA_PACKAGE_MANAGER}" = 'rpm-ostree' ] ; then
+            "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_REMOVE}" "${@:2}"
             return 0
           else
-            sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_REMOVE" "${@:2}"
+            sudo "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_REMOVE}" "${@:2}"
             return 0
           fi
         fi
         ;;
       'update')
-        if [ "$PATINA_PACKAGE_MANAGER" = 'dnf' ] ; then
-          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE" --refresh
+        if [ "${PATINA_PACKAGE_MANAGER}" = 'dnf' ] ; then
+          eval "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_UPDATE}" --refresh
           return 0
-        elif [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] || \
-          [ "$PATINA_PACKAGE_MANAGER" = 'pkcon' ] ; then
-          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE"
+        elif [ "${PATINA_PACKAGE_MANAGER}" = 'rpm-ostree' ] || \
+          [ "${PATINA_PACKAGE_MANAGER}" = 'pkcon' ] ; then
+          eval "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_UPDATE}"
           return 0
         else
-          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPDATE"
+          sudo "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_UPDATE}"
           return 0
         fi
         ;;
       'upgrade')
-        if [ "$PATINA_PACKAGE_MANAGER" = 'dnf' ] ; then
-          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE" --refresh
+        if [ "${PATINA_PACKAGE_MANAGER}" = 'dnf' ] ; then
+          sudo "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_UPGRADE}" --refresh
           return 0
-        elif [ "$PATINA_PACKAGE_MANAGER" = 'rpm-ostree' ] ; then
-          eval "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE"
+        elif [ "${PATINA_PACKAGE_MANAGER}" = 'rpm-ostree' ] ; then
+          eval "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_UPGRADE}"
           return 0
         else
-          sudo "$PATINA_PACKAGE_MANAGER" "$PATINA_PACKAGE_UPGRADE"
+          sudo "${PATINA_PACKAGE_MANAGER}" "${PATINA_PACKAGE_UPGRADE}"
           return 0
         fi
         ;;
@@ -188,8 +164,6 @@ patina_package_manager() {
         return 1
         ;;
     esac
-
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -199,8 +173,6 @@ patina_package_manager() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > SYSTEM > PACKAGE MANAGER COMMANDS
 
 alias 'p-pkg'='patina_package_manager'
 
