@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,17 +24,13 @@
 # References #
 ##############
 
-# - Recursive Checksum Scanning
-#   https://tinyurl.com/patina-system-checksum-001
+# - https://tinyurl.com/3764efsm
 
 #############
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > SYSTEM > CHECKSUM
-
 patina_checksum_recursive() {
-  # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-hash [OPTION] [DIRECTORY]"
     echo "Recursively hash directory contents and record results to a file."
@@ -51,38 +47,27 @@ patina_checksum_recursive() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Command for the hasing algorithm is not available.
   elif ( ! command -v "$1" > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     return 127
-
-  # Failure: Patina has not been given the correct number of arguments.
   elif [ "$#" -lt 2 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Success: Parse all files recursively using the selected hashing
-  # algorithm.
   elif [ "$#" -eq 2 ] && [ -d "$2" ] ; then
     rm --force "${PWD##*/}.$1"
     shopt -s globstar dotglob
     for file in "$2"/**; do
-      [[ -f "$file" ]] && [[ "${PWD##*/}.$1" != "$file" ]] &&
-        "$1" "$file" | tee --append "${PWD##*/}.$1"
+      [[ -f "${file}" ]] && [[ "${PWD##*/}.$1" != "${file}" ]] &&
+        "$1" "${file}" | tee --append "${PWD##*/}.$1"
     done
 
-    # Remove leading './' characters using 'sed'.
     sed -i 's/  .\//  /g' "${PWD##*/}.$1"
 
     return 0
-
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -93,15 +78,11 @@ patina_checksum_recursive() {
 # Exports #
 ###########
 
-# PATINA > FUNCTIONS > SYSTEM > CHECKSUM
-
 export -f 'patina_checksum_recursive'
 
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > SYSTEM > CHECKSUM COMMANDS
 
 alias 'p-hash'='patina_checksum_recursive'
 
