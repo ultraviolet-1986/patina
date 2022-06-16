@@ -5,7 +5,7 @@
 ###########
 
 # Patina: A 'patina', 'layer', or 'toolbox' for BASH under Linux.
-# Copyright (C) 2021 William Willis Whinn
+# Copyright (C) 2022 William Willis Whinn
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,10 +24,7 @@
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > GNUPG
-
 patina_gpg() {
-  # Success: Display help and exit.
   if [ "$1" == '--help' ] ; then
     echo "Usage: p-gpg [OPTION] [FILE]"
     echo "Usage: p-encrypt [FILE]"
@@ -40,46 +37,31 @@ patina_gpg() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Command 'gpg' is not available.
   elif ( ! command -v 'gpg' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     patina_required_software 'gpg' 'gpg'
     return 127
-
-  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 2 ] ; then
     patina_raise_exception 'PE0002'
     return 1
-
-  # Failure: Patina cannot perform current operation on a directory.
   elif [ -d "$2" ] ; then
     patina_raise_exception 'PE0015'
     return 1
-
-  # Failure: Patina cannot find the file specified.
   elif [ ! -f "$2" ] ; then
     patina_raise_exception 'PE0005'
     return 1
 
-  # Failure: Location is a file without a '.gpg' extension. Do not
-  # decrypt file.
   elif [ "$1" == 'decrypt' ] && [ -f "$2" ] && [[ "$2" != *.gpg ]] ; then
     patina_raise_exception 'PE0017'
     return 1
 
-  # Failure: Location is a file with a '.gpg' extension. Do not encrypt
-  # file.
   elif [ "$1" == 'encrypt' ] && [ -f "$2" ] && [[ "$2" == *.gpg ]] ; then
     patina_raise_exception 'PE0017'
     return 1
 
-  # Success: Location is a file with a '.gpg' extension. Decrypt file.
   elif [ "$1" == 'decrypt' ] && [ -f "$2" ] && [[ "$2" == *.gpg ]] ; then
     local decrypted_filename
     decrypted_filename="$(printf '%s\n' "${2//.gpg/}")"
@@ -87,12 +69,10 @@ patina_gpg() {
     gpg --output "$decrypted_filename" --decrypt "$2"
     return 0
 
-  # Success: Locations is a file. Encrypt file.
   elif [ "$1" == 'encrypt' ] && [ -f "$2" ] && [[ "$2" != *.gpg ]] ; then
     gpg --symmetric "$2"
     return 0
 
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -103,11 +83,7 @@ patina_gpg() {
 # Aliases #
 ###########
 
-# PATINA > FUNCTIONS > APPLICATIONS > GNUPG COMMANDS
-
 alias 'p-gpg'='patina_gpg'
-
-# PATINA > FUNCTIONS > APPLICATIONS > GNUPG COMMANDS > SHORTCUTS
 
 alias 'p-decrypt'='p-gpg decrypt'
 alias 'p-encrypt'='p-gpg encrypt'
