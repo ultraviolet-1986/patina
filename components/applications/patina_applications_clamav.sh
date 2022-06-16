@@ -56,7 +56,6 @@ patina_clamav() {
           "${GREEN}SUCCESS: No infections found in ClamAV logfile.${COLOR_RESET}"
         echo
         return 0
-
       else
         patina_raise_exception "PE0005"
         return 1
