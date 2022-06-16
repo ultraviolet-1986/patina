@@ -20,94 +20,90 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#########################
-# Shellcheck Directives #
-#########################
-
-# Override SC1090: "Can't follow non-constant source".
-# shellcheck source=/dev/null
-
 #############
 # Variables #
 #############
 
-readonly PATINA_VERSION='1.0.0'
-readonly PATINA_CODENAME='Mae'
-readonly PATINA_URL='https://github.com/ultraviolet-1986/patina'
+declare -r PATINA_VERSION='1.0.0'
+declare -r PATINA_CODENAME='Mae'
+declare -r PATINA_URL='https://github.com/ultraviolet-1986/patina'
 
-export readonly BLUE='\e[34m'
-export readonly CYAN='\e[36m'
-export readonly GREEN='\e[32m'
-export readonly MAGENTA='\e[35m'
-export readonly ORANGE='\e[38;5;130m'
-export readonly RED='\e[31m'
-export readonly TEAL='\e[38;5;29m'
-export readonly YELLOW='\e[33m'
+declare -rx BLUE='\e[34m'
+declare -rx CYAN='\e[36m'
+declare -rx GREEN='\e[32m'
+declare -rx MAGENTA='\e[35m'
+declare -rx ORANGE='\e[38;5;130m'
+declare -rx RED='\e[31m'
+declare -rx TEAL='\e[38;5;29m'
+declare -rx YELLOW='\e[33m'
 
-export readonly LIGHT_BLUE='\e[94m'
-export readonly LIGHT_CYAN='\e[96m'
-export readonly LIGHT_GRAY='\e[37m'
-export readonly LIGHT_GREEN='\e[92m'
-export readonly LIGHT_MAGENTA='\e[95m'
-export readonly LIGHT_ORANGE='\e[38;5;202m'
-export readonly LIGHT_RED='\e[91m'
-export readonly LIGHT_TEAL='\e[38;5;35m'
-export readonly LIGHT_YELLOW='\e[93m'
+declare -rx LIGHT_BLUE='\e[94m'
+declare -rx LIGHT_CYAN='\e[96m'
+declare -rx LIGHT_GRAY='\e[37m'
+declare -rx LIGHT_GREEN='\e[92m'
+declare -rx LIGHT_MAGENTA='\e[95m'
+declare -rx LIGHT_ORANGE='\e[38;5;202m'
+declare -rx LIGHT_RED='\e[91m'
+declare -rx LIGHT_TEAL='\e[38;5;35m'
+declare -rx LIGHT_YELLOW='\e[93m'
 
-export readonly BLACK='\e[30m'
-export readonly GRAY='\e[90m'
-export readonly WHITE='\e[97m'
+declare -rx BLACK='\e[30m'
+declare -rx GRAY='\e[90m'
+declare -rx WHITE='\e[97m'
 
-export readonly BOLD='\e[1m'
-export readonly ITALIC='\e[3m'
-export readonly STRIKETHROUGH='\e[9m'
-export readonly UNDERLINE='\e[4m'
+declare -rx BOLD='\e[1m'
+declare -rx ITALIC='\e[3m'
+declare -rx STRIKETHROUGH='\e[9m'
+declare -rx UNDERLINE='\e[4m'
 
-export readonly COLOR_DEFAULT='\e[39m'
-export readonly COLOR_RESET='\e[0m'
-
-export readonly PE0000='PE0000: Patina has encountered an unknown error.'
-export readonly PE0001='PE0001: Patina has not been given an expected argument.'
-export readonly PE0002='PE0002: Patina has been given too many arguments.'
-export readonly PE0003='PE0003: Patina has not been given a valid argument.'
-export readonly PE0004='PE0004: Patina cannot find the directory specified.'
-export readonly PE0005='PE0005: Patina cannot find the file specified.'
-export readonly PE0006='PE0006: Patina could not detect a required application.'
-export readonly PE0007='PE0007: Patina has not connected any components.'
-export readonly PE0008='PE0008: Patina does not have access to the Internet.'
-export readonly PE0009='PE0009: Patina cannot detect a valid version control repository.'
-export readonly PE0010='PE0010: Patina cannot access a required variable.'
-export readonly PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
-export readonly PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
-export readonly PE0013='PE0013: Patina cannot execute this command under this environment.'
-export readonly PE0014='PE0014: Patina cannot perform operation on a file.'
-export readonly PE0015='PE0015: Patina cannot perform operation on a directory.'
-export readonly PE0016='PE0016: Patina cannot find the item specified.'
-export readonly PE0017='PE0017: Patina cannot perform operation on item specified.'
-export readonly PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
-export readonly PE0019='PE0019: Patina cannot perform operation on empty directory.'
+declare -rx COLOR_DEFAULT='\e[39m'
+declare -rx COLOR_RESET='\e[0m'
 
 PATINA_PATH_ROOT="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
-export readonly PATINA_PATH_ROOT
+readonly PATINA_PATH_ROOT
+export PATINA_PATH_ROOT
 
-export readonly PATINA_PATH_CONFIGURATION="$HOME/.config/patina"
-export readonly PATINA_FILE_CONFIGURATION="$PATINA_PATH_CONFIGURATION/patina.conf"
-export readonly PATINA_FILE_SOURCE="${BASH_SOURCE[0]}"
+declare -rx PATINA_PATH_CONFIGURATION="$HOME/.config/patina"
+declare -rx PATINA_FILE_CONFIGURATION="$PATINA_PATH_CONFIGURATION/patina.conf"
+declare -rx PATINA_FILE_SOURCE="${BASH_SOURCE[0]}"
 
-export readonly PATINA_PATH_COMPONENTS="$PATINA_PATH_ROOT/components"
-export readonly PATINA_PATH_COMPONENTS_APPLICATIONS="$PATINA_PATH_COMPONENTS/applications"
-export readonly PATINA_PATH_COMPONENTS_PLACES="$PATINA_PATH_COMPONENTS/places"
-export readonly PATINA_PATH_COMPONENTS_SYSTEM="$PATINA_PATH_COMPONENTS/system"
-export readonly PATINA_PATH_COMPONENTS_USER="$PATINA_PATH_COMPONENTS/user"
+declare -rx PATINA_PATH_COMPONENTS="$PATINA_PATH_ROOT/components"
+declare -rx PATINA_PATH_COMPONENTS_APPLICATIONS="$PATINA_PATH_COMPONENTS/applications"
+declare -rx PATINA_PATH_COMPONENTS_PLACES="$PATINA_PATH_COMPONENTS/places"
+declare -rx PATINA_PATH_COMPONENTS_SYSTEM="$PATINA_PATH_COMPONENTS/system"
+declare -rx PATINA_PATH_COMPONENTS_USER="$PATINA_PATH_COMPONENTS/user"
 
-export readonly SYSTEM_OS_RELEASE='/etc/os-release'
-export readonly SYSTEM_LSB_RELEASE='/etc/lsb-release'
+declare -rx SYSTEM_OS_RELEASE='/etc/os-release'
+declare -rx SYSTEM_LSB_RELEASE='/etc/lsb-release'
+
+declare -rx PE0000='PE0000: Patina has encountered an unknown error.'
+declare -rx PE0001='PE0001: Patina has not been given an expected argument.'
+declare -rx PE0002='PE0002: Patina has been given too many arguments.'
+declare -rx PE0003='PE0003: Patina has not been given a valid argument.'
+declare -rx PE0004='PE0004: Patina cannot find the directory specified.'
+declare -rx PE0005='PE0005: Patina cannot find the file specified.'
+declare -rx PE0006='PE0006: Patina could not detect a required application.'
+declare -rx PE0007='PE0007: Patina has not connected any components.'
+declare -rx PE0008='PE0008: Patina does not have access to the Internet.'
+declare -rx PE0009='PE0009: Patina cannot detect a valid version control repository.'
+declare -rx PE0010='PE0010: Patina cannot access a required variable.'
+declare -rx PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
+declare -rx PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
+declare -rx PE0013='PE0013: Patina cannot execute this command under this environment.'
+declare -rx PE0014='PE0014: Patina cannot perform operation on a file.'
+declare -rx PE0015='PE0015: Patina cannot perform operation on a directory.'
+declare -rx PE0016='PE0016: Patina cannot find the item specified.'
+declare -rx PE0017='PE0017: Patina cannot perform operation on item specified.'
+declare -rx PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
+declare -rx PE0019='PE0019: Patina cannot perform operation on empty directory.'
 
 #############
 # Functions #
 #############
 
+# shellcheck source=/dev/null
 patina_initialize() {
+
   if [ "$OSTYPE" != 'linux-gnu' ] ; then
     patina_raise_exception 'PE0018'
     return 1
@@ -115,8 +111,13 @@ patina_initialize() {
 
   export TERM=xterm-256color
 
-  if [ -f "$SYSTEM_OS_RELEASE" ] ; then . "$SYSTEM_OS_RELEASE" ; fi
-  if [ -f "$SYSTEM_LSB_RELEASE" ] ; then . "$SYSTEM_LSB_RELEASE" ; fi
+  if [ -f "$SYSTEM_OS_RELEASE" ] ; then
+    . "$SYSTEM_OS_RELEASE"
+  fi
+
+  if [ -f "$SYSTEM_LSB_RELEASE" ] ; then
+    . "$SYSTEM_LSB_RELEASE"
+  fi
 
   if [[ ! "${PATH}" == *"$HOME/bin"* ]]; then
     if [ -d "$HOME/bin" ] ; then
