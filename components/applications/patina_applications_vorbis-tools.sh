@@ -44,10 +44,10 @@ patina_encode_wave_to_vorbis(){
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
     return 1
-  elif [ "$wav_count" -eq 0 ]; then
+  elif [ "${wav_count}" -eq 0 ]; then
     patina_raise_exception 'PE0005'
     return 1
-  elif [ "$ogg_count" -gt 0 ]; then
+  elif [ "${ogg_count}" -gt 0 ]; then
     patina_raise_exception 'PE0011'
     return 1
   elif [ "$#" -eq "0" ]; then

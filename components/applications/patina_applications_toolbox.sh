@@ -65,7 +65,7 @@ patina_toolbox(){
 
   elif [ "$1" = 'commit' ] ; then
     local image_name="$2_${datestamp}"
-    local container="${YELLOW}${2}${COLOR_RESET}"
+    local container="${YELLOW}$2${COLOR_RESET}"
     local image="${YELLOW}${image_name}${COLOR_RESET}"
 
     echo -e "Now committing container ${container} to image ${image}. Please wait."
@@ -74,8 +74,8 @@ patina_toolbox(){
     return 0
 
   elif [ "$1" = 'export' ] ; then
-    local image="${YELLOW}${2}${COLOR_RESET}"
-    local file="${YELLOW}${2}.tar${COLOR_RESET}"
+    local image="${YELLOW}$2${COLOR_RESET}"
+    local file="${YELLOW}$2.tar${COLOR_RESET}"
 
     echo -e "Now exporting image ${image} to file ${file}. Please wait."
     podman save -o "$2.tar" "$2" || return 1
@@ -83,7 +83,7 @@ patina_toolbox(){
     return 0
 
   elif [ "$1" = 'import' ] && [ -f "$2" ] ; then
-    local file="${YELLOW}${2}${COLOR_RESET}"
+    local file="${YELLOW}$2${COLOR_RESET}"
     local image
     image="${YELLOW}$(basename "$2" .tar)${COLOR_RESET}"
 
@@ -112,6 +112,6 @@ export -f 'patina_toolbox'
 # Aliases #
 ###########
 
-alias 'p-toolbox'="patina_toolbox"
+alias 'p-toolbox'='patina_toolbox'
 
 # End of File.

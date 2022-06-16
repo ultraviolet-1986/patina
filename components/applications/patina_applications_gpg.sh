@@ -66,7 +66,7 @@ patina_gpg() {
     local decrypted_filename
     decrypted_filename="$(printf '%s\n' "${2//.gpg/}")"
 
-    gpg --output "$decrypted_filename" --decrypt "$2"
+    gpg --output "${decrypted_filename}" --decrypt "$2"
     return 0
 
   elif [ "$1" == 'encrypt' ] && [ -f "$2" ] && [[ "$2" != *.gpg ]] ; then

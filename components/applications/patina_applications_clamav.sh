@@ -86,9 +86,9 @@ patina_clamav() {
 
     echo -e "\\nPreparing 'clamav' virus scan, please wait...\\n"
 
-    case "$patina_create_clamav_logfile" in
+    case "${patina_create_clamav_logfile}" in
       true)
-        clamscan -l ~/"$patina_clamav_logfile" -r "$1" -v
+        clamscan -l ~/"${patina_clamav_logfile}" -r "$1" -v
         echo
         return 0
         ;;

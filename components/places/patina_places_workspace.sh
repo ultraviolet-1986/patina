@@ -37,10 +37,10 @@ export PATINA_PATH_WORKSPACE_GIT
 #############
 
 patina_workspace_bootstrap() {
-  mkdir -p "$PATINA_PATH_WORKSPACE"
+  mkdir -p "${PATINA_PATH_WORKSPACE}"
 
   if ( command -v 'git' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE_GIT"
+    mkdir -p "${PATINA_PATH_WORKSPACE_GIT}"
   fi
 
   return 0
@@ -54,12 +54,12 @@ patina_workspace_update_git_repositories() {
     patina_raise_exception 'PE0006'
     patina_required_software 'git' 'git'
     return 127
-  elif ( ! ls -A "$PATINA_PATH_WORKSPACE_GIT" > /dev/null 2>&1 ) ; then
+  elif ( ! ls -A "${PATINA_PATH_WORKSPACE_GIT}" > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0019'
     return 1
 
   elif ( command -v 'git' > /dev/null 2>&1 ) ; then
-    mkdir -p "$PATINA_PATH_WORKSPACE_GIT"
+    mkdir -p "${PATINA_PATH_WORKSPACE_GIT}"
 
     echo -e "\\n${BOLD}Updating Detected 'git' Repositories${COLOR_RESET}\\n"
 
