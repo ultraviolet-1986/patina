@@ -24,36 +24,27 @@
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > REPORTS
-
 patina_report_components() {
-  # Failure: Success condition(s) not met.
   if [ "$#" -ge 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Success: Patina Component(s) detected.
   elif [[ -n "${patina_components_list[*]}" ]] ; then
     echo -e "\\n${BOLD}Patina Component Report${COLOR_RESET}\\n"
     echo -e "Patina has connected the following ${#patina_components_list[@]} component(s):\\n"
 
-    # Success: 'tree' is installed. Show enhanced component list.
     if ( command -v 'tree' > /dev/null 2>&1 ) ; then
-      tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "$PATINA_PATH_COMPONENTS"
+      tree --sort=name --dirsfirst --noreport --prune -P patina_*.sh "${PATINA_PATH_COMPONENTS}"
       echo
       return 0
-
-    # Success: 'tree' is not installed. Show standard component list.
     else
       for component in "${patina_components_list[@]}" ; do
-        echo -e "$( basename "$component" )"
+        echo -e "$( basename "${component}" )"
       done
 
       echo
       return 0
     fi
-
-  # Failure: Patina Component(s) were not detected.
   else
     patina_raise_exception 'PE0007'
     return 1
@@ -159,12 +150,10 @@ patina_report_dependencies() {
 }
 
 patina_report_system() {
-  # Failure: Patina has been given too many arguments.
   if [ "$#" -ge 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Success: Display the Patina System Report.
   elif [ "$#" -eq 0 ] ; then
     local network_status
 
@@ -185,8 +174,6 @@ patina_report_system() {
     echo -e "${BOLD}Internet Connection${COLOR_RESET}\\t${network_status}\\n"
 
     return 0
-
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -196,8 +183,6 @@ patina_report_system() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > SYSTEM REPORT COMMANDS
 
 alias 'p-list'='patina_report_components'
 alias 'p-deps'='patina_report_dependencies'
