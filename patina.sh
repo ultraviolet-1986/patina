@@ -126,7 +126,6 @@ patina_initialize() {
 
   mkdir -p "$PATINA_PATH_CONFIGURATION" "$PATINA_PATH_COMPONENTS"/{applications,places,system,user}
 
-  # Source Patina configuration.
   if [ -f "$PATINA_FILE_CONFIGURATION" ] ; then
     chmod a-x "$PATINA_FILE_CONFIGURATION"
     . "$PATINA_FILE_CONFIGURATION"
@@ -134,7 +133,6 @@ patina_initialize() {
     patina_create_configuration_file
   fi
 
-  # Source Patina components.
   for component in "${PATINA_PATH_COMPONENTS}"/{applications,places,system,user}/patina_*.sh ; do
     if [ -f "$component" ] ; then
       chmod a-x "$component"
@@ -153,7 +151,6 @@ patina_initialize() {
   echo -e "${PATINA_MAJOR_COLOR}Copyright (C) 2022 William Whinn${COLOR_RESET}"
   echo -e "${PATINA_MINOR_COLOR}${PATINA_URL}${COLOR_RESET}\\n"
 
-  # Prevent repeat execution upon completion.
   unset -f "${FUNCNAME[0]}"
 
   return 0
