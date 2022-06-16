@@ -24,22 +24,21 @@
 # Variables #
 #############
 
-# PATINA > GLOBAL VARIABLES > PATHS > WORKSPACE DIRECTORY
+PATINA_PATH_WORKSPACE="${HOME}/Documents/Workspace"
+readonly PATINA_PATH_WORKSPACE
+export PATINA_PATH_WORKSPACE
 
-export readonly PATINA_PATH_WORKSPACE="$HOME/Documents/Workspace"
-
-export readonly PATINA_PATH_WORKSPACE_GIT="$PATINA_PATH_WORKSPACE/git"
+PATINA_PATH_WORKSPACE_GIT="${PATINA_PATH_WORKSPACE}/git"
+readonly PATINA_PATH_WORKSPACE_GIT
+export PATINA_PATH_WORKSPACE_GIT
 
 #############
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > PLACES > WORKSPACE
-
 patina_workspace_bootstrap() {
   mkdir -p "$PATINA_PATH_WORKSPACE"
 
-  # Detect 'git' executable and create workspace directory.
   if ( command -v 'git' > /dev/null 2>&1 ) ; then
     mkdir -p "$PATINA_PATH_WORKSPACE_GIT"
   fi
@@ -48,28 +47,22 @@ patina_workspace_bootstrap() {
 }
 
 patina_workspace_update_git_repositories() {
-  # Failure: Patina could not detect an active Internet connection.
   if ( ! patina_detect_internet_connection ) ; then
     patina_raise_exception 'PE0008'
     return 1
-
-  # Failure: 'git' was not detected.
   elif ( ! command -v 'git' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
+    patina_required_software 'git' 'git'
     return 127
-
-  # Failure: '$PATINA_PATH_WORKSPACE_GIT' is empty.
   elif ( ! ls -A "$PATINA_PATH_WORKSPACE_GIT" > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0019'
     return 1
 
-  # Success: 'git' was detected.
   elif ( command -v 'git' > /dev/null 2>&1 ) ; then
     mkdir -p "$PATINA_PATH_WORKSPACE_GIT"
 
     echo -e "\\n${BOLD}Updating Detected 'git' Repositories${COLOR_RESET}\\n"
 
-    # Change into Git directory and pull any updates recursively.
     for f in "${PATINA_PATH_WORKSPACE_GIT}"/*; do
       if [ -d "$f" ] ; then
         echo_wrap "Updating Repository: ${PATINA_MAJOR_COLOR}$(basename "$f")${COLOR_RESET}"
@@ -82,7 +75,6 @@ patina_workspace_update_git_repositories() {
 
     return 0
 
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -93,14 +85,10 @@ patina_workspace_update_git_repositories() {
 # Aliases #
 ###########
 
-# PATINA > FUNCTIONS > PLACES > WORKSPACE COMMANDS
-
 alias 'p-workspace'='patina_workspace_bootstrap'
 alias 'p-gitupdate'='patina_workspace_update_git_repositories'
 
-# PATINA > FUNCTIONS > FILE MANAGER COMMANDS > WORKSPACE DIRECTORIES
-
-alias 'workspace'='patina_open_folder "$PATINA_PATH_WORKSPACE"'
-alias 'workspace-git'='patina_open_folder "$PATINA_PATH_WORKSPACE_GIT"'
+alias 'workspace'='patina_open_folder "${PATINA_PATH_WORKSPACE}"'
+alias 'workspace-git'='patina_open_folder "${PATINA_PATH_WORKSPACE_GIT}"'
 
 # End of File.
