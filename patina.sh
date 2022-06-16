@@ -61,6 +61,29 @@ declare -rx UNDERLINE='\e[4m'
 declare -rx COLOR_DEFAULT='\e[39m'
 declare -rx COLOR_RESET='\e[0m'
 
+# Patina Exceptions
+
+declare -rx PE0000='PE0000: Patina has encountered an unknown error.'
+declare -rx PE0001='PE0001: Patina has not been given an expected argument.'
+declare -rx PE0002='PE0002: Patina has been given too many arguments.'
+declare -rx PE0003='PE0003: Patina has not been given a valid argument.'
+declare -rx PE0004='PE0004: Patina cannot find the directory specified.'
+declare -rx PE0005='PE0005: Patina cannot find the file specified.'
+declare -rx PE0006='PE0006: Patina could not detect a required application.'
+declare -rx PE0007='PE0007: Patina has not connected any components.'
+declare -rx PE0008='PE0008: Patina does not have access to the Internet.'
+declare -rx PE0009='PE0009: Patina cannot detect a valid version control repository.'
+declare -rx PE0010='PE0010: Patina cannot access a required variable.'
+declare -rx PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
+declare -rx PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
+declare -rx PE0013='PE0013: Patina cannot execute this command under this environment.'
+declare -rx PE0014='PE0014: Patina cannot perform operation on a file.'
+declare -rx PE0015='PE0015: Patina cannot perform operation on a directory.'
+declare -rx PE0016='PE0016: Patina cannot find the item specified.'
+declare -rx PE0017='PE0017: Patina cannot perform operation on item specified.'
+declare -rx PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
+declare -rx PE0019='PE0019: Patina cannot perform operation on empty directory.'
+
 # Paths
 
 declare -rx SYSTEM_OS_RELEASE='/etc/os-release'
@@ -101,29 +124,6 @@ export PATINA_PATH_COMPONENTS_SYSTEM
 PATINA_PATH_COMPONENTS_USER="${PATINA_PATH_COMPONENTS}/user"
 readonly PATINA_PATH_COMPONENTS_USER
 export PATINA_PATH_COMPONENTS_USER
-
-# Patina Exceptions
-
-declare -rx PE0000='PE0000: Patina has encountered an unknown error.'
-declare -rx PE0001='PE0001: Patina has not been given an expected argument.'
-declare -rx PE0002='PE0002: Patina has been given too many arguments.'
-declare -rx PE0003='PE0003: Patina has not been given a valid argument.'
-declare -rx PE0004='PE0004: Patina cannot find the directory specified.'
-declare -rx PE0005='PE0005: Patina cannot find the file specified.'
-declare -rx PE0006='PE0006: Patina could not detect a required application.'
-declare -rx PE0007='PE0007: Patina has not connected any components.'
-declare -rx PE0008='PE0008: Patina does not have access to the Internet.'
-declare -rx PE0009='PE0009: Patina cannot detect a valid version control repository.'
-declare -rx PE0010='PE0010: Patina cannot access a required variable.'
-declare -rx PE0011='PE0011: Patina cannot overwrite a pre-existing file.'
-declare -rx PE0012='PE0012: Patina cannot overwrite a pre-existing directory.'
-declare -rx PE0013='PE0013: Patina cannot execute this command under this environment.'
-declare -rx PE0014='PE0014: Patina cannot perform operation on a file.'
-declare -rx PE0015='PE0015: Patina cannot perform operation on a directory.'
-declare -rx PE0016='PE0016: Patina cannot find the item specified.'
-declare -rx PE0017='PE0017: Patina cannot perform operation on item specified.'
-declare -rx PE0018='PE0018: Patina cannot be initialized in an unsupported environment.'
-declare -rx PE0019='PE0019: Patina cannot perform operation on empty directory.'
 
 #############
 # Functions #
