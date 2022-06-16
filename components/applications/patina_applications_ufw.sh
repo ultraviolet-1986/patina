@@ -24,10 +24,7 @@
 # Functions #
 #############
 
-# PATINA > FUNCTIONS > APPLICATIONS > UFW
-
 patina_ufw() {
-  # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-ufw [OPTION]"
     echo "Configure the 'ufw' firewall."
@@ -41,25 +38,17 @@ patina_ufw() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Patina cannot detect a required application.
   elif ( ! command -v 'ufw' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     patina_required_software 'ufw' 'ufw'
     return 127
-
-  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq 0 ] ; then
     patina_raise_exception 'PE0001'
     return 1
-
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
 
-  # Success: Process argument and apply it to 'ufw'.
-  # Warning: Uses 'sudo' to configure 'ufw'.
   elif [ -n "$1" ] ; then
     case "$1" in
       'disable')
@@ -85,8 +74,6 @@ patina_ufw() {
         return 1
         ;;
     esac
-
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -96,8 +83,6 @@ patina_ufw() {
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > APPLICATIONS > UFW COMMANDS
 
 alias 'p-ufw'='patina_ufw'
 
