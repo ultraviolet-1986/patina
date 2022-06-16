@@ -24,7 +24,9 @@
 # Functions #
 #############
 
-patina_detect_internet_connection() { ( ping -c 1 1.1.1.1 &> /dev/null ) && return 0 || return 1 ; }
+patina_detect_internet_connection() {
+  ( ping -c 1 1.1.1.1 &> /dev/null ) && return 0 || return 1
+}
 
 patina_show_network_status() {
   if patina_detect_internet_connection ; then
@@ -37,7 +39,6 @@ patina_show_network_status() {
 }
 
 patina_systemd_network_manager() {
-  # Success: Display help and exit.
   if [ "$1" = '--help' ] ; then
     echo "Usage: p-network [OPTION]"
     echo "Manage various Network settings using 'systemd'."
@@ -52,39 +53,45 @@ patina_systemd_network_manager() {
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
-  # Failure: Command 'systemctl' is not available.
   elif ( ! command -v 'systemctl' > /dev/null 2>&1 ) ; then
     patina_raise_exception 'PE0006'
     return 127
-
-  # Failure: Patina has not been given an argument.
   elif [ "$#" -eq "0" ] ; then
     patina_raise_exception 'PE0003'
     return 1
-
-  # Failure: Patina has been given too many arguments.
   elif [ "$#" -gt 1 ] ; then
     patina_raise_exception 'PE0002'
     return 1
-
-  # Success: Manage system network services using 'systemd'.
   elif ( command -v 'systemctl' > /dev/null 2>&1 ) ; then
     local network_command="systemctl '$1' NetworkManager.service"
 
     case "$1" in
-      'disable') eval "$network_command" ;;
-      'enable') eval "$network_command" ;;
-      'restart') eval "$network_command" ;;
-      'start') eval "$network_command" ;;
-      'status') patina_show_network_status ; return "$?" ;;
-      'stop') eval "$network_command" ;;
-      *) patina_raise_exception 'PE0003' ; return 1 ;;
+      'disable')
+        eval "${network_command}"
+        ;;
+      'enable')
+        eval "${network_command}"
+        ;;
+      'restart')
+        eval "${network_command}"
+        ;;
+      'start')
+        eval "${network_command}"
+        ;;
+      'status')
+        patina_show_network_status
+        return "$?"
+        ;;
+      'stop')
+        eval "${network_command}"
+        ;;
+      *)
+        patina_raise_exception 'PE0003'
+        return 1
+        ;;
     esac
 
     return 0
-
-  # Failure: Catch all.
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -95,15 +102,11 @@ patina_systemd_network_manager() {
 # Exports #
 ###########
 
-# PATINA > FUNCTIONS > SYSTEM > NETWORK
-
 export -f 'patina_detect_internet_connection'
 
 ###########
 # Aliases #
 ###########
-
-# PATINA > FUNCTIONS > SYSTEM > NETWORK COMMANDS
 
 alias 'p-network'='patina_systemd_network_manager'
 
