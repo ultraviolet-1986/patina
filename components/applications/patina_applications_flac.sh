@@ -37,24 +37,19 @@ patina_encode_wave_to_flac(){
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
   elif ( ! command -v 'flac' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
     patina_required_software 'flac' 'flac'
     return 127
-
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
     return 1
-
   elif [ "$wav_count" -eq 0 ]; then
     patina_raise_exception 'PE0005'
     return 1
-
   elif [ "$flac_count" -gt 0 ]; then
     patina_raise_exception 'PE0011'
     return 1
-
   elif [ "$#" -eq "0" ]; then
     for f in ./*.wav; do
       if [ -f "$f" ]; then
@@ -64,7 +59,6 @@ patina_encode_wave_to_flac(){
       fi
     done
     return 0
-
   else
     patina_raise_exception 'PE0000'
     return 1
@@ -84,24 +78,19 @@ patina_decode_flac_to_wave(){
     echo -e "  --help\\tDisplay this help and exit."
     echo
     return 0
-
   elif ( ! command -v 'flac' > /dev/null 2>&1 ); then
     patina_raise_exception 'PE0006'
     patina_required_software 'flac' 'flac'
     return 127
-
   elif [ "$#" -gt 0 ]; then
     patina_raise_exception 'PE0002'
     return 1
-
   elif [ "$flac_count" -eq 0 ]; then
     patina_raise_exception 'PE0005'
     return 1
-
   elif [ "$wav_count" -gt 0 ]; then
     patina_raise_exception 'PE0011'
     return 1
-
   elif [ "$#" -eq "0" ]; then
     for f in ./*.flac; do
       if [ -f "$f" ]; then
@@ -111,7 +100,6 @@ patina_decode_flac_to_wave(){
       fi
     done
     return 0
-
   else
     patina_raise_exception 'PE0000'
     return 1
