@@ -28,6 +28,10 @@ Additional Patina components can be found here:
     - [Disk Image Creation (SquashFS)](#disk-image-creation-squashfs)
     - [Document Conversion (LibreOffice)](#document-conversion-libreoffice)
     - [File Encryption (GnuPG)](#file-encryption-gnupg)
+    - [Music Conversion (AAC)](#music-conversion-aac)
+    - [Music Conversion (FLAC)](#music-conversion-flac)
+    - [Music Conversion (LAME)](#music-conversion-lame)
+    - [Music Conversion (VORBIS)](#music-conversion-vorbis)
     - [Source Control (git)](#source-control-git)
     - [System Snapshots (Timeshift)](#system-snapshots-timeshift)
     - [Container Management (Toolbox)](#container-management-toolbox)
@@ -382,6 +386,45 @@ need for providing an additional argument.
 ```bash
 p-decrypt "<File Name>"  # Decrypt a file.
 p-encrypt "<File Name>"  # Encrypt a file.
+```
+
+#### Music Conversion (AAC)
+
+This command will detect and encode all detected `.wav` files into highest
+quality AAC format (`.m4a`) at highest quality variable bit rate (VBR).
+
+```bash
+p-wav2aac  # Convert all .WAV files into .M4A format using 'fdkaac'.
+```
+
+#### Music Conversion (FLAC)
+
+These commands will encode or decode `.wav`/`.flac` format files into one
+another. Any `.flac` files may be decoded to an identical `.wav` file which
+created it.
+
+```bash
+p-wav2flac  # Encode all .WAV files into .FLAC format using 'flac'.
+p-flac2wav  # Decode all .FLAC files into .WAV format using 'flac'.
+```
+
+#### Music Conversion (LAME)
+
+These commands will allow a user to convert all detected `.wav` or `.flac` files
+into `.mp3` format at highest quality variable bit rate (VBR).
+
+```bash
+p-wav2mp3   # Convert all .WAV files into .MP3 format using 'lame'.
+p-flac2mp3  # Convert all .FLAC files into .MP3 format using 'lame' and 'flac'.
+```
+
+#### Music Conversion (VORBIS)
+
+This command will allow the conversion of all detected `.wav` files into Vorbis
+(`.ogg`) format at highest quality variable bit rate.
+
+```bash
+p-wav2vorbis  # Encode all .WAV files into .OGG format using 'oggenc'.
 ```
 
 #### Source Control (git)
