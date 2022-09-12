@@ -24,7 +24,7 @@
 # Variables #
 #############
 
-declare -r PATINA_VERSION='1.0.0'
+declare -r PATINA_VERSION='1.0.1'
 declare -r PATINA_CODENAME='Mae'
 declare -r PATINA_URL='https://github.com/ultraviolet-1986/patina'
 

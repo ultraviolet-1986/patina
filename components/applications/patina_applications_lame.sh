@@ -20,9 +20,40 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+##############
+# References #
+##############
+
+# https://tinyurl.com/h59rwpuz
+
 #############
 # Functions #
 #############
+
+patina_encode_flac_to_mp3(){
+    for f in *.flac; do
+      [[ "$f" != *.flac ]] && continue
+      album="$(metaflac --show-tag=album "$f" | sed 's/[^=]*=//')"
+      artist="$(metaflac --show-tag=artist "$f" | sed 's/[^=]*=//')"
+      title="$(metaflac --show-tag=title "$f" | sed 's/[^=]*=//')"
+      year="$(metaflac --show-tag=date "$f" | sed 's/[^=]*=//')"
+      genre="$(metaflac --show-tag=genre "$f" | sed 's/[^=]*=//')"
+      tracknumber="$(metaflac --show-tag=tracknumber "$f" | sed 's/[^=]*=//')"
+
+      flac --decode --stdout "$f" | \
+        lame -h -q 0 -V 0 --replaygain-accurate --add-id3v2 \
+          --tt "$title" \
+          --ta "$artist" \
+          --tl "$album" \
+          --ty "$year" \
+          --tn "$tracknumber" \
+          --tg "$genre" \
+          - "${f%.flac}.mp3"
+
+      sync
+      echo
+    done
+}
 
 patina_encode_wave_to_mp3(){
   wav_count=$(find . -maxdepth 1 -name '*.wav' | wc -l)
@@ -69,6 +100,7 @@ patina_encode_wave_to_mp3(){
 # Aliases #
 ###########
 
+alias 'p-flac2mp3'='patina_encode_flac_to_mp3'
 alias 'p-wav2mp3'='patina_encode_wave_to_mp3'
 
 # End of File.

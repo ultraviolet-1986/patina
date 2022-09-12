@@ -12,6 +12,9 @@ The name for this version was taken from the game **Night in the Woods**. The
 protagonist, **Mae**, unravels a conspiracy deep in the heart of her home town
 upon her less than triumphant return.
 
+- **1.0.0.1 Currently in Development**
+  - Allow conversion of FLAC format files to MP3 using LAME, retaining metadata.
+
 - **1.0.0 Released Thursday, 16th June 2022**
   - Begun using stable version numbering notation now code is several years old.
   - System reports have now been abstracted from `patina.sh` and have been
